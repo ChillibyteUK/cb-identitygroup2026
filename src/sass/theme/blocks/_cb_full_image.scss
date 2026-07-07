@@ -1,0 +1,22 @@
+.cb-full-image {
+  position: relative;
+  background-color: var(--col-white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.cb-full-image img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.cb-full-image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  height: 18px;
+  background-color: var(--col-lime-200);
+  opacity: 0.5;
+  pointer-events: none;
+}

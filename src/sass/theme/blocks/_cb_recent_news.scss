@@ -1,0 +1,25 @@
+/**
+ * CB Recent News Block Styles
+ *
+ * @package  cb-idtravel2026
+ */
+
+.cb-recent-news {
+    background-color: var(--col-raspberry);
+    color: var(--col-white);
+
+    &__pre-title {
+        background-color: var(--col-raspberry-600);
+        border-top: 1px solid hsl( var(--hsl-neutral-050) / 0.5);
+        border-bottom: 1px solid hsl( var(--hsl-neutral-050) / 0.5);
+        padding-block: 1rem 0.75rem;
+        color: var(--col-white);
+        font-weight: var(--fw-regular);
+        font-size: var(--fs-300);
+        line-height: 1;
+    }
+
+    .insight-type-grid__date {
+        color: var(--col-raspberry-100);
+    }
+}

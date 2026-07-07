@@ -1,0 +1,140 @@
+/* =========================
+   BUTTONS
+   ========================= */
+
+:root {
+  /* Button spacing/tweaks */
+  --btn-py: 0.75rem;
+  --btn-px: 1.5rem;
+  --btn-gap: 0.5rem;
+  --btn-border-w: 1px;
+  --btn-transition: 160ms ease;
+}
+
+/* funky button */
+.id-button {
+  position: relative;
+  display: inline-block;
+  padding: 5px 20px;
+  font-size: var(--fs-600);
+  line-height: 1;
+  font-weight: var(--fw-book);
+  color: #fff;
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  isolation: isolate;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--col-raspberry);
+    opacity: 1;
+    transition: transform 0.3s ease;
+    transform: rotate(-3deg);
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+    &::before {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.id-button--sm {
+  font-size: var(--fs-400);
+  padding: 4px 16px;
+}
+
+/* Base button */
+.btn,
+.btn a {
+  --_bg: var(--col-white);
+  --_fg: var(--col-primary);
+  --_bd: var(--col-white);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--btn-gap);
+
+  text-decoration: none !important;
+  text-transform: none;
+
+  padding: var(--btn-py) var(--btn-px);
+  border-radius: 6px;
+  border: var(--btn-border-w) solid var(--_bd);
+
+  background: var(--_bg);
+  color: var(--_fg);
+
+  font-family: var(--font-family);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-200);
+  line-height: 1;
+
+  transition:
+    background-color var(--btn-transition),
+    border-color var(--btn-transition),
+    color var(--btn-transition),
+    transform var(--btn-transition);
+
+  &:hover {
+    background-color: var(--_fg);
+    color: var(--_bg);
+    border-color: var(--_bg);
+  }
+}
+
+.btn-id-outline-green {
+  --_bg: transparent;
+  --_fg: var(--col-green-400);
+  --_bd: var(--col-green-400);
+  border-radius: 0;
+  height: 34px;
+  &:hover {
+    background-color: var(--col-green-400);
+    color: var(--col-primary-black);
+    border-color: var(--col-green-400);
+  }
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--col-accent-400);
+  outline-offset: 2px;
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-active);
+}
+
+/* Disabled */
+.btn[disabled],
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Icon affordance (SVG or <i>) */
+.btn > svg,
+.btn > i {
+  inline-size: 1em;
+  block-size: 1em;
+}
+
+/* Motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}

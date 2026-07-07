@@ -1,0 +1,37 @@
+.cta-hero {
+  background-color: var(--col-white);
+  color: var(--col-ink);
+  padding-block: 3rem 5rem;
+  .h1-wrapper {
+    border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
+    border-bottom: 1px solid hsl(var(--hsl-ink) / 0.25);
+    margin-bottom: 5rem;
+  }
+  h1 {
+    text-wrap: balance;
+    // width: 60%;
+    font-size: var(--fs-850);
+    font-weight: var(--fw-book);
+    letter-spacing: var(--ls--20);
+    line-height: 1;
+  }
+  &__cta-title {
+    font-size: var(--fs-400);
+    font-weight: var(--fw-regular);
+    letter-spacing: var(--ls--5);
+    text-wrap: balance;
+  }
+  &__intro {
+    font-size: var(--fs-100);
+    font-weight: var(--fw-regular);
+    margin-bottom: 1.5rem;
+  }
+  &__content {
+    > p:first-of-type {
+      font-size: var(--fs-500);
+      font-weight: var(--fw-light);
+      line-height: var(--lh-600);
+    }
+    font-weight: var(--fw-regular);
+  }
+}

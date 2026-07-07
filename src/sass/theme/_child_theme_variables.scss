@@ -1,0 +1,36 @@
+// Use this file to overwrite the basic Bootstrap variables and add your own variables
+// To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder.
+// Just copy a variable from src/sass/assets/bootstrap5/_variables.scss, paste it here and edit the value.
+
+@import "tokens";
+
+$primary: $col-primary;
+$secondary: $col-dark;
+
+@import "../assets/bootstrap5/functions";
+@import "../assets/bootstrap5/variables";
+@import "../assets/bootstrap5/maps";
+@import "../assets/bootstrap5/utilities";
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "width": map-merge(
+        map-get($utilities, "width"),
+        (
+          responsive: true,
+        )
+      ),
+  )
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 750px,
+  lg: 970px,
+  xl: 1170px,
+  xxl: 1360px,
+);
+
+$accordion-border-radius: 0;
+$accordion-inner-border-radius: 0;

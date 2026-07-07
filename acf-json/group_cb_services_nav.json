@@ -1,0 +1,23 @@
+{
+  "key": "group_cb_services_nav",
+  "title": "CB Services Nav",
+  "fields": [
+    {
+      "key": "field_cb_services_nav_title",
+      "label": "CB Services Nav",
+      "name": "title",
+      "type": "message"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-services-nav"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}

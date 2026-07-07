@@ -1,0 +1,23 @@
+{
+  "key": "group_cb_latest_insights",
+  "title": "CB Latest Insights",
+  "fields": [
+    {
+      "key": "field_cb_latest_insights_title",
+      "label": "CB Latest Insights",
+      "name": "title",
+      "type": "message"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-latest-insights"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}

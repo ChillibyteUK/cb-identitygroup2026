@@ -1,0 +1,48 @@
+.cb-about-page-header {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+  background-image: var(--_bg-url);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  @supports (-webkit-touch-callout: none) {
+    /* iOS-specific styles */
+    background-attachment: scroll;
+  }
+  &__top {
+    position: relative;
+    padding-block: 8rem 6rem;
+    isolation: isolate;
+    .intro-overlay {
+      background-color: rgba(255, 255, 255, 0.6);
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+  }
+  h1 {
+    font-size: var(--fs-950);
+    font-weight: var(--fw-light);
+    line-height: 1;
+    color: var(--col-lime-1000);
+    border-top: 1px solid hsl(var(--hsl-lime-1000) / 1) !important;
+    border-bottom: 1px solid hsl(var(--hsl-lime-1000) / 1) !important;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+    margin-bottom: 2rem;
+  }
+  &__intro-text {
+    // max-width: 80ch;
+    p {
+      font-size: var(--fs-500);
+    }
+    a {
+      color: var(--col-lime-900);
+      text-decoration: underline;
+      transition: color 0.3s ease;
+      &:hover {
+        color: var(--col-lime-800);
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "key": "group_cb_business_travel_nav",
+  "title": "CB Business Travel Nav",
+  "fields": [
+    {
+      "key": "field_69ca7398b3a58",
+      "label": "CB Business Travel Nav",
+      "name": "",
+      "aria-label": "",
+      "type": "message",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "message": "",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    },
+    {
+      "key": "field_cb_business_travel_nav_title",
+      "label": "Block Title",
+      "name": "title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "Optional title shown above the business travel nav.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf\/cb-business-travel-nav"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "display_title": "",
+  "modified": 1774880093
+}

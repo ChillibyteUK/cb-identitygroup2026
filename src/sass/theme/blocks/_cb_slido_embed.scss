@@ -1,0 +1,11 @@
+.cb-slido-embed {
+    &__iframe {
+        display: block;
+        height: 100%;
+        width: 100%;
+        min-height: 560px;
+        @media (min-width: 768px) {
+            min-height: 730px;
+        }
+    }
+}

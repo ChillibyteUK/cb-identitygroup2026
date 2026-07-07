@@ -1,0 +1,44 @@
+{
+  "key": "group_cb_full_video",
+  "title": "CB Full Video",
+  "fields": [
+    {
+      "key": "field_cb_full_video_title",
+      "label": "CB Full Video",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_690486add8fe6",
+      "label": "Vimeo URL",
+      "name": "vimeo_url",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-full-video"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}

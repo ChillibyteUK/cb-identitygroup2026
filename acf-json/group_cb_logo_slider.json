@@ -1,0 +1,44 @@
+{
+  "key": "group_cb_logo_slider",
+  "title": "CB Logo Slider",
+  "fields": [
+    {
+      "key": "field_cb_logo_slider_message",
+      "label": "CB Logo Slider",
+      "name": "",
+      "aria-label": "",
+      "type": "message",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "message": "Logos defined in Site-Wide Settings",
+      "new_lines": "wpautop",
+      "esc_html": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-logo-slider"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Fields for the CB Logo Slider block",
+  "show_in_rest": 0,
+  "display_title": "",
+  "modified": 1774884300
+}

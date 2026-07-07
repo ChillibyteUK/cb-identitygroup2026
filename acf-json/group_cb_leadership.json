@@ -1,0 +1,161 @@
+{
+  "key": "group_cb_leadership",
+  "title": "CB Leadership",
+  "fields": [
+    {
+      "key": "field_cb_leadership_title",
+      "label": "CB Leadership",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_698cb19bff1fd",
+      "label": "Intro",
+      "name": "intro",
+      "aria-label": "",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "rows": "",
+      "placeholder": "",
+      "new_lines": ""
+    },
+    {
+      "key": "field_698cb1a7ff1fe",
+      "label": "Team",
+      "name": "team",
+      "aria-label": "",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+      },
+      "layout": "block",
+      "pagination": 0,
+      "min": 0,
+      "max": 0,
+      "collapsed": "",
+      "button_label": "Add Row",
+      "rows_per_page": 20,
+      "sub_fields": [
+        {
+          "key": "field_698cb1b1ff1ff",
+          "label": "Name",
+          "name": "name",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_698cb1a7ff1fe"
+        },
+        {
+          "key": "field_698cb1b6ff200",
+          "label": "Role",
+          "name": "role",
+          "aria-label": "",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "parent_repeater": "field_698cb1a7ff1fe"
+        },
+        {
+          "key": "field_698cb1bdff201",
+          "label": "Bio",
+          "name": "bio",
+          "aria-label": "",
+          "type": "textarea",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "default_value": "",
+          "maxlength": "",
+          "allow_in_bindings": 0,
+          "rows": "",
+          "placeholder": "",
+          "new_lines": "br",
+          "parent_repeater": "field_698cb1a7ff1fe"
+        },
+        {
+          "key": "field_698cb1ccff202",
+          "label": "Image",
+          "name": "image",
+          "aria-label": "",
+          "type": "image",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "return_format": "id",
+          "library": "all",
+          "min_width": "",
+          "min_height": "",
+          "min_size": "",
+          "max_width": "",
+          "max_height": "",
+          "max_size": "",
+          "mime_types": "",
+          "allow_in_bindings": 0,
+          "preview_size": "thumbnail",
+          "parent_repeater": "field_698cb1a7ff1fe"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-leadership"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}
