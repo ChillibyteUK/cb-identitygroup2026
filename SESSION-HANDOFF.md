@@ -1,5 +1,46 @@
 # Session Handoff: cb-identitygroup2026
 
+## 2026-07-07 follow-up: real WP instance, major bug found and fixed
+
+Continued this from a local install with wp-cli, Node, and the full build
+toolchain available (things the original cloud sandbox didn't have). Findings:
+
+- **The "37 of 47 blocks" ACF location fix from the original session was
+  backwards, and left ~39 blocks broken.** ACF's `acf_register_block_type()`
+  runs every block's `name` arg through `acf_slugify()`, which converts
+  underscores to hyphens — so a block registered with `'name' => 'cb_faq'`
+  actually becomes `acf/cb-faq` in `WP_Block_Type_Registry`, and that's the
+  exact string the block editor writes into post content
+  (`<!-- wp:acf/cb-faq ... -->`). The original fix pointed field-group
+  `location` values at the *unslugified* underscore form
+  (`acf/cb_faq`) instead, which matches nothing. Verified empirically:
+  `acf_get_field_groups(['block' => 'acf/cb-faq'])` returned 0 results before
+  the fix. This means **custom-fields panels were not showing, and front-end
+  output was empty, for nearly every block on this shared theme** — a much
+  worse version of the bug the original session thought it had fixed.
+  Fixed by rewriting the `value` in all affected `acf-json/*.json` files from
+  `acf/cb_xxx_yyy` to `acf/cb-xxx-yyy`. Verified: 0 mismatches across all 50
+  field groups against the real block registry; `cb-faq` block on a real page
+  (`ID 26`) now renders its actual field content via `render_block()`.
+  Also deleted two DB-only, JSON-less field-group posts (`CB Child Page Nav`
+  duplicate, orphaned `CB Full Case Study`) that were left over from testing
+  and matched nothing.
+- **CSS build pipeline ran clean** — this environment has `autoprefixer` and
+  `postcss-understrap-palette-generator` (the sandbox didn't). Ran
+  `npm run css` for real; diff against the hand-patched CSS was pure
+  reordering plus the expected new `.cb-site-coda` rules, nothing lost.
+- **Verified live in the browser/via curl**: `cb_site` switcher changes body
+  class, aria-label, and the full CSS-variable token block correctly across
+  all three site values; all 48 blocks register identically regardless of
+  `cb_site`; ACF json status reports clean sync.
+- **Classified the two uncatalogued blocks**: `cb-service-grid` (idtravel +
+  identity2025) needed no changes — both source versions are functionally
+  identical, only formatting differs. `cb-hero-prop-cta` (idtravel + coda) —
+  idtravel's copy read a `content_heading` field for its "has content" check
+  but never rendered it; coda's copy had the complete implementation. Took
+  coda's version as canonical (more complete, fixes a real dead-field bug)
+  and added the missing `content_heading` field to the merged field group.
+
 Picks up a theme-consolidation project (merging `cb-identity2025`, `cb-coda2026`,
 `cb-idtravel2026` into this shared theme) that was built in a cloud sandbox with
 no WordPress instance to test against. Everything below is either committed on
@@ -105,9 +146,6 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
   itself was never renamed to the generic scheme. Do this if/when consolidating
   onto one canonical naming convention matters more than "it works."
 - **Phase D (deploy scripts, per-site builds)**: not started.
-- **Two uncatalogued blocks** exist in 2+ source themes but were never
-  classified in the plan: `cb-hero-prop-cta` (coda + idtravel) and
-  `cb-service-grid` (idtravel + identity). Decide: shared-as-is or one-off.
 - **Deprecated-but-still-registered blocks**: `cb-video-hero`, `cb-plain-hero`,
   `cb-cta-hero` (→ replaced by `cb-full-video`/`cb-image-feature-overlay`
   config fields) and `cb-lined-title` (→ `cb-signpost-header`) are still fully
