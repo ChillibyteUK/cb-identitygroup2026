@@ -1,0 +1,62 @@
+// Per-site header/nav overrides that are structural, not just colour swaps.
+//
+// coda's nav is light-background/dark-text; identity and idtravel are both
+// dark-background/light-text. --col-ink / --col-white token overrides alone
+// can't express this (they're the same two tokens both designs use, just
+// assigned to opposite roles), so this ports coda's own _header.scss rules
+// wholesale, scoped under the cb-site-coda body class added by
+// cb_add_site_body_class() in inc/cb-site-tokens.php.
+.cb-site-coda {
+  header {
+    background-color: var(--col-white) !important;
+
+    &.scrolled {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    a,
+    a.nav-link {
+      color: var(--col-primary-black);
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        color: var(--col-primary-black);
+      }
+    }
+
+    .current_page_item > .nav-link,
+    .current_page_parent > .nav-link,
+    .current-page-ancestor > .nav-link,
+    .current-menu-parent > .nav-link,
+    .current-menu-ancestor > .nav-link,
+    .dropdown.current-page-ancestor > .nav-link,
+    .dropdown.current-menu-item > .nav-link {
+      color: var(--col-lime-900);
+    }
+
+    .dropdown-item {
+      color: var(--col-primary-black);
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background-color: var(--col-white);
+        color: var(--col-lime-900);
+      }
+    }
+
+    .navbar-toggler {
+      color: var(--col-primary-black);
+    }
+  }
+
+  .navbar-collapse.collapse.show {
+    background-color: var(--col-white);
+    border-color: var(--col-neutral-50);
+  }
+
+  header:has(.navbar-collapse.collapse.show) {
+    background-color: var(--col-white) !important;
+  }
+}

@@ -32,6 +32,23 @@ function cb_site_template_suffix() {
 }
 
 /**
+ * Adds a cb-site-{slug} body class, so CSS can scope per-site design
+ * differences that aren't just colour-value swaps (e.g. coda's header is
+ * light-background/dark-text; identity and idtravel are both
+ * dark-background/light-text — a structural rule difference, not something
+ * a custom-property override alone can express). See _header.scss's
+ * ".cb-site-coda header" override block.
+ *
+ * @param array $classes Body classes.
+ * @return array
+ */
+function cb_add_site_body_class( $classes ) {
+	$classes[] = 'cb-site-' . cb_site_template_suffix();
+	return $classes;
+}
+add_filter( 'body_class', 'cb_add_site_body_class' );
+
+/**
  * Returns the full per-site token table.
  *
  * @return array<string, array<string, string>>

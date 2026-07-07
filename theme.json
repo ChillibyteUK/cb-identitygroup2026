@@ -15,6 +15,9 @@
       ]
     },
     "color": {
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "defaultDuotone": false,
       "palette": [
         {
           "name": "white",

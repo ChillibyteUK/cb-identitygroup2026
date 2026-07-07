@@ -25848,4 +25848,49 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
   border: 1px solid transparent;
 }
 
+
+/* Per-site header override — see src/sass/theme/_header-site-overrides.scss */
+.cb-site-coda header {
+  background-color: var(--col-white) !important;
+}
+.cb-site-coda header.scrolled {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+.cb-site-coda header a,
+.cb-site-coda header a.nav-link {
+  color: var(--col-primary-black);
+}
+.cb-site-coda header a:hover, .cb-site-coda header a:focus, .cb-site-coda header a:focus-visible,
+.cb-site-coda header a.nav-link:hover,
+.cb-site-coda header a.nav-link:focus,
+.cb-site-coda header a.nav-link:focus-visible {
+  color: var(--col-primary-black);
+}
+.cb-site-coda header .current_page_item > .nav-link,
+.cb-site-coda header .current_page_parent > .nav-link,
+.cb-site-coda header .current-page-ancestor > .nav-link,
+.cb-site-coda header .current-menu-parent > .nav-link,
+.cb-site-coda header .current-menu-ancestor > .nav-link,
+.cb-site-coda header .dropdown.current-page-ancestor > .nav-link,
+.cb-site-coda header .dropdown.current-menu-item > .nav-link {
+  color: var(--col-lime-900);
+}
+.cb-site-coda header .dropdown-item {
+  color: var(--col-primary-black);
+}
+.cb-site-coda header .dropdown-item:hover, .cb-site-coda header .dropdown-item:focus, .cb-site-coda header .dropdown-item:focus-visible {
+  background-color: var(--col-white);
+  color: var(--col-lime-900);
+}
+.cb-site-coda header .navbar-toggler {
+  color: var(--col-primary-black);
+}
+.cb-site-coda .navbar-collapse.collapse.show {
+  background-color: var(--col-white);
+  border-color: var(--col-neutral-50);
+}
+.cb-site-coda header:has(.navbar-collapse.collapse.show) {
+  background-color: var(--col-white) !important;
+}
+
 /*# sourceMappingURL=child-theme.css.map */
