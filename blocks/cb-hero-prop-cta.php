@@ -2,7 +2,7 @@
 /**
  * Block template for CB Hero Prop CTA.
  *
- * @package Identity Travel
+ * @package cb-identitygroup2026
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -44,7 +44,7 @@ if ( ! empty( $block_id ) ) {
 				);
 				?>
 				<div class="row">
-					<div class="col-md-8 mb-5 d-flex justify-content-center align-items-center">
+					<div class="col-md-7 mb-5 d-flex justify-content-center align-items-center">
 						<div class="cb-hero-prop-cta__title ps-5 ps-md-0">
 							<?= wp_kses_post( implode( '', $wrapped ) ); ?>
 						</div>
@@ -69,16 +69,23 @@ if ( ! empty( $block_id ) ) {
 				<div class="row">
 					<div class="col-md-6 offset-md-6">
 						<?php
+						if ( ! empty( $content_heading ) ) {
+							?>
+							<div class="cb-hero-prop-cta__content-heading mb-4" data-aos="fade-up">
+								<?= wp_kses_post( $content_heading ); ?>
+							</div>
+							<?php
+						}
 						if ( ! empty( $content ) ) {
 							?>
-							<div class="cb-hero-prop-cta__content text-balance pb-4" data-aos="fade" data-aos-delay="100">
+							<div class="cb-hero-prop-cta__content text-balance" data-aos="fade-up" data-aos-delay="100">
 								<?= wp_kses_post( $content ); ?>
 							</div>
 							<?php
 						}
 						if ( $link_url && $link_title ) {
 							?>
-							<div class="cb-hero-prop-cta__link mt-4" data-aos="fade" data-aos-delay="200">
+							<div class="cb-hero-prop-cta__link mt-4" data-aos="fade-up" data-aos-delay="200">
 								<a href="<?= esc_url( $link_url ); ?>"<?= wp_kses_post( $link_target_attr ); ?> class="id-button">
 									<?= esc_html( $link_title ); ?>
 								</a>

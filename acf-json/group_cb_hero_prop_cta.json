@@ -30,6 +30,27 @@
             "new_lines": "br"
         },
         {
+            "key": "field_68f0defca33ac",
+            "label": "Content Heading",
+            "name": "content_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_68f0df08a33ad",
             "label": "Content",
             "name": "content",
@@ -73,7 +94,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_hero_prop_cta"
+                "value": "acf/cb-hero-prop-cta"
             }
         ]
     ],
