@@ -68,6 +68,89 @@
             "multiple": 0,
             "allow_null": 0,
             "bidirectional_target": []
+        },
+        {
+            "key": "field_cb_featured_work_tax_filter",
+            "label": "Taxonomy Filter",
+            "name": "taxonomy_filter",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Auto-filters case studies by the CURRENT post's terms in this taxonomy (replaces the fixed service+theme logic duplicated across the old cb-related-work variants and cb-work-by-region). Leave as None to use the Services field above instead.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "None",
+                "service": "Service",
+                "theme": "Theme",
+                "region": "Region"
+            },
+            "default_value": "none",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_cb_featured_work_hero_mode",
+            "label": "Hero Mode",
+            "name": "hero_mode",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Render as a single full-width hero card (replaces cb-full-case-study) instead of the grid of cards.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_cb_featured_work_hero_case_study",
+            "label": "Hero Case Study",
+            "name": "hero_case_study",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Leave empty to use the latest case study.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_featured_work_hero_mode",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "case_study"
+            ],
+            "taxonomy": [],
+            "return_format": "id",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 1
         }
     ],
     "location": [
@@ -75,7 +158,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-featured-work"
+                "value": "acf/cb_featured_work"
             }
         ]
     ],

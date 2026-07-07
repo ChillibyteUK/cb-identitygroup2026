@@ -21,6 +21,36 @@
             "selected": 0
         },
         {
+            "key": "field_cb_site_toggle",
+            "label": "Site",
+            "name": "cb_site",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Which site this install is running as. Drives per-site one-off block registration and (once wired up at build time) SCSS token mapping. Read via get_field('cb_site', 'option').",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "identity": "Identity",
+                "coda": "Coda",
+                "idtravel": "Idtravel"
+            },
+            "default_value": "idtravel",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
             "key": "field_683592721dde9",
             "label": "Contact Email",
             "name": "contact_email",

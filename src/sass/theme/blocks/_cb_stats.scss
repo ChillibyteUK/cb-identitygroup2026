@@ -9,6 +9,11 @@
     z-index: 1;
   }
 
+  &__hero-title-wrapper {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
   &--has-background-image {
     overflow: hidden;
 

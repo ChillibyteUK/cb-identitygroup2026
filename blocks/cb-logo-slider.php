@@ -7,8 +7,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-logo-slider-' );
-$logos    = get_field( 'logos', 'option' );
+$block_id    = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-logo-slider-' );
+$logo_source = get_field( 'logo_source' ) ?: 'site_wide';
+$logos       = 'specific' === $logo_source ? get_field( 'logo_gallery' ) : get_field( 'logos', 'option' );
 
 if ( empty( $logos ) || ! is_array( $logos ) ) {
 	return;

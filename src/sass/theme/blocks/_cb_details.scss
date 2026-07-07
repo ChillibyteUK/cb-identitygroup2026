@@ -8,5 +8,10 @@
       font-size: var(--fs-500);
       color: var(--col-neutral-700);
     }
+
+    &--bullet {
+      font-size: var(--fs-500);
+      font-weight: var(--fw-semi);
+    }
   }
 }

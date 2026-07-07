@@ -1,44 +1,84 @@
 {
-  "key": "group_cb_full_video",
-  "title": "CB Full Video",
-  "fields": [
-    {
-      "key": "field_cb_full_video_title",
-      "label": "CB Full Video",
-      "name": "title",
-      "type": "message"
-    },
-    {
-      "key": "field_690486add8fe6",
-      "label": "Vimeo URL",
-      "name": "vimeo_url",
-      "aria-label": "",
-      "type": "text",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "default_value": "",
-      "maxlength": "",
-      "allow_in_bindings": 0,
-      "placeholder": "",
-      "prepend": "",
-      "append": ""
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "block",
-        "operator": "==",
-        "value": "acf/cb-full-video"
-      }
-    ]
-  ],
-  "active": 1,
-  "description": ""
+    "key": "group_cb_full_video",
+    "title": "CB Full Video",
+    "fields": [
+        {
+            "key": "field_cb_full_video_title",
+            "label": "CB Full Video",
+            "name": "title",
+            "type": "message"
+        },
+        {
+            "key": "field_690486add8fe6",
+            "label": "Vimeo URL",
+            "name": "vimeo_url",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_full_video_full_width",
+            "label": "Full Width",
+            "name": "full_width",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Removes the container so the video runs edge-to-edge.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_cb_full_video_hero_mode",
+            "label": "Hero Mode",
+            "name": "hero_mode",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Autoplays muted, background-video style (replaces cb-video-hero).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb_full_video"
+            }
+        ]
+    ],
+    "active": 1,
+    "description": ""
 }

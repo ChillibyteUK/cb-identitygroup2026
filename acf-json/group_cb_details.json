@@ -21,6 +21,53 @@
             "new_lines": "wpautop"
         },
         {
+            "key": "field_cb_details_pre_title",
+            "label": "Pre Title",
+            "name": "pre_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional heading shown above the details list (e.g. for the about-detail / service-detail pattern).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_details_render_style",
+            "label": "Render Style",
+            "name": "render_style",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "'Details' renders each row as a title/content pair. 'Bullet List' renders just the title of each row as a simple list item (for the deliverables-list pattern).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "details": "Details",
+                "bullet_list": "Bullet List"
+            },
+            "default_value": "details",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal",
+            "save_other_choice": 0
+        },
+        {
             "key": "field_698cacc9303df",
             "label": "Details",
             "name": "details",
@@ -94,7 +141,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-details"
+                "value": "acf\/cb_details"
             }
         ]
     ],

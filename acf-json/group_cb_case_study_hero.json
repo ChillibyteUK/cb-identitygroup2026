@@ -47,7 +47,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "cb\/cb-case-study-hero"
+                "value": "acf/cb_case_study_hero"
             }
         ]
     ],

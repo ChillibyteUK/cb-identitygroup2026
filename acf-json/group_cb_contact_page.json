@@ -341,7 +341,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-contact-page"
+                "value": "acf/cb_contact_page"
             }
         ]
     ],

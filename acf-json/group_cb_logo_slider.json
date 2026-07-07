@@ -19,6 +19,68 @@
       "message": "Logos defined in Site-Wide Settings",
       "new_lines": "wpautop",
       "esc_html": 0
+    },
+    {
+      "key": "field_cb_logo_slider_source",
+      "label": "Logo Source",
+      "name": "logo_source",
+      "aria-label": "",
+      "type": "radio",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "site_wide": "Site-Wide",
+        "specific": "Specific"
+      },
+      "default_value": "site_wide",
+      "return_format": "value",
+      "allow_null": 0,
+      "other_choice": 0,
+      "allow_in_bindings": 0,
+      "layout": "horizontal",
+      "save_other_choice": 0
+    },
+    {
+      "key": "field_cb_logo_slider_gallery",
+      "label": "Logos",
+      "name": "logo_gallery",
+      "aria-label": "",
+      "type": "gallery",
+      "instructions": "Used when Logo Source is set to Specific (e.g. award logos, sport logos), instead of the Site-Wide Settings logos.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_cb_logo_slider_source",
+            "operator": "==",
+            "value": "specific"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "id",
+      "library": "all",
+      "min": "",
+      "max": "",
+      "min_width": "",
+      "min_height": "",
+      "min_size": "",
+      "max_width": "",
+      "max_height": "",
+      "max_size": "",
+      "mime_types": "",
+      "insert": "append",
+      "preview_size": "thumbnail"
     }
   ],
   "location": [

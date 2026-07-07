@@ -1,0 +1,106 @@
+{
+    "key": "group_cb_child_page_nav",
+    "title": "CB Child Page Nav",
+    "fields": [
+        {
+            "key": "field_cb_child_page_nav_title",
+            "label": "CB Child Page Nav",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "Consolidates cb-business-travel-nav, cb-solutions-nav, cb-specialist-travel-nav.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_cb_child_page_nav_parent_slug",
+            "label": "Parent Page Slug",
+            "name": "parent_slug",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Slug of the parent page whose child pages should be listed (e.g. 'business-travel', 'solutions', 'specialist-travel').",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_child_page_nav_excluded_slug",
+            "label": "Excluded Child Slug",
+            "name": "excluded_slug",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional: a single child page slug (relative to the parent) to always exclude from the list, e.g. 'your-travel-programme'.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cb_child_page_nav_heading_title",
+            "label": "Title",
+            "name": "title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional heading shown above the nav.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb_child_page_nav"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": ""
+}

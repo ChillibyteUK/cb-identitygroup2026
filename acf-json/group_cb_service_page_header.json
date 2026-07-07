@@ -157,7 +157,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-service-page-header"
+                "value": "acf/cb_service_page_header"
             }
         ]
     ],

@@ -26,7 +26,7 @@
             "name": "event_url",
             "aria-label": "",
             "type": "url",
-            "instructions": "In the format https:\/\/vimeo.com\/event\/EVENT_ID",
+            "instructions": "In the format https://vimeo.com/event/EVENT_ID",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -44,7 +44,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-vimeo-event"
+                "value": "acf/cb_vimeo_event"
             }
         ]
     ],

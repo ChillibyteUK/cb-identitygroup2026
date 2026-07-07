@@ -111,7 +111,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-careers-page"
+                "value": "acf/cb_careers_page"
             }
         ]
     ],

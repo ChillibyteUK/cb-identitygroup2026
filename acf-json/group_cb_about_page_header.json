@@ -94,7 +94,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-about-page-header"
+                "value": "acf/cb_about_page_header"
             }
         ]
     ],

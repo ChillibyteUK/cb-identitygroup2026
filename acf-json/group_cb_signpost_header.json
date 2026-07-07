@@ -47,7 +47,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-signpost-header"
+                "value": "acf/cb_signpost_header"
             }
         ]
     ],

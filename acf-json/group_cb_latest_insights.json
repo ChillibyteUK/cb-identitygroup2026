@@ -1,23 +1,49 @@
 {
-  "key": "group_cb_latest_insights",
-  "title": "CB Latest Insights",
-  "fields": [
-    {
-      "key": "field_cb_latest_insights_title",
-      "label": "CB Latest Insights",
-      "name": "title",
-      "type": "message"
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "block",
-        "operator": "==",
-        "value": "acf/cb-latest-insights"
-      }
-    ]
-  ],
-  "active": 1,
-  "description": ""
+    "key": "group_cb_latest_insights",
+    "title": "CB Latest Insights",
+    "fields": [
+        {
+            "key": "field_cb_latest_insights_title",
+            "label": "CB Latest Insights",
+            "name": "title",
+            "type": "message"
+        },
+        {
+            "key": "field_cb_latest_insights_tax_filter",
+            "label": "Taxonomy Filter",
+            "name": "taxonomy_filter",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "Limit to posts with these Theme terms (e.g. select 'Expo' to replace the old cb-latest-insights-expo block). Leave empty to show all posts.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "theme",
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "field_type": "checkbox",
+            "allow_in_bindings": 0,
+            "bidirectional": 0,
+            "multiple": 0,
+            "allow_null": 0,
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb_latest_insights"
+            }
+        ]
+    ],
+    "active": 1,
+    "description": ""
 }

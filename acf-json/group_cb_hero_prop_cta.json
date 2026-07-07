@@ -1,83 +1,83 @@
 {
-  "key": "group_cb_hero_prop_cta",
-  "title": "CB Hero Prop CTA",
-  "fields": [
-    {
-      "key": "field_cb_hero_prop_cta_title",
-      "label": "CB Hero Prop CTA",
-      "name": "title",
-      "type": "message"
-    },
-    {
-      "key": "field_68f0def7a33ab",
-      "label": "Title",
-      "name": "title",
-      "aria-label": "",
-      "type": "textarea",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "default_value": "",
-      "maxlength": "",
-      "allow_in_bindings": 0,
-      "rows": 3,
-      "placeholder": "",
-      "new_lines": "br"
-    },
-    {
-      "key": "field_68f0df08a33ad",
-      "label": "Content",
-      "name": "content",
-      "aria-label": "",
-      "type": "textarea",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "default_value": "",
-      "maxlength": "",
-      "allow_in_bindings": 0,
-      "rows": "",
-      "placeholder": "",
-      "new_lines": "br"
-    },
-    {
-      "key": "field_68f0df12a33ae",
-      "label": "Link",
-      "name": "link",
-      "aria-label": "",
-      "type": "link",
-      "instructions": "",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "return_format": "array",
-      "allow_in_bindings": 0
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "block",
-        "operator": "==",
-        "value": "acf/cb-hero-prop-cta"
-      }
-    ]
-  ],
-  "active": 1,
-  "description": "",
-  "modified": 1776163617
+    "key": "group_cb_hero_prop_cta",
+    "title": "CB Hero Prop CTA",
+    "fields": [
+        {
+            "key": "field_cb_hero_prop_cta_title",
+            "label": "CB Hero Prop CTA",
+            "name": "title",
+            "type": "message"
+        },
+        {
+            "key": "field_68f0def7a33ab",
+            "label": "Title",
+            "name": "title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_68f0df08a33ad",
+            "label": "Content",
+            "name": "content",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_68f0df12a33ae",
+            "label": "Link",
+            "name": "link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cb_hero_prop_cta"
+            }
+        ]
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1776163617
 }

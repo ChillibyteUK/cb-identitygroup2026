@@ -9,8 +9,13 @@ defined( 'ABSPATH' ) || exit;
 
 $block_id         = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-stats-' );
 $background_image = get_field( 'background_image' );
+$show_hero         = get_field( 'show_hero' );
+$hero_title         = get_field( 'hero_title' );
 
 $section_classes = array( 'cb-stats' );
+if ( $show_hero ) {
+	$section_classes[] = 'cb-stats--hero';
+}
 $section_style   = '';
 
 if ( $background_image ) {
@@ -33,7 +38,7 @@ for ( $index = 1; $index <= 4; $index++ ) {
 	);
 }
 
-if ( ! array_reduce(
+if ( empty( $hero_title ) && ! array_reduce(
 	$stats,
 	function ( $carry, $stat ) {
 		return $carry || '' !== (string) $stat['intro'] || '' !== (string) $stat['prefix'] || '' !== (string) $stat['value'] || '' !== (string) $stat['suffix'];
@@ -45,6 +50,11 @@ if ( ! array_reduce(
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>>
 	<div class="id-container px-4 px-md-5 py-5">
+		<?php if ( $show_hero && $hero_title ) : ?>
+		<div class="cb-stats__hero-title-wrapper">
+			<h1><?= esc_html( $hero_title ); ?></h1>
+		</div>
+		<?php endif; ?>
 		<div class="row g-4 py-5 justify-content-center" data-aos-stagger-group>
 			<?php
 			if ( get_field( 'cta_message' ) || get_field( 'cta_link' ) ) {

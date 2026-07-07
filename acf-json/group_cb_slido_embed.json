@@ -26,7 +26,7 @@
             "name": "event_hash",
             "aria-label": "",
             "type": "text",
-            "instructions": "Just the last bit - https:\/\/app.sli.do\/event\/eventhash",
+            "instructions": "Just the last bit - https://app.sli.do/event/eventhash",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -47,7 +47,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-slido-embed"
+                "value": "acf/cb_slido_embed"
             }
         ]
     ],

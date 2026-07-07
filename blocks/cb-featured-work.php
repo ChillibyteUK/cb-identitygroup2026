@@ -10,8 +10,57 @@ defined( 'ABSPATH' ) || exit;
 // Block ID.
 $block_id = $block['id'] ?? '';
 
+$hero_mode = get_field( 'hero_mode' );
+
+if ( $hero_mode ) {
+	$hero_case_study = get_field( 'hero_case_study' );
+	if ( ! $hero_case_study ) {
+		$latest_query = new WP_Query(
+			array(
+				'post_type'      => 'case_study',
+				'posts_per_page' => 1,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+			)
+		);
+		if ( $latest_query->have_posts() ) {
+			$hero_case_study = $latest_query->posts[0]->ID;
+			wp_reset_postdata();
+		}
+	}
+
+	if ( $hero_case_study ) {
+		?>
+	<section id="<?php echo esc_attr( $block_id ); ?>" class="cb-featured-work cb-featured-work--hero">
+		<a href="<?= esc_url( get_the_permalink( $hero_case_study ) ); ?>" class="cb-featured-work__card cb-featured-work__card--hero">
+			<?= get_work_image( $hero_case_study, 'cb-featured-work__image' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<div class="cb-featured-work__content px-4 px-md-5">
+				<div class="cb-featured-work__title">
+					<?php echo esc_html( get_the_title( $hero_case_study ) ); ?>
+					<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-bk.svg' ); ?>" width=23 height=21 alt="" class="cb-featured-work__arrow" />
+				</div>
+				<div class="cb-featured-work__desc">
+					<?php
+					$post_blocks = parse_blocks( get_the_content( null, false, $hero_case_study ) );
+					$subtitle    = cb_find_hero_subtitle( $post_blocks );
+					if ( $subtitle ) {
+						echo esc_html( $subtitle );
+					} else {
+						echo wp_kses_post( wp_trim_words( get_the_excerpt( $hero_case_study ), 18, '...' ) );
+					}
+					?>
+				</div>
+			</div>
+		</a>
+	</section>
+		<?php
+	}
+	return;
+}
+
 $count             = get_field( 'count' ) ?? 4;
 $selected_services = get_field( 'services' ) ?? array();
+$taxonomy_filter   = get_field( 'taxonomy_filter' ) ?: 'none';
 
 $query_args = array(
 	'post_type'      => 'case_study',
@@ -20,8 +69,24 @@ $query_args = array(
 	'order'          => 'DESC',
 );
 
-// If services are selected, filter by those term IDs.
-if ( ! empty( $selected_services ) && is_array( $selected_services ) ) {
+if ( 'none' !== $taxonomy_filter && taxonomy_exists( $taxonomy_filter ) ) {
+	// Auto-derive from the current post's terms in the chosen taxonomy —
+	// generalises the fixed service+theme logic previously duplicated
+	// across cb-related-work/-expo/-sports and the region logic in
+	// cb-work-by-region.
+	$current_terms = wp_get_post_terms( get_the_ID(), $taxonomy_filter, array( 'fields' => 'ids' ) );
+	if ( ! empty( $current_terms ) && ! is_wp_error( $current_terms ) ) {
+		$query_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			array(
+				'taxonomy' => $taxonomy_filter,
+				'field'    => 'term_id',
+				'terms'    => $current_terms,
+			),
+		);
+		$query_args['post__not_in'] = array( get_the_ID() );
+	}
+} elseif ( ! empty( $selected_services ) && is_array( $selected_services ) ) {
+	// If services are selected, filter by those term IDs.
 	// Pull the full matching set so primary-service ranking is accurate before limiting.
 	$query_args['posts_per_page'] = -1;
 	$query_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query

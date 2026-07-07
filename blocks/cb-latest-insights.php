@@ -15,6 +15,8 @@ if ( is_front_page() ) {
 	$class = 'cb-latest-insights--front';
 }
 
+$taxonomy_filter = get_field( 'taxonomy_filter' );
+
 ?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-latest-insights <?= esc_attr( $class ); ?>">
 	<div class="cb-latest-insights__pre-title">
@@ -26,14 +28,24 @@ if ( is_front_page() ) {
 
 		<div class="row g-5">
 			<?php
-			$q = new WP_Query(
-				array(
-					'post_type'      => 'post',
-					'posts_per_page' => 6,
-					'orderby'        => 'date',
-					'order'          => 'DESC',
-				)
+			$query_args = array(
+				'post_type'      => 'post',
+				'posts_per_page' => 6,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
 			);
+
+			if ( ! empty( $taxonomy_filter ) && is_array( $taxonomy_filter ) ) {
+				$query_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+					array(
+						'taxonomy' => 'theme',
+						'field'    => 'term_id',
+						'terms'    => $taxonomy_filter,
+					),
+				);
+			}
+
+			$q = new WP_Query( $query_args );
 			if ( $q->have_posts() ) {
 				$counter = 0;
 				while ( $q->have_posts() ) {

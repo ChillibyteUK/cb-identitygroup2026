@@ -21,6 +21,55 @@
             "esc_html": 0
         },
         {
+            "key": "field_cb_stats_show_hero",
+            "label": "Show Hero",
+            "name": "show_hero",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Renders a page-hero title above the stats row (replaces cb-stat-hero).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_cb_stats_hero_title",
+            "label": "Hero Title",
+            "name": "hero_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_cb_stats_show_hero",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_cb_stats_background_image",
             "label": "Background Image",
             "name": "background_image",
@@ -431,7 +480,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-stats"
+                "value": "acf/cb_stats"
             }
         ]
     ],

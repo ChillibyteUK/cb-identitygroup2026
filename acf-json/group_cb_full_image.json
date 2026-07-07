@@ -78,7 +78,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-full-image"
+                "value": "acf/cb_full_image"
             }
         ]
     ],
