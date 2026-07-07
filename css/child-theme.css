@@ -24806,6 +24806,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-decision-gate {
   position: relative;
   isolation: isolate;
+  color: var(--col-white);
 }
 .cb-decision-gate__second {
   background-color: hsla(255, 255%, 255%, 0.1);

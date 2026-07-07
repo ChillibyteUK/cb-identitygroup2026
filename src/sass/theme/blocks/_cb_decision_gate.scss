@@ -1,6 +1,7 @@
 .cb-decision-gate {
   position: relative;
   isolation: isolate;
+  color: var(--col-white);
 
   &__second {
     background-color: hsl( 255 255 255 / 0.1 );

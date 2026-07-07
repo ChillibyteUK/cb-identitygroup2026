@@ -15,9 +15,6 @@
 function acf_blocks() {
 	if ( function_exists( 'acf_register_block_type' ) ) {
 
-		// Drives per-site one-off block registration below; see acf-json/group_site_wide_settings.json.
-		$cb_site = get_field( 'cb_site', 'option' );
-
 		// INSERT NEW BLOCKS HERE.
 
 		// Copied from cb-coda2026 — did not exist in idtravel base.
@@ -174,8 +171,7 @@ function acf_blocks() {
 			)
 		);
 
-		// Converted from identity's block.json/register_block_type — identity-only, gated by cb_site.
-		if ( 'identity' === $cb_site ) {
+		// Converted from identity's block.json/register_block_type — available on all sites (see cb_add_site_body_class for per-site styling).
 		acf_register_block_type(
 			array(
 				'name'            => 'cb_case_study_hero',
@@ -311,7 +307,6 @@ function acf_blocks() {
 				),
 			)
 		);
-		} // end if ( 'identity' === $cb_site ).
 
 		// New shared block, consolidating cb-business-travel-nav/cb-solutions-nav/cb-specialist-travel-nav.
 		acf_register_block_type(
@@ -356,8 +351,6 @@ function acf_blocks() {
 			)
 		);
 
-		// idtravel-only, gated by cb_site.
-		if ( 'idtravel' === $cb_site ) {
 		acf_register_block_type(
 			array(
 				'name'            => 'cb_vimeo_event',
@@ -377,10 +370,7 @@ function acf_blocks() {
 				),
 			)
 		);
-		}
 
-		// idtravel-only, gated by cb_site.
-		if ( 'idtravel' === $cb_site ) {
 		acf_register_block_type(
 			array(
 				'name'            => 'cb_slido_embed',
@@ -401,7 +391,6 @@ function acf_blocks() {
 				),
 			)
 		);
-		}
 
 		acf_register_block_type(
 			array(
@@ -424,8 +413,6 @@ function acf_blocks() {
 			)
 		);
 
-		// idtravel-only, gated by cb_site.
-		if ( 'idtravel' === $cb_site ) {
 		acf_register_block_type(
 			array(
 				'name'            => 'cb_decision_gate',
@@ -446,7 +433,6 @@ function acf_blocks() {
 				),
 			)
 		);
-		}
 
 		acf_register_block_type(
 			array(
@@ -636,8 +622,6 @@ function acf_blocks() {
 			)
 		);
 
-		// idtravel-only, gated by cb_site.
-		if ( 'idtravel' === $cb_site ) {
 		acf_register_block_type(
 			array(
 				'name'            => 'cb_about_hero',
@@ -655,7 +639,6 @@ function acf_blocks() {
 				),
 			)
 		);
-		}
 
 		acf_register_block_type(
 			array(
@@ -695,8 +678,6 @@ function acf_blocks() {
 			)
 		);
 
-		// idtravel-only, gated by cb_site.
-		if ( 'idtravel' === $cb_site ) {
 		acf_register_block_type(
 			array(
 				'name'            => 'cb_tmc_post_index',
@@ -713,7 +694,6 @@ function acf_blocks() {
 				),
 			)
 		);
-		}
 
 		acf_register_block_type(
 			array(
