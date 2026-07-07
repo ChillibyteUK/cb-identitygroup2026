@@ -94,7 +94,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_plain_hero"
+                "value": "acf/cb-plain-hero"
             }
         ]
     ],

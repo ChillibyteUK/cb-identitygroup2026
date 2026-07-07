@@ -221,7 +221,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_culture_page_header"
+                "value": "acf/cb-culture-page-header"
             }
         ]
     ],

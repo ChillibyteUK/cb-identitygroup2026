@@ -115,7 +115,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_region_page_header"
+                "value": "acf/cb-region-page-header"
             }
         ]
     ],

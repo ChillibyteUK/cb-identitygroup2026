@@ -75,7 +75,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_full_video"
+                "value": "acf/cb-full-video"
             }
         ]
     ],

@@ -14,7 +14,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_tmc_post_index"
+                "value": "acf/cb-tmc-post-index"
             }
         ]
     ],

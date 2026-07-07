@@ -287,7 +287,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_policies_page"
+                "value": "acf/cb-policies-page"
             }
         ]
     ],

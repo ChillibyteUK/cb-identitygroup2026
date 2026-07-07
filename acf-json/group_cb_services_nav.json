@@ -14,7 +14,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_services_nav"
+                "value": "acf/cb-services-nav"
             }
         ]
     ],

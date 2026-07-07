@@ -480,7 +480,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_stats"
+                "value": "acf/cb-stats"
             }
         ]
     ],

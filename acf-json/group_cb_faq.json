@@ -71,7 +71,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_faq"
+                "value": "acf/cb-faq"
             }
         ]
     ],

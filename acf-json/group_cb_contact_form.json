@@ -77,7 +77,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_contact_form"
+                "value": "acf/cb-contact-form"
             }
         ]
     ],

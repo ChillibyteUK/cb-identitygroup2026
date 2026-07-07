@@ -56,7 +56,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_work_carousel"
+                "value": "acf/cb-work-carousel"
             }
         ]
     ],

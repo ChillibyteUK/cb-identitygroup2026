@@ -212,7 +212,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_decision_gate"
+                "value": "acf/cb-decision-gate"
             }
         ]
     ],

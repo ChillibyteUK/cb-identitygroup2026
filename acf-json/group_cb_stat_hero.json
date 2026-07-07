@@ -429,7 +429,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_stat_hero"
+                "value": "acf/cb-stat-hero"
             }
         ]
     ],

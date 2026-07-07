@@ -133,7 +133,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_file_block"
+                "value": "acf/cb-file-block"
             }
         ]
     ],

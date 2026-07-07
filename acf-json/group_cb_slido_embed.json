@@ -47,7 +47,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_slido_embed"
+                "value": "acf/cb-slido-embed"
             }
         ]
     ],

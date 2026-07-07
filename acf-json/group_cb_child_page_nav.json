@@ -89,7 +89,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_child_page_nav"
+                "value": "acf/cb-child-page-nav"
             }
         ]
     ],

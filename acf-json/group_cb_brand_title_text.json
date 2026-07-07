@@ -127,7 +127,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_brand_title_text"
+                "value": "acf/cb-brand-title-text"
             }
         ]
     ],

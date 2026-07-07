@@ -158,7 +158,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_featured_work"
+                "value": "acf/cb-featured-work"
             }
         ]
     ],

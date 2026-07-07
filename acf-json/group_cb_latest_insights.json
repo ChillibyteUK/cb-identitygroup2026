@@ -40,7 +40,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_latest_insights"
+                "value": "acf/cb-latest-insights"
             }
         ]
     ],

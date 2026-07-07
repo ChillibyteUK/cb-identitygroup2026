@@ -47,7 +47,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_solutions_nav"
+                "value": "acf/cb-solutions-nav"
             }
         ]
     ],

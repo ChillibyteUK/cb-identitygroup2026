@@ -40,7 +40,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_cta"
+                "value": "acf/cb-cta"
             }
         ]
     ],

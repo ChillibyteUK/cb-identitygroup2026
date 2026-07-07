@@ -78,7 +78,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_recent_news"
+                "value": "acf/cb-recent-news"
             }
         ]
     ],

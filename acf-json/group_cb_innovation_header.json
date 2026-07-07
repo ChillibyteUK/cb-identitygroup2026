@@ -157,7 +157,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_innovation_header"
+                "value": "acf/cb-innovation-header"
             }
         ]
     ],

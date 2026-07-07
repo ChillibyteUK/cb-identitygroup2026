@@ -44,7 +44,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_work_index"
+                "value": "acf/cb-work-index"
             }
         ]
     ],

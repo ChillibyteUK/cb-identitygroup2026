@@ -220,7 +220,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf/cb_image_feature_overlay"
+                "value": "acf/cb-image-feature-overlay"
             }
         ]
     ],
