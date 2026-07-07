@@ -1,0 +1,43 @@
+/**
+ * CB File Block Block Styles
+ *
+ * @package  cb-identity2025
+ */
+
+.cb-file-block {
+	color: var(--col-white);
+
+	&__pretitle {
+		border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+		border-top: 1px solid rgba(255, 255, 255, 0.4);
+		margin-bottom: 1rem;
+		color: var(--col-green-400);
+		font-size: var(--fs-300);
+		font-weight: var(--fw-regular);
+		text-transform: uppercase;
+	}
+
+	&__list {
+		padding-bottom: 6rem;
+	}
+
+	&__item {
+		display: block;
+		text-decoration: none;
+		font-size: var(--fs-700);
+		transition: background-color 0.3s ease;
+
+		>div {
+			padding-block: 0.75rem .5rem;
+		}
+
+		&:hover {
+			color: var(--col-white);
+			background-color: var(--col-neutral-1100);
+		}
+
+		&:not(:last-child) {
+			border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+		}
+	}
+}

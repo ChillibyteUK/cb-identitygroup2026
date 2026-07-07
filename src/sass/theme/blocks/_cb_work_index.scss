@@ -1,0 +1,271 @@
+.work-index-hero {
+  position: relative;
+  z-index: 1;
+  h1 {
+    border-top: 1px solid hsl(var(--hsl-lime-900) / 0.4);
+    color: var(--col-primary-black);
+  }
+  h2 {
+    border-top: 1px solid hsl(var(--hsl-lime-900) / 0.4);
+    border-bottom: 1px solid hsl(var(--hsl-lime-900) / 0.4);
+    color: var(--col-neutral-900);
+    margin-bottom: 0;
+  }
+
+  &__intro {
+    p {
+      max-width: 38ch;
+      // text-wrap: balance;
+      color: var(--col-lime-1000);
+    }
+  }
+
+  &__background {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    isolation: isolate;
+    overflow: hidden;
+    display: grid;
+    grid-template-areas: "stack";
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      color: initial;
+    }
+  }
+  &__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    grid-area: stack;
+  }
+  .overlay {
+    grid-area: stack;
+    width: 100%;
+    height: 18px;
+    background-color: var(--col-lime-200);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .bottom-overlay {
+    grid-area: stack;
+    width: 100%;
+    height: 18px;
+    background-color: var(--col-lime-200);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+    align-self: end;
+  }
+  &__content {
+    grid-area: stack;
+    align-self: flex-end;
+    color: #fff;
+    background: linear-gradient(
+      rgba(13, 13, 12, 0),
+      rgba(13, 13, 12, 0.5) 30%,
+      rgba(13, 13, 12, 0.8)
+    );
+    padding: 5rem 2rem 2rem 1rem;
+    z-index: 3;
+    position: relative;
+  }
+
+  &__card-desc {
+    font-size: var(--fs-600);
+    font-weight: var(--fw-light);
+    color: var(--col-neutral-500);
+    margin-top: 0.5rem;
+  }
+  &__card-title {
+    .cb-services-nav__item-icon {
+      width: 40px;
+      height: 36px;
+    }
+  }
+}
+
+.cb-work-index {
+  background-color: var(--col-lime-200);
+  color: var(--col-lime-900);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  &__pre-title {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-block: 0.5rem;
+    color: var(--col-green-500);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-300);
+    line-height: 1;
+  }
+  &__card {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    display: grid;
+    grid-template-areas: "stack";
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    &:hover {
+      text-decoration: none;
+      color: initial;
+
+      .cb-work-index__image {
+        transform: scale(1.05);
+      }
+    }
+  }
+  .cb-work-index__card.has_video:hover .cb-work-index__image {
+    opacity: 0;
+  }
+
+  &__image {
+    grid-area: stack;
+    aspect-ratio: 16 / 9;
+    transition:
+      opacity 0.3s ease,
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    object-fit: cover;
+  }
+  &__content {
+    grid-area: stack;
+    align-self: flex-end;
+    color: #fff;
+    background: linear-gradient(
+      hsla(var(--hsl-lime-200) / 0.8) 0%,
+      hsla(var(--hsl-lime-300) / 0.8) 75%
+    );
+
+    padding: 2rem 2rem 1rem 1rem;
+    z-index: 3;
+    position: relative;
+  }
+  &__title {
+    font-size: var(--fs-300);
+    font-weight: var(--fw-semi);
+    color: var(--col-primary-black);
+
+    .cb-services-nav__item-icon {
+      width: 31px;
+      height: 23px;
+      filter: brightness(0) saturate(100%);
+    }
+  }
+  &__desc {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-light);
+    color: var(--col-neutral-900);
+    margin-top: 0.5rem;
+  }
+
+  .work-video {
+    grid-area: stack;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__filter-bar {
+    background-color: var(--col-primary-black);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    background-image: url("../cb-work-index/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    @supports (-webkit-touch-callout: none) {
+      /* iOS-specific styles */
+      background-attachment: scroll;
+    }
+    &__container {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Tom Select base styles for custom select dropdowns
+.ts-wrapper.full {
+  min-width: 200px;
+  width: 100%;
+  font-size: 1rem !important;
+}
+
+.ts-control {
+  caret-color: transparent;
+  cursor: pointer;
+  background: rgb(
+    13,
+    13,
+    12,
+    0.9
+  ) !important; // var(--col-primary-black, #181818) !important;
+  background-image: none;
+  color: var(--col-green-400, #fff) !important;
+  border-radius: 0;
+  border: 1px solid rgb(184, 255, 82, 0.4); // var(--col-green-400, #00ff99);
+  min-height: 34px;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  box-shadow: none;
+  font-size: 1rem !important;
+}
+.ts-dropdown {
+  background: rgb(
+    13,
+    13,
+    12,
+    0.9
+  ) !important; // var(--col-primary-black, #181818) !important;
+  color: var(--col-green-400, #fff);
+  border: 1px solid rgb(184, 255, 82, 0.4); // var(--col-green-400, #00ff99);
+  border-radius: 0;
+  margin-top: -1px;
+  z-index: 9999 !important;
+  font-size: 1rem;
+}
+
+.ts-dropdown-content {
+  max-height: unset;
+  overflow: visible;
+}
+
+.ts-dropdown .option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+.ts-dropdown .option.active {
+  background: rgb(221, 251, 178, 0.2); // var(--col-green-200);
+  color: var(--col-green-400, #181818);
+}
+.ts-dropdown .option.selected {
+  background: var(--col-green-400);
+  color: var(--col-primary-black, #181818);
+}
+.ts-dropdown .option.disabled,
+.ts-dropdown .option[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ts-control input {
+  color: var(--col-green-400, #fff);
+}
+.ts-control .item {
+  background: none;
+  color: var(--col-green-400, #fff);
+  border: none;
+  padding: 0;
+}
+.ts-wrapper.single .ts-control {
+  padding-right: 2.5rem;
+}
+.ts-placeholder {
+  color: var(--col-neutral-500, #aaa);
+}

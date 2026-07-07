@@ -1,0 +1,57 @@
+{
+  "key": "group_cb_cta",
+  "title": "CB CTA",
+  "fields": [
+    {
+      "key": "field_cb_cta_title",
+      "label": "CB CTA",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_6908932ed3d69",
+      "label": "CTA Choice",
+      "name": "cta_choice",
+      "aria-label": "",
+      "type": "select",
+      "instructions": "Choose a CTA from the site-wide CTA library.",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {},
+      "default_value": false,
+      "return_format": "value",
+      "multiple": 0,
+      "allow_null": 0,
+      "allow_in_bindings": 0,
+      "ui": 0,
+      "ajax": 0,
+      "placeholder": "",
+      "create_options": 0,
+      "save_options": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-cta"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1770000000
+}

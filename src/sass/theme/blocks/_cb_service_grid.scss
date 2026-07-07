@@ -1,0 +1,138 @@
+.cb-service-grid {
+  &__grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  &__item {
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__image,
+  &__body {
+    width: 100%;
+  }
+
+  &__image {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  &__body {
+    background-color: inherit;
+  }
+
+  &__title {
+    margin-bottom: 0.75rem;
+    font-size: var(--fs-500);
+    font-weight: var(--fw-light);
+    line-height: var(--lh-500);
+    letter-spacing: var(--ls--10);
+    text-wrap: balance;
+  }
+
+  &__content {
+    font-size: var(--fs-100);
+    font-weight: var(--fw-regular);
+    line-height: var(--lh-100);
+    text-wrap: balance;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 1199.98px) {
+    &__image,
+    &__body {
+      grid-column: auto !important;
+      grid-row: auto !important;
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    &__grid {
+      gap: 1.5rem;
+    }
+
+    &__item {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+      gap: 1.5rem;
+    }
+
+    &__image,
+    &__body {
+      min-width: 0;
+      width: 100%;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center !important;
+      align-self: stretch;
+    }
+
+    &__item:nth-child(even) .cb-service-grid__image {
+      order: 2;
+    }
+
+    &__item:nth-child(even) .cb-service-grid__body {
+      order: 1;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__item {
+      grid-template-columns: 1fr;
+    }
+
+    &__image,
+    &__body {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    &__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-flow: row;
+      gap: 1.5rem;
+    }
+
+    &__item {
+      display: contents;
+    }
+
+    &__image,
+    &__body {
+      min-width: 0;
+      aspect-ratio: 1 / 1;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: var(--sg-justify, flex-start);
+      min-height: 100%;
+      grid-column: var(--sg-col-start) / var(--sg-col-end);
+      grid-row: var(--sg-row-start) / span var(--sg-row-span);
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      grid-column: var(--sg-col-start) / var(--sg-col-end);
+      grid-row: var(--sg-row-start) / span var(--sg-row-span);
+    }
+
+    .cb-service-grid__body--align-end {
+      text-align: right;
+      align-items: flex-end;
+    }
+  }
+}

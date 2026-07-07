@@ -1,0 +1,112 @@
+/* Base editor typography */
+.editor-styles-wrapper {
+  font-family: var(--font-family);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-100);
+  color: var(--col-neutral-900);
+  background: var(--col-secondary-100);
+}
+
+/* Map heading appearance in editor */
+.editor-styles-wrapper h1 {
+  font-family: var(--font-family);
+  font-weight: var(--fw-book);
+  font-size: var(--fs-850);
+  line-height: var(--lh-850);
+}
+.editor-styles-wrapper h2 {
+  font-family: var(--font-family);
+  font-weight: var(--fw-book);
+  font-size: var(--fs-700);
+  line-height: var(--lh-700);
+}
+.editor-styles-wrapper h3 {
+  font-family: var(--font-family);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-600);
+  line-height: var(--lh-600);
+}
+
+/* WP colour utility classes (so blocks preview right) */
+.has-black-background-color {
+  background-color: var(--col-black) !important;
+}
+.has-white-background-color {
+  background-color: var(--col-white) !important;
+}
+.has-neutral-900-background-color {
+  background-color: var(--col-neutral-900) !important;
+}
+.has-secondary-900-background-color {
+  background-color: var(--col-secondary-900) !important;
+}
+.has-secondary-400-background-color {
+  background-color: var(--col-secondary-400) !important;
+}
+.has-secondary-100-background-color {
+  background-color: var(--col-secondary-100) !important;
+}
+.has-accent-400-background-color {
+  background-color: var(--col-accent-400) !important;
+}
+
+.has-black-color {
+  color: var(--col-black) !important;
+}
+.has-white-color {
+  color: var(--col-white) !important;
+}
+.has-neutral-900-color {
+  color: var(--col-neutral-900) !important;
+}
+.has-secondary-900-color {
+  color: var(--col-secondary-900) !important;
+}
+.has-secondary-400-color {
+  color: var(--col-secondary-400) !important;
+}
+.has-secondary-100-color {
+  color: var(--col-secondary-100) !important;
+}
+.has-accent-400-color {
+  color: var(--col-accent-400) !important;
+}
+
+/* WP font-size utility classes */
+.has-display-font-size {
+  font-size: var(--fs-850) !important;
+  line-height: var(--lh-850) !important;
+}
+.has-h2-font-size {
+  font-size: var(--fs-700) !important;
+  line-height: var(--lh-700) !important;
+}
+.has-h3-font-size {
+  font-size: var(--fs-600) !important;
+  line-height: var(--lh-600) !important;
+}
+.has-subtle-font-size {
+  font-size: var(--fs-50) !important;
+  line-height: var(--lh-50) !important;
+  font-family: var(--font-family) !important;
+  font-weight: var(--fw-regular) !important;
+}
+.has-body-font-size {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-100) !important;
+}
+.has-meta-font-size {
+  font-size: var(--fs-50) !important;
+  line-height: var(--lh-100) !important;
+}
+.has-ui-font-size {
+  font-size: var(--fs-100) !important;
+  line-height: var(--lh-100) !important;
+  font-weight: var(--fw-semibold) !important;
+  letter-spacing: 0.02em !important;
+}
+
+.has-text-align-center {
+  text-align: center !important;
+}

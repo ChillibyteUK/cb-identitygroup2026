@@ -1,0 +1,56 @@
+.cb-contact-form {
+    padding-block-start: 4rem;
+    h1 {
+        border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
+        border-bottom: 1px solid hsl(var(--hsl-ink) / 0.25);
+        font-size: var(--fs-850);
+        font-weight: var(--fw-book);
+        line-height: 1;
+        padding-top: 0.25rem;
+    }
+    &__intro-content {
+        padding-block-end: 6rem;
+    }
+    &__intro-text {
+        font-size: var(--fs-600);
+        font-weight: var(--fw-light);
+        letter-spacing: var(--ls--10);
+        line-height: 1.5;
+        text-wrap: balance;
+    }
+}
+
+.cb-contact-form-spacer {
+  display: block;
+  height: 6rem;
+  border-bottom: 1px solid hsl(var(--hsl-ink) / 0.25);
+}
+
+p.gform_required_legend,
+label .gform_required {
+  display: none !important;
+}
+
+.gform_wrapper.gravity-theme .gfield_required {
+  display: none !important;
+}
+
+form {
+  .gform-field-label.gform-field-label--type-inline.gfield_consent_label,
+  .gfield_label {
+    color: var(--col-primary-black);
+    font-weight: var(--fw-light) !important;
+  }
+  .ginput_container input[type="text"],
+  .ginput_container input[type="email"],
+  .ginput_container textarea {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--col-primary-black);
+    border: none;
+    border-radius: 0;
+  }
+  .gform_confirmation_message_1.gform_confirmation_message {
+    color: var(--col-green-400);
+    font-size: var(--fs-500);
+  }
+}

@@ -1,0 +1,121 @@
+.cb-about-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--col-white);
+  background-color: var(--col-ink);
+  isolation: isolate;
+
+  &--has-background-image {
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -3rem 0;
+      z-index: 0;
+      background-image: var(--cb-about-hero-bg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transform: translateY(var(--cb-about-hero-parallax-y, 0));
+      will-change: transform;
+    }
+  }
+
+  &__top {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  &__top-inner {
+    position: relative;
+    z-index: 2;
+    // width: min(100%, 72rem);
+    padding-top: clamp(4rem, 14vh, 9rem);
+    padding-bottom: clamp(4rem, 10vh, 7rem);
+  }
+
+  &__overlay-image-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &__overlay-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  &__rule {
+    margin: 0;
+    border-color: hsl(var(--hsl-neutral-050) / 0.5);
+    opacity: 1;
+  }
+
+  &__title {
+    margin: clamp(1rem, 2vw, 1.75rem) 0;
+    font-size: var(--fs-900);
+    line-height: 0.95;
+    letter-spacing: var(--ls--30);
+    font-weight: var(--fw-book);
+    text-wrap: balance;
+    max-width: 29ch;
+  }
+
+  &__intro {
+    max-width: 66rem;
+    margin-top: clamp(3rem, 7vh, 5rem);
+    font-size: var(--fs-500);
+    line-height: var(--lh-500);
+    font-weight: var(--fw-light);
+    letter-spacing: var(--ls--5);
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__content-wrap {
+    background-color: hsl(var(--hsl-purple-1100) / 0.8);
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+  }
+
+  &__content {
+    max-width: 72rem;
+    font-size: var(--fs-400);
+    font-weight: var(--fw-regular);
+    line-height: var(--lh-500);
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__top {
+      min-height: 58vh;
+    }
+
+    &__content-wrap {
+      min-height: auto;
+    }
+
+    &__intro {
+      font-size: var(--fs-300);
+    }
+  }
+}

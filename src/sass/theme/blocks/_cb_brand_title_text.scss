@@ -1,0 +1,101 @@
+/**
+ * CB Brand Title Text Block Styles
+ *
+ * @package cb-identity2025
+ */
+
+.cb-brand-title-text {
+    background-color: var(--col-primary-black);
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    
+    &__anim {
+        justify-content: center;
+        @media (min-width:1200px) {
+            justify-content: flex-start;
+            margin-inline: 5rem -5rem;
+        }
+    }
+
+    &__title {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1;
+        padding-left: 11vw;
+        padding-right: 11vw;
+
+        padding-left: 0;  // Let Bootstrap's col gutter handle left spacing
+        padding-right: 0; // Avoid double padding from the grid
+        overflow: visible; // Prevent accidental clipping when rotated
+
+        .line {
+            position: relative;
+            display: inline-block;
+            margin: 0.1em 0;
+            transform-origin: 25% center; /* slightly deeper pivot for safety */
+        }
+
+        /* middle line gets even deeper pivot to stop clipping */
+        .line:nth-child(2) {
+            transform-origin: 35% center;
+        }
+
+        .bar {
+            position: absolute;
+            inset: -0.1em -0.6em; /* keeps bars wider than text */
+            background: var(--col-green-400);
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .text {
+            position: relative;
+            z-index: 2;
+            color: var(--col-primary-black);
+            font-size: 11.5vw;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            text-align: left;
+            @media (min-width: 768px) {
+                font-size: min(7vw,7rem);
+            }
+        }
+
+        /* horizontal offset to match layout */
+        .line:nth-child(1) { margin-left: 0em; }
+        .line:nth-child(2) { margin-left: -3.6em; }
+        .line:nth-child(3) { margin-left: 1.8em; }
+
+        /* fine-tuned vertical spacing */
+        .line:nth-child(2) { margin-top: 0.1em; }
+        .line:nth-child(3) { margin-top: -0.25em; }
+
+        /* final text rotations */
+        .text1 { transform: rotate(-3deg); }
+        .text2 { transform: rotate(5deg); }
+        .text3 { transform: rotate(-6deg); }
+    }
+
+    &__pre-title {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        padding-block: 0.5rem;
+        h1 {
+            color: var(--col-green-500);
+            font-weight: var(--fw-regular);
+            font-size: var(--fs-600);
+            line-height: 1;
+        }
+    }
+    &__content-heading {
+        font-size: var(--fs-800);
+        line-height: 1.1;
+        font-weight: var(--fw-semi);
+    }
+    &__content {
+        font-size: var(--fs-500  );
+    }
+}

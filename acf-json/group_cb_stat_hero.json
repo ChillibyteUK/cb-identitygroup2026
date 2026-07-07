@@ -1,0 +1,447 @@
+{
+  "key": "group_cb_stat_hero",
+  "title": "CB Stat Hero",
+  "fields": [
+    {
+      "key": "field_cb_stat_hero_title",
+      "label": "CB Stat Hero",
+      "name": "",
+      "aria-label": "",
+      "type": "message",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": false,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "message": "",
+      "esc_html": 0,
+      "new_lines": "wpautop"
+    },
+    {
+      "key": "field_69c69d334973a",
+      "label": "Title",
+      "name": "title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69d384973b",
+      "label": "CTA Link",
+      "name": "cta_link",
+      "aria-label": "",
+      "type": "link",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "allow_in_bindings": 0
+    },
+    {
+      "key": "field_69c69d6d4973c",
+      "label": "CTA Title",
+      "name": "cta_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69d7c4973d",
+      "label": "Stat Intro 1",
+      "name": "stat_intro_1",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69ca5e77d4660",
+      "label": "Stat 1 Prefix",
+      "name": "stat_1_prefix",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69d9349741",
+      "label": "Stat 1",
+      "name": "stat_1",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "min": "",
+      "max": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "step": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69ca5e86d4661",
+      "label": "Stat 1 Suffix",
+      "name": "stat_1_suffix",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69d8b4973e",
+      "label": "Stat Intro 2",
+      "name": "stat_intro_2",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69d0000000001",
+      "label": "Stat 2 Prefix",
+      "name": "stat_2_prefix",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69da149742",
+      "label": "Stat 2",
+      "name": "stat_2",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "min": "",
+      "max": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "step": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69d0000000002",
+      "label": "Stat 2 Suffix",
+      "name": "stat_2_suffix",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69d8c4973f",
+      "label": "Stat Intro 3",
+      "name": "stat_intro_3",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69d0000000003",
+      "label": "Stat 3 Prefix",
+      "name": "stat_3_prefix",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69da649743",
+      "label": "Stat 3",
+      "name": "stat_3",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "min": "",
+      "max": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "step": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69d0000000004",
+      "label": "Stat 3 Suffix",
+      "name": "stat_3_suffix",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69d8e49740",
+      "label": "Stat Intro 4",
+      "name": "stat_intro_4",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "40",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69d0000000005",
+      "label": "Stat 4 Prefix",
+      "name": "stat_4_prefix",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69c69daa49744",
+      "label": "Stat 4",
+      "name": "stat_4",
+      "aria-label": "",
+      "type": "number",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "min": "",
+      "max": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "step": "",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_69d0000000006",
+      "label": "Stat 4 Suffix",
+      "name": "stat_4_suffix",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "20",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "allow_in_bindings": 0,
+      "placeholder": "",
+      "prepend": "",
+      "append": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf\/cb-stat-hero"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "display_title": "",
+  "modified": 1774880093
+}

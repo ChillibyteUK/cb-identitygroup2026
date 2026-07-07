@@ -1,0 +1,39 @@
+/**
+ * CB Case Study Hero Block Styles
+ *
+ * @package  cb-identity2025
+ */
+
+ .case-study-hero {
+    h1 {
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        font-size: var(--fs-850);
+        font-weight: var(--fw-semi);
+        color: var(--col-white);
+    }
+    h2 {
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        font-size: var(--fs-600);
+        color: var(--col-neutral-800);
+        font-weight: var(--fw-regular);
+        margin-bottom: 0;
+    }
+    &-video-container {
+        position: relative;
+        margin-bottom: -0.5rem; // iframe padding fix
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(13, 13, 12, 1) 0%, rgba(13, 13, 12, 0.2) 20%, rgba(13, 13, 12, 0) 30%);
+        pointer-events: none;
+    }
+    &-video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+ }

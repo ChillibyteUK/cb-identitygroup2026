@@ -1,0 +1,274 @@
+// ============================================================================
+// Accessibility Styles - WCAG 2.1 AA Compliance
+// ============================================================================
+
+// Skip to content link
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--col-accent-400, #ff8b38);
+  color: var(--col-white, #fff);
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  z-index: 10000;
+  font-weight: var(--fw-semibold);
+  border-radius: 0 0 0.5rem 0;
+
+  &:focus {
+    top: 0;
+    outline: none !important;
+    box-shadow:
+      0 0 0 3px var(--col-accent-400, #ff8b38),
+      0 0 0 6px rgba(255, 139, 56, 0.25) !important;
+  }
+}
+
+// Visually hidden but accessible to screen readers
+.visually-hidden,
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// ============================================================================
+// Focus Indicators - Visible keyboard navigation
+// Using box-shadow for rounded, modern focus indicators
+// Using :focus-visible to only show on keyboard navigation
+// ============================================================================
+
+// Global focus style for all interactive elements - keyboard only
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--col-accent-400, #ff8b38) !important;
+  border-radius: 4px;
+}
+
+// Remove focus styles on click
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+[tabindex]:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+// Enhanced focus for specific components
+.btn:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 3px var(--col-accent-400, #ff8b38),
+    0 0 0 6px rgba(255, 139, 56, 0.25) !important;
+}
+.skip-link.screen-reader-text:focus-visible {
+  color: black;
+}
+
+// Navigation links
+.navbar a:focus-visible,
+.nav-link:focus-visible,
+.dropdown-item:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--col-accent-400, #ff8b38) !important;
+  background-color: rgba(255, 139, 56, 0.1);
+  border-radius: 4px;
+}
+
+// Mobile menu toggle
+.navbar-toggler:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 3px var(--col-accent-400, #ff8b38),
+    0 0 0 6px rgba(255, 139, 56, 0.25) !important;
+  border-radius: 4px;
+}
+
+// Card links - larger radius for cards
+.latest-insights__item:focus-visible,
+.three-col-link-cards__card:focus-visible,
+.hub-team__card:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 3px var(--col-accent-400, #ff8b38),
+    0 0 0 6px rgba(255, 139, 56, 0.25) !important;
+  border-radius: 8px;
+}
+
+// Accordion buttons
+.accordion-button:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 3px var(--col-accent-400, #ff8b38),
+    0 0 0 6px rgba(255, 139, 56, 0.25) !important;
+  z-index: 3;
+  border-radius: 4px;
+}
+
+// Form inputs - keep :focus for form fields as they need visible focus always
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="search"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--col-accent-400, #ff8b38) !important;
+  border-color: var(--col-primary-500, #3c52e0) !important;
+  border-radius: 4px;
+}
+
+// Checkbox and radio focus
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 3px var(--col-accent-400, #ff8b38),
+    0 0 0 6px rgba(255, 139, 56, 0.25) !important;
+}
+
+// Swiper pagination bullets
+.swiper-pagination-bullet:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--col-accent-400, #ff8b38) !important;
+}
+
+// Read more links
+.read-more:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--col-accent-400, #ff8b38) !important;
+  text-decoration: underline;
+  border-radius: 4px;
+}
+
+// Modal close buttons
+.modal .btn-close:focus-visible,
+[data-bs-dismiss]:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 3px var(--col-accent-400, #ff8b38),
+    0 0 0 6px rgba(255, 139, 56, 0.25) !important;
+  border-radius: 50%;
+}
+
+// ============================================================================
+// High Contrast Mode Support
+// ============================================================================
+
+@media (prefers-contrast: high) {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    box-shadow: 0 0 0 4px var(--col-accent-400, #ff8b38) !important;
+  }
+}
+
+// ============================================================================
+// Reduced Motion Support
+// ============================================================================
+
+// Ensure AOS elements are visible by default (graceful degradation if JS fails).
+.no-js [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  // Disable AOS animations
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+// ============================================================================
+// Touch Target Sizes (WCAG 2.5.5 - AAA but good practice)
+// ============================================================================
+
+// Ensure minimum 44x44px touch targets
+// .btn,
+// button,
+// a.read-more,
+// .navbar-toggler,
+// .swiper-pagination-bullet,
+// .accordion-button,
+// input[type="submit"],
+// input[type="button"],
+// input[type="reset"] {
+//     min-height: 44px;
+//     min-width: 44px;
+//     padding: 0.5rem 1rem;
+// }
+
+// Exception for inline links within text
+p a,
+li a,
+span a {
+  min-height: auto;
+  min-width: auto;
+}
+
+// ============================================================================
+// Color Contrast Helpers
+// ============================================================================
+
+// Ensure text has sufficient contrast
+.has-accent-400-color {
+  color: var(--col-accent-500, #d96d26) !important;
+}
+
+// ============================================================================
+// ARIA Live Region Styling
+// ============================================================================
+
+[aria-live="polite"],
+[aria-live="assertive"] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// ============================================================================
+// Focus-within for compound components
+// ============================================================================
+
+.card:focus-within,
+.hub-team__card:focus-within {
+  box-shadow: 0 0 0 3px rgba(255, 139, 56, 0.5);
+}
+
+// Remove focus-within on mouse interaction
+.card:focus-within:not(:has(*:focus-visible)),
+.hub-team__card:focus-within:not(:has(*:focus-visible)) {
+  box-shadow: none;
+}

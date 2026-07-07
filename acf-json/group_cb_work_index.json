@@ -1,0 +1,49 @@
+{
+  "key": "group_cb_work_index",
+  "title": "CB Work Index",
+  "fields": [
+    {
+      "key": "field_cb_work_index_title",
+      "label": "CB Work Index",
+      "name": "title",
+      "type": "message"
+    },
+    {
+      "key": "field_690489ce3ada8",
+      "label": "Hero Case Study",
+      "name": "hero_case_study",
+      "aria-label": "",
+      "type": "relationship",
+      "instructions": "Shows latest if none selected",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "post_type": ["case_study"],
+      "post_status": "",
+      "taxonomy": "",
+      "filters": ["search"],
+      "return_format": "id",
+      "min": "",
+      "max": 1,
+      "allow_in_bindings": 0,
+      "elements": "",
+      "bidirectional": 0,
+      "bidirectional_target": []
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/cb-work-index"
+      }
+    ]
+  ],
+  "active": 1,
+  "description": ""
+}

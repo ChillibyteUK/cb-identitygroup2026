@@ -1,0 +1,83 @@
+.cb-contact-page {
+    padding-block-start: 4rem;
+    h1 {
+        border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
+        border-bottom: 1px solid hsl(var(--hsl-ink) / 0.25);
+        font-size: var(--fs-850);
+        font-weight: var(--fw-book);
+        line-height: 1;
+        padding-top: 0.25rem;
+    }
+    &__intro-content {
+        padding-block-end: 6rem;
+    }
+    &__intro-text {
+        font-size: var(--fs-600);
+        font-weight: var(--fw-light);
+        letter-spacing: var(--ls--10);
+        line-height: 1.5;
+        text-wrap: balance;
+    }
+
+    &__emails {
+        border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
+        padding-block: 0.5rem 3rem;
+        h2 {
+            font-weight: var(--fw-book);
+            font-size: var(--fs-700);
+            letter-spacing: var(--ls--10);
+        }
+        a {
+            color: var(--col-raspberry);
+            font-size: var(--fs-500);
+            font-weight: var(--fw-light);
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.cb-contact-addresses__title {
+    background-color: var(--col-neutral-050);
+    border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
+    border-bottom: 1px solid hsl(var(--hsl-ink) / 0.25);
+    color: var(--col-purple);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-200);
+    line-height: 1;
+}
+
+.cb-contact-addresses {
+    background-color: var(--col-neutral-100);
+    color: var(--col-ink);
+    padding-block: 3rem 6rem;
+    h2 {
+        font-size: var(--fs-700);
+        font-weight: var(--fw-book);
+        letter-spacing: var(--ls--15);
+        margin-bottom: 1rem;
+    }
+    &__office {
+        border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
+        padding-block: 0.5rem 0;
+    }
+    a {
+        color: var(--col-raspberry);
+        font-weight: var(--fw-regular);
+        letter-spacing: var(--ls--5);
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .is-group {
+        color: var(--col-purple);
+    }
+    &__caveat {
+        font-size: var(--fs-50);
+        color: var(--col-purple);
+        font-weight: var(--fw-regular);
+    }
+}

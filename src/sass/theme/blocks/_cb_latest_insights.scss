@@ -1,0 +1,95 @@
+/**
+ * CB Latest Insights Block Styles
+ *
+ * @package  cb-identity2025
+ */
+
+.cb-latest-insights {
+  background-color: var(--col-white);
+
+  &.cb-latest-insights--front {
+    background: var(--grad-main);
+  }
+
+  &__card {
+    text-decoration: none;
+    &:hover {
+      .cb-latest-insights__image {
+        transform: scale(1.05);
+      }
+    }
+  }
+  &__pre-title {
+    border-bottom: 1px solid hsl(var(--hsl-lime-1000) / 0.4) !important;
+    padding-block: 1rem;
+    color: var(--col-lime-800);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-300);
+    line-height: 1;
+  }
+
+  // &.cb-latest-insights--front {
+  //   .cb-latest-insights__pre-title {
+  //     border-bottom: none;
+  //   }
+  // }
+
+  &__image-wrapper {
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+  }
+  &__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &__card-1 {
+    .cb-latest-insights__image {
+      aspect-ratio: 4 / 3;
+    }
+  }
+  &__card-2 {
+    .cb-latest-insights__image {
+      aspect-ratio: 16 / 9;
+    }
+  }
+  &__card-3 {
+    .cb-latest-insights__image {
+      aspect-ratio: 5 / 4;
+    }
+  }
+  &__card-4 {
+    .cb-latest-insights__image {
+      aspect-ratio: 21 / 9;
+    }
+  }
+  &__card-5 {
+    .cb-latest-insights__image {
+      aspect-ratio: 4 / 3;
+    }
+  }
+  &__card-6 {
+    .cb-latest-insights__image {
+      aspect-ratio: 1 / 1;
+    }
+  }
+  &__title {
+    font-size: var(--fs-300);
+    font-weight: var(--fw-semi);
+    color: var(--col-primary-black);
+    margin-bottom: 0.5rem;
+  }
+  &__date {
+    text-transform: uppercase;
+    font-size: var(--fs-50);
+    color: var(--col-neutral-900);
+  }
+  // &__excerpt {
+  //   font-size: var(--fs-200);
+  //   font-weight: var(--fw-light);
+  //   color: var(--col-neutral-800);
+  // }
+}

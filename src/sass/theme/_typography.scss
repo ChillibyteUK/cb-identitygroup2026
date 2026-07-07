@@ -1,0 +1,315 @@
+@font-face {
+  font-family: "Suisse International";
+  src: url("../fonts/SuisseIntl-Light.woff2") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse International";
+  src: url("../fonts/SuisseIntl-Regular.woff2") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse International";
+  src: url("../fonts/SuisseIntl-Book.woff2") format("woff");
+  font-weight: 450;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse International";
+  src: url("../fonts/SuisseIntl-Semibold.woff2") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+// :root {
+//   font-variant-ligatures: none;
+// }
+
+/* =========================
+   TYPOGRAPHY
+   ========================= */
+
+body,
+.body {
+  font-family: var(--font-family);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// =========================
+// TYPOGRAPHY
+// =========================
+
+// Headings
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+.font-h1,
+.font-h2,
+.font-h3,
+.font-h4 {
+  font-family: var(--font-family);
+}
+
+h1,
+.h1,
+.font-h1 {
+  font-size: var(--fs-850);
+  font-weight: var(--fw-book);
+  line-height: var(--lh-850);
+  letter-spacing: var(--ls--15);
+}
+
+h2,
+.h2,
+.font-h2 {
+  font-size: var(--fs-700);
+  font-weight: var(--fw-book);
+  line-height: var(--lh-700);
+  letter-spacing: var(--ls--10);
+}
+
+h3,
+.h3,
+.font-h3 {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-book);
+  line-height: var(--lh-600);
+  letter-spacing: var(--ls--5);
+}
+
+h4,
+.h4,
+.font-h4 {
+  font-size: var(--fs-500);
+  line-height: var(--lh-500);
+  font-weight: var(--fw-semibold);
+}
+
+h1,
+.h1 {
+  margin-bottom: 0;
+}
+
+// Button text
+.button-text,
+button,
+.btn {
+  font-family: var(--font-family);
+  font-size: var(--fs-100);
+  line-height: var(--lh-100);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-10);
+}
+
+/* base */
+.font-small {
+  font-size: var(--fs-50);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-50);
+  letter-spacing: var(--ls-20);
+}
+
+.font-body {
+  font-size: var(--fs-100);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-100);
+}
+
+.font-signpost {
+  font-size: var(--fs-200);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-200);
+  text-transform: uppercase;
+  letter-spacing: var(--ls--40);
+}
+
+/* shared tokens */
+.font-lead,
+.font-h5 {
+  font-size: var(--fs-400);
+  line-height: var(--lh-400);
+}
+
+.font-callout {
+  font-size: var(--fs-600);
+}
+
+.font-callout-large {
+  font-size: var(--fs-700);
+}
+
+/* specific roles */
+.font-lead {
+  font-weight: var(--fw-light);
+}
+
+.font-h5 {
+  font-weight: var(--fw-semibold);
+}
+
+.font-callout {
+  font-weight: var(--fw-light);
+  line-height: var(--lh-500);
+}
+
+.font-callout-large {
+  font-weight: var(--fw-light);
+  line-height: var(--lh-600);
+}
+
+.font-hero {
+  font-size: var(--fs-875);
+  font-weight: var(--fw-book);
+  line-height: var(--lh-875);
+  letter-spacing: var(--ls--30);
+}
+
+.font-hero-lg {
+  font-size: var(--fs-900);
+  font-weight: var(--fw-book);
+  line-height: var(--lh-900);
+  letter-spacing: var(--ls--40);
+}
+
+// Helper classes for standalone typography variables
+.fw-light {
+  font-weight: var(--fw-light);
+}
+
+.fw-regular {
+  font-weight: var(--fw-regular);
+}
+
+.fw-book {
+  font-weight: var(--fw-book);
+}
+
+.fw-semi,
+.fw-semibold {
+  font-weight: var(--fw-semibold);
+}
+
+.fs-50 {
+  font-size: var(--fs-50);
+}
+
+.fs-100 {
+  font-size: var(--fs-100);
+}
+
+.fs-200 {
+  font-size: var(--fs-200);
+}
+
+.fs-300 {
+  font-size: var(--fs-300, var(--fs-200));
+}
+
+.fs-400 {
+  font-size: var(--fs-400);
+}
+
+.fs-500 {
+  font-size: var(--fs-500);
+}
+
+.fs-600 {
+  font-size: var(--fs-600);
+}
+
+.fs-700 {
+  font-size: var(--fs-700);
+}
+
+.fs-800 {
+  font-size: var(--fs-800, var(--fs-700));
+}
+
+.fs-850 {
+  font-size: var(--fs-850);
+}
+
+.fs-875 {
+  font-size: var(--fs-875);
+}
+
+.fs-900 {
+  font-size: var(--fs-900);
+}
+
+.fs-950 {
+  font-size: var(--fs-950, var(--fs-900));
+}
+
+.lh-tightest {
+  line-height: var(--lh-900);
+}
+
+.lh-tight {
+  line-height: var(--lh-850);
+}
+
+.lh-normal {
+  line-height: var(--lh-100);
+}
+
+// Links
+a {
+  color: var(--col-accent-400);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--col-accent-400);
+  outline-offset: 2px;
+}
+
+// Media rhythm
+p,
+ul,
+ol,
+blockquote,
+figure {
+  margin-block: 0.75em;
+}
+
+.w-constrained-md {
+  max-width: 72ch;
+  text-wrap: balance;
+}
+
+.w-constrained-40 {
+  max-width: 40ch;
+  text-wrap: balance;
+}
+
+.w-constrained {
+  max-width: var(--width, 60ch);
+}
+
+strong {
+  font-weight: var(--fw-semibold);
+}
+
+.text-balance {
+  text-wrap: balance;
+}

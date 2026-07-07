@@ -1,0 +1,146 @@
+$col-primary: #27383a;
+$col-dark: #222222;
+$col-darkest: #4a4a4a;
+$col-light: #f2f2f2;
+
+:root {
+  /* ========
+     COLOURS
+     ======== */
+
+  --col-white: #ffffff;
+  --hsl-neutral-050: 255 29% 97%;
+  --col-neutral-050: #f7f6fa;
+  --col-neutral-100: #f0eff4;
+  --col-neutral-150: #e7e6ec;
+  --col-neutral-200: #e0dfe6;
+  --col-neutral-250: #d7d5de;
+  --col-neutral-300: #cfcdd9;
+  --col-neutral-350: #c3c0cf;
+  --hsl-neutral-400: 251 12% 73%;
+  --col-neutral-400: #b6b3c3;
+  --col-neutral-450: #a9a5b8;
+  --col-neutral-500: #9793a8;
+  --col-neutral-550: #89859c;
+  --col-neutral-600: #77738c;
+  --col-neutral-650: #65617b;
+  --col-neutral-700: #55506b;
+  --col-neutral-750: #47425e;
+  --col-neutral-800: #3b3652;
+  --hsl-neutral-800: 251 21% 27%;
+  --col-neutral-850: #2d2843;
+  --col-neutral-900: #1d1933;
+  --hsl-ink: 250 48% 10%;
+  --col-ink: #110d25;
+  --col-neutral-1000: #040013;
+
+  --col-raspberry-050: #ffeaee;
+  --hsl-raspberry-100: 347 100% 93%;
+  --col-raspberry-100: #ffdbe3;
+  --col-raspberry-200: #ffb8c6;
+  --hsl-raspberry-300: 349 100% 80%;
+  --col-raspberry-300: #ff9bae;
+  --hsl-raspberry-400: 349 88% 70%;
+  --col-raspberry-400: #f66f88;
+  --col-raspberry-450: #ec4a67;
+  --hsl-raspberry: 349 77% 52%;
+  --col-raspberry: #e32447;
+  --hsl-raspberry-600: 349 78% 45%;
+  --col-raspberry-600: #cc1939;
+  --col-raspberry-700: #b7102f;
+  --col-raspberry-800: #a30b27;
+  --col-raspberry-900: #900720;
+  --col-raspberry-1000: #7b0319;
+
+  --col-purple-050: #f8f7ff;
+  --col-purple-100: #f1f0ff;
+  --col-purple-200: #e0deff;
+  --col-purple-300: #d0ccff;
+  --col-purple-400: #bcb7ff;
+  --col-purple-500: #a49bfd;
+  --col-purple-600: #8b7ff0;
+  --col-purple-700: #7162e1;
+  --col-purple-800: #4c35d0;
+  --col-purple: #2f13ba;
+  --col-purple-950: #220d9d;
+  --col-purple-1000: #190a83;
+  --hsl-purple-1100: 247 86% 23%;
+  --col-purple-1100: #13086b;
+
+  --col-indigo-050: #fbf8fe;
+  --col-indigo-100: #f5eefe;
+  --col-indigo-150: #ede0fc;
+  --col-indigo-200: #e2cdf8;
+  --col-indigo-250: #d0b3f2;
+  --col-indigo-300: #b88fe5;
+  --col-indigo-350: #a370db;
+  --col-indigo-400: #935ad2;
+  --col-indigo-450: #8544cc;
+
+  --grad-main: linear-gradient(to bottom,
+      var(--col-white),
+      var(--col-lime-100),
+      var(--col-lime-200),
+      var(--col-lime-300));
+
+  /* =========================
+     TYPOGRAPHY (families/weights)
+     ========================= */
+  --font-family:
+    "Suisse International", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-book: 450;
+  --fw-semibold: 600;
+
+  /* line heights */
+  --lh-50: 1.4;
+  --lh-100: 1.55;
+  --lh-200: 1.5;
+  --lh-400: 1.3;
+  --lh-500: 1.25;
+  --lh-600: 1.2;
+  --lh-700: 1.15;
+  --lh-850: 1.1;
+  --lh-875: 1.05;
+  --lh-900: 1;
+
+  /* letter spacing */
+  --ls--40: -0.04em;
+  --ls--30: -0.03em;
+  --ls--25: -0.025em;
+  --ls--20: -0.02em;
+  --ls--15: -0.015em;
+  --ls--10: -0.01em;
+  --ls--5: -0.005em;
+  --ls-10: 0.01em;
+  --ls-20: 0.02em;
+
+  /* =========================
+    TYPOGRAPHY
+    ========================= */
+
+  /* body size defined globally */
+  --fs-body: 18px;
+
+  /* font sizes (fluid clamp: min, preferred, max) */
+  --fs-50: 0.8889rem; // 16px
+  --fs-100: 1rem; // 18px
+  --fs-200: 1.1111rem; // 20px
+
+  --fs-400: clamp(1.2222rem, 1.1rem + 0.6vw, 1.375rem); // 22px
+  --fs-500: clamp(1.4444rem, 1.25rem + 0.9vw, 1.75rem); // 26px
+  --fs-600: clamp(1.6667rem, 1.4rem + 1.2vw, 2rem); // 30px
+  --fs-700: clamp(1.9444rem, 1.6rem + 1.4vw, 2.25rem); // 35px
+  --fs-850: clamp(2.3333rem, 1.9rem + 2vw, 3.125rem); // 42px
+  --fs-875: clamp(2.7778rem, 2.2rem + 2.5vw, 3.5rem); // 50px
+  --fs-900: clamp(3.3333rem, 2.6rem + 3vw, 5rem); // 60px
+
+  /* === Utilities === */
+  --transition: 250ms ease-out;
+
+  --h-top: 62px;
+  --h-top-desktop: 62px;
+}

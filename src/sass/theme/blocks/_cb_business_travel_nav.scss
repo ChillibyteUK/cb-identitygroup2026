@@ -1,0 +1,215 @@
+.cb-business-travel-nav {
+  background-color: var(--col-raspberry);
+  color: var(--col-white);
+
+  .hr {
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    margin-top: 0;
+    padding-bottom: 1rem;
+  }
+
+  h2 {
+    width: min(80vw, 50%);
+    text-wrap: balance;
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem 1.5rem 0;
+
+    ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      list-style: none;
+      padding-inline-start: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+
+        &:not(:first-of-type) {
+          border-color: hsl(var(--hsl-neutral-050) / 0.5);
+          padding-top: 0.5rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__title {
+    margin-bottom: 1.25rem;
+    font-size: var(--fs-400);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-400);
+    letter-spacing: var(--ls--5);
+    text-wrap: balance;
+  }
+
+  &__summary {
+    max-width: 34rem;
+    font-size: var(--fs-200);
+    line-height: var(--lh-500);
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(
+      var(--cb-business-travel-columns, 5),
+      minmax(0, 1fr)
+    );
+    gap: 1.5rem;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    aspect-ratio: 268 / 341;
+    overflow: hidden;
+    color: var(--col-white);
+    text-decoration: none;
+    isolation: isolate;
+    background: var(--col-ink);
+
+    &:focus-visible {
+      outline: 2px solid var(--col-raspberry);
+      outline-offset: 3px;
+    }
+  }
+
+  &__card-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      160deg,
+      var(--col-raspberry-400),
+      var(--col-ink)
+    );
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        hsl(var(--hsl-raspberry-600) / 0) 0%,
+        hsl(var(--hsl-raspberry-600) / 0.18) 38%,
+        hsl(var(--hsl-raspberry-600) / 0.72) 72%,
+        hsl(var(--hsl-raspberry-600) / 0.96) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity var(--transition);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        hsl(var(--hsl-raspberry-400) / 0) 0%,
+        hsl(var(--hsl-raspberry-400) / 0.18) 38%,
+        hsl(var(--hsl-raspberry-400) / 0.72) 72%,
+        hsl(var(--hsl-raspberry-400) / 0.96) 100%
+
+      );
+      z-index: 1;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity var(--transition);
+    }
+  }
+
+  &__card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 0;
+  }
+
+  &__card-title {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1.1rem 1rem;
+    color: var(--col-white);
+    text-shadow: 0 1px 2px hsl(var(--hsl-ink) / 0.45);
+    font-size: var(--fs-200);
+    line-height: var(--lh-300);
+    font-weight: var(--fw-semibold);
+    text-wrap: balance;
+  }
+
+  &__card-title-text {
+    min-width: 0;
+  }
+
+  &__card-arrow {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    color: currentColor;
+  }
+
+  &__card-arrow-icon {
+    width: 1rem;
+    height: 1rem;
+    display: block;
+    transform: rotate(45deg);
+    transform-origin: center;
+    transition: transform 180ms ease;
+  }
+
+  &__card:hover,
+  &__card:focus-visible,
+  &__card.is-active {
+    // .cb-business-travel-nav__card-media::before {
+    //   opacity: 1;
+    // }
+    .cb-business-travel-nav__card-media::after {
+      opacity: 0;
+    }
+    .cb-business-travel-nav__card-arrow-icon {
+      transform: rotate(0deg);
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__intro {
+      padding-right: 0;
+    }
+
+    &__cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__card {
+      aspect-ratio: 4 / 5;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__cards {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
