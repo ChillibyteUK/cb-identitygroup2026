@@ -20,6 +20,18 @@
  */
 
 /**
+ * Returns the current site slug (identity/coda/idtravel), falling back to
+ * idtravel (the fork base) if cb_site has never been set. Used both for the
+ * token overrides below and to select header-{site}.php/footer-{site}.php
+ * via get_header( cb_site_template_suffix() )/get_footer(...).
+ *
+ * @return string
+ */
+function cb_site_template_suffix() {
+	return get_field( 'cb_site', 'option' ) ?: 'idtravel';
+}
+
+/**
  * Returns the full per-site token table.
  *
  * @return array<string, array<string, string>>
@@ -70,6 +82,19 @@ function cb_get_site_tokens_table() {
 			'--lh-tight'     => '1.1',
 			'--lh-snug'      => '1.2',
 			'--lh-normal'    => '1.5',
+			// WP-generated has-{slug}-color/-background-color utility class targets —
+			// see cb_filter_editor_theme_json() for why these specific slugs.
+			'--wp--preset--color--primary-black'  => '#0D0D0C',
+			'--wp--preset--color--ink'            => '#0D0D0C',
+			'--wp--preset--color--lime-900'       => '#4c8200',
+			'--wp--preset--color--lime-1000'      => '#3d6900',
+			'--wp--preset--color--lime-1100'      => '#345a00',
+			'--wp--preset--color--raspberry'      => '#4c8200',
+			'--wp--preset--color--raspberry-450'  => '#5e9f00',
+			'--wp--preset--color--neutral-400'    => '#c9c7bc',
+			'--wp--preset--color--neutral-700'    => '#77766c',
+			'--wp--preset--color--neutral-800'    => '#5e5d55',
+			'--wp--preset--color--white'          => '#fff',
 		),
 		'coda'     => array(
 			'--col-brand'          => '#b8ff52',
@@ -112,6 +137,17 @@ function cb_get_site_tokens_table() {
 			'--lh-tight'     => '1.1',
 			'--lh-snug'      => '1.2',
 			'--lh-normal'    => '1.5',
+			'--wp--preset--color--primary-black'  => '#0d0d0c',
+			'--wp--preset--color--ink'            => '#0d0d0c',
+			'--wp--preset--color--lime-900'       => '#4c8200',
+			'--wp--preset--color--lime-1000'      => '#3d6900',
+			'--wp--preset--color--lime-1100'      => '#345a00',
+			'--wp--preset--color--raspberry'      => '#4c8200',
+			'--wp--preset--color--raspberry-450'  => '#5e9f00',
+			'--wp--preset--color--neutral-400'    => '#c9c7bc',
+			'--wp--preset--color--neutral-700'    => '#77766c',
+			'--wp--preset--color--neutral-800'    => '#5e5d55',
+			'--wp--preset--color--white'          => '#fff',
 		),
 		'idtravel' => array(
 			'--col-brand'          => '#e32447',
@@ -161,6 +197,13 @@ function cb_get_site_tokens_table() {
 			'--lh-850' => '1.1',
 			'--lh-875' => '1.05',
 			'--lh-900' => '1',
+			// idtravel already defines --wp--preset--color--ink/raspberry/neutral-* etc.
+			// in theme.json natively; only the slugs borrowed from coda/identity blocks
+			// (lime-*, primary-black) need mapping to an idtravel-appropriate colour.
+			'--wp--preset--color--primary-black'  => '#110d25',
+			'--wp--preset--color--lime-900'       => '#900720',
+			'--wp--preset--color--lime-1000'      => '#7b0319',
+			'--wp--preset--color--lime-1100'      => '#7b0319',
 		),
 	);
 }
@@ -171,7 +214,7 @@ function cb_get_site_tokens_table() {
  * fires in both contexts).
  */
 function cb_output_site_token_overrides() {
-	$site  = get_field( 'cb_site', 'option' ) ?: 'idtravel';
+	$site  = cb_site_template_suffix();
 	$table = cb_get_site_tokens_table();
 
 	if ( ! isset( $table[ $site ] ) ) {
@@ -196,30 +239,65 @@ add_action( 'admin_head', 'cb_output_site_token_overrides' );
  * block editor's theme.json data, so the colour swatches and font-size
  * dropdown editors see also switch with cb_site (not just frontend CSS).
  *
+ * Palette slugs here are the ones ACTUALLY referenced by has-{slug}-color /
+ * has-{slug}-background-color classes hardcoded in the copied block
+ * templates (e.g. cb-featured-work's "has-lime-900-color", cb-case-study-hero's
+ * "has-primary-black-background-color") — not the generic plan names, since
+ * WordPress resolves those classes against these exact theme.json slugs.
+ * theme.json (the base file) already defines most of these for idtravel;
+ * "lime-900/1000/1100" and "primary-black" were missing entirely (a real,
+ * site-independent bug — those classes rendered no colour at all regardless
+ * of cb_site) and have been added there with static fallback values. This
+ * filter overrides all of them per site so switching cb_site actually
+ * changes what they render as. WP_Theme_JSON merges palette entries by
+ * slug, so this only touches the listed slugs — the rest of the base
+ * palette (neutral/purple/indigo scales etc.) is untouched.
+ *
  * @param WP_Theme_JSON_Data $theme_json Theme JSON data object.
  * @return WP_Theme_JSON_Data
  */
 function cb_filter_editor_theme_json( $theme_json ) {
-	$site = get_field( 'cb_site', 'option' ) ?: 'idtravel';
+	$site = cb_site_template_suffix();
 
 	$palettes = array(
 		'identity' => array(
-			array( 'slug' => 'brand', 'name' => 'Brand', 'color' => '#B8FF52' ),
-			array( 'slug' => 'secondary', 'name' => 'Secondary', 'color' => '#2f13ba' ),
-			array( 'slug' => 'accent', 'name' => 'Accent', 'color' => '#e03030' ),
-			array( 'slug' => 'text', 'name' => 'Text', 'color' => '#0D0D0C' ),
+			array( 'slug' => 'primary-black', 'name' => 'Primary Black', 'color' => '#0D0D0C' ),
+			array( 'slug' => 'ink', 'name' => 'Ink', 'color' => '#0D0D0C' ),
+			array( 'slug' => 'lime-900', 'name' => 'Lime 900', 'color' => '#4c8200' ),
+			array( 'slug' => 'lime-1000', 'name' => 'Lime 1000', 'color' => '#3d6900' ),
+			array( 'slug' => 'lime-1100', 'name' => 'Lime 1100', 'color' => '#345a00' ),
+			array( 'slug' => 'raspberry', 'name' => 'Raspberry', 'color' => '#4c8200' ),
+			array( 'slug' => 'raspberry-450', 'name' => 'Raspberry 450', 'color' => '#5e9f00' ),
+			array( 'slug' => 'neutral-400', 'name' => 'Neutral 400', 'color' => '#c9c7bc' ),
+			array( 'slug' => 'neutral-700', 'name' => 'Neutral 700', 'color' => '#77766c' ),
+			array( 'slug' => 'neutral-800', 'name' => 'Neutral 800', 'color' => '#5e5d55' ),
+			array( 'slug' => 'white', 'name' => 'White', 'color' => '#fff' ),
 		),
 		'coda'     => array(
-			array( 'slug' => 'brand', 'name' => 'Brand', 'color' => '#b8ff52' ),
-			array( 'slug' => 'secondary', 'name' => 'Secondary', 'color' => '#2f13ba' ),
-			array( 'slug' => 'accent', 'name' => 'Accent', 'color' => '#e03030' ),
-			array( 'slug' => 'text', 'name' => 'Text', 'color' => '#0d0d0c' ),
+			array( 'slug' => 'primary-black', 'name' => 'Primary Black', 'color' => '#0d0d0c' ),
+			array( 'slug' => 'ink', 'name' => 'Ink', 'color' => '#0d0d0c' ),
+			array( 'slug' => 'lime-900', 'name' => 'Lime 900', 'color' => '#4c8200' ),
+			array( 'slug' => 'lime-1000', 'name' => 'Lime 1000', 'color' => '#3d6900' ),
+			array( 'slug' => 'lime-1100', 'name' => 'Lime 1100', 'color' => '#345a00' ),
+			array( 'slug' => 'raspberry', 'name' => 'Raspberry', 'color' => '#4c8200' ),
+			array( 'slug' => 'raspberry-450', 'name' => 'Raspberry 450', 'color' => '#5e9f00' ),
+			array( 'slug' => 'neutral-400', 'name' => 'Neutral 400', 'color' => '#c9c7bc' ),
+			array( 'slug' => 'neutral-700', 'name' => 'Neutral 700', 'color' => '#77766c' ),
+			array( 'slug' => 'neutral-800', 'name' => 'Neutral 800', 'color' => '#5e5d55' ),
+			array( 'slug' => 'white', 'name' => 'White', 'color' => '#fff' ),
 		),
 		'idtravel' => array(
-			array( 'slug' => 'brand', 'name' => 'Brand', 'color' => '#e32447' ),
-			array( 'slug' => 'secondary', 'name' => 'Secondary', 'color' => '#2f13ba' ),
-			array( 'slug' => 'accent', 'name' => 'Accent', 'color' => '#cc1939' ),
-			array( 'slug' => 'text', 'name' => 'Text', 'color' => '#110d25' ),
+			array( 'slug' => 'primary-black', 'name' => 'Primary Black', 'color' => '#110d25' ),
+			array( 'slug' => 'ink', 'name' => 'Ink', 'color' => '#110d25' ),
+			array( 'slug' => 'lime-900', 'name' => 'Lime 900', 'color' => '#900720' ),
+			array( 'slug' => 'lime-1000', 'name' => 'Lime 1000', 'color' => '#7b0319' ),
+			array( 'slug' => 'lime-1100', 'name' => 'Lime 1100', 'color' => '#7b0319' ),
+			array( 'slug' => 'raspberry', 'name' => 'Raspberry', 'color' => '#e32447' ),
+			array( 'slug' => 'raspberry-450', 'name' => 'Raspberry 450', 'color' => '#ec4a67' ),
+			array( 'slug' => 'neutral-400', 'name' => 'Neutral 400', 'color' => '#b6b3c3' ),
+			array( 'slug' => 'neutral-700', 'name' => 'Neutral 700', 'color' => '#55506b' ),
+			array( 'slug' => 'neutral-800', 'name' => 'Neutral 800', 'color' => '#3b3652' ),
+			array( 'slug' => 'white', 'name' => 'White', 'color' => '#ffffff' ),
 		),
 	);
 

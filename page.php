@@ -8,7 +8,7 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-get_header();
+get_header( cb_site_template_suffix() );
 
 ?>
 <main id="main" class="blog">
@@ -23,4 +23,4 @@ get_header();
     ?>
 </main>
 <?php
-get_footer();
+get_footer( cb_site_template_suffix() );

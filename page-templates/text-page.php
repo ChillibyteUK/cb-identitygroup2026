@@ -6,7 +6,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-get_header();
+get_header( cb_site_template_suffix() );
 
 ?>
 <main id="main" class="text-page">
@@ -25,5 +25,5 @@ get_header();
 	</div>
 </main>
 <?php
-get_footer();
+get_footer( cb_site_template_suffix() );
 ?>

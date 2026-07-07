@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header();
+get_header( cb_site_template_suffix() );
 
 $search_query = get_search_query();
 ?>
@@ -164,4 +164,4 @@ $search_query = get_search_query();
 </main>
 
 <?php
-get_footer();
+get_footer( cb_site_template_suffix() );

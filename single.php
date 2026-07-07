@@ -6,7 +6,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-get_header();
+get_header( cb_site_template_suffix() );
 
 // get categories.
 $categories     = get_the_category();
@@ -151,5 +151,5 @@ switch ( $post_style ) {
 	?>
 </main>
 <?php
-get_footer();
+get_footer( cb_site_template_suffix() );
 ?>

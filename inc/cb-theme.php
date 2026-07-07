@@ -109,6 +109,10 @@ function widgets_init() {
             'footer_menu_resources'  => 'Footer Resources',
             'footer_menu_identity'   => 'Footer Identity',
             'footer_menu_legal'      => 'Footer Legal & Info',
+            // Used by footer-identity.php and footer-coda.php.
+            'footer_menu_services'   => 'Footer Services',
+            'footer_menu_media'      => 'Footer Media',
+            'footer_menu_global'     => 'Footer Global',
         )
     );
 

@@ -7,13 +7,12 @@
  * @package cb-identitygroup2026
  */
 
+// Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
 if ( session_status() === PHP_SESSION_NONE ) {
     session_start();
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -23,18 +22,16 @@ if ( session_status() === PHP_SESSION_NONE ) {
     <meta
         charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1">
-
-	<link rel="preload"
+    <link rel="preload"
         href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Light.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload"
         href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Regular.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Semibold.woff2' ); ?>"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-SemiBold.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
-
-	
+	<script src="https://cdn.c360a.salesforce.com/beacon/c360a/e8456c26-3421-4df1-bfd7-274c60e29ab8/scripts/c360a.min.js?wtcp_id=1NDQ200000006i9OAA"></script>
     <?php
     if ( ! is_user_logged_in() ) {
         if ( get_field( 'ga_property', 'options' ) ) {
@@ -87,15 +84,7 @@ if ( session_status() === PHP_SESSION_NONE ) {
 	if ( get_field( 'bing_site_verification', 'options' ) ) {
 		echo '<meta name="msvalidate.01" content="' . esc_attr( get_field( 'bing_site_verification', 'options' ) ) . '" />';
 	}
-	/*
-	phpcs:disable
-	?>
-	<!-- Load Adobe Fonts asynchronously to prevent blocking -->
-	<?php // phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet  ?>
-	<link rel="stylesheet" href="https://use.typekit.net/hnr7skm.css" as="style">
-	<?php
-	phpcs:enable
-	*/
+
 	wp_head();
 	?>
 </head>
@@ -116,36 +105,37 @@ if ( session_status() === PHP_SESSION_NONE ) {
     	}
 	}
 	?>
-<header id="wrapper-navbar" class="sticky py-2">
-	<nav class="navbar navbar-expand-xl">
-		<div class="d-flex px-4 px-md-5 gap-4 w-100 w-xl-auto">
-            <div class="d-flex justify-content-between w-100 w-xl-auto align-items-center py-0">
-                <a href="/" class="logo-clip" id="site-logo-clip" aria-label="Identity Travel Homepage">
+<header id="wrapper-navbar" class="fixed-top py-2">
+	<nav class="navbar navbar-expand-lg">
+		<div class="id-container d-flex px-4 px-md-5 gap-4">
+            <div class="d-flex justify-content-between w-100 w-lg-auto align-items-center py-0">
+                <a href="/" class="logo-clip" id="site-logo-clip" aria-label="Identity Homepage">
 					<div class="logo-inner" id="site-logo-inner">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254.9 18.2">
-						<defs>
-							<style>
-							.cls-1 {
-								fill: #fff;
-							}
-							</style>
-						</defs>
-						<g>
-							<polygon class="cls-1" points="150.31 0 150.31 1.95 156.63 1.95 156.63 18.2 158.86 18.2 158.86 1.95 165.18 1.95 165.18 0 150.31 0"/>
-							<path class="cls-1" d="M175.69,10.63h-4.65V1.95h4.65c1.73,0,3.05.38,3.95,1.13.9.75,1.35,1.82,1.35,3.21s-.45,2.44-1.35,3.2c-.9.76-2.22,1.14-3.95,1.14M179.77,11.8c1.13-.5,1.99-1.22,2.59-2.16.6-.94.9-2.05.9-3.35,0-1.98-.67-3.52-2-4.63C179.92.56,178.08,0,175.74,0h-6.94v18.2h2.24v-5.64h4.71c.46,0,.89-.03,1.31-.07l4.05,5.71h2.47l-4.4-6.17c.2-.07.41-.14.6-.22"/>
-							<path class="cls-1" d="M194.84,2.3l4.16,9.37h-8.31l4.15-9.37ZM193.73,0l-8.27,18.2h2.34l2.08-4.71h9.92l2.09,4.71h2.37L195.97,0h-2.24Z"/>
-							<polygon class="cls-1" points="219.06 0 212.26 15.39 205.49 0 203.04 0 211.08 18.2 213.31 18.2 221.32 0 219.06 0"/>
-							<polygon class="cls-1" points="224.47 0 224.47 18.2 237.49 18.2 237.49 16.25 226.7 16.25 226.7 9.93 235.98 9.93 235.98 7.98 226.7 7.98 226.7 1.95 237.13 1.95 237.13 0 224.47 0"/>
-							<polygon class="cls-1" points="242.62 0 242.62 18.2 254.9 18.2 254.9 16.25 244.86 16.25 244.86 0 242.62 0"/>
-							<polygon class="cls-1" points="69.1 0 69.1 12.68 55.63 0 52.17 0 52.17 18.2 56.08 18.2 56.08 5.61 69.55 18.2 73.01 18.2 73.01 0 69.1 0"/>
-							<path class="cls-1" d="M130.26,0c2.26,2.91,6.67,9.02,6.67,9.02l6.59-9.02h4.68l-9.36,12.23v5.97h-3.91v-5.89L125.5,0h4.76Z"/>
-							<polygon class="cls-1" points="104.45 0 104.45 3.33 112.42 3.33 112.42 18.2 116.33 18.2 116.33 3.33 124.3 3.33 124.3 0 104.45 0"/>
-							<polygon class="cls-1" points="75.57 0 75.57 3.33 83.54 3.33 83.54 18.2 87.45 18.2 87.45 3.33 95.42 3.33 95.42 0 75.57 0"/>
-							<rect class="cls-1" width="3.99" height="18.2"/>
-							<polygon class="cls-1" points="30.41 0 30.41 18.2 33.74 18.2 48.68 18.2 48.68 14.87 33.74 14.87 33.74 10.77 48.68 10.77 48.68 7.43 33.74 7.43 33.74 3.33 48.68 3.33 48.68 0 30.41 0"/>
-							<path class="cls-1" d="M11.97,3.35h5.47c1.97,0,3.47.46,4.45,1.38,1.02.94,1.53,2.41,1.53,4.36,0,3.88-1.96,5.77-5.98,5.77h-5.47V3.35ZM24.88,2.38C23.22.8,20.8,0,17.69,0h-9.6v18.2s9.6,0,9.6,0c6.23,0,9.67-3.24,9.67-9.11,0-2.89-.83-5.15-2.48-6.71"/>
-							<rect class="cls-1" x="97.98" width="3.91" height="18.2"/>
-						</g>
+						<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 835.66 81.83">
+							<defs>
+								<style>
+								.cls-1 {
+									fill: #fff;
+								}
+								</style>
+							</defs>
+							<g id="Layer_1-2" data-name="Layer 1">
+								<g id="logo-bars">
+									<polygon class="cls-1" points="74.96 0 0 0 0 14.97 74.96 14.97 149.91 14.97 149.91 0 74.96 0"/>
+									<polygon class="cls-1" points="0 33.42 0 48.4 74.96 48.4 149.91 48.4 149.91 33.42 74.96 33.42 0 33.42"/>
+									<polygon class="cls-1" points="0 66.84 0 81.82 74.96 81.82 149.91 81.82 149.91 66.84 74.96 66.84 0 66.84"/>
+								</g>
+								<g>
+								<polygon class="cls-1" points="480.02 56.98 480.02 0 497.58 0 497.58 81.82 482.03 81.82 421.49 25.2 421.49 81.82 403.93 81.82 403.93 0 419.47 0 480.02 56.98"/>
+								<path class="cls-1" d="M754.99,0c10.14,13.09,29.99,40.55,29.99,40.55L814.62,0h21.04l-42.07,54.98v26.85h-17.56v-26.48L733.59.01h21.4Z"/>
+								<polygon class="cls-1" points="728.2 0 728.2 14.98 692.34 14.98 692.34 81.82 674.78 81.82 674.78 14.98 638.93 14.98 638.93 0 728.2 0"/>
+								<polygon class="cls-1" points="598.35 0 598.35 14.98 562.5 14.97 562.5 81.82 544.94 81.82 544.94 14.97 509.09 14.97 509.09 0 598.35 0"/>
+								<rect class="cls-1" x="169.36" width="17.93" height="81.82"/>
+								<polygon class="cls-1" points="388.21 14.97 388.21 0 321.06 0 306.08 0 306.08 81.82 321.06 81.82 388.21 81.82 388.21 66.85 321.06 66.84 321.06 48.4 388.21 48.4 388.21 33.42 321.06 33.42 321.06 14.97 388.21 14.97"/>
+								<path class="cls-1" d="M282.22,10.69c-7.46-7.09-18.34-10.69-32.32-10.69h-43.17v81.82h43.17c28.02,0,43.46-14.55,43.46-40.97,0-12.99-3.75-23.14-11.14-30.16h0ZM224.16,15.04h24.61c8.85,0,15.58,2.08,20,6.19,4.57,4.24,6.88,10.84,6.88,19.62,0,17.44-8.8,25.92-26.89,25.92h-24.61V15.03h0Z"/>
+								<rect class="cls-1" x="609.86" width="17.56" height="81.82"/>
+								</g>
+							</g>
 						</svg>
 					</div>
 				</a>

@@ -6,7 +6,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-get_header();
+get_header( cb_site_template_suffix() );
 
 $subtitle = get_field( 'case_study_subtitle' ) ? get_field( 'case_study_subtitle' ) : 'Top 5 Pharma Company';
 
@@ -25,5 +25,5 @@ $subtitle = get_field( 'case_study_subtitle' ) ? get_field( 'case_study_subtitle
     ?>
 </main>
 <?php
-get_footer();
+get_footer( cb_site_template_suffix() );
 ?>

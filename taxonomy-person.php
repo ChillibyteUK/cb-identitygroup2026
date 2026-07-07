@@ -13,7 +13,7 @@ if ( ! $term instanceof WP_Term ) {
 	return;
 }
 
-get_header();
+get_header( cb_site_template_suffix() );
 ?>
 <main id="main" class="news-insights news-insights--person">
 	<section class="news-insights-hero has-neutral-400-border-bottom">
@@ -100,4 +100,4 @@ get_header();
 	?>
 </main>
 <?php
-get_footer();
+get_footer( cb_site_template_suffix() );

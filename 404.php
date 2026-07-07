@@ -2,7 +2,7 @@
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
-get_header();
+get_header( cb_site_template_suffix() );
 ?>
 <main id="main" class="padding-top">
 <?php
@@ -28,4 +28,4 @@ $bg = wp_get_attachment_image_url( get_field('hero_image','options'), 'full' );
 </section>
 </main>
 <?php
-get_footer();
+get_footer( cb_site_template_suffix() );

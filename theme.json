@@ -137,6 +137,30 @@
           "origin": "theme"
         },
         {
+          "name": "Primary Black",
+          "slug": "primary-black",
+          "color": "#110d25",
+          "origin": "theme"
+        },
+        {
+          "name": "Lime 900",
+          "slug": "lime-900",
+          "color": "#900720",
+          "origin": "theme"
+        },
+        {
+          "name": "Lime 1000",
+          "slug": "lime-1000",
+          "color": "#7b0319",
+          "origin": "theme"
+        },
+        {
+          "name": "Lime 1100",
+          "slug": "lime-1100",
+          "color": "#7b0319",
+          "origin": "theme"
+        },
+        {
           "name": "neutral-1000",
           "slug": "neutral-1000",
           "color": "#040013",

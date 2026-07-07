@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 $page_for_posts = get_option( 'page_for_posts' );
 
-get_header();
+get_header( cb_site_template_suffix() );
 ?>
 <main id="main" class="news-insights">
 	<section class="news-insights-hero has-neutral-400-border-bottom">
@@ -137,5 +137,5 @@ get_header();
 	?>
 </main>
 <?php
-get_footer();
+get_footer( cb_site_template_suffix() );
 ?>
