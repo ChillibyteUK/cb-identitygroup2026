@@ -73,6 +73,13 @@
       var(--col-lime-100),
       var(--col-lime-200),
       var(--col-lime-300));
+  /* Generic, non-branded utility colours (_search.scss, _a11y.scss) — the
+     same values were already relied on as inline var() fallbacks, and are
+     identical in both coda's and idtravel's own repos (identity never had
+     this file), so promoted to real definitions rather than left implicit. */
+  --col-grey-200: #e5e5e5;
+  --col-grey-600: #666;
+  --col-primary-500: #3c52e0;
   /* =========================
      TYPOGRAPHY (families/weights)
      ========================= */
