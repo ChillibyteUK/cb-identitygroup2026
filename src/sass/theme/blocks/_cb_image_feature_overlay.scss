@@ -51,7 +51,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: url("../img/blur.jpg") center / cover no-repeat;
+    background: var(--_overlay-bg-url, url("../img/blur.jpg")) center / cover no-repeat;
     opacity: 0.9;
   }
 

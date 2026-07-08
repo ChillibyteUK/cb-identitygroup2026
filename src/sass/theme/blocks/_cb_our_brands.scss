@@ -1,4 +1,14 @@
 .cb-our-brands {
+  &__pre-title {
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    padding-block: 1.5rem 1.25rem;
+    color: var(--col-brand);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-300);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
   &__intro {
     border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
     padding-block: 6rem 2rem;

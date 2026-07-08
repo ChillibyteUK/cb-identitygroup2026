@@ -56,6 +56,52 @@ $l = get_field( 'contact_link' );
             </div>
         </div>
         <div class="cb-contact-page__emails">
+            <div class="row align-items-start">
+                <div class="col-md-6 mb-3">
+                    <h2>New business USA</h2>
+                </div>
+                <div class="col-md-6 mb-5 mb-md-3">
+                    <a href="mailto:<?= esc_attr( antispambot( get_field( 'new_business_us' ) ) ); ?>">
+                        <?= esc_html( antispambot( get_field( 'new_business_us' ) ) ); ?>
+                    </a>
+                    <?php
+                    if ( get_field( 'new_business_us_phone' ) ) {
+                        ?>
+                        <div class="mt-2">
+                            <a href="tel:<?= esc_attr( parse_phone( get_field( 'new_business_us_phone' ) ) ); ?>">
+                                <?= esc_html( get_field( 'new_business_us_phone' ) ); ?>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <div class="cb-contact-page__emails">
+            <div class="row align-items-start">
+                <div class="col-md-6 mb-3">
+                    <h2>New business Middle East</h2>
+                </div>
+                <div class="col-md-6 mb-5 mb-md-3">
+                    <a href="mailto:<?= esc_attr( antispambot( get_field( 'new_business_me' ) ) ); ?>">
+                        <?= esc_html( antispambot( get_field( 'new_business_me' ) ) ); ?>
+                    </a>
+                    <?php
+                    if ( get_field( 'new_business_me_phone' ) ) {
+                        ?>
+                        <div class="mt-2">
+                            <a href="tel:<?= esc_attr( parse_phone( get_field( 'new_business_me_phone' ) ) ); ?>">
+                                <?= esc_html( get_field( 'new_business_me_phone' ) ); ?>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <div class="cb-contact-page__emails">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-3">
                     <h2>PR & Media</h2>

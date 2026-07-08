@@ -29,6 +29,15 @@
     }
   }
 
+  &__pretitle {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-regular);
+    text-transform: uppercase;
+    color: var(--col-brand);
+    padding-block: 1rem 0.75rem;
+    border-bottom: 1px solid var(--cb-pushthrough-line-color);
+  }
+
   &__title {
     font-size: var(--fs-600);
     font-weight: var(--fw-book);

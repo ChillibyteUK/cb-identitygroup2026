@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) || exit;
 $block_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-pushthrough-' );
 
 $link            = get_field( 'link' );
+$pretitle        = get_field( 'pretitle' );
 $background      = get_field( 'background' );
 $left_content    = get_field( 'left_content' );
 $left_type       = get_field( 'left_content_type' ) ?: 'Text';
@@ -53,6 +54,13 @@ $section_style = $background_url ? sprintf( '--_bg-url: url(%s);', esc_url_raw( 
 	}
 	*/
 	?>
+	<?php if ( $pretitle ) : ?>
+		<div class="cb-pushthrough__pretitle">
+			<div class="id-container px-4 px-md-5">
+				<?= esc_html( $pretitle ); ?>
+			</div>
+		</div>
+	<?php endif; ?>
 	<div class="id-container px-4 px-md-5 py-4">
 		<div class="row g-5 py-4">
 			<div class="col-md-6" data-aos="fade">

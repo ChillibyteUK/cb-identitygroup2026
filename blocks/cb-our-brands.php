@@ -8,6 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $block_id   = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-our-brands-' );
+$pre_title  = get_field( 'pre_title' );
 $intro_text = get_field( 'intro_text' );
 $brands     = get_field( 'brands' ) ?: array();
 
@@ -44,6 +45,13 @@ $last_col_md  = 0 === $md_rem ? 12 : 6;
 ?>
 <a id="brands" class="anchor"></a>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>>
+	<?php if ( $pre_title ) : ?>
+		<div class="cb-our-brands__pre-title">
+			<div class="id-container px-4 px-md-5">
+				<?= esc_html( $pre_title ); ?>
+			</div>
+		</div>
+	<?php endif; ?>
 	<?php if ( $intro_text ) : ?>
 		<div class="id-container px-4 px-md-5">
 			<div class="cb-our-brands__intro mb-5">

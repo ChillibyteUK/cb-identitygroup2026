@@ -21,6 +21,27 @@
             "new_lines": "wpautop"
         },
         {
+            "key": "field_69021b61a88b4",
+            "label": "Pre-title",
+            "name": "pretitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_cb_pushthrough_left_content_type",
             "label": "Left Content",
             "name": "left_content_type",
@@ -208,7 +229,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/cb-pushthrough"
+                "value": "acf/cb-pushthrough"
             }
         ]
     ],

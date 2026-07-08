@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) || exit;
 $section_id    = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-image-feature-overlay-' );
 $extra_classes = $block['className'] ?? '';
 $image_id      = get_field( 'image' );
+$overlay_image = get_field( 'overlay_image' );
 $content       = get_field( 'content' );
 
 $section_classes = array( 'cb-image-feature-overlay' );
@@ -35,6 +36,14 @@ if ( $image_id ) {
 	if ( $image_url ) {
 		$section_style_declarations[] = sprintf( '--_bg-url: url(%s);', esc_url_raw( $image_url ) );
 		$section_classes[] = 'cb-image-feature-overlay--has-background-image';
+	}
+}
+
+if ( $overlay_image ) {
+	$overlay_image_url = wp_get_attachment_image_url( $overlay_image, 'full' );
+
+	if ( $overlay_image_url ) {
+		$section_style_declarations[] = sprintf( '--_overlay-bg-url: url(%s);', esc_url_raw( $overlay_image_url ) );
 	}
 }
 
