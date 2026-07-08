@@ -187,6 +187,14 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     established mapping like the 900/1000 darks have via the existing
     wp-preset slot-borrowing). idtravel's `--fw-semi: 450` reuse should be
     confirmed rather than assumed correct.
+  - **Naming standardised on "lime"** (2026-07-08): blocks copied in from
+    identity vs. coda used two names for the same colour-identical scale
+    (`--col-green-*` vs `--col-lime-*`). Renamed every `--col-green-*`
+    reference to `--col-lime-*` (9 files, including `_buttons.scss` — this
+    is a small first slice of Phase C's full rename, not the whole thing),
+    plus the matching `.btn-id-outline-green` class → `.btn-id-outline-lime`
+    in both `_buttons.scss` and its one usage in `cb-work-index.php`. Removed
+    the now-redundant dual-aliasing from `cb-site-tokens.php`.
   - The actual **rename** (once real values exist for the above) still needs
     someone to map each site's existing shade scale onto the plan's generic
     names — e.g. is idtravel's `--col-raspberry-600` supposed to become the
