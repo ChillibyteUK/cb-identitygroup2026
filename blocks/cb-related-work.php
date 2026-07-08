@@ -2,6 +2,12 @@
 /**
  * Block template for CB Related Work.
  *
+ * Shows related case studies by the current page's service. If the
+ * "Theme Filter" field is set, results are always additionally filtered to
+ * that theme term - this replaces what used to be separate
+ * cb-related-work-expo/cb-related-work-sports blocks, each hardcoding a
+ * different theme term with otherwise near-identical query logic.
+ *
  * @package cb-identitygroup2026
  */
 
@@ -10,9 +16,15 @@ defined( 'ABSPATH' ) || exit;
 // Block ID.
 $block_id = $block['id'] ?? '';
 
-// Get service and theme terms from current post.
+$theme_filter = get_field( 'theme_filter' );
+
+// Get service terms from current post. The "service" taxonomy is
+// identity-specific and may not be registered on every site this block is
+// now available on, so treat a WP_Error (invalid taxonomy) the same as "none".
 $services = wp_get_post_terms( get_the_ID(), 'service' );
-$themes   = wp_get_post_terms( get_the_ID(), 'theme' );
+if ( is_wp_error( $services ) ) {
+	$services = array();
+}
 
 $pretitle         = 'Related';
 $pretitle_padding = 'pt-4 pb-3';
@@ -24,12 +36,13 @@ if ( empty( $services ) && is_page() ) {
 	$pretitle           = get_the_title( get_the_ID() );
 	$pretitle_padding   = 'pt-2 pb-1';
 	if ( ! $maybe_service_term || is_wp_error( $maybe_service_term ) ) {
-		// Try to find the term by slug manually if get_term_by fails.
 		$all_terms = get_terms( array( 'taxonomy' => 'service', 'hide_empty' => false ) );
-		foreach ( $all_terms as $term ) {
-			if ( $term->slug === $page_slug ) {
-				$maybe_service_term = $term;
-				break;
+		if ( ! is_wp_error( $all_terms ) ) {
+			foreach ( $all_terms as $term ) {
+				if ( $term->slug === $page_slug ) {
+					$maybe_service_term = $term;
+					break;
+				}
 			}
 		}
 	}
@@ -55,10 +68,12 @@ if ( ! empty( $services ) ) {
 	$maybe_service_term = get_term_by( 'slug', $page_slug, 'service' );
 	if ( ! $maybe_service_term || is_wp_error( $maybe_service_term ) ) {
 		$all_terms = get_terms( array( 'taxonomy' => 'service', 'hide_empty' => false ) );
-		foreach ( $all_terms as $term ) {
-			if ( $term->slug === $page_slug ) {
-				$maybe_service_term = $term;
-				break;
+		if ( ! is_wp_error( $all_terms ) ) {
+			foreach ( $all_terms as $term ) {
+				if ( $term->slug === $page_slug ) {
+					$maybe_service_term = $term;
+					break;
+				}
 			}
 		}
 	}
@@ -67,27 +82,41 @@ if ( ! empty( $services ) ) {
 	}
 }
 
-// Only run query if $service_id was resolved.
-if ( $service_id ) {
-	$posts = array();
+// Without a theme filter, this block requires a service to run at all
+// (its original behaviour). With one, the theme filter alone is enough.
+if ( ! $theme_filter && ! $service_id ) {
+	return;
+}
 
-	// 1. Get up to 4 posts where Yoast primary service matches.
-	$yoast_query = new WP_Query(
-		array(
-			'post_type'      => 'case_study',
-			'posts_per_page' => 4,
-			'orderby'        => 'date',
-			'order'          => 'DESC',
-			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-				array(
-					'key'     => '_yoast_wpseo_primary_service',
-					'value'   => $service_id,
-					'compare' => '=',
-				),
+$posts = array();
+
+// 1. Get up to 4 posts where Yoast primary service matches (only if service exists),
+// additionally filtered to the theme if one is set.
+if ( $service_id ) {
+	$yoast_query_args = array(
+		'post_type'      => 'case_study',
+		'posts_per_page' => 4,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+		'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			array(
+				'key'     => '_yoast_wpseo_primary_service',
+				'value'   => $service_id,
+				'compare' => '=',
 			),
-			'post__not_in'   => array( get_the_ID() ),
-		)
+		),
+		'post__not_in'   => array( get_the_ID() ),
 	);
+	if ( $theme_filter ) {
+		$yoast_query_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			array(
+				'taxonomy' => 'theme',
+				'field'    => 'term_id',
+				'terms'    => $theme_filter,
+			),
+		);
+	}
+	$yoast_query = new WP_Query( $yoast_query_args );
 	if ( $yoast_query->have_posts() ) {
 		while ( $yoast_query->have_posts() ) {
 			$yoast_query->the_post();
@@ -95,77 +124,86 @@ if ( $service_id ) {
 		}
 		wp_reset_postdata();
 	}
+}
 
-	// 2. If less than 4, fill with posts assigned to the service via taxonomy.
-	if ( count( $posts ) < 4 ) {
-		$remaining  = 4 - count( $posts );
-		$fill_query = new WP_Query(
-			array(
-				'post_type'      => 'case_study',
-				'posts_per_page' => $remaining,
-				'orderby'        => 'date',
-				'order'          => 'DESC',
-				'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-					array(
-						'taxonomy' => 'service',
-						'field'    => 'term_id',
-						'terms'    => $service_id,
-					),
-				),
-				'post__not_in'   => array_merge( array( get_the_ID() ), $posts ),
-			)
+// 2. If less than 4, fill with posts assigned to the service and/or theme via taxonomy.
+if ( count( $posts ) < 4 && ( $service_id || $theme_filter ) ) {
+	$remaining = 4 - count( $posts );
+	$tax_query = array();
+	if ( $theme_filter ) {
+		$tax_query[] = array(
+			'taxonomy' => 'theme',
+			'field'    => 'term_id',
+			'terms'    => $theme_filter,
 		);
-		if ( $fill_query->have_posts() ) {
-			while ( $fill_query->have_posts() ) {
-				$fill_query->the_post();
-				$posts[] = get_the_ID();
-			}
-			wp_reset_postdata();
-		}
 	}
-
-	if ( ! empty( $posts ) ) {
-		?>
-	<section id="<?php echo esc_attr( $block_id ); ?>" class="cb-related-work">
-		<div class="cb-related-work__pre-title">
-			<div class="id-container <?= esc_attr( $pretitle_padding ); ?> px-4 px-md-5">
-				<?= esc_html( $pretitle ); ?> Work
-			</div>
-		</div>
-		<div class="id-container">
-			<div class="row g-2">
-		<?php
-		foreach ( $posts as $post_id ) {
-			setup_postdata( get_post( $post_id ) );
-			?>
-				<div class="col-md-6">
-					<a href="<?= esc_url( get_the_permalink( $post_id ) ); ?>" class="cb-related-work__card">
-						<?= get_work_image( $post_id, 'cb-related-work__image' ); ?>
-						<div class="cb-related-work__content px-4 px-md-5">
-							<div class="cb-related-work__title">
-								<?php echo esc_html( get_the_title( $post_id ) ); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" width="23" height="21" alt="" class="cb-services-nav__item-icon" />
-							</div>
-							<div class="cb-related-work__desc">
-								<?php
-								$post_blocks = parse_blocks( get_post_field( 'post_content', $post_id ) );
-								$subtitle    = cb_find_hero_subtitle( $post_blocks );
-								if ( $subtitle ) {
-									echo esc_html( $subtitle );
-								} else {
-									echo wp_kses_post( wp_trim_words( get_the_excerpt( $post_id ), 18, '...' ) );
-								}
-								?>
-							</div>
-						</div>
-					</a>
-				</div>
-			<?php
+	if ( $service_id ) {
+		$tax_query[] = array(
+			'taxonomy' => 'service',
+			'field'    => 'term_id',
+			'terms'    => $service_id,
+		);
+	}
+	$fill_query = new WP_Query(
+		array(
+			'post_type'      => 'case_study',
+			'posts_per_page' => $remaining,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			'tax_query'      => $tax_query, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			'post__not_in'   => array_merge( array( get_the_ID() ), $posts ),
+		)
+	);
+	if ( $fill_query->have_posts() ) {
+		while ( $fill_query->have_posts() ) {
+			$fill_query->the_post();
+			$posts[] = get_the_ID();
 		}
 		wp_reset_postdata();
-		?>
-			</div>
+	}
+}
+
+if ( ! empty( $posts ) ) {
+	?>
+<section id="<?php echo esc_attr( $block_id ); ?>" class="cb-related-work">
+	<div class="cb-related-work__pre-title">
+		<div class="id-container <?= esc_attr( $pretitle_padding ); ?> px-4 px-md-5">
+			<?= esc_html( $pretitle ); ?> Work
 		</div>
-	</section>
+	</div>
+	<div class="id-container">
+		<div class="row g-2">
+	<?php
+	foreach ( $posts as $post_id ) {
+		setup_postdata( get_post( $post_id ) );
+		?>
+			<div class="col-md-6">
+				<a href="<?= esc_url( get_the_permalink( $post_id ) ); ?>" class="cb-related-work__card">
+					<?= get_work_image( $post_id, 'cb-related-work__image' ); ?>
+					<div class="cb-related-work__content px-4 px-md-5">
+						<div class="cb-related-work__title">
+							<?php echo esc_html( get_the_title( $post_id ) ); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" width="23" height="21" alt="" class="cb-services-nav__item-icon" />
+						</div>
+						<div class="cb-related-work__desc">
+							<?php
+							$post_blocks = parse_blocks( get_post_field( 'post_content', $post_id ) );
+							$subtitle    = cb_find_hero_subtitle( $post_blocks );
+							if ( $subtitle ) {
+								echo esc_html( $subtitle );
+							} else {
+								echo wp_kses_post( wp_trim_words( get_the_excerpt( $post_id ), 18, '...' ) );
+							}
+							?>
+						</div>
+					</div>
+				</a>
+			</div>
 		<?php
 	}
+	wp_reset_postdata();
+	?>
+		</div>
+	</div>
+</section>
+	<?php
 }

@@ -1082,40 +1082,6 @@ function acf_blocks() {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'cb_related_work_expo',
-				'title'           => __( 'CB Related Work (Expo)' ),
-				'category'        => 'layout',
-				'icon'            => 'admin-links',
-				'render_template' => 'blocks/cb-related-work-expo.php',
-				'mode'            => 'edit',
-				'supports'        => array(
-					'mode'      => false,
-					'anchor'    => true,
-					'className' => true,
-					'align'     => true,
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
-				'name'            => 'cb_related_work_sports',
-				'title'           => __( 'CB Related Work (Sports)' ),
-				'category'        => 'layout',
-				'icon'            => 'admin-links',
-				'render_template' => 'blocks/cb-related-work-sports.php',
-				'mode'            => 'edit',
-				'supports'        => array(
-					'mode'      => false,
-					'anchor'    => true,
-					'className' => true,
-					'align'     => true,
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
 				'name'            => 'cb_work_by_region',
 				'title'           => __( 'CB Work by Region' ),
 				'category'        => 'layout',

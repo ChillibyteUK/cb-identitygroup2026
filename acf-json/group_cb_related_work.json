@@ -19,6 +19,32 @@
             "message": "",
             "new_lines": "wpautop",
             "esc_html": 0
+        },
+        {
+            "key": "field_cb_related_work_theme_filter",
+            "label": "Theme Filter",
+            "name": "theme_filter",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "Leave empty to use the current post's own theme terms (the default \"Related Work\" behaviour). Select a theme to always filter to it regardless of the current post - this is how the old separate Expo/Sports variants of this block worked.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "theme",
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "field_type": "select",
+            "allow_in_bindings": 0,
+            "bidirectional": 0,
+            "multiple": 0,
+            "allow_null": 1,
+            "bidirectional_target": []
         }
     ],
     "location": [
