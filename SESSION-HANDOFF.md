@@ -177,16 +177,41 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     nearest existing weight — flagged as a stand-in, not a confirmed design
     value. `.has-secondary-*` utility classes remain unreachable dead code
     (theme.json has no "secondary" palette entry) and don't need fixing.
-  - **Still open — needs real design input, not mechanical**:
-    `--col-primary-250`, `--col-primary-500`, `--col-grey-200`,
-    `--col-grey-600` are undefined in all 3 themes' own files, not just the
-    merged one. Identity/coda have no equivalent for idtravel's
-    raspberry-family hues or its purple-1100 shade (idtravel-only, no
-    cross-theme precedent). idtravel has no equivalent for
-    `--col-lime-100/200/300/400/500/800` or `--col-neutral-1100` (no
-    established mapping like the 900/1000 darks have via the existing
-    wp-preset slot-borrowing). idtravel's `--fw-semi: 450` reuse should be
-    confirmed rather than assumed correct.
+  - **Per-site token coverage is now complete** (2026-07-08): went through
+    every remaining gap comparing directly against each of the 3 source
+    themes' own `_tokens.scss`/block SCSS. Fixed `--col-primary-250`
+    (turned out to be idtravel's own pre-existing bug predating the merge,
+    not a per-site gap — pointed at `--col-brand`), added
+    `--col-purple-1100`/`--hsl-purple-1100`, `--hsl-ink`,
+    `--hsl-neutral-050/400` for identity/coda, added
+    `--col-raspberry-100/400/600` + HSL forms for identity/coda (confirmed
+    via source: neither theme has ever had a raspberry concept — substituted
+    their own brand/brand-dark for the equivalent light/dark accent role),
+    filled idtravel's remaining lime shades (100/200/300/500/800) and
+    `--col-neutral-1100` by continuing the raspberry-scale substitution
+    already used for lime-900/1000, and fixed `--col-neutral-50` (no leading
+    zero — idtravel's own naming only ever had `--col-neutral-050`) which
+    is the sitewide `body` background colour and had silently never been
+    defined for idtravel at all.
+  - **Confirmed intentional, not bugs**: `--col-primary-500` and
+    `_search.scss`'s grey/category-tag colours use the exact same
+    fallback-guarded pattern in both coda's and idtravel's own original
+    repos (identity never had this file) — deliberate safe defaults.
+    `--fw-book/light/regular/semibold` fall back to the base scale
+    universally since identity/coda's own files never defined those named
+    steps at all. `--col-secondary-*` and the remaining
+    `--col-{grey,interview,news,podcast,research,video}*` tokens are either
+    dead/unreachable (no theme.json palette entry) or already safely
+    fallback-guarded.
+  - Also fixed while auditing for this: `.id-button` (the sitewide primary
+    CTA button, used in 13+ templates) and 8 other elements were hardcoded
+    to `--col-raspberry` (idtravel's own hue, never per-site) instead of the
+    already-correct `--col-brand` — every CTA button showed idtravel's red
+    on every site regardless of `cb_site`. Same bug for `--col-lime-400`
+    (identity/coda's own main shade, 20 usages, no idtravel equivalent).
+    Also found 3 literal hardcoded RGB values in `cb-work-index.php`'s Tom
+    Select dropdown styling that bypassed variables entirely, with the
+    intended variable left in a dead comment.
   - **Naming standardised on "lime"** (2026-07-08): blocks copied in from
     identity vs. coda used two names for the same colour-identical scale
     (`--col-green-*` vs `--col-lime-*`). Renamed every `--col-green-*`
@@ -195,6 +220,9 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     plus the matching `.btn-id-outline-green` class → `.btn-id-outline-lime`
     in both `_buttons.scss` and its one usage in `cb-work-index.php`. Removed
     the now-redundant dual-aliasing from `cb-site-tokens.php`.
+  - **Removed the dead `content-grid-links` block** (2026-07-08) — the plan's
+    inventory marks it "Dead — delete"; confirmed empty render template, no
+    field group, zero real content usage. Deregistered and deleted the file.
   - The actual **rename** (once real values exist for the above) still needs
     someone to map each site's existing shade scale onto the plan's generic
     names — e.g. is idtravel's `--col-raspberry-600` supposed to become the
