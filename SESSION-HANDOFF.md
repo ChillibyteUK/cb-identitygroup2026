@@ -146,11 +146,17 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
   itself was never renamed to the generic scheme. Do this if/when consolidating
   onto one canonical naming convention matters more than "it works."
 - **Phase D (deploy scripts, per-site builds)**: not started.
-- **Deprecated-but-still-registered blocks**: `cb-video-hero`, `cb-plain-hero`,
-  `cb-cta-hero` (→ replaced by `cb-full-video`/`cb-image-feature-overlay`
-  config fields) and `cb-lined-title` (→ `cb-signpost-header`) are still fully
-  registered and functional. The plan calls for an admin deprecation notice on
-  their templates for one release cycle before removal — not implemented.
+- ~~**Deprecated-but-still-registered blocks**~~ — done 2026-07-08: added
+  `cb_deprecated_block_notice()` (`inc/cb-utility.php`) and called it from
+  `cb-video-hero.php`, `cb-plain-hero.php`, and `cb-cta-hero.php`. Renders an
+  admin-only notice inside the block's editor preview (gated on the
+  `$is_preview` variable ACF passes into every render template — verified
+  empirically that it's in scope via PHP's `include` semantics, and that the
+  notice is absent when `$is_preview` is false). `cb-lined-title`, the plan's
+  4th deprecated block, doesn't exist anywhere in this theme — grepped the
+  whole repo, no file, no registration, no field group. Either it was never
+  carried over in Phase A or the plan's inventory was wrong about it existing
+  here; either way nothing to deprecate.
 - **Coda's own copy is missing `cb-contact-page`, `cb-careers-page`, and
   `cb-signpost-header`** (all exist in idtravel/identity, confirmed absent in
   coda's actual repo) — irrelevant to this shared theme, but means coda's
