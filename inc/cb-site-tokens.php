@@ -70,7 +70,7 @@ function cb_get_site_tokens_table() {
 			// .id-button's accent isn't the site's brand colour - identity's
 			// own _buttons.scss uses its own red (matches --col-red-600),
 			// not lime.
-			'--id-button-accent'   => '#e03030',
+			'--col-button'         => '#e03030',
 			'--col-text'           => '#0D0D0C',
 			'--col-bg'             => '#fff',
 			'--col-black'          => '#0D0D0C',
@@ -190,7 +190,7 @@ function cb_get_site_tokens_table() {
 			'--col-accent-400'     => '#e03030',
 			'--col-accent-500'     => '#ec5a5a',
 			// coda's own .id-button uses its main purple, not its lime brand.
-			'--id-button-accent'   => '#2f13ba',
+			'--col-button'         => '#2f13ba',
 			'--col-text'           => '#0d0d0c',
 			'--col-bg'             => '#fff',
 			'--col-black'          => '#0D0D0C',
@@ -294,7 +294,7 @@ function cb_get_site_tokens_table() {
 			// idtravel's own .id-button uses its raspberry/brand colour -
 			// same as --col-brand, set explicitly rather than relying on
 			// both tokens coincidentally matching.
-			'--id-button-accent'   => '#e32447',
+			'--col-button'         => '#e32447',
 			'--col-text'           => '#110d25',
 			'--col-bg'             => '#ffffff',
 			'--col-black'          => '#040013',
