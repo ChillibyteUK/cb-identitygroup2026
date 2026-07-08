@@ -59,4 +59,19 @@
   header:has(.navbar-collapse.collapse.show) {
     background-color: var(--col-white) !important;
   }
+
+  // cb-cta is another structural (not just colour-value) difference: coda's
+  // own version is light-background/dark-text, while identity's and
+  // idtravel's (the version this shared block's SCSS is actually based on)
+  // are both dark-background/light-text. Same --col-ink/--col-white
+  // both-designs-use-the-same-tokens problem as the header above.
+  .cb-cta {
+    background-color: var(--col-white);
+    color: var(--col-primary-black);
+
+    &__title,
+    &__content {
+      color: var(--col-primary-black);
+    }
+  }
 }

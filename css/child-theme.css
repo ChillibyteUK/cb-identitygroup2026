@@ -22300,6 +22300,13 @@ header:has(.navbar-collapse.collapse.show) {
 .cb-site-coda header:has(.navbar-collapse.collapse.show) {
   background-color: var(--col-white) !important;
 }
+.cb-site-coda .cb-cta {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+}
+.cb-site-coda .cb-cta__title, .cb-site-coda .cb-cta__content {
+  color: var(--col-primary-black);
+}
 
 .footer {
   background-color: var(--col-ink);
