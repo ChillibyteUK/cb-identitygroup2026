@@ -270,6 +270,50 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     simpler original) — no fixed per-site scheme to diverge from.
     `cb-our-brands`, `cb-work-index` (after the earlier lime/brand fixes)
     already matched across all relevant sources.
+  - **Correction, same day**: the `.id-button` fix above was itself wrong —
+    verified against identity's and coda's own `_buttons.scss` directly
+    (rather than assuming "main CTA = brand colour" from idtravel's pattern)
+    and found identity's own is `--col-red-600`, coda's is
+    `--col-purple-900` — neither is their brand/lime colour at all. Added a
+    dedicated `--id-button-accent` token per site instead of conflating this
+    with `--col-brand`. Also found `cb-hero-prop-cta.scss` was still
+    idtravel's original file even though the PHP template had already been
+    replaced with coda's more complete version earlier — replaced the whole
+    SCSS file with coda's too, since the colours/animations in each are
+    designed to pair with their own markup, not mix-and-match. Re-verified
+    every other earlier `--col-raspberry`/`--col-lime-400` → `--col-brand`
+    substitution against real source; all others held up except
+    `cb-related-work`/`cb-case-study-key-stats`/`cb-service-detail`'s
+    pre-titles (fixed to `--col-brand` alongside the new-block work below).
+  - **19 blocks found missing entirely** (2026-07-08) — not styling gaps,
+    never registered anywhere in this shared theme at all. Cross-referenced
+    every block directory/file across all 3 source repos against what's
+    actually registered here. 5 confirmed already absorbed/redundant, no
+    action needed: `content-grid-v2` + `styled-text-image` → folded into
+    `cb-content-grid` (per the plan); `awards-slider` + `sport-logos` →
+    both exact duplicates of `cb-logo-slider`'s existing `logo_source:
+    specific` mode; `latest-insights-expo` → `cb-latest-insights` already
+    has a `taxonomy_filter` field that does the same thing. Ported the
+    remaining 14 (PHP + ACF field group + SCSS, registered in
+    `inc/cb-blocks.php`): `cb-lined-title` (registered with a deprecation
+    notice — superseded by `cb-signpost-header`, per the plan),
+    `cb-about-detail`, `cb-service-detail`, `cb-dept-email`, `cb-locations`,
+    `cb-what-we-delivered`, `cb-gradient-intro`, `cb-feature-list`,
+    `cb-full-case-study` (reuses `.work-index-hero` styling — no new SCSS
+    needed), `cb-case-study-key-stats`, `cb-related-work` +
+    `cb-related-work-expo` + `cb-related-work-sports` (near-identical
+    "related case studies" query logic, differing only in which taxonomy
+    term is hardcoded — kept as 3 separate blocks rather than risk a
+    same-session refactor of business-critical content-matching logic I
+    don't have full context on), `cb-work-by-region`. Translated every
+    `has-{color}-*`/`has-{size}-font-size` utility class reference in the
+    originals to real CSS custom properties, since those specific slugs
+    don't exist in this theme's `theme.json` — used real per-site tokens
+    throughout, verified with the same gap-scan script as the rest of this
+    session (0 unexplained gaps across all 3 sites after porting). Removed
+    one live bug found while porting: `cb-related-work-expo`'s original had
+    a debug `echo` dumping query counts onto the live page. Total ACF block
+    count: 47 → 61.
 - **Phase D (deploy scripts, per-site builds)**: not started.
 - ~~**Deprecated-but-still-registered blocks**~~ — done 2026-07-08: added
   `cb_deprecated_block_notice()` (`inc/cb-utility.php`) and called it from
