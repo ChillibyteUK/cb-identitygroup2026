@@ -22308,6 +22308,40 @@ header:has(.navbar-collapse.collapse.show) {
   color: var(--col-primary-black);
 }
 
+.cb-site-identity .cb-full-video {
+  background-color: var(--col-primary-black);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-identity .cb-full-image {
+  background-color: var(--col-primary-black);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-identity .cb-full-image .overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  background: linear-gradient(180deg, hsl(var(--hsl-primary-black)/1) 0%, hsl(var(--hsl-primary-black)/0.2) 20%, hsl(var(--hsl-primary-black)/0) 30%);
+  opacity: 1;
+}
+.cb-site-identity .cb-latest-insights {
+  background-color: var(--col-primary-black);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-identity .cb-latest-insights__pre-title {
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5) !important;
+}
+.cb-site-identity .cb-featured-work {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-identity .cb-featured-work__pre-title {
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+
 .footer {
   background-color: var(--col-ink);
   color: var(--col-white);
@@ -25389,6 +25423,30 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-full-video .full-video {
   width: 100%;
   aspect-ratio: 16/9;
+}
+.cb-full-video--full-bleed .cb-full-video__bleed-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+@media (min-width: 769px) {
+  .cb-full-video--full-bleed .cb-full-video__bleed-wrapper {
+    height: 90vh;
+    min-height: 780px;
+  }
+}
+.cb-full-video--full-bleed .cb-full-video__bleed-wrapper iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Cover: always at least 100% wide and 16:9 tall relative to viewport */
+  width: 100%;
+  height: 56.25vw; /* 16:9 of viewport width */
+  min-height: 100%; /* fill container height */
+  min-width: 177.78vh; /* 16:9 of container height — overrides width on tall containers */
+  transform: translate(-50%, -50%);
+  border: 0;
 }
 
 /**

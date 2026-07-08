@@ -68,6 +68,26 @@
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_cb_full_bleed_video",
+            "label": "Full Bleed Video",
+            "name": "full_bleed_video",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Display the video full-bleed (height 90vh, min-height 780px, overflow hidden, centered).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Full Bleed",
+            "ui_off_text": "In Container"
         }
     ],
     "location": [

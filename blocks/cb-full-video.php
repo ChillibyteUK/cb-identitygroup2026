@@ -13,6 +13,7 @@ $block_id = $block['id'] ?? '';
 $vimeo_url  = get_field( 'vimeo_url' );
 $full_width = get_field( 'full_width' );
 $hero_mode  = get_field( 'hero_mode' );
+$full_bleed = get_field( 'full_bleed_video' );
 
 if ( ! $vimeo_url ) {
     return;
@@ -40,6 +41,9 @@ $section_classes = array( 'cb-full-video' );
 if ( $hero_mode ) {
 	$section_classes[] = 'cb-full-video--hero';
 }
+if ( $full_bleed ) {
+	$section_classes[] = 'cb-full-video--full-bleed';
+}
 
 $wrapper_classes = array( 'ratio', 'ratio-16x9' );
 if ( ! $full_width ) {
@@ -48,7 +52,13 @@ if ( ! $full_width ) {
 
 ?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>">
+	<?php if ( $full_bleed ) : ?>
+    <div class="cb-full-video__bleed-wrapper">
+        <iframe class="full-video" src="<?= esc_url( $video_src ); ?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+	<?php else : ?>
     <div class="<?= esc_attr( implode( ' ', $wrapper_classes ) ); ?>">
         <iframe class="full-video" src="<?= esc_url( $video_src ); ?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
+	<?php endif; ?>
 </section>
