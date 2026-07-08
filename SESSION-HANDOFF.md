@@ -149,19 +149,31 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
   - **Fixed**: `--fw-semi` was used in 10 block SCSS files but never defined
     anywhere (`_tokens.scss` only has `--fw-semibold: 600`) — a typo, not a
     missing token. Silently fell back to normal weight on every site. Fixed.
-  - **Not fixed — needs a value decision, not a rename**: ~50 more custom
-    properties are referenced in block SCSS but genuinely never defined
-    anywhere in any of the 3 original themes' surviving code, e.g.
-    `--shadow-active` (button `:active` state), `--text-sm` (breadcrumbs
-    font-size), `--lh-300` (nav dropdown line-height), plus a chunk of color
-    tokens: `--col-secondary-100/400/900`, `--col-lime-100/200/800/1000`,
-    `--col-green-200/500`, `--col-grey-200/600`, `--col-neutral-1100`,
-    `--col-primary-250/500`, and a `--col-{interview,news,podcast,research,
-    video}(-dark)` content-type-tag palette used only in `_search.scss`.
-    These aren't per-site — they're missing on all 3 sites equally. Someone
-    needs to supply real values (or confirm "no visible shadow/that specific
-    line-height is fine, leave as browser default") before these can be
-    fixed; I'm not inventing colors or shadow values unilaterally.
+  - **Fixed 2026-07-08** (values supplied by the user, not invented): the
+    `hsl(var(--hsl-lime-1000)/0.4)`-style borders on `cb-details`,
+    `cb-work-index`, `cb-about-page-header`, `cb-latest-insights`, the
+    gradient overlays on `cb-featured-work`/`cb-work-index`, and the
+    background tint on `cb-services-nav` were all invalid (undefined
+    `--hsl-lime-*`/`--hsl-primary-black`) and rendered nothing on every site.
+    Sourced real values from coda's own `_tokens.scss` (it already had a full
+    lime scale + primary-black HSL that never made it into the merged base
+    tokens file) and added them to `src/sass/theme/_tokens.scss`, deriving
+    `--col-lime-900/1000` and `--col-primary-black` the same way coda does.
+    Also fixed breadcrumbs (`--text-sm` → the existing `--fs-50`), dropped
+    `--shadow-active` entirely (confirmed a leftover from a different theme,
+    not a value to invent), defined `--lh-300: 1.4` for the nav-card-title
+    blocks, and fixed `--fw-600` → `--fw-semibold` (same class of typo as the
+    `--fw-semi` fix, found in the same file as the breadcrumbs fix).
+  - **Still not fixed — false positives ruled out, small real list remains**:
+    `--col-lime-100`, `--col-lime-800`, `--col-green-200`, `--col-green-500`,
+    `--col-neutral-1100`, `--col-primary-250` are still genuinely undefined
+    nowhere (checked the compiled CSS directly, and ruled out `var(--x,
+    fallback)` cases and inline-`style`-set cases as false alarms — e.g. the
+    `_search.scss` category-tag colors and `cb-service-grid`'s `--sg-*` grid
+    vars all resolve fine or are dead code respectively). `.has-secondary-*`
+    utility classes are unreachable dead code (theme.json has no "secondary"
+    palette entry) and don't need fixing. Someone needs to supply real values
+    for the remaining 6 before they can be fixed the same way.
   - The actual **rename** (once real values exist for the above) still needs
     someone to map each site's existing shade scale onto the plan's generic
     names — e.g. is idtravel's `--col-raspberry-600` supposed to become the
