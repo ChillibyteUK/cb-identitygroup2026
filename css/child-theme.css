@@ -21970,7 +21970,7 @@ strong {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: var(--col-raspberry);
+  background-color: var(--col-brand);
   opacity: 1;
   transition: transform 0.3s ease;
   transform: rotate(-3deg);
@@ -22093,7 +22093,7 @@ header .dropdown-menu li.fw-semibold a.dropdown-item {
   font-weight: var(--fw-semibold);
 }
 header li.raspberry a {
-  background-color: var(--col-raspberry);
+  background-color: var(--col-brand);
   padding-inline: 1rem !important;
   color: var(--col-white);
 }
@@ -22498,10 +22498,10 @@ header:has(.navbar-collapse.collapse.show) {
 }
 .single-blog.post-tmc {
   --_background: var(--col-white);
-  --_cat-colour: var(--col-raspberry);
+  --_cat-colour: var(--col-brand);
   --_text-colour: var(--col-ink);
   --_first-colour: var(--col-purple-700);
-  --_link: var(--col-raspberry);
+  --_link: var(--col-brand);
   --_link-hover: var(--col-ink);
 }
 .single-blog .post-hero-image {
@@ -23260,7 +23260,7 @@ span a {
  * @package  cb-idtravel2026
  */
 .cb-recent-news {
-  background-color: var(--col-raspberry);
+  background-color: var(--col-brand);
   color: var(--col-white);
 }
 .cb-recent-news__pre-title {
@@ -23278,7 +23278,7 @@ span a {
 }
 
 .cb-business-travel-nav {
-  background-color: var(--col-raspberry);
+  background-color: var(--col-brand);
   color: var(--col-white);
 }
 .cb-business-travel-nav .hr {
@@ -23346,7 +23346,7 @@ span a {
   background: var(--col-ink);
 }
 .cb-business-travel-nav__card:focus-visible {
-  outline: 2px solid var(--col-raspberry);
+  outline: 2px solid var(--col-brand);
   outline-offset: 3px;
 }
 .cb-business-travel-nav__card-media {
@@ -23477,7 +23477,7 @@ span a {
 }
 .cb-testimonial.has-neutral-200-background-color .cb-testimonial__company {
   color: var(--col-white);
-  background-color: var(--col-raspberry);
+  background-color: var(--col-brand);
 }
 .cb-testimonial.has-raspberry-background-color .cb-testimonial__quote {
   color: var(--col-white);
@@ -23499,7 +23499,7 @@ span a {
 }
 .cb-testimonial.has-purple-400-background-color .cb-testimonial__company {
   color: var(--col-white);
-  background-color: var(--col-raspberry);
+  background-color: var(--col-brand);
 }
 @media (max-width: 767.98px) {
   .cb-testimonial__quote {
@@ -24021,7 +24021,7 @@ span a {
   background: var(--col-ink);
 }
 .cb-specialist-travel-nav__card:focus-visible {
-  outline: 2px solid var(--col-raspberry);
+  outline: 2px solid var(--col-brand);
   outline-offset: 3px;
 }
 .cb-specialist-travel-nav__card-media {
@@ -24163,7 +24163,7 @@ span a {
   background: var(--col-ink);
 }
 .cb-solutions-nav__card:focus-visible {
-  outline: 2px solid var(--col-raspberry);
+  outline: 2px solid var(--col-brand);
   outline-offset: 3px;
 }
 .cb-solutions-nav__card-media {
@@ -24481,7 +24481,7 @@ span a {
   letter-spacing: var(--ls--10);
 }
 .cb-contact-page__emails a {
-  color: var(--col-raspberry);
+  color: var(--col-brand);
   font-size: var(--fs-500);
   font-weight: var(--fw-light);
   text-decoration: none;
@@ -24516,7 +24516,7 @@ span a {
   padding-block: 0.5rem 0;
 }
 .cb-contact-addresses a {
-  color: var(--col-raspberry);
+  color: var(--col-brand);
   font-weight: var(--fw-regular);
   letter-spacing: var(--ls--5);
   text-decoration: none;
@@ -24791,7 +24791,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-hero-prop-cta__title .bar {
   position: absolute;
   inset: -0.1em -0.6em; /* keeps bars wider than text */
-  background: var(--col-raspberry);
+  background: var(--col-brand);
   z-index: 1;
   opacity: 0;
 }
@@ -26447,7 +26447,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   background: var(--col-ink);
 }
 .cb-child-page-nav__card:focus-visible {
-  outline: 2px solid var(--col-raspberry);
+  outline: 2px solid var(--col-brand);
   outline-offset: 3px;
 }
 .cb-child-page-nav__card-media {

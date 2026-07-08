@@ -1,5 +1,5 @@
 .cb-business-travel-nav {
-  background-color: var(--col-raspberry);
+  background-color: var(--col-brand);
   color: var(--col-white);
 
   .hr {
@@ -80,7 +80,7 @@
     background: var(--col-ink);
 
     &:focus-visible {
-      outline: 2px solid var(--col-raspberry);
+      outline: 2px solid var(--col-brand);
       outline-offset: 3px;
     }
   }
