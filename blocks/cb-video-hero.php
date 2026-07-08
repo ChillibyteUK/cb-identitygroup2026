@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+cb_deprecated_block_notice( 'CB Full Video', $is_preview );
+
 $block_id  = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-video-hero-' );
 $vimeo_url = get_field( 'vimeo_url' );
 

@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+cb_deprecated_block_notice( 'CB Image Feature Overlay', $is_preview );
+
 $block_id         = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-plain-hero-' );
 $title            = get_field( 'title' );
 $intro            = get_field( 'intro' );
