@@ -138,13 +138,35 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
 
 ## Not done yet / explicitly out of scope this session
 
-- **Phase C (design-token SCSS rename)**: the plan's generic token names
-  (`--col-brand`, `--ff-heading`, etc.) are defined in `inc/cb-site-tokens.php`
-  as a runtime override, but the actual block SCSS still references each
-  site's original variable names (`--col-raspberry`, `--font-family`, etc.).
-  The runtime override covers both, so switching works today — but the SCSS
-  itself was never renamed to the generic scheme. Do this if/when consolidating
-  onto one canonical naming convention matters more than "it works."
+- **Phase C (design-token SCSS rename)** — scoped 2026-07-08, turned out to be
+  much bigger than "rename some variables": the merged block SCSS uses **146**
+  distinct `var(--x)` references, because Phase A copied blocks in from all 3
+  source themes with each one's own design-token names still baked in (e.g.
+  idtravel's raspberry/purple/indigo scale vs. identity/coda's lime/green
+  scale) — not just idtravel's names as `inc/cb-site-tokens.php`'s doc comment
+  assumed. Cross-checked every used variable against what's actually defined
+  (`_tokens.scss` base values + the per-site PHP override table) and found:
+  - **Fixed**: `--fw-semi` was used in 10 block SCSS files but never defined
+    anywhere (`_tokens.scss` only has `--fw-semibold: 600`) — a typo, not a
+    missing token. Silently fell back to normal weight on every site. Fixed.
+  - **Not fixed — needs a value decision, not a rename**: ~50 more custom
+    properties are referenced in block SCSS but genuinely never defined
+    anywhere in any of the 3 original themes' surviving code, e.g.
+    `--shadow-active` (button `:active` state), `--text-sm` (breadcrumbs
+    font-size), `--lh-300` (nav dropdown line-height), plus a chunk of color
+    tokens: `--col-secondary-100/400/900`, `--col-lime-100/200/800/1000`,
+    `--col-green-200/500`, `--col-grey-200/600`, `--col-neutral-1100`,
+    `--col-primary-250/500`, and a `--col-{interview,news,podcast,research,
+    video}(-dark)` content-type-tag palette used only in `_search.scss`.
+    These aren't per-site — they're missing on all 3 sites equally. Someone
+    needs to supply real values (or confirm "no visible shadow/that specific
+    line-height is fine, leave as browser default") before these can be
+    fixed; I'm not inventing colors or shadow values unilaterally.
+  - The actual **rename** (once real values exist for the above) still needs
+    someone to map each site's existing shade scale onto the plan's generic
+    names — e.g. is idtravel's `--col-raspberry-600` supposed to become the
+    same generic slot as identity's `--col-lime-900`? That's a design
+    decision, not a mechanical find-and-replace.
 - **Phase D (deploy scripts, per-site builds)**: not started.
 - ~~**Deprecated-but-still-registered blocks**~~ — done 2026-07-08: added
   `cb_deprecated_block_notice()` (`inc/cb-utility.php`) and called it from
