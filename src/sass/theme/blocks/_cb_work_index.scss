@@ -95,7 +95,7 @@
   &__pre-title {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-block: 0.5rem;
-    color: var(--col-green-500);
+    color: var(--col-lime-500);
     font-weight: var(--fw-regular);
     font-size: var(--fs-300);
     line-height: 1;
@@ -206,9 +206,9 @@
     0.9
   ) !important; // var(--col-primary-black, #181818) !important;
   background-image: none;
-  color: var(--col-green-400, #fff) !important;
+  color: var(--col-lime-400, #fff) !important;
   border-radius: 0;
-  border: 1px solid rgb(184, 255, 82, 0.4); // var(--col-green-400, #00ff99);
+  border: 1px solid rgb(184, 255, 82, 0.4); // var(--col-lime-400, #00ff99);
   min-height: 34px;
   padding: 0.5rem 2.5rem 0.5rem 1rem;
   box-shadow: none;
@@ -221,8 +221,8 @@
     12,
     0.9
   ) !important; // var(--col-primary-black, #181818) !important;
-  color: var(--col-green-400, #fff);
-  border: 1px solid rgb(184, 255, 82, 0.4); // var(--col-green-400, #00ff99);
+  color: var(--col-lime-400, #fff);
+  border: 1px solid rgb(184, 255, 82, 0.4); // var(--col-lime-400, #00ff99);
   border-radius: 0;
   margin-top: -1px;
   z-index: 9999 !important;
@@ -242,11 +242,11 @@
     color 150ms ease;
 }
 .ts-dropdown .option.active {
-  background: rgb(221, 251, 178, 0.2); // var(--col-green-200);
-  color: var(--col-green-400, #181818);
+  background: rgb(221, 251, 178, 0.2); // var(--col-lime-200);
+  color: var(--col-lime-400, #181818);
 }
 .ts-dropdown .option.selected {
-  background: var(--col-green-400);
+  background: var(--col-lime-400);
   color: var(--col-primary-black, #181818);
 }
 .ts-dropdown .option.disabled,
@@ -255,11 +255,11 @@
   cursor: not-allowed;
 }
 .ts-control input {
-  color: var(--col-green-400, #fff);
+  color: var(--col-lime-400, #fff);
 }
 .ts-control .item {
   background: none;
-  color: var(--col-green-400, #fff);
+  color: var(--col-lime-400, #fff);
   border: none;
   padding: 0;
 }

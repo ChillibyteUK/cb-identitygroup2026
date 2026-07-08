@@ -22018,17 +22018,17 @@ strong {
   border-color: var(--_bg);
 }
 
-.btn-id-outline-green {
+.btn-id-outline-lime {
   --_bg: transparent;
-  --_fg: var(--col-green-400);
-  --_bd: var(--col-green-400);
+  --_fg: var(--col-lime-400);
+  --_bd: var(--col-lime-400);
   border-radius: 0;
   height: 34px;
 }
-.btn-id-outline-green:hover {
-  background-color: var(--col-green-400);
+.btn-id-outline-lime:hover {
+  background-color: var(--col-lime-400);
   color: var(--col-primary-black);
-  border-color: var(--col-green-400);
+  border-color: var(--col-lime-400);
 }
 
 .btn:focus-visible {
@@ -24584,7 +24584,7 @@ form .ginput_container textarea {
   border-radius: 0;
 }
 form .gform_confirmation_message_1.gform_confirmation_message {
-  color: var(--col-green-400);
+  color: var(--col-lime-400);
   font-size: var(--fs-500);
 }
 
@@ -25190,7 +25190,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-work-index__pre-title {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   padding-block: 0.5rem;
-  color: var(--col-green-500);
+  color: var(--col-lime-500);
   font-weight: var(--fw-regular);
   font-size: var(--fs-300);
   line-height: 1;
@@ -25286,7 +25286,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   cursor: pointer;
   background: rgba(13, 13, 12, 0.9) !important;
   background-image: none;
-  color: var(--col-green-400, #fff) !important;
+  color: var(--col-lime-400, #fff) !important;
   border-radius: 0;
   border: 1px solid rgba(184, 255, 82, 0.4);
   min-height: 34px;
@@ -25297,7 +25297,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 
 .ts-dropdown {
   background: rgba(13, 13, 12, 0.9) !important;
-  color: var(--col-green-400, #fff);
+  color: var(--col-lime-400, #fff);
   border: 1px solid rgba(184, 255, 82, 0.4);
   border-radius: 0;
   margin-top: -1px;
@@ -25318,11 +25318,11 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 
 .ts-dropdown .option.active {
   background: rgba(221, 251, 178, 0.2);
-  color: var(--col-green-400, #181818);
+  color: var(--col-lime-400, #181818);
 }
 
 .ts-dropdown .option.selected {
-  background: var(--col-green-400);
+  background: var(--col-lime-400);
   color: var(--col-primary-black, #181818);
 }
 
@@ -25333,12 +25333,12 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .ts-control input {
-  color: var(--col-green-400, #fff);
+  color: var(--col-lime-400, #fff);
 }
 
 .ts-control .item {
   background: none;
-  color: var(--col-green-400, #fff);
+  color: var(--col-lime-400, #fff);
   border: none;
   padding: 0;
 }
@@ -25678,7 +25678,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-brand-title-text__title .bar {
   position: absolute;
   inset: -0.1em -0.6em; /* keeps bars wider than text */
-  background: var(--col-green-400);
+  background: var(--col-lime-400);
   z-index: 1;
   opacity: 0;
 }
@@ -25726,7 +25726,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   padding-block: 0.5rem;
 }
 .cb-brand-title-text__pre-title h1, .cb-brand-title-text__pre-title .h1 {
-  color: var(--col-green-500);
+  color: var(--col-lime-500);
   font-weight: var(--fw-regular);
   font-size: var(--fs-600);
   line-height: 1;
@@ -25789,12 +25789,12 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-size: var(--fs-500);
 }
 .cb-culture-page-header__intro-text a {
-  color: var(--col-green-400);
+  color: var(--col-lime-400);
   text-decoration: underline;
   transition: color 0.3s ease;
 }
 .cb-culture-page-header__intro-text a:hover {
-  color: var(--col-green-300);
+  color: var(--col-lime-300);
 }
 .cb-culture-page-header__content-wrapper {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
@@ -25834,7 +25834,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-culture-page-header__careers-pretitle {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   padding-block: 0.5rem;
-  color: var(--col-green-500);
+  color: var(--col-lime-500);
   font-weight: var(--fw-regular);
   font-size: var(--fs-300);
   line-height: 1;
@@ -25858,7 +25858,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-weight: var(--fw-semi);
 }
 .cb-culture-page-header__careers .careers-link:hover {
-  color: var(--col-green-300);
+  color: var(--col-lime-300);
 }
 
 .culture-life {
@@ -26037,7 +26037,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
-  color: var(--col-green-400);
+  color: var(--col-lime-400);
   font-size: var(--fs-300);
   font-weight: var(--fw-regular);
   text-transform: uppercase;
@@ -26126,7 +26126,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-region-page-header__title .bar {
   position: absolute;
   inset: -0.1em -0.6em; /* keeps bars wider than text */
-  background: var(--col-green-400);
+  background: var(--col-lime-400);
   z-index: 1;
   opacity: 0;
 }
@@ -26172,12 +26172,12 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-size: var(--fs-500);
 }
 .cb-region-page-header__intro-text a {
-  color: var(--col-green-400);
+  color: var(--col-lime-400);
   text-decoration: underline;
   transition: color 0.3s ease;
 }
 .cb-region-page-header__intro-text a:hover {
-  color: var(--col-green-300);
+  color: var(--col-lime-300);
 }
 .cb-region-page-header__content-wrapper {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
@@ -26212,7 +26212,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
-  color: var(--col-green-400);
+  color: var(--col-lime-400);
   font-size: var(--fs-300);
   font-weight: var(--fw-regular);
   text-transform: uppercase;
@@ -26627,7 +26627,7 @@ body {
 .service-parents li a {
   text-decoration: none;
   display: block;
-  color: var(--col-green-500);
+  color: var(--col-lime-500);
   transition: background-color 0.3s, color 0.3s;
 }
 .service-parents li a:hover {

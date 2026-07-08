@@ -72,24 +72,16 @@ function cb_get_site_tokens_table() {
 			'--ff-heading'         => '"Suisse", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
 			'--ff-body'            => '"Suisse", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
 			'--ff-accent'          => '"Suisse", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
-			// Legacy names, so identity's own un-renamed block SCSS still resolves.
-			'--col-green-400'      => '#B8FF52',
-			'--col-green-300'      => '#CAFC83',
-			'--col-green-900'      => '#4c8200',
-			// Rest of identity's own green scale (_tokens.scss) — needed by
-			// blocks that reference these shades directly (e.g. _buttons.scss).
-			'--col-green-800'      => '#5e9f00',
-			'--col-green-500'      => '#ADF448',
-			'--col-green-200'      => '#DDFBB2',
-			'--col-green-100'      => '#EEFED9',
-			// Some shared blocks use coda's "lime" naming instead of identity's
-			// own "green" for the exact same colours (confirmed hex-identical
-			// against coda's _tokens.scss) — both names need to resolve.
+			// identity's own _tokens.scss calls this scale "green"; the shared
+			// SCSS has been standardised on coda's "lime" naming instead
+			// (more accurate name for this hue, and coda's is the more
+			// complete/systematic token file) — values are colour-identical.
 			'--col-lime-400'       => '#B8FF52',
 			'--col-lime-300'       => '#CAFC83',
 			'--col-lime-1000'      => '#3d6900',
 			'--col-lime-900'       => '#4c8200',
 			'--col-lime-800'       => '#5e9f00',
+			'--col-lime-500'       => '#ADF448',
 			'--col-lime-200'       => '#DDFBB2',
 			'--col-lime-100'       => '#EEFED9',
 			'--hsl-lime-1000'      => '85 100% 21%',
@@ -189,12 +181,7 @@ function cb_get_site_tokens_table() {
 			'--hsl-lime-300'       => '85 95% 75%',
 			'--hsl-lime-200'       => '85 90% 84%',
 			'--hsl-primary-black'  => '60 4% 5%',
-			// Some shared blocks use identity's "green" naming instead of
-			// coda's own "lime" for the exact same colours (confirmed
-			// hex-identical against identity's _tokens.scss).
-			'--col-green-400'      => '#b8ff52',
-			'--col-green-300'      => '#CAFC83',
-			'--col-green-500'      => '#adf448',
+			'--col-lime-500'       => '#adf448',
 			'--col-neutral-1100'   => '#22211e',
 			// Rest of coda's own neutral scale.
 			'--col-neutral-900'    => '#505049',

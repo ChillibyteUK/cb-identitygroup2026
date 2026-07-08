@@ -63,7 +63,7 @@
         .bar {
             position: absolute;
             inset: -0.1em -0.6em; /* keeps bars wider than text */
-            background: var(--col-green-400);
+            background: var(--col-lime-400);
             z-index: 1;
             opacity: 0;
         }
@@ -101,11 +101,11 @@
             font-size: var(--fs-500);
         }
         a {
-            color: var(--col-green-400);
+            color: var(--col-lime-400);
             text-decoration: underline;
             transition: color 0.3s ease;
             &:hover {
-                color: var(--col-green-300);
+                color: var(--col-lime-300);
             }
         }
     }

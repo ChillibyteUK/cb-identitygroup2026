@@ -46,7 +46,7 @@
         .bar {
             position: absolute;
             inset: -0.1em -0.6em; /* keeps bars wider than text */
-            background: var(--col-green-400);
+            background: var(--col-lime-400);
             z-index: 1;
             opacity: 0;
         }
@@ -84,7 +84,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         padding-block: 0.5rem;
         h1 {
-            color: var(--col-green-500);
+            color: var(--col-lime-500);
             font-weight: var(--fw-regular);
             font-size: var(--fs-600);
             line-height: 1;

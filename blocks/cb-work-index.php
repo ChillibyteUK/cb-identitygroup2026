@@ -133,7 +133,7 @@ if ( ! $bg_case_study ) {
 			?>
 				</div>
 				<div class="col-md-2">
-					<button id="cb-work-index-filter-reset" class="btn btn-id-outline-green">Reset</button>
+					<button id="cb-work-index-filter-reset" class="btn btn-id-outline-lime">Reset</button>
 				</div>
 			</div>
 		</div>
