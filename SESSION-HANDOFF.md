@@ -275,7 +275,7 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     (rather than assuming "main CTA = brand colour" from idtravel's pattern)
     and found identity's own is `--col-red-600`, coda's is
     `--col-purple-900` — neither is their brand/lime colour at all. Added a
-    dedicated `--id-button-accent` token per site instead of conflating this
+    dedicated `--col-button` token per site instead of conflating this
     with `--col-brand`. Also found `cb-hero-prop-cta.scss` was still
     idtravel's original file even though the PHP template had already been
     replaced with coda's more complete version earlier — replaced the whole
