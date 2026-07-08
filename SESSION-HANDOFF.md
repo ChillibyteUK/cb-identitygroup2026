@@ -550,3 +550,68 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
   the `theme_filter` term-ID mapping for the old related-work expo/sports
   variants is a content decision, not a technical one. None of this touched
   the live identity site — only the `idglobal-test` clone.
+
+## 2026-07-08 continued: critical colour-palette bug (root cause of "many components have wrong colours")
+
+- User reported wrong colours on `cb-testimonial` (coda), `cb-hero-prop-cta`,
+  `cb-signpost-header`, and `cb-pushthrough` (idtravel), plus "many other
+  components" more generally. Also flagged that the pixel-comparison report's
+  `/careers/` and `/sustainability/` URLs for idtravel 404'd — both are
+  actually hierarchical child pages (`/about/careers/`,
+  `/business-travel/sustainability/`); the report's manifest had guessed flat
+  slugs instead of checking real permalinks. Fixed the manifest and
+  recaptured those two pages properly.
+- **Root cause found**: `cb_filter_editor_theme_json()`
+  (`inc/cb-site-tokens.php`) calls `WP_Theme_JSON_Data::update_with()` with
+  only an 11-entry colour array, intending to override the handful of
+  per-site-varying slugs (`lime-900`, `primary-black`, etc.) so they switch
+  with `cb_site`. The function's own doc comment claimed "WP_Theme_JSON
+  merges palette entries by slug" — **this is wrong**. `update_with()`
+  replaces the settings array wholesale. Confirmed via
+  `wp_get_global_settings()`: theme.json declares **59** colours, but only
+  **11** were ever reaching the page — the entire purple, raspberry, indigo,
+  and most of the neutral scale were silently dropped from every colour
+  picker and every `has-{slug}-color`/`has-{slug}-background-color` utility
+  class, **on every page, on all three sites, since this filter was added**.
+  The same bug affected `typography.fontSizes` (15 declared, only 4
+  surviving). This is almost certainly the actual explanation for "many
+  components have the wrong colours" — not isolated per-block bugs.
+- **Fixed**: `cb_filter_editor_theme_json()` now reads the full base palette
+  and font-size scale from `theme.json` (`wp_json_file_decode()`) and merges
+  the per-site overrides into them by `slug` via a small new helper,
+  `cb_merge_theme_json_list_by_slug()`, instead of replacing the arrays
+  outright. Verified via `wp_get_global_settings()` post-fix: 59/59 colours
+  and the full font-size scale now present on all 3 sites.
+- **Two of the four reported blocks were directly confirmed fixed by this
+  change alone**: `cb-pushthrough` on idtravel (`has-purple-1100-background-
+  color has-neutral-050-color` — both slugs were among the 48 being dropped;
+  was rendering near-invisible light-grey-on-near-white, now correct dark
+  purple background with light text). `cb-testimonial` on coda additionally
+  needed real code changes: its SCSS was built entirely from idtravel's own
+  colour-variant classes (`has-raspberry-background-color`,
+  `has-purple-400-background-color`) and coda's own 4 variants
+  (`has-neutral-300-background-color`, `has-lime-600-background-color`,
+  `has-primary-black-background-color`, `has-white-background-color`) were
+  never ported from coda's original theme at all — added all 4, plus the
+  missing `--col-lime-600` token (real coda/identity value `#94dd2c`;
+  idtravel reuses its raspberry-600 slot, `#cc1939`, per the established
+  lime→raspberry substitution pattern). This directly invalidates an earlier
+  same-day conclusion in this file that `cb-testimonial` was "editor-driven,
+  not a bug" — that check only confirmed the block *has* colour-picker
+  support, not that the *specific* slugs each site's real content uses have
+  matching CSS rules. Worth re-auditing `cb-faq`/`cb-content-grid` (also
+  previously waved through on the same flawed reasoning) if further colour
+  reports come in.
+- **`cb-hero-prop-cta` and `cb-signpost-header` on idtravel investigated,
+  found already correct** — both resolve real per-site token values properly
+  (verified via direct pixel sampling and `getComputedStyle` against
+  idtravel's own original theme for comparison). The "wrong colours"
+  observation traced back to **stale screenshots**: the pixel-comparison
+  report's `after/` images had been captured earlier in this session, before
+  later ACF syncs and CSS rebuilds landed — a full fresh recapture after
+  those fixes showed correct rendering. Lesson: re-capture screenshots
+  immediately before reporting on them, not after a long gap with
+  intervening changes.
+- All fixes deployed to `idtravel-test`, `idcoda-test`, and `idglobal-test`;
+  pixel-comparison report regenerated and republished with a corrected
+  callout explaining the root cause.

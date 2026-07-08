@@ -89,6 +89,7 @@ function cb_get_site_tokens_table() {
 			'--col-lime-1000'      => '#3d6900',
 			'--col-lime-900'       => '#4c8200',
 			'--col-lime-800'       => '#5e9f00',
+			'--col-lime-600'       => '#94dd2c',
 			'--col-lime-500'       => '#ADF448',
 			'--col-lime-200'       => '#DDFBB2',
 			'--col-lime-100'       => '#EEFED9',
@@ -204,6 +205,7 @@ function cb_get_site_tokens_table() {
 			'--col-lime-1100'      => '#345a00',
 			'--col-lime-1000'      => '#3d6900',
 			'--col-lime-800'       => '#5e9f00',
+			'--col-lime-600'       => '#94dd2c',
 			'--col-lime-200'       => '#ddfbb2',
 			'--col-lime-100'       => '#eefed9',
 			'--hsl-lime-1000'      => '85 100% 21%',
@@ -353,6 +355,7 @@ function cb_get_site_tokens_table() {
 			// "main", same relative position as lime-500 sits just after
 			// lime-400/coda's own main), lime-300/200/100→raspberry-300/200/100.
 			'--col-lime-800'       => '#a30b27',
+			'--col-lime-600'       => '#cc1939',
 			'--col-lime-500'       => '#ec4a67',
 			'--col-lime-300'       => '#ff9bae',
 			'--hsl-lime-300'       => '349 100% 80%',
@@ -444,9 +447,16 @@ add_action( 'admin_head', 'cb_output_site_token_overrides' );
  * site-independent bug — those classes rendered no colour at all regardless
  * of cb_site) and have been added there with static fallback values. This
  * filter overrides all of them per site so switching cb_site actually
- * changes what they render as. WP_Theme_JSON merges palette entries by
- * slug, so this only touches the listed slugs — the rest of the base
- * palette (neutral/purple/indigo scales etc.) is untouched.
+ * changes what they render as.
+ *
+ * IMPORTANT: `update_with()` REPLACES the settings.color.palette array
+ * wholesale — it does NOT merge palette entries by slug (an earlier version
+ * of this doc comment claimed it did; that was wrong and meant this filter
+ * silently wiped out 48 of the theme's 59 declared colours, on every page
+ * load, site-wide, since only the ~11 slugs below survived). Fixed by
+ * reading the full base palette from theme.json and only overriding the
+ * per-site-varying slugs' values within it, so the rest of the palette
+ * (neutral/purple/indigo/raspberry scales etc.) is preserved.
  *
  * @param WP_Theme_JSON_Data $theme_json Theme JSON data object.
  * @return WP_Theme_JSON_Data
@@ -521,18 +531,48 @@ function cb_filter_editor_theme_json( $theme_json ) {
 		return $theme_json;
 	}
 
+	// `update_with()` replaces these settings arrays wholesale, so start from
+	// the theme's full base declarations and only overwrite the per-site
+	// slugs — everything else in the base palette/font-size scale survives.
+	$base          = wp_json_file_decode( get_stylesheet_directory() . '/theme.json', array( 'associative' => true ) );
+	$base_palette  = $base['settings']['color']['palette'] ?? array();
+	$base_sizes    = $base['settings']['typography']['fontSizes'] ?? array();
+
+	$merged_palette = cb_merge_theme_json_list_by_slug( $base_palette, $palettes[ $site ] );
+	$merged_sizes   = cb_merge_theme_json_list_by_slug( $base_sizes, $font_sizes[ $site ] );
+
 	return $theme_json->update_with(
 		array(
 			'version'  => 3,
 			'settings' => array(
 				'color'      => array(
-					'palette' => $palettes[ $site ],
+					'palette' => $merged_palette,
 				),
 				'typography' => array(
-					'fontSizes' => $font_sizes[ $site ],
+					'fontSizes' => $merged_sizes,
 				),
 			),
 		)
 	);
+}
+
+/**
+ * Overlays `$overrides` onto `$base` by matching `slug`, preserving every
+ * base entry whose slug isn't being overridden and appending any override
+ * whose slug doesn't already exist in the base list.
+ *
+ * @param array $base      Full list of theme.json entries (palette or fontSizes).
+ * @param array $overrides Per-site entries that should replace matching slugs.
+ * @return array
+ */
+function cb_merge_theme_json_list_by_slug( $base, $overrides ) {
+	$by_slug = array();
+	foreach ( $base as $entry ) {
+		$by_slug[ $entry['slug'] ] = $entry;
+	}
+	foreach ( $overrides as $entry ) {
+		$by_slug[ $entry['slug'] ] = $entry;
+	}
+	return array_values( $by_slug );
 }
 add_filter( 'wp_theme_json_data_theme', 'cb_filter_editor_theme_json' );

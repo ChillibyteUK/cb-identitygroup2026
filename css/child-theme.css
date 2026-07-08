@@ -23635,6 +23635,39 @@ span a {
   color: var(--col-white);
   background-color: var(--col-brand);
 }
+.cb-testimonial.has-neutral-300-background-color .cb-testimonial__quote, .cb-testimonial.has-lime-600-background-color .cb-testimonial__quote {
+  color: var(--col-primary-black);
+}
+.cb-testimonial.has-neutral-300-background-color .cb-testimonial__author, .cb-testimonial.has-lime-600-background-color .cb-testimonial__author {
+  color: var(--col-lime-1100);
+  background-color: var(--col-white);
+}
+.cb-testimonial.has-neutral-300-background-color .cb-testimonial__company, .cb-testimonial.has-lime-600-background-color .cb-testimonial__company {
+  color: var(--col-lime-1100);
+  background-color: var(--col-lime-200);
+}
+.cb-testimonial.has-primary-black-background-color .cb-testimonial__quote {
+  color: var(--col-white);
+}
+.cb-testimonial.has-primary-black-background-color .cb-testimonial__author {
+  color: var(--col-primary-black);
+  background-color: var(--col-lime-200);
+}
+.cb-testimonial.has-primary-black-background-color .cb-testimonial__company {
+  color: var(--col-primary-black);
+  background-color: var(--col-lime-600);
+}
+.cb-testimonial.has-white-background-color .cb-testimonial__quote {
+  color: var(--col-primary-black);
+}
+.cb-testimonial.has-white-background-color .cb-testimonial__author {
+  color: var(--col-white);
+  background-color: var(--col-lime-900);
+}
+.cb-testimonial.has-white-background-color .cb-testimonial__company {
+  color: var(--col-lime-1100);
+  background-color: var(--col-lime-300);
+}
 @media (max-width: 767.98px) {
   .cb-testimonial__quote {
     font-size: var(--fs-700);
