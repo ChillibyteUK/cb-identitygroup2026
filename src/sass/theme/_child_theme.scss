@@ -55,10 +55,10 @@ body {
 }
 
 #breadcrumbs {
-  font-size: var(--text-sm);
+  font-size: var(--fs-50);
   a {
     text-decoration: none;
-    font-weight: var(--fw-600);
+    font-weight: var(--fw-semibold);
     color: var(--col-neutral-900);
   }
 }
