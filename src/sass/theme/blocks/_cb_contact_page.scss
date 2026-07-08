@@ -43,7 +43,7 @@
     background-color: var(--col-neutral-050);
     border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
     border-bottom: 1px solid hsl(var(--hsl-ink) / 0.25);
-    color: var(--col-purple);
+    color: var(--col-secondary);
     font-weight: var(--fw-regular);
     font-size: var(--fs-200);
     line-height: 1;
@@ -73,11 +73,11 @@
         }
     }
     .is-group {
-        color: var(--col-purple);
+        color: var(--col-secondary);
     }
     &__caveat {
         font-size: var(--fs-50);
-        color: var(--col-purple);
+        color: var(--col-secondary);
         font-weight: var(--fw-regular);
     }
 }

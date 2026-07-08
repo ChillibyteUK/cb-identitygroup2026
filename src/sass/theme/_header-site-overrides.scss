@@ -32,7 +32,7 @@
     .current-menu-ancestor > .nav-link,
     .dropdown.current-page-ancestor > .nav-link,
     .dropdown.current-menu-item > .nav-link {
-      color: var(--col-lime-900);
+      color: var(--col-brand-dark);
     }
 
     .dropdown-item {
@@ -42,7 +42,7 @@
       &:focus,
       &:focus-visible {
         background-color: var(--col-white);
-        color: var(--col-lime-900);
+        color: var(--col-brand-dark);
       }
     }
 

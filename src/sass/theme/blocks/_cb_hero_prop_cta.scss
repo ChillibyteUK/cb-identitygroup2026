@@ -39,7 +39,7 @@
     .text {
       position: relative;
       z-index: 2;
-      color: var(--col-lime-900);
+      color: var(--col-brand-dark);
       font-size: 11.5vw;
       @media (min-width: 768px) {
         font-size: 5.5vw;
@@ -86,8 +86,8 @@
     line-height: 1;
     font-weight: var(--fw-light);
     padding-block: 0.15em 0.1em;
-    border-top: 1px solid var(--col-lime-900);
-    border-bottom: 1px solid var(--col-lime-900);
+    border-top: 1px solid var(--col-brand-dark);
+    border-bottom: 1px solid var(--col-brand-dark);
   }
   &__content {
     font-size: var(--fs-500);

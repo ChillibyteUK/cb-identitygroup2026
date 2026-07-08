@@ -37,7 +37,7 @@
       font-size: var(--fs-500);
     }
     a {
-      color: var(--col-lime-900);
+      color: var(--col-brand-dark);
       text-decoration: underline;
       transition: color 0.3s ease;
       &:hover {
@@ -54,7 +54,7 @@
     margin-bottom: 4rem;
 
     .about-overlay {
-      background-color: var(--col-purple);
+      background-color: var(--col-secondary);
       opacity: 0.8;
       position: absolute;
       inset: 0;

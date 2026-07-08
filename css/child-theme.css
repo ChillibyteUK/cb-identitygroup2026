@@ -22288,14 +22288,14 @@ header:has(.navbar-collapse.collapse.show) {
 .cb-site-coda header .current-menu-ancestor > .nav-link,
 .cb-site-coda header .dropdown.current-page-ancestor > .nav-link,
 .cb-site-coda header .dropdown.current-menu-item > .nav-link {
-  color: var(--col-lime-900);
+  color: var(--col-brand-dark);
 }
 .cb-site-coda header .dropdown-item {
   color: var(--col-primary-black);
 }
 .cb-site-coda header .dropdown-item:hover, .cb-site-coda header .dropdown-item:focus, .cb-site-coda header .dropdown-item:focus-visible {
   background-color: var(--col-white);
-  color: var(--col-lime-900);
+  color: var(--col-brand-dark);
 }
 .cb-site-coda header .navbar-toggler {
   color: var(--col-primary-black);
@@ -22730,7 +22730,7 @@ header:has(.navbar-collapse.collapse.show) {
   border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.4) !important;
 }
 .text-page .post-content {
-  --_colour: var(--col-lime-900);
+  --_colour: var(--col-brand-dark);
 }
 .text-page .post-content .container, .text-page .post-content .wp-block-group:not(.alignfull) {
   padding-inline: 0;
@@ -23718,7 +23718,7 @@ span a {
 }
 .cb-content-grid .cb-content-grid__qa-question--first {
   font-size: var(--fs-600);
-  color: var(--col-purple);
+  color: var(--col-secondary);
   font-weight: var(--fw-book);
   letter-spacing: 0;
 }
@@ -23736,7 +23736,7 @@ span a {
 }
 .cb-content-grid .cb-content-grid__qa-answer--first {
   font-size: var(--fs-500);
-  color: var(--col-purple);
+  color: var(--col-secondary);
   font-weight: var(--fw-light);
 }
 .cb-content-grid .cb-content-grid__qa-answer p:last-child {
@@ -24611,7 +24611,7 @@ span a {
   background-color: var(--col-neutral-050);
   border-top: 1px solid hsl(var(--hsl-ink)/0.25);
   border-bottom: 1px solid hsl(var(--hsl-ink)/0.25);
-  color: var(--col-purple);
+  color: var(--col-secondary);
   font-weight: var(--fw-regular);
   font-size: var(--fs-200);
   line-height: 1;
@@ -24642,11 +24642,11 @@ span a {
   text-decoration: underline;
 }
 .cb-contact-addresses .is-group {
-  color: var(--col-purple);
+  color: var(--col-secondary);
 }
 .cb-contact-addresses__caveat {
   font-size: var(--fs-50);
-  color: var(--col-purple);
+  color: var(--col-secondary);
   font-weight: var(--fw-regular);
 }
 
@@ -24915,7 +24915,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-hero-prop-cta__title .text {
   position: relative;
   z-index: 2;
-  color: var(--col-lime-900);
+  color: var(--col-brand-dark);
   font-size: 11.5vw;
   font-weight: var(--fw-light);
   opacity: 0;
@@ -24955,8 +24955,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   line-height: 1;
   font-weight: var(--fw-light);
   padding-block: 0.15em 0.1em;
-  border-top: 1px solid var(--col-lime-900);
-  border-bottom: 1px solid var(--col-lime-900);
+  border-top: 1px solid var(--col-brand-dark);
+  border-bottom: 1px solid var(--col-brand-dark);
 }
 .cb-hero-prop-cta__content {
   font-size: var(--fs-500);
@@ -25207,7 +25207,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-size: var(--fs-500);
 }
 .cb-about-page-header__intro-text a {
-  color: var(--col-lime-900);
+  color: var(--col-brand-dark);
   text-decoration: underline;
   transition: color 0.3s ease;
 }
@@ -25222,7 +25222,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   margin-bottom: 4rem;
 }
 .cb-about-page-header__content-wrapper .about-overlay {
-  background-color: var(--col-purple);
+  background-color: var(--col-secondary);
   opacity: 0.8;
   position: absolute;
   inset: 0;
@@ -25340,7 +25340,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 
 .cb-work-index {
   background-color: var(--col-lime-200);
-  color: var(--col-lime-900);
+  color: var(--col-brand-dark);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
 }
@@ -25638,7 +25638,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-featured-work__pre-title {
   padding-block: 0.5rem;
-  color: var(--col-lime-900);
+  color: var(--col-brand-dark);
   font-weight: var(--fw-regular);
   font-size: var(--fs-300);
   line-height: 1;
@@ -26718,8 +26718,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-lined-title {
-  border-top: 1px solid var(--col-lime-900);
-  border-bottom: 1px solid var(--col-lime-900);
+  border-top: 1px solid var(--col-brand-dark);
+  border-bottom: 1px solid var(--col-brand-dark);
 }
 .cb-lined-title h2, .cb-lined-title .h2 {
   font-size: var(--fs-850);
@@ -26753,7 +26753,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
 }
 .cb-about-detail__row--intro .cb-about-detail__title {
-  color: var(--col-purple);
+  color: var(--col-secondary);
   font-size: var(--fs-800);
 }
 .cb-about-detail__title {
@@ -26799,7 +26799,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-dept-email__row {
-  border-top: 1px solid var(--col-lime-900);
+  border-top: 1px solid var(--col-brand-dark);
 }
 .cb-dept-email__department {
   font-size: var(--fs-600);
@@ -26811,7 +26811,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-weight: var(--fw-regular);
 }
 .cb-dept-email__emails a {
-  color: var(--col-lime-900);
+  color: var(--col-brand-dark);
   text-decoration: none;
 }
 .cb-dept-email__emails a:hover {
@@ -26819,7 +26819,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-locations__row {
-  border-top: 1px solid var(--col-lime-900);
+  border-top: 1px solid var(--col-brand-dark);
 }
 .cb-locations__name {
   font-size: var(--fs-700);
@@ -26897,7 +26897,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-feature-list__inner {
-  border-top: 1px solid var(--col-lime-900);
+  border-top: 1px solid var(--col-brand-dark);
 }
 .cb-feature-list__title {
   color: var(--col-lime-1100);
@@ -27505,14 +27505,14 @@ for (; i < all.length; i++) {
 }
 .service-parents li {
   font-size: var(--fs-body);
-  border-top: 1px solid var(--col-lime-900);
+  border-top: 1px solid var(--col-brand-dark);
   display: inline-block;
   width: 100%;
 }
 .service-parents li a {
   text-decoration: none;
   display: block;
-  color: var(--col-lime-900);
+  color: var(--col-brand-dark);
   transition: background-color 0.3s, color 0.3s;
 }
 .service-parents li a:hover {
@@ -27520,7 +27520,7 @@ for (; i < all.length; i++) {
   background-color: var(--col-lime-200);
 }
 .service-parents li:last-child {
-  border-bottom: 1px solid var(--col-lime-900);
+  border-bottom: 1px solid var(--col-brand-dark);
 }
 
 hr,

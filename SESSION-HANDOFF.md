@@ -303,9 +303,9 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     needed), `cb-case-study-key-stats`, `cb-related-work` +
     `cb-related-work-expo` + `cb-related-work-sports` (near-identical
     "related case studies" query logic, differing only in which taxonomy
-    term is hardcoded — kept as 3 separate blocks rather than risk a
-    same-session refactor of business-critical content-matching logic I
-    don't have full context on), `cb-work-by-region`. Translated every
+    term is hardcoded — kept as 3 separate blocks initially, pending a
+    closer look at the query logic; consolidated 2026-07-08, see below),
+    `cb-work-by-region`. Translated every
     `has-{color}-*`/`has-{size}-font-size` utility class reference in the
     originals to real CSS custom properties, since those specific slugs
     don't exist in this theme's `theme.json` — used real per-site tokens
@@ -314,6 +314,50 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     one live bug found while porting: `cb-related-work-expo`'s original had
     a debug `echo` dumping query counts onto the live page. Total ACF block
     count: 47 → 61.
+  - **`cb-related-work` trio consolidated into one block** (2026-07-08): the
+    three variants differed only in which taxonomy `theme` term was
+    hardcoded into the query (or none, for the base variant, which instead
+    derives service context from the current post/page). Added a single
+    `theme_filter` taxonomy field (`acf-json/group_cb_related_work.json`) —
+    empty means "use the current post's own theme terms" (the original
+    `cb-related-work` behaviour), set means "always filter to this theme"
+    (replicates what `-expo`/`-sports` hardcoded). Deleted both variant
+    files, their field-group JSON, their registrations in `cb-blocks.php`,
+    and force-deleted 2 now-orphaned DB-only field-group posts. Hit and
+    fixed a real bug while testing the consolidated version with a
+    `theme_filter` value set on a temp post: `wp_get_post_terms( $id,
+    'service' )` throws `WP_Error` (not an empty array) because the
+    `service` taxonomy — identity-specific — isn't registered theme-wide;
+    the original identity code this was ported from never guarded for that.
+    Added `is_wp_error()` guards around all 3 taxonomy lookups in the file.
+    Block count: 61 → 59.
+  - **Residual color decisions resolved** (2026-07-08): promoted
+    `--col-grey-200`/`--col-grey-600`/`--col-primary-500` (generic,
+    non-branded utility colours used by `_search.scss`/`_a11y.scss` as inline
+    `var()` fallbacks, identical values in both coda's and idtravel's own
+    repos) from implicit fallbacks to real definitions in `_tokens.scss`.
+    Added the final `--col-lime-1100` shade (identity/idtravel reuse their
+    own 1000; coda has a real distinct value). No other gaps remained after
+    re-running the gap-scan script against all 3 sites.
+  - **Phase C rename, completed** (2026-07-08): with per-site token coverage
+    now complete, did the actual mechanical rename onto the plan's §5.2
+    generic names — but only where the underlying value is byte-identical
+    across all 3 sites (i.e. purely cosmetic, zero visual risk); numbered
+    shade-scale references (`--col-lime-400`, `--col-purple-300`, etc.) stay
+    as-is since they have no generic equivalent. Two renames qualified:
+    bare `var(--col-purple)` (`#2f13ba` on all 3 sites, same as
+    `--col-secondary`) → `--col-secondary`, 7 usages across
+    `_cb_about_page_header.scss`, `_cb_content_grid.scss` (×2),
+    `_cb_about_detail.scss`, `_cb_contact_page.scss` (×3); and bare
+    `var(--col-lime-900)` (identity/coda `#4c8200`, idtravel `#900720` —
+    matches `--col-brand-dark` exactly on all 3, since idtravel's lime-900
+    was deliberately derived to equal its own brand-dark) →
+    `--col-brand-dark`, 18 usages across 11 files. Rebuilt CSS
+    (`npm run css`) clean, no errors. This is deliberately a small,
+    high-confidence slice — most of the 146 `var(--x)` references audited
+    earlier are numbered shades with no generic-name equivalent in the
+    plan, so a "full" rename in the literal sense isn't applicable; what
+    remained genuinely renameable is now done.
 - **Phase D (deploy scripts, per-site builds)**: not started.
 - ~~**Deprecated-but-still-registered blocks**~~ — done 2026-07-08: added
   `cb_deprecated_block_notice()` (`inc/cb-utility.php`) and called it from
