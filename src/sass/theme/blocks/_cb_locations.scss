@@ -1,0 +1,14 @@
+.cb-locations {
+  &__row {
+    border-top: 1px solid var(--col-lime-900);
+  }
+  &__name {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-light);
+  }
+  &__address {
+    line-height: var(--lh-normal);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-regular);
+  }
+}

@@ -879,6 +879,258 @@ function acf_blocks() {
 			)
 		);
 
+		// Blocks that existed in identity's/coda's own repos but never made it
+		// into this shared theme during the original merge (2026-07-08 audit).
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_lined_title',
+				'title'           => __( 'CB Lined Title' ),
+				'category'        => 'layout',
+				'icon'            => 'editor-textcolor',
+				'render_template' => 'blocks/cb-lined-title.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'text'       => true,
+						'background' => true,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_about_detail',
+				'title'           => __( 'CB About Detail' ),
+				'category'        => 'layout',
+				'icon'            => 'list-view',
+				'render_template' => 'blocks/cb-about-detail.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_service_detail',
+				'title'           => __( 'CB Service Detail' ),
+				'category'        => 'layout',
+				'icon'            => 'list-view',
+				'render_template' => 'blocks/cb-service-detail.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_dept_email',
+				'title'           => __( 'CB Dept Email' ),
+				'category'        => 'layout',
+				'icon'            => 'email',
+				'render_template' => 'blocks/cb-dept-email.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'text'       => true,
+						'background' => true,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_locations',
+				'title'           => __( 'CB Locations' ),
+				'category'        => 'layout',
+				'icon'            => 'location',
+				'render_template' => 'blocks/cb-locations.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'text'       => true,
+						'background' => true,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_what_we_delivered',
+				'title'           => __( 'CB What We Delivered' ),
+				'category'        => 'layout',
+				'icon'            => 'yes-alt',
+				'render_template' => 'blocks/cb-what-we-delivered.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_gradient_intro',
+				'title'           => __( 'CB Gradient Intro' ),
+				'category'        => 'layout',
+				'icon'            => 'admin-customizer',
+				'render_template' => 'blocks/cb-gradient-intro.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_feature_list',
+				'title'           => __( 'CB Feature List' ),
+				'category'        => 'layout',
+				'icon'            => 'editor-ul',
+				'render_template' => 'blocks/cb-feature-list.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_full_case_study',
+				'title'           => __( 'CB Full Case Study' ),
+				'category'        => 'layout',
+				'icon'            => 'cover-image',
+				'render_template' => 'blocks/cb-full-case-study.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_case_study_key_stats',
+				'title'           => __( 'CB Case Study Key Stats' ),
+				'category'        => 'layout',
+				'icon'            => 'chart-bar',
+				'render_template' => 'blocks/cb-case-study-key-stats.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_related_work',
+				'title'           => __( 'CB Related Work' ),
+				'category'        => 'layout',
+				'icon'            => 'admin-links',
+				'render_template' => 'blocks/cb-related-work.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_related_work_expo',
+				'title'           => __( 'CB Related Work (Expo)' ),
+				'category'        => 'layout',
+				'icon'            => 'admin-links',
+				'render_template' => 'blocks/cb-related-work-expo.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_related_work_sports',
+				'title'           => __( 'CB Related Work (Sports)' ),
+				'category'        => 'layout',
+				'icon'            => 'admin-links',
+				'render_template' => 'blocks/cb-related-work-sports.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_work_by_region',
+				'title'           => __( 'CB Work by Region' ),
+				'category'        => 'layout',
+				'icon'            => 'admin-links',
+				'render_template' => 'blocks/cb-work-by-region.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
     }
 }
 add_action( 'acf/init', 'acf_blocks' );

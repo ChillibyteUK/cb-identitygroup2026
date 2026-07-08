@@ -1,0 +1,31 @@
+.cb-service-detail {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  padding-bottom: 6rem;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+
+  &__pre-title {
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    margin-bottom: 1rem;
+    color: var(--col-brand);
+    font-size: var(--fs-300);
+    font-weight: var(--fw-regular);
+    text-transform: uppercase;
+  }
+
+  &__row:not(:first-of-type) {
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+  }
+  &__title {
+    padding-block: 0.75rem;
+    font-size: var(--fs-700);
+    font-weight: var(--fw-light);
+  }
+  &__description {
+    padding-block: 0.75rem;
+    font-size: var(--fs-400);
+    font-weight: var(--fw-light);
+    text-wrap: balance;
+  }
+}

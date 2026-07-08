@@ -1,0 +1,22 @@
+.cb-dept-email {
+  &__row {
+    border-top: 1px solid var(--col-lime-900);
+  }
+  &__department {
+    font-size: var(--fs-600);
+    font-weight: var(--fw-light);
+  }
+  &__emails {
+    line-height: var(--lh-normal);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-regular);
+
+    a {
+      color: var(--col-lime-900);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

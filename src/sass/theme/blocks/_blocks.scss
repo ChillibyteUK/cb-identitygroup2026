@@ -51,3 +51,19 @@
 
 // New shared block, consolidating cb-business-travel-nav/cb-solutions-nav/cb-specialist-travel-nav.
 @import "cb_child_page_nav";
+
+// Existed in identity's/coda's own repos but never migrated during the
+// original merge — added 2026-07-08 audit.
+@import "cb_lined_title";
+@import "cb_about_detail";
+@import "cb_service_detail";
+@import "cb_dept_email";
+@import "cb_locations";
+@import "cb_what_we_delivered";
+@import "cb_gradient_intro";
+@import "cb_feature_list";
+@import "cb_case_study_key_stats";
+@import "cb_related_work";
+// cb_full_case_study and cb_work_by_region reuse .work-index-hero /
+// .cb-related-work styling from cb_work_index.scss and cb_related_work.scss
+// respectively — no new SCSS file needed.

@@ -179,4 +179,47 @@
       color: var(--col-neutral-800);
     }
   }
+
+  // cb-contact-page: identity is the only theme that ever had an opinion on
+  // this block (coda didn't have it at all; idtravel's light, no-background
+  // version won the merge) - restoring identity's own dark scheme.
+  .cb-contact-page {
+    background-color: var(--col-primary-black);
+    color: var(--col-white);
+
+    h1,
+    &__emails {
+      border-color: hsl(var(--hsl-neutral-050) / 0.5);
+    }
+  }
+
+  .cb-contact-addresses__title {
+    background-color: var(--col-primary-black);
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    color: var(--col-lime-400);
+    background-image: url(../img/contact-addresses-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    @supports (-webkit-touch-callout: none) {
+      background-attachment: scroll;
+    }
+  }
+
+  .cb-contact-addresses {
+    background-color: var(--col-neutral-1100);
+    color: var(--col-white);
+
+    &__office {
+      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    }
+
+    a,
+    .is-group,
+    &__caveat {
+      color: var(--col-lime-400);
+    }
+  }
 }

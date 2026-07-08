@@ -1,0 +1,8 @@
+.cb-gradient-intro {
+  background: var(--grad-main);
+
+  &__content {
+    font-size: var(--fs-500);
+    font-weight: var(--fw-regular);
+  }
+}

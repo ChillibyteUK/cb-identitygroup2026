@@ -67,6 +67,10 @@ function cb_get_site_tokens_table() {
 			'--col-accent'         => '#e03030',
 			'--col-accent-400'     => '#e03030',
 			'--col-accent-500'     => '#ec5a5a',
+			// .id-button's accent isn't the site's brand colour - identity's
+			// own _buttons.scss uses its own red (matches --col-red-600),
+			// not lime.
+			'--id-button-accent'   => '#e03030',
 			'--col-text'           => '#0D0D0C',
 			'--col-bg'             => '#fff',
 			'--col-black'          => '#0D0D0C',
@@ -79,6 +83,9 @@ function cb_get_site_tokens_table() {
 			// complete/systematic token file) — values are colour-identical.
 			'--col-lime-400'       => '#B8FF52',
 			'--col-lime-300'       => '#CAFC83',
+			// identity's own green scale has no shade beyond 1000 — reused
+			// for the 1100 slot coda's own scale goes one step darker to.
+			'--col-lime-1100'      => '#3d6900',
 			'--col-lime-1000'      => '#3d6900',
 			'--col-lime-900'       => '#4c8200',
 			'--col-lime-800'       => '#5e9f00',
@@ -182,6 +189,8 @@ function cb_get_site_tokens_table() {
 			'--col-accent'         => '#e03030',
 			'--col-accent-400'     => '#e03030',
 			'--col-accent-500'     => '#ec5a5a',
+			// coda's own .id-button uses its main purple, not its lime brand.
+			'--id-button-accent'   => '#2f13ba',
 			'--col-text'           => '#0d0d0c',
 			'--col-bg'             => '#fff',
 			'--col-black'          => '#0D0D0C',
@@ -192,6 +201,7 @@ function cb_get_site_tokens_table() {
 			'--col-lime-300'       => '#CAFC83',
 			'--col-lime-900'       => '#4c8200',
 			// Rest of coda's own lime scale (_tokens.scss).
+			'--col-lime-1100'      => '#345a00',
 			'--col-lime-1000'      => '#3d6900',
 			'--col-lime-800'       => '#5e9f00',
 			'--col-lime-200'       => '#ddfbb2',
@@ -281,6 +291,10 @@ function cb_get_site_tokens_table() {
 			'--col-accent'         => '#cc1939',
 			'--col-accent-400'     => '#cc1939',
 			'--col-accent-500'     => '#cc1939',
+			// idtravel's own .id-button uses its raspberry/brand colour -
+			// same as --col-brand, set explicitly rather than relying on
+			// both tokens coincidentally matching.
+			'--id-button-accent'   => '#e32447',
 			'--col-text'           => '#110d25',
 			'--col-bg'             => '#ffffff',
 			'--col-black'          => '#040013',
@@ -325,6 +339,9 @@ function cb_get_site_tokens_table() {
 			// idtravel has no "lime" hue — reusing the same raspberry shades
 			// already chosen for --wp--preset--color--lime-900/1000 below,
 			// converted to HSL since these blocks use hsl(var(--hsl-lime-*)).
+			// idtravel's raspberry scale has no shade beyond 1000 either —
+			// reused for the 1100 slot.
+			'--col-lime-1100'      => '#7b0319',
 			'--col-lime-1000'      => '#7b0319',
 			'--hsl-lime-1000'      => '349 95% 25%',
 			'--col-lime-900'       => '#900720',

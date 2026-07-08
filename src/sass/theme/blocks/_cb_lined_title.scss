@@ -1,0 +1,13 @@
+.cb-lined-title {
+  border-top: 1px solid var(--col-lime-900);
+  border-bottom: 1px solid var(--col-lime-900);
+
+  h2 {
+    font-size: var(--fs-850);
+    font-weight: var(--fw-light);
+    line-height: var(--lh-tightest);
+    text-transform: uppercase;
+    padding-block: 1rem 0.75rem;
+    margin-bottom: 0;
+  }
+}
