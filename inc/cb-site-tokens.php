@@ -89,6 +89,17 @@ function cb_get_site_tokens_table() {
 			'--hsl-lime-900'       => '85 100% 25%',
 			'--hsl-lime-300'       => '85 95% 75%',
 			'--hsl-lime-200'       => '85 90% 84%',
+			// idtravel has no equivalent hue for its own "raspberry" scale —
+			// identity has no raspberry concept at all. Where shared blocks
+			// (idtravel one-offs, but registered everywhere) use raspberry
+			// as a light/dark accent role, reusing identity's own brand
+			// light/dark tint for the same role rather than a literal shade
+			// match (the two scales don't line up shade-for-shade).
+			'--col-raspberry-100'  => '#EEFED9',
+			'--col-raspberry-400'  => '#B8FF52',
+			'--hsl-raspberry-400'  => '85 100% 66%',
+			'--col-raspberry-600'  => '#4c8200',
+			'--hsl-raspberry-600'  => '85 100% 25%',
 			'--col-neutral-1100'   => '#22211E',
 			// Rest of identity's own neutral scale.
 			'--col-neutral-900'    => '#505049',
@@ -97,12 +108,14 @@ function cb_get_site_tokens_table() {
 			'--col-neutral-700'    => '#77766c',
 			'--col-neutral-500'    => '#aeada1',
 			'--col-neutral-400'    => '#c9c7bc',
+			'--hsl-neutral-400'    => '51 11% 76%',
 			'--col-neutral-300'    => '#dddcd2',
 			'--col-neutral-200'    => '#ebe9e1',
 			'--col-neutral-100'    => '#f8f7f0',
 			// identity's scale starts at 100 (no 050 step) — reusing its own
 			// lightest neutral as the nearest equivalent.
 			'--col-neutral-050'    => '#f8f7f0',
+			'--hsl-neutral-050'    => '53 36% 96%',
 			// Rest of identity's own purple scale.
 			'--col-purple-700'     => '#7162e1',
 			'--col-purple-500'     => '#a49bfd',
@@ -114,11 +127,16 @@ function cb_get_site_tokens_table() {
 			// identity's near-black text colour, same as its primary-black).
 			'--col-purple'         => '#2f13ba',
 			'--col-ink'            => '#0D0D0C',
+			'--hsl-ink'            => '60 4% 5%',
 			'--hsl-primary-black'  => '60 4% 5%',
 			'--fw-semi'            => '500',
 			'--col-purple-900'     => '#2f13ba',
 			'--col-purple-200'     => '#e0deff',
 			'--col-purple-1000'    => '#190A83',
+			// identity's purple scale has no shade beyond 1000 — reusing it
+			// for the 1100 slot idtravel's own scale goes one step darker to.
+			'--col-purple-1100'    => '#190A83',
+			'--hsl-purple-1100'    => '247 86% 28%',
 			'--col-red-600'        => '#e03030',
 			'--col-red-500'        => '#ec5a5a',
 			'--col-primary-black'  => '#0D0D0C',
@@ -183,6 +201,13 @@ function cb_get_site_tokens_table() {
 			'--hsl-lime-300'       => '85 95% 75%',
 			'--hsl-lime-200'       => '85 90% 84%',
 			'--hsl-primary-black'  => '60 4% 5%',
+			// coda has no raspberry concept either — same substitution as
+			// identity's (see its own comment on this).
+			'--col-raspberry-100'  => '#eefed9',
+			'--col-raspberry-400'  => '#b8ff52',
+			'--hsl-raspberry-400'  => '85 100% 66%',
+			'--col-raspberry-600'  => '#4c8200',
+			'--hsl-raspberry-600'  => '85 100% 25%',
 			'--col-lime-500'       => '#adf448',
 			'--col-neutral-1100'   => '#22211e',
 			// Rest of coda's own neutral scale.
@@ -192,10 +217,12 @@ function cb_get_site_tokens_table() {
 			'--col-neutral-700'    => '#77766c',
 			'--col-neutral-500'    => '#aeada1',
 			'--col-neutral-400'    => '#c9c7bc',
+			'--hsl-neutral-400'    => '51 11% 76%',
 			'--col-neutral-300'    => '#dddcd2',
 			'--col-neutral-200'    => '#ebe9e1',
 			'--col-neutral-100'    => '#f8f7f0',
 			'--col-neutral-050'    => '#f8f7f0',
+			'--hsl-neutral-050'    => '53 36% 96%',
 			// Rest of coda's own purple scale (present but commented out in
 			// its _tokens.scss — same hex values as identity's, since both
 			// share the same purple story, only the "main" 900 is active).
@@ -205,10 +232,13 @@ function cb_get_site_tokens_table() {
 			'--col-purple-300'     => '#d0ccff',
 			'--col-purple'         => '#2f13ba',
 			'--col-ink'            => '#0d0d0c',
+			'--hsl-ink'            => '60 4% 5%',
 			'--fw-semi'            => '500',
 			'--col-purple-900'     => '#2f13ba',
 			'--col-purple-200'     => '#e0deff',
 			'--col-purple-1000'    => '#190a83',
+			'--col-purple-1100'    => '#190a83',
+			'--hsl-purple-1100'    => '247 86% 28%',
 			'--col-red-600'        => '#e03030',
 			'--col-red-500'        => '#ec5a5a',
 			'--col-primary-black'  => '#0d0d0c',
@@ -288,6 +318,10 @@ function cb_get_site_tokens_table() {
 			'--col-neutral-100'    => '#f0eff4',
 			'--col-neutral-050'    => '#f7f6fa',
 			'--hsl-neutral-050'    => '255 29% 97%',
+			// identity/coda's own naming has no leading zero ("neutral-50"),
+			// used site-wide for body background — idtravel's own value is
+			// the same colour as its own --col-neutral-050 above.
+			'--col-neutral-50'     => '#f7f6fa',
 			// idtravel has no "lime" hue — reusing the same raspberry shades
 			// already chosen for --wp--preset--color--lime-900/1000 below,
 			// converted to HSL since these blocks use hsl(var(--hsl-lime-*)).
@@ -295,6 +329,22 @@ function cb_get_site_tokens_table() {
 			'--hsl-lime-1000'      => '349 95% 25%',
 			'--col-lime-900'       => '#900720',
 			'--hsl-lime-900'       => '349 91% 30%',
+			// Rest of the same raspberry-scale substitution, matched by
+			// scale position rather than exact hex (the two scales don't
+			// line up shade-for-shade): lime-800→raspberry-800,
+			// lime-500→raspberry-450 (idtravel's step right after its own
+			// "main", same relative position as lime-500 sits just after
+			// lime-400/coda's own main), lime-300/200/100→raspberry-300/200/100.
+			'--col-lime-800'       => '#a30b27',
+			'--col-lime-500'       => '#ec4a67',
+			'--col-lime-300'       => '#ff9bae',
+			'--hsl-lime-300'       => '349 100% 80%',
+			'--col-lime-200'       => '#ffb8c6',
+			'--hsl-lime-200'       => '348 100% 86%',
+			'--col-lime-100'       => '#ffdbe3',
+			// idtravel's neutral scale peaks at 1000 (already its darkest,
+			// no natural "one step further") — reused for the 1100 slot.
+			'--col-neutral-1100'   => '#040013',
 			// idtravel's own near-black, reused for the borrowed primary-black slot.
 			'--col-primary-black'  => '#110d25',
 			'--hsl-primary-black'  => '250 48% 10%',
