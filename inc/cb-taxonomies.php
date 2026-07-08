@@ -35,13 +35,22 @@ function cb_register_taxes() {
 	);
     register_taxonomy( 'person', array( 'post' ), $args );
 
+	// Was registered public=>false / publicly_queryable=>false / query_var=>false
+	// for 'post' only, matching idtravel's own theme (which only uses 'theme'
+	// for its internal default-term auto-assignment on blog posts, see below).
+	// identity's and coda's own themes register it public/queryable and
+	// extend it to 'case_study' too — case-study theme filtering (e.g.
+	// cb-related-work's theme_filter field) can't work at all without that,
+	// since the taxonomy relationship can't be set on a post type it isn't
+	// registered for. Matching identity/coda's more permissive config here;
+	// idtravel's own auto-assignment logic doesn't depend on these settings.
 	$args = array(
 		'labels'             => array(
 			'name'          => 'Themes',
 			'singular_name' => 'Theme',
 		),
-        'public'             => false,
-        'publicly_queryable' => false,
+        'public'             => true,
+        'publicly_queryable' => true,
         'hierarchical'       => true,
         'show_ui'            => true,
 		'show_in_nav_menus'  => true,
@@ -50,9 +59,51 @@ function cb_register_taxes() {
 		'show_admin_column'  => true,
 		'show_in_rest'       => true,
 		'rewrite'            => false,
-		'query_var'          => false,
 	);
-	register_taxonomy( 'theme', array( 'post' ), $args );
+	register_taxonomy( 'theme', array( 'case_study', 'post' ), $args );
+
+	// 'service' and 'region' are registered by identity's and coda's own
+	// themes (for case_study + post) but were never carried over into this
+	// shared theme at all — breaking any block that filters case studies by
+	// service (cb-featured-work, cb-related-work, cb-case-study-key-stats)
+	// or by region (cb-work-by-region) on every site, since the taxonomy
+	// doesn't exist to filter against. idtravel doesn't use either (no case
+	// studies), so registering them is harmless there.
+	$args = array(
+		'labels'             => array(
+			'name'          => 'Services',
+			'singular_name' => 'Service',
+		),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'hierarchical'       => true,
+		'show_ui'            => true,
+		'show_in_nav_menus'  => true,
+		'show_tagcloud'      => false,
+		'show_in_quick_edit' => true,
+		'show_admin_column'  => true,
+		'show_in_rest'       => true,
+		'rewrite'            => false,
+	);
+	register_taxonomy( 'service', array( 'case_study', 'post' ), $args );
+
+	$args = array(
+		'labels'             => array(
+			'name'          => 'Regions',
+			'singular_name' => 'Region',
+		),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'hierarchical'       => true,
+		'show_ui'            => true,
+		'show_in_nav_menus'  => true,
+		'show_tagcloud'      => false,
+		'show_in_quick_edit' => true,
+		'show_admin_column'  => true,
+		'show_in_rest'       => true,
+		'rewrite'            => false,
+	);
+	register_taxonomy( 'region', array( 'case_study', 'post' ), $args );
 
 }
 add_action( 'init', 'cb_register_taxes' );

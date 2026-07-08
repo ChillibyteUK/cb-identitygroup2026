@@ -615,3 +615,74 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
 - All fixes deployed to `idtravel-test`, `idcoda-test`, and `idglobal-test`;
   pixel-comparison report regenerated and republished with a corrected
   callout explaining the root cause.
+
+## 2026-07-08 continued: taxonomy registration gap (root cause of "featured-work missing" + more)
+
+- User reported 4 more issues on `http://idcoda-test.local/services/strategic-advisory/`:
+  missing lines on `cb-service-page-header`, wrong font weights/line-heights
+  on `cb-feature-list`, `cb-featured-work` not rendering at all, wrong font
+  sizes on `cb-cta`. All four independently confirmed and fixed:
+  - **`cb-service-page-header` lines**: this block's real PHP template (coda's
+    own, correctly ported — uses `has-lime-1000-border-top`/`-bottom` utility
+    classes) depends on custom utility classes that were never carried into
+    the shared theme's `_child_theme.scss` — only `has-neutral-400-border-*`
+    survived the Phase A merge. Added the missing `.has-lime-1000-border-top`/
+    `-bottom` rules (matching coda's own values exactly, using the existing
+    per-site `--hsl-lime-1000` token). Note: there's also a **dead, orphaned**
+    `_cb_service_page_header.scss` file styling a `.cb-service-page-header`
+    class that the real template never uses (it uses bare `.service-page-header`,
+    no `cb-` prefix) — harmless but worth deleting in a future cleanup pass.
+  - **`cb-cta` font sizes**: confirmed a genuine 3-way typography split.
+    idtravel's own `cb-cta` (the shared base file, per its own `@package`
+    comment) uses `--fs-700`/`--fs-400`. identity's and coda's own real
+    designs both use the larger `--fs-850`/`--fs-600` — idtravel is the
+    outlier here, not coda. The existing `.cb-site-coda .cb-cta` override
+    (added earlier this session for the light/dark colour-scheme difference)
+    never included font-size at all. Added font-size/weight to that override,
+    plus a new `.cb-site-identity .cb-cta` override (identity needed one too
+    — this bug affected identity as well, previously undetected since no one
+    had reported it yet).
+  - **`cb-feature-list` weights/line-heights**: traced to the same root class
+    of bug as `cb-cta` — coda's own global `h2` is `--fs-500`/`--fw-light`,
+    genuinely different from idtravel's global `h2` (`--fs-700`/`--fw-book`,
+    the shared theme's actual current global rule, inherited from idtravel).
+    `cb-feature-list`'s title is a bare `<h2>` with only a colour class, no
+    block-specific font-size — so it inherits the (wrong, for coda) global
+    idtravel scale. Added a **general** `.cb-site-coda h2` override (not a
+    block-specific patch) to `_header-site-overrides.scss`, since any other
+    bare-`h2` usage on coda has the exact same problem. h1/h3/h4 likely have
+    the same kind of gap (coda's own h3/h4 use custom named tokens like
+    `--fs-h3-page-subtitle` that don't exist in the shared token system at
+    all) — not fixed yet, flagged for whenever a concrete report surfaces.
+  - **`cb-featured-work` missing entirely — much bigger root cause found**:
+    the block's query filters case studies by the `service` taxonomy, but
+    `taxonomy_exists('service')` returned **false** on coda. Root cause:
+    **the shared theme's `inc/cb-taxonomies.php` only registers `person`
+    (post) and `theme` (post) — copied wholesale from idtravel's own file,
+    which barely uses these taxonomies since idtravel has no case studies.**
+    coda's own theme registers `service` for `(case_study, post)`; identity's
+    own registers `service`, `theme`, AND `region`, all for
+    `(case_study, post)`. None of this was carried into the shared theme.
+    Consequences beyond the one reported bug: `region` taxonomy didn't exist
+    at all (breaking `cb-work-by-region` completely, on every site), and
+    `theme` was registered for `post` only, not `case_study` — meaning the
+    `theme_filter` field added earlier this session to consolidate
+    `cb-related-work`/`-expo`/`-sports` **could never actually have worked**,
+    since the taxonomy relationship can't be set on a post type it isn't
+    registered for. Fixed by registering `service` and `region` for
+    `(case_study, post)` matching identity's/coda's own args, and extending
+    `theme`'s object types to include `case_study` (also switched it from
+    `public => false` to `true` to match identity/coda's real config —
+    idtravel's own default-term auto-assignment logic for blog posts doesn't
+    depend on those settings, so this is safe for idtravel too). Verified via
+    `taxonomy_exists()`/`is_object_in_taxonomy()` post-fix, and confirmed
+    `cb-featured-work` now renders real case study cards on the
+    strategic-advisory page.
+  - This taxonomy gap is a strong candidate root cause for *other* not-yet-
+    reported blank-section reports — anything filtering case studies by
+    service/theme/region was silently broken theme-wide until this fix.
+    Worth proactively re-checking `cb-work-by-region`, `cb-case-study-key-stats`,
+    and the `cb-related-work` `theme_filter` field now that the taxonomy
+    actually exists for case studies.
+- All fixes deployed to all 3 test sites; CSS rebuilt, rewrite rules flushed
+  (taxonomy `public`/`publicly_queryable` changed).
