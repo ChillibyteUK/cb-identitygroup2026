@@ -58,6 +58,7 @@ function cb_get_site_tokens_table() {
 		'identity' => array(
 			// Generic names (plan §5.2).
 			'--col-brand'          => '#B8FF52',
+			'--hsl-brand'          => '85 100% 66%',
 			'--col-brand-light'    => '#CAFC83',
 			'--col-brand-dark'     => '#4c8200',
 			'--col-secondary'      => '#2f13ba',
@@ -154,6 +155,7 @@ function cb_get_site_tokens_table() {
 		),
 		'coda'     => array(
 			'--col-brand'          => '#b8ff52',
+			'--hsl-brand'          => '85 100% 66%',
 			'--col-brand-light'    => '#CAFC83',
 			'--col-brand-dark'     => '#4c8200',
 			'--col-secondary'      => '#2f13ba',
@@ -240,6 +242,7 @@ function cb_get_site_tokens_table() {
 		),
 		'idtravel' => array(
 			'--col-brand'          => '#e32447',
+			'--hsl-brand'          => '349 77% 52%',
 			'--col-brand-light'    => '#ff9bae',
 			'--col-brand-dark'     => '#900720',
 			'--col-secondary'      => '#2f13ba',

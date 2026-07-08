@@ -96,14 +96,14 @@
 
 .btn-id-outline-lime {
   --_bg: transparent;
-  --_fg: var(--col-lime-400);
-  --_bd: var(--col-lime-400);
+  --_fg: var(--col-brand);
+  --_bd: var(--col-brand);
   border-radius: 0;
   height: 34px;
   &:hover {
-    background-color: var(--col-lime-400);
+    background-color: var(--col-brand);
     color: var(--col-primary-black);
-    border-color: var(--col-lime-400);
+    border-color: var(--col-brand);
   }
 }
 

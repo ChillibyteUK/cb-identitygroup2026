@@ -199,30 +199,20 @@
 .ts-control {
   caret-color: transparent;
   cursor: pointer;
-  background: rgb(
-    13,
-    13,
-    12,
-    0.9
-  ) !important; // var(--col-primary-black, #181818) !important;
+  background: hsl(var(--hsl-primary-black) / 0.9) !important;
   background-image: none;
-  color: var(--col-lime-400, #fff) !important;
+  color: var(--col-brand, #fff) !important;
   border-radius: 0;
-  border: 1px solid rgb(184, 255, 82, 0.4); // var(--col-lime-400, #00ff99);
+  border: 1px solid hsl(var(--hsl-brand) / 0.4);
   min-height: 34px;
   padding: 0.5rem 2.5rem 0.5rem 1rem;
   box-shadow: none;
   font-size: 1rem !important;
 }
 .ts-dropdown {
-  background: rgb(
-    13,
-    13,
-    12,
-    0.9
-  ) !important; // var(--col-primary-black, #181818) !important;
-  color: var(--col-lime-400, #fff);
-  border: 1px solid rgb(184, 255, 82, 0.4); // var(--col-lime-400, #00ff99);
+  background: hsl(var(--hsl-primary-black) / 0.9) !important;
+  color: var(--col-brand, #fff);
+  border: 1px solid hsl(var(--hsl-brand) / 0.4);
   border-radius: 0;
   margin-top: -1px;
   z-index: 9999 !important;
@@ -242,11 +232,11 @@
     color 150ms ease;
 }
 .ts-dropdown .option.active {
-  background: rgb(221, 251, 178, 0.2); // var(--col-lime-200);
-  color: var(--col-lime-400, #181818);
+  background: hsl(var(--hsl-brand) / 0.2);
+  color: var(--col-brand, #181818);
 }
 .ts-dropdown .option.selected {
-  background: var(--col-lime-400);
+  background: var(--col-brand);
   color: var(--col-primary-black, #181818);
 }
 .ts-dropdown .option.disabled,
@@ -255,11 +245,11 @@
   cursor: not-allowed;
 }
 .ts-control input {
-  color: var(--col-lime-400, #fff);
+  color: var(--col-brand, #fff);
 }
 .ts-control .item {
   background: none;
-  color: var(--col-lime-400, #fff);
+  color: var(--col-brand, #fff);
   border: none;
   padding: 0;
 }
