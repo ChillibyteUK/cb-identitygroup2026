@@ -228,6 +228,48 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     names — e.g. is idtravel's `--col-raspberry-600` supposed to become the
     same generic slot as identity's `--col-lime-900`? That's a design
     decision, not a mechanical find-and-replace.
+  - **Component-by-component source comparison** (2026-07-08): went through
+    every block the plan classifies as "shared across all 3 themes" (8:
+    content-grid, cta, faq, our-brands, pushthrough, contact-form,
+    testimonial, recent-news) and "shared across 2" (9: latest-insights,
+    featured-work, full-image, full-video, about-page-header,
+    service-page-header, services-nav, work-index, leadership), diffing the
+    merged SCSS/PHP against each source theme's own original directly.
+    Found a real, recurring bug class beyond individual colour tokens: for
+    several blocks, the merge kept ONE source theme's design wholesale
+    (whichever file happened to get copied in during Phase A) while the
+    OTHER theme's real, different design — not just different colours, a
+    genuinely different light/dark scheme — was silently dropped:
+    - `cb-cta`: identity/idtravel are dark-bg/light-text; coda is
+      light-bg/dark-text. Merge kept idtravel's version verbatim — coda had
+      no way to render its own scheme.
+    - `cb-full-video`, `cb-full-image`, `cb-latest-insights`,
+      `cb-featured-work`, `cb-about-page-header`, `cb-services-nav`,
+      `work-index-hero`: same problem in the other direction — merge kept
+      coda's light scheme, identity's dark original was dropped.
+    All fixed with `.cb-site-{slug}` scoped overrides in
+    `_header-site-overrides.scss` (same file/pattern already used for the
+    header light/dark difference) rather than touching the shared base
+    rules, since `--col-ink`/`--col-white` are the same two tokens both
+    designs use, just assigned to opposite roles — a token-value fix alone
+    can't express an inverted relationship.
+    Also found, unrelated to colour: `cb-services-nav`'s background image
+    (`img/CODA_BG3.webp`) was never copied into this theme during the
+    original merge — 404ing on every site since day one. Copied it in, plus
+    identity's own `services-bg.jpg` for its override. `cb-about-page-header`
+    was missing an entire feature — identity's "Secondary Text" field plus
+    its whole second content section — never carried into the merged field
+    group or template at all; restored both. `cb-service-page-header`'s SCSS
+    was completely empty in both the merged theme and coda's own repo (and
+    has no editor colour-picker fallback) — identity's is the only design
+    that exists anywhere for it, added as the universal base style.
+    Confirmed NOT bugs: `cb-faq`, `cb-pushthrough`, `cb-content-grid`,
+    `cb-testimonial`, `cb-leadership` all turned out to be editor-driven via
+    WP's `has-{colour}-background-color` picker classes (or, for
+    leadership, the merge's version is strictly more flexible than coda's
+    simpler original) — no fixed per-site scheme to diverge from.
+    `cb-our-brands`, `cb-work-index` (after the earlier lime/brand fixes)
+    already matched across all relevant sources.
 - **Phase D (deploy scripts, per-site builds)**: not started.
 - ~~**Deprecated-but-still-registered blocks**~~ — done 2026-07-08: added
   `cb_deprecated_block_notice()` (`inc/cb-utility.php`) and called it from
