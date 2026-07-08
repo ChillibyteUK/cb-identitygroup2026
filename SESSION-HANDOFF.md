@@ -149,31 +149,44 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
   - **Fixed**: `--fw-semi` was used in 10 block SCSS files but never defined
     anywhere (`_tokens.scss` only has `--fw-semibold: 600`) — a typo, not a
     missing token. Silently fell back to normal weight on every site. Fixed.
-  - **Fixed 2026-07-08** (values supplied by the user, not invented): the
-    `hsl(var(--hsl-lime-1000)/0.4)`-style borders on `cb-details`,
-    `cb-work-index`, `cb-about-page-header`, `cb-latest-insights`, the
-    gradient overlays on `cb-featured-work`/`cb-work-index`, and the
-    background tint on `cb-services-nav` were all invalid (undefined
-    `--hsl-lime-*`/`--hsl-primary-black`) and rendered nothing on every site.
-    Sourced real values from coda's own `_tokens.scss` (it already had a full
-    lime scale + primary-black HSL that never made it into the merged base
-    tokens file) and added them to `src/sass/theme/_tokens.scss`, deriving
-    `--col-lime-900/1000` and `--col-primary-black` the same way coda does.
-    Also fixed breadcrumbs (`--text-sm` → the existing `--fs-50`), dropped
-    `--shadow-active` entirely (confirmed a leftover from a different theme,
-    not a value to invent), defined `--lh-300: 1.4` for the nav-card-title
-    blocks, and fixed `--fw-600` → `--fw-semibold` (same class of typo as the
-    `--fw-semi` fix, found in the same file as the breadcrumbs fix).
-  - **Still not fixed — false positives ruled out, small real list remains**:
-    `--col-lime-100`, `--col-lime-800`, `--col-green-200`, `--col-green-500`,
-    `--col-neutral-1100`, `--col-primary-250` are still genuinely undefined
-    nowhere (checked the compiled CSS directly, and ruled out `var(--x,
-    fallback)` cases and inline-`style`-set cases as false alarms — e.g. the
-    `_search.scss` category-tag colors and `cb-service-grid`'s `--sg-*` grid
-    vars all resolve fine or are dead code respectively). `.has-secondary-*`
-    utility classes are unreachable dead code (theme.json has no "secondary"
-    palette entry) and don't need fixing. Someone needs to supply real values
-    for the remaining 6 before they can be fixed the same way.
+  - **Fixed 2026-07-08, corrected same day**: first pass hardcoded coda's
+    lime/primary-black values as a single static default in the base
+    `_tokens.scss` — wrong approach, since these are per-site tokens (like
+    the existing `--wp--preset--color--lime-900` already is), not universal
+    constants. Also renamed `--fw-semi` → `--fw-semibold` assuming a typo,
+    but identity/coda's own `_tokens.scss` define `--fw-semi: 500` as a
+    genuinely distinct weight from `--fw-semibold: 600` — that rename was
+    semantically wrong. Both reverted.
+  - **Fixed properly**: parsed all three original themes' own `_tokens.scss`
+    files and cross-checked every `--col-*`/`--hsl-*`/`--fw-semi` reference
+    in the shared block SCSS against each site's current entry in
+    `inc/cb-site-tokens.php`. This surfaced a much bigger per-site gap than
+    the earlier "undefined anywhere" check could see — e.g. `_buttons.scss`
+    (used site-wide) references `--col-green-400`, which coda's array never
+    had, so buttons were silently missing their accent colour specifically
+    on the coda site. Filled every gap with that site's own real value:
+    mostly the neutral/purple scales (identity and coda's own hex, only
+    partially represented before) plus the lime/green cross-naming (blocks
+    mix coda's "lime" and identity's "green" names for colour-identical
+    values — both names now resolve on every site). For idtravel, which has
+    no native lime/green/primary-black concept, reused the same
+    repurposed-slot values already established for
+    `--wp--preset--color--lime-900/1000/primary-black` (its own
+    raspberry-900/1000 and ink), converted to the HSL form these blocks
+    need. idtravel's `--fw-semi` reuses its own `--fw-book` (450) as the
+    nearest existing weight — flagged as a stand-in, not a confirmed design
+    value. `.has-secondary-*` utility classes remain unreachable dead code
+    (theme.json has no "secondary" palette entry) and don't need fixing.
+  - **Still open — needs real design input, not mechanical**:
+    `--col-primary-250`, `--col-primary-500`, `--col-grey-200`,
+    `--col-grey-600` are undefined in all 3 themes' own files, not just the
+    merged one. Identity/coda have no equivalent for idtravel's
+    raspberry-family hues or its purple-1100 shade (idtravel-only, no
+    cross-theme precedent). idtravel has no equivalent for
+    `--col-lime-100/200/300/400/500/800` or `--col-neutral-1100` (no
+    established mapping like the 900/1000 darks have via the existing
+    wp-preset slot-borrowing). idtravel's `--fw-semi: 450` reuse should be
+    confirmed rather than assumed correct.
   - The actual **rename** (once real values exist for the above) still needs
     someone to map each site's existing shade scale onto the plan's generic
     names — e.g. is idtravel's `--col-raspberry-600` supposed to become the
