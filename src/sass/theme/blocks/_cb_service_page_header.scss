@@ -1,0 +1,25 @@
+.cb-service-page-header {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  padding-block: 8rem 6rem;
+
+  h1 {
+    font-size: var(--fs-850);
+    font-weight: var(--fw-semi);
+    line-height: 1;
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    padding-top: 0.25rem;
+    margin-bottom: 2rem;
+  }
+
+  &__intro-text {
+    font-size: var(--fs-700);
+    line-height: 1.5;
+    text-wrap: balance;
+
+    p:not(:first-of-type) {
+      font-size: var(--fs-500);
+    }
+  }
+}

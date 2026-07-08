@@ -22341,6 +22341,42 @@ header:has(.navbar-collapse.collapse.show) {
 .cb-site-identity .cb-featured-work__pre-title {
   border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
 }
+.cb-site-identity .cb-about-page-header {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+}
+.cb-site-identity .cb-about-page-header__top .intro-overlay {
+  background-color: hsl(var(--hsl-primary-black)/0.6);
+}
+.cb-site-identity .cb-about-page-header h1, .cb-site-identity .cb-about-page-header .h1 {
+  color: var(--col-white) !important;
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5) !important;
+}
+.cb-site-identity .cb-about-page-header__intro-text a {
+  color: var(--col-lime-400);
+}
+.cb-site-identity .cb-about-page-header__intro-text a:hover {
+  color: var(--col-lime-300);
+}
+.cb-site-identity .cb-services-nav {
+  background-color: var(--col-primary-black);
+}
+.cb-site-identity .cb-services-nav::before {
+  background-image: url(../img/services-bg.jpg);
+}
+.cb-site-identity .cb-services-nav__header {
+  background-color: hsla(0, 0%, 100%, 0.1);
+}
+.cb-site-identity .work-index-hero h1, .cb-site-identity .work-index-hero .h1 {
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  color: var(--col-white);
+}
+.cb-site-identity .work-index-hero h2, .cb-site-identity .work-index-hero .h2 {
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  color: var(--col-neutral-800);
+}
 
 .footer {
   background-color: var(--col-ink);
@@ -25142,6 +25178,51 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-about-page-header__intro-text a:hover {
   color: var(--col-lime-800);
+}
+.cb-about-page-header__content-wrapper {
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  position: relative;
+  padding-block: 4rem 4rem;
+  isolation: isolate;
+  margin-bottom: 4rem;
+}
+.cb-about-page-header__content-wrapper .about-overlay {
+  background-color: var(--col-purple);
+  opacity: 0.8;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.cb-about-page-header__intro {
+  font-size: var(--fs-500);
+  line-height: 1.5;
+  font-weight: var(--fw-light);
+  margin-bottom: 0.5em;
+  color: var(--col-white);
+  text-wrap: balance;
+}
+
+.cb-service-page-header {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  padding-block: 8rem 6rem;
+}
+.cb-service-page-header h1, .cb-service-page-header .h1 {
+  font-size: var(--fs-850);
+  font-weight: var(--fw-semi);
+  line-height: 1;
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  padding-top: 0.25rem;
+  margin-bottom: 2rem;
+}
+.cb-service-page-header__intro-text {
+  font-size: var(--fs-700);
+  line-height: 1.5;
+  text-wrap: balance;
+}
+.cb-service-page-header__intro-text p:not(:first-of-type) {
+  font-size: var(--fs-500);
 }
 
 .work-index-hero {

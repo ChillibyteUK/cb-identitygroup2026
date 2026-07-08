@@ -30,4 +30,18 @@ $bg = get_query_var( 'background', get_field( 'background' ) );
             </div>
         </div>
     </div>
+	<?php if ( get_field( 'secondary_text' ) ) : ?>
+    <div class="cb-about-page-header__content-wrapper">
+        <div class="about-overlay"></div>
+        <div class="id-container px-4 px-md-5">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="cb-about-page-header__intro">
+                        <?= wp_kses_post( get_field( 'secondary_text' ) ); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<?php endif; ?>
 </section>

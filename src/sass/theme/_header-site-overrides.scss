@@ -128,4 +128,55 @@
       border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
     }
   }
+
+  .cb-about-page-header {
+    background-color: var(--col-primary-black);
+    color: var(--col-white);
+
+    &__top .intro-overlay {
+      background-color: hsl(var(--hsl-primary-black) / 0.6);
+    }
+
+    h1 {
+      color: var(--col-white) !important;
+      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5) !important;
+      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5) !important;
+    }
+
+    &__intro-text a {
+      color: var(--col-lime-400);
+
+      &:hover {
+        color: var(--col-lime-300);
+      }
+    }
+  }
+
+  // Also uses its own background image, not coda's - see img/services-bg.jpg
+  // (copied in from identity's own repo; it was never migrated during the
+  // original merge, leaving this background 404ing on every site).
+  .cb-services-nav {
+    background-color: var(--col-primary-black);
+
+    &::before {
+      background-image: url(../img/services-bg.jpg);
+    }
+
+    &__header {
+      background-color: hsl(0 0% 100% / 0.1);
+    }
+  }
+
+  .work-index-hero {
+    h1 {
+      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      color: var(--col-white);
+    }
+
+    h2 {
+      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      color: var(--col-neutral-800);
+    }
+  }
 }

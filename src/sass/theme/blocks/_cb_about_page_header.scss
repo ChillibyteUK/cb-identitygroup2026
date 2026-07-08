@@ -45,4 +45,29 @@
       }
     }
   }
+
+  &__content-wrapper {
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    position: relative;
+    padding-block: 4rem 4rem;
+    isolation: isolate;
+    margin-bottom: 4rem;
+
+    .about-overlay {
+      background-color: var(--col-purple);
+      opacity: 0.8;
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+  }
+
+  &__intro {
+    font-size: var(--fs-500);
+    line-height: 1.5;
+    font-weight: var(--fw-light);
+    margin-bottom: 0.5em;
+    color: var(--col-white);
+    text-wrap: balance;
+  }
 }
