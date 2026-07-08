@@ -76,6 +76,53 @@ function cb_get_site_tokens_table() {
 			'--col-green-400'      => '#B8FF52',
 			'--col-green-300'      => '#CAFC83',
 			'--col-green-900'      => '#4c8200',
+			// Rest of identity's own green scale (_tokens.scss) — needed by
+			// blocks that reference these shades directly (e.g. _buttons.scss).
+			'--col-green-800'      => '#5e9f00',
+			'--col-green-500'      => '#ADF448',
+			'--col-green-200'      => '#DDFBB2',
+			'--col-green-100'      => '#EEFED9',
+			// Some shared blocks use coda's "lime" naming instead of identity's
+			// own "green" for the exact same colours (confirmed hex-identical
+			// against coda's _tokens.scss) — both names need to resolve.
+			'--col-lime-400'       => '#B8FF52',
+			'--col-lime-300'       => '#CAFC83',
+			'--col-lime-1000'      => '#3d6900',
+			'--col-lime-900'       => '#4c8200',
+			'--col-lime-800'       => '#5e9f00',
+			'--col-lime-200'       => '#DDFBB2',
+			'--col-lime-100'       => '#EEFED9',
+			'--hsl-lime-1000'      => '85 100% 21%',
+			'--hsl-lime-900'       => '85 100% 25%',
+			'--hsl-lime-300'       => '85 95% 75%',
+			'--hsl-lime-200'       => '85 90% 84%',
+			'--col-neutral-1100'   => '#22211E',
+			// Rest of identity's own neutral scale.
+			'--col-neutral-900'    => '#505049',
+			'--col-neutral-800'    => '#5e5d55',
+			'--hsl-neutral-800'    => '53 5% 35%',
+			'--col-neutral-700'    => '#77766c',
+			'--col-neutral-500'    => '#aeada1',
+			'--col-neutral-400'    => '#c9c7bc',
+			'--col-neutral-300'    => '#dddcd2',
+			'--col-neutral-200'    => '#ebe9e1',
+			'--col-neutral-100'    => '#f8f7f0',
+			// identity's scale starts at 100 (no 050 step) — reusing its own
+			// lightest neutral as the nearest equivalent.
+			'--col-neutral-050'    => '#f8f7f0',
+			// Rest of identity's own purple scale.
+			'--col-purple-700'     => '#7162e1',
+			'--col-purple-500'     => '#a49bfd',
+			'--col-purple-400'     => '#bcb7ff',
+			'--col-purple-300'     => '#d0ccff',
+			// Bare --col-purple/--col-ink aren't in identity's own naming —
+			// both resolve to values it already defines elsewhere (main
+			// purple #2f13ba is identical across all 3 themes; "ink" is
+			// identity's near-black text colour, same as its primary-black).
+			'--col-purple'         => '#2f13ba',
+			'--col-ink'            => '#0D0D0C',
+			'--hsl-primary-black'  => '60 4% 5%',
+			'--fw-semi'            => '500',
 			'--col-purple-900'     => '#2f13ba',
 			'--col-purple-200'     => '#e0deff',
 			'--col-purple-1000'    => '#190A83',
@@ -132,6 +179,44 @@ function cb_get_site_tokens_table() {
 			'--col-lime-400'       => '#b8ff52',
 			'--col-lime-300'       => '#CAFC83',
 			'--col-lime-900'       => '#4c8200',
+			// Rest of coda's own lime scale (_tokens.scss).
+			'--col-lime-1000'      => '#3d6900',
+			'--col-lime-800'       => '#5e9f00',
+			'--col-lime-200'       => '#ddfbb2',
+			'--col-lime-100'       => '#eefed9',
+			'--hsl-lime-1000'      => '85 100% 21%',
+			'--hsl-lime-900'       => '85 100% 25%',
+			'--hsl-lime-300'       => '85 95% 75%',
+			'--hsl-lime-200'       => '85 90% 84%',
+			'--hsl-primary-black'  => '60 4% 5%',
+			// Some shared blocks use identity's "green" naming instead of
+			// coda's own "lime" for the exact same colours (confirmed
+			// hex-identical against identity's _tokens.scss).
+			'--col-green-400'      => '#b8ff52',
+			'--col-green-300'      => '#CAFC83',
+			'--col-green-500'      => '#adf448',
+			'--col-neutral-1100'   => '#22211e',
+			// Rest of coda's own neutral scale.
+			'--col-neutral-900'    => '#505049',
+			'--col-neutral-800'    => '#5e5d55',
+			'--hsl-neutral-800'    => '53 5% 35%',
+			'--col-neutral-700'    => '#77766c',
+			'--col-neutral-500'    => '#aeada1',
+			'--col-neutral-400'    => '#c9c7bc',
+			'--col-neutral-300'    => '#dddcd2',
+			'--col-neutral-200'    => '#ebe9e1',
+			'--col-neutral-100'    => '#f8f7f0',
+			'--col-neutral-050'    => '#f8f7f0',
+			// Rest of coda's own purple scale (present but commented out in
+			// its _tokens.scss — same hex values as identity's, since both
+			// share the same purple story, only the "main" 900 is active).
+			'--col-purple-700'     => '#7162e1',
+			'--col-purple-500'     => '#a49bfd',
+			'--col-purple-400'     => '#bcb7ff',
+			'--col-purple-300'     => '#d0ccff',
+			'--col-purple'         => '#2f13ba',
+			'--col-ink'            => '#0d0d0c',
+			'--fw-semi'            => '500',
 			'--col-purple-900'     => '#2f13ba',
 			'--col-purple-200'     => '#e0deff',
 			'--col-purple-1000'    => '#190a83',
@@ -183,15 +268,51 @@ function cb_get_site_tokens_table() {
 			'--ff-body'            => '"Suisse International", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
 			'--ff-accent'          => '"Suisse International", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
 			'--col-raspberry'      => '#e32447',
+			'--col-raspberry-100'  => '#ffdbe3',
 			'--col-raspberry-300'  => '#ff9bae',
+			'--col-raspberry-400'  => '#f66f88',
 			'--col-raspberry-600'  => '#cc1939',
 			'--col-raspberry-900'  => '#900720',
+			'--hsl-raspberry-400'  => '349 88% 70%',
+			'--hsl-raspberry-600'  => '349 78% 45%',
 			'--col-purple'         => '#2f13ba',
+			'--col-purple-900'     => '#2f13ba',
+			'--col-purple-700'     => '#7162e1',
+			'--col-purple-500'     => '#a49bfd',
+			'--col-purple-400'     => '#bcb7ff',
 			'--col-purple-300'     => '#d0ccff',
 			'--col-purple-1100'    => '#13086b',
+			'--hsl-purple-1100'    => '247 86% 23%',
 			'--col-ink'            => '#110d25',
+			'--hsl-ink'            => '250 48% 10%',
 			'--col-white'          => '#ffffff',
+			'--col-neutral-900'    => '#1d1933',
+			'--col-neutral-800'    => '#3b3652',
+			'--hsl-neutral-800'    => '251 21% 27%',
+			'--col-neutral-700'    => '#55506b',
+			'--col-neutral-500'    => '#9793a8',
+			'--col-neutral-400'    => '#b6b3c3',
+			'--hsl-neutral-400'    => '251 12% 73%',
+			'--col-neutral-300'    => '#cfcdd9',
+			'--col-neutral-200'    => '#e0dfe6',
+			'--col-neutral-100'    => '#f0eff4',
 			'--col-neutral-050'    => '#f7f6fa',
+			'--hsl-neutral-050'    => '255 29% 97%',
+			// idtravel has no "lime" hue — reusing the same raspberry shades
+			// already chosen for --wp--preset--color--lime-900/1000 below,
+			// converted to HSL since these blocks use hsl(var(--hsl-lime-*)).
+			'--col-lime-1000'      => '#7b0319',
+			'--hsl-lime-1000'      => '349 95% 25%',
+			'--col-lime-900'       => '#900720',
+			'--hsl-lime-900'       => '349 91% 30%',
+			// idtravel's own near-black, reused for the borrowed primary-black slot.
+			'--col-primary-black'  => '#110d25',
+			'--hsl-primary-black'  => '250 48% 10%',
+			'--col-primary'        => '#110d25',
+			// idtravel has no --fw-semi of its own — nearest existing weight
+			// is its own --fw-book (450), reused here rather than inventing
+			// a number. Flag for design review if a different weight is wanted.
+			'--fw-semi'            => '450',
 			'--font-family'        => '"Suisse International", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
 			// idtravel has no --fs-300/800/950 in its own tokens file (a pre-existing gap, not invented here).
 			'--fs-400' => 'clamp(1.2222rem, 1.1rem + 0.6vw, 1.375rem)',

@@ -68,16 +68,6 @@
   --col-indigo-350: #a370db;
   --col-indigo-400: #935ad2;
   --col-indigo-450: #8544cc;
-  --hsl-lime-1000: 85 100% 21%;
-  --col-lime-1000: hsl(var(--hsl-lime-1000));
-  --hsl-lime-900: 85 100% 25%;
-  --col-lime-900: hsl(var(--hsl-lime-900));
-  --hsl-lime-300: 85 95% 75%;
-  --col-lime-300: hsl(var(--hsl-lime-300));
-  --hsl-lime-200: 85 90% 84%;
-  --col-lime-200: hsl(var(--hsl-lime-200));
-  --hsl-primary-black: 60 4% 5%;
-  --col-primary-black: hsl(var(--hsl-primary-black));
   --grad-main: linear-gradient(to bottom,
       var(--col-white),
       var(--col-lime-100),
@@ -206,16 +196,6 @@
   --col-indigo-350: #a370db;
   --col-indigo-400: #935ad2;
   --col-indigo-450: #8544cc;
-  --hsl-lime-1000: 85 100% 21%;
-  --col-lime-1000: hsl(var(--hsl-lime-1000));
-  --hsl-lime-900: 85 100% 25%;
-  --col-lime-900: hsl(var(--hsl-lime-900));
-  --hsl-lime-300: 85 95% 75%;
-  --col-lime-300: hsl(var(--hsl-lime-300));
-  --hsl-lime-200: 85 90% 84%;
-  --col-lime-200: hsl(var(--hsl-lime-200));
-  --hsl-primary-black: 60 4% 5%;
-  --col-primary-black: hsl(var(--hsl-primary-black));
   --grad-main: linear-gradient(to bottom,
       var(--col-white),
       var(--col-lime-100),

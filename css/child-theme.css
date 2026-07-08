@@ -68,16 +68,6 @@
   --col-indigo-350: #a370db;
   --col-indigo-400: #935ad2;
   --col-indigo-450: #8544cc;
-  --hsl-lime-1000: 85 100% 21%;
-  --col-lime-1000: hsl(var(--hsl-lime-1000));
-  --hsl-lime-900: 85 100% 25%;
-  --col-lime-900: hsl(var(--hsl-lime-900));
-  --hsl-lime-300: 85 95% 75%;
-  --col-lime-300: hsl(var(--hsl-lime-300));
-  --hsl-lime-200: 85 90% 84%;
-  --col-lime-200: hsl(var(--hsl-lime-200));
-  --hsl-primary-black: 60 4% 5%;
-  --col-primary-black: hsl(var(--hsl-primary-black));
   --grad-main: linear-gradient(to bottom,
       var(--col-white),
       var(--col-lime-100),
@@ -25062,7 +25052,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-details__item--bullet {
   font-size: var(--fs-500);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
 }
 
 .cb-about-page-header {
@@ -25243,7 +25233,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-work-index__title {
   font-size: var(--fs-300);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
   color: var(--col-primary-black);
 }
 .cb-work-index__title .cb-services-nav__item-icon {
@@ -25451,7 +25441,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-latest-insights__title {
   font-size: var(--fs-300);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
   color: var(--col-primary-black);
   margin-bottom: 0.5rem;
 }
@@ -25510,7 +25500,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-featured-work__title {
   font-size: var(--fs-300);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
   color: var(--col-primary-black);
 }
 .cb-featured-work__desc {
@@ -25611,7 +25601,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .case-study-hero h1, .case-study-hero .h1 {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   font-size: var(--fs-850);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
   color: var(--col-white);
 }
 .case-study-hero h2, .case-study-hero .h2 {
@@ -25744,7 +25734,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-brand-title-text__content-heading {
   font-size: var(--fs-800);
   line-height: 1.1;
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
 }
 .cb-brand-title-text__content {
   font-size: var(--fs-500);
@@ -25865,7 +25855,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   text-decoration: none;
   transition: color 0.3s ease;
   font-size: var(--fs-500);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
 }
 .cb-culture-page-header__careers .careers-link:hover {
   color: var(--col-green-300);
@@ -25934,7 +25924,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-innovation-header h1, .cb-innovation-header .h1 {
   font-size: var(--fs-850);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
   line-height: 1;
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -26001,7 +25991,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   font-size: var(--fs-900);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
 }
 .cb-policies-page__content {
   font-size: var(--fs-600);
@@ -26101,7 +26091,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-region-page-header h1, .cb-region-page-header .h1 {
   font-size: var(--fs-900);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
   line-height: 1;
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
