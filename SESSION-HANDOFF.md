@@ -50,15 +50,16 @@ ACF sync after field-group changes: `wp --path=<site> acf json sync --allow-root
 
 ### What's fixed (newest first — see dated entries below for full detail on each)
 
-9-block re-audit against real sources (`cb-about-detail`, `cb-service-detail`, `cb-dept-email`, `cb-locations`, `cb-what-we-delivered`, `cb-gradient-intro`, `cb-full-case-study`, `cb-case-study-key-stats`, `cb-work-by-region`) + confirmed the consolidated `cb-related-work` `theme_filter` field actually works end-to-end now that the taxonomy fix has landed → `cb-content-grid` rebuilt entirely from real sources (was invented, matched neither site) + 5 theme.json palette gaps closed in one sweep → h2 specificity architecture bug + `cb-lined-title`/`cb-pushthrough`/`cb-our-brands`/`cb-testimonial` real bugs → taxonomy registration gap (`service`/`region` never registered, `theme` not on `case_study` — broke `cb-featured-work`, `cb-work-by-region`, and the `cb-related-work` `theme_filter` field) → critical theme.json colour-palette-wipe bug (was silently dropping 48 of 59 colours site-wide) → 4 ACF fields restored from the original merge → 31 of 39 identity block types migrated to the standard `acf/` namespace.
+Root-caused and fixed identity's `/news/` page height bug via a new per-site-template pattern (`index-identity.php`, `single-identity.php`/`single-coda.php` — real per-site design/taxonomy, not just styling) + removed a sitewide invented-colour bug (`--col-accent-400` had no real-source backing at all, made every link on every site render red) → 9-block re-audit against real sources (`cb-about-detail`, `cb-service-detail`, `cb-dept-email`, `cb-locations`, `cb-what-we-delivered`, `cb-gradient-intro`, `cb-full-case-study`, `cb-case-study-key-stats`, `cb-work-by-region`) + confirmed the consolidated `cb-related-work` `theme_filter` field actually works end-to-end now that the taxonomy fix has landed → `cb-content-grid` rebuilt entirely from real sources (was invented, matched neither site) + 5 theme.json palette gaps closed in one sweep → h2 specificity architecture bug + `cb-lined-title`/`cb-pushthrough`/`cb-our-brands`/`cb-testimonial` real bugs → taxonomy registration gap (`service`/`region` never registered, `theme` not on `case_study` — broke `cb-featured-work`, `cb-work-by-region`, and the `cb-related-work` `theme_filter` field) → critical theme.json colour-palette-wipe bug (was silently dropping 48 of 59 colours site-wide) → 4 ACF fields restored from the original merge → 31 of 39 identity block types migrated to the standard `acf/` namespace.
 
 ### Explicitly deferred / not yet done
 
 - `cb-content-grid-v2` (45 identity instances) — different schema, not investigated.
 - 6 more identity block types still on the old `cb/` namespace: `cb-awards-slider`, `cb-latest-insights-expo`, `cb-related-work-expo`, `cb-related-work-sports` (needs a content decision, not just a mechanical migration), `cb-sport-logos`, `cb-styled-text-image`.
-- Identity's `/news/` page renders ~6× taller than expected — template-driven, not block-related, never root-caused.
 - Any DB backups from a prior session's scratchpad won't exist in a new session — take a fresh `wp db export` before any risky migration work.
 - `cb-case-study-key-stats`'s missing-image fallback path (`img/contact-addresses-bg.jpg`) doesn't match identity's real fallback (`blocks/cb-work-index/bg.jpg`, a file that doesn't exist in this flat-file theme structure) — low-impact (only shows when a content editor hasn't set a custom background image), flagged 2026-07-10 continued but not changed since both are valid existing images and no real content currently hits this path.
+- Font 404: `SuisseIntl-SemiBold.woff2` is referenced in CSS but the real file on disk is `SuisseIntl-Semibold.woff2` (lowercase "bold") — pre-existing, sitewide, low-priority. Found while verifying the news-page fix below, not yet fixed.
+- **New per-site-template pattern established** (`index-identity.php`, `single-identity.php`, `single-coda.php` — see below): if other root template files (`page.php`, `archive.php`, etc.) turn out to have the same "byte-identical to idtravel, other sites' real design silently dropped" problem, the same branch-from-the-root-file approach applies. Not proactively audited yet — only found because a real reported bug (`/news/` page height) led there.
 
 ---
 
@@ -1066,3 +1067,89 @@ pages (not screenshots), per the session's own methodology rules. 6 of the
   before the 2026-07-08 fix, since `theme` wasn't registered for
   `case_study` at all).
 - All fixes deployed to all 3 test sites; CSS rebuilt cleanly each time.
+
+## 2026-07-10 continued: quick fixes + root-caused the identity /news/ height bug + a new per-site-template pattern
+
+Two quick fixes requested directly, both real bugs introduced in the block
+audit above: `.cb-dept-email__row`/`.cb-locations__row` borders used a
+*solid* `--col-lime-1000` where the real `.has-lime-1000-border-top` utility
+class uses it at `0.4` opacity (`hsl(var(--hsl-lime-1000) / 0.4)`) — fixed
+both. Coda's footer link hover was hardcoded to idtravel's `--col-purple-400`
+site-wide; added a per-site `--col-footer-link-hover` token (identity
+`--col-neutral-500`, coda `--col-lime-300`, idtravel `--col-purple-400`,
+consumed with idtravel's value as the fallback) so each site now gets its
+own real value — confirmed all three render correctly.
+
+User then asked whether `index.php`/`single.php` could be swapped per-site
+like `header.php`/`footer.php` are, since each real source theme has its own
+version. This directly led to root-causing a bug that had been open and
+unexplained since 2026-07-08 (identity's `/news/` page rendering ~6× taller
+than expected, 2966px → 19217px):
+
+- **`index.php` was byte-identical to idtravel's own file** — a single,
+  *unbounded* (`posts_per_page => -1`) query for posts tagged
+  `insights`/`news`. identity's real design is genuinely different: two
+  separate sections (Insights+Perspectives, then Press), each *capped* at 3
+  posts. Rendering identity's real (much larger) insights/news post count
+  through the unbounded shared template is almost certainly the actual
+  cause of the height bug. `index.php` can't take a `get_header()`-style
+  suffix argument the way header/footer can, so implemented the same idea
+  via a root-file branch instead: `index.php` now checks
+  `cb_site_template_suffix()` and, for identity, delegates to a new
+  `index-identity.php` (`get_template_part('index-identity')`) before any
+  output starts — no recursion risk since the call names a specific file,
+  never falls back to `index.php` itself. Ported identity's real two-section
+  PHP verbatim (category-filtered, capped queries) and added identity's
+  real `_news.scss` design scoped under `.cb-site-identity` (class names
+  differ from the idtravel-derived rules already in the file —
+  `.news-hero`/`.insight-type__header`/`.grid-type-2` don't exist there at
+  all — so scoped as a new block rather than merged into the existing
+  rules). Copied two missing assets identity's real file needs
+  (`img/arrow-p200.svg`, `img/bg180.webp`). Added the also-missing
+  `--col-neutral-600` per-site token (identity's/coda's real `#939287`
+  differs from the shared base `#77738c`, which is actually idtravel's own
+  correct value — no override needed there). **Verified on the real page**:
+  body height dropped from 19217px to 3091px (matches the original ~2966px
+  baseline), 6 cards across 2 correctly-styled sections.
+- **Verifying that fix surfaced a second, unrelated, sitewide bug**:
+  `--col-accent-400` (backs the global `a` link colour and focus-outline in
+  `_typography.scss`/`_buttons.scss`) is never defined anywhere in any of
+  the 3 real source themes' own `_tokens.scss` *or* their compiled CSS —
+  on real production sites, plain links just inherit the surrounding text
+  colour. Someone invented per-site red values for it in this shared theme
+  (`#e03030` identity/coda, `#cc1939` idtravel), so every plain link on
+  every page of all 3 sites was rendering bright red instead of inheriting
+  correctly. Removed the three per-site definitions entirely — the other
+  `--col-accent-400` usages (`_a11y.scss`, `_search.scss`) already use
+  `var(--col-accent-400, #ff8b38)` with a safe fallback so are unaffected;
+  `_wp.scss`'s `.has-accent-400-*` utility classes are already dead code
+  (no matching theme.json palette slug), also unaffected. Verified live:
+  link colour is now `rgb(255,255,255)` (inherited) instead of the invented
+  red, on all 3 sites.
+- **Applied the same per-site-file pattern to `single.php`**, since it
+  turned out to have the identical problem, just not yet reported:
+  idtravel's own `single.php` (the shared file) switches on category slugs
+  `news`/`people`/`tmc`, but **both** identity's *and* coda's real
+  `single.php` use `press`/`insights`/`perspectives` instead — a completely
+  different, non-overlapping taxonomy. Every non-idtravel blog post was
+  silently falling through to the `default` case (`post-news` styling)
+  instead of its real `post-press`/`post-insight` styling. Added
+  `single-identity.php` and `single-coda.php` (kept as two separate files
+  rather than merged, since coda's real file additionally sets an h1
+  font-size class and skips the recent-news category filter identity's
+  real file applies — genuinely different, not just cosmetic) and branched
+  from the root `single.php` the same way. Confirmed `cb-recent-news.php`
+  already handles the un-set `$person`/`$theme` query vars gracefully
+  (`get_query_var($var, '')` with an empty-string default), so no block
+  compatibility work was needed there. **Verified against real posts**:
+  identity's real "Press"-category post now renders `post-press` (was
+  `post-news`); coda's real "Insights"-category post now renders
+  `post-insight` with the correct `has-850-font-size fw-light` h1 class (was
+  `post-news`). idtravel unaffected (confirmed via a real idtravel post).
+- All fixes deployed to all 3 test sites; CSS rebuilt cleanly each time.
+- **Not done**: no proactive audit yet of whether other root template files
+  (`page.php`, `archive.php`, `single-case_study.php`, etc.) have the same
+  "byte-identical to idtravel, other sites' real design dropped" problem —
+  both bugs found this session were only caught because of a specific
+  real-world report, not a systematic sweep. Worth doing if more "page X
+  looks wrong on site Y" reports come in.
