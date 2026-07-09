@@ -10,8 +10,15 @@ defined( 'ABSPATH' ) || exit;
 // Block ID.
 $block_id = $block['id'] ?? '';
 
+// identity's real card content shows an excerpt, not the category/date
+// coda's real design uses - not a colour variant, so branched here.
+$is_identity = 'identity' === cb_site_template_suffix();
+
+// the front-page gradient variant is coda's own real feature - identity's
+// real source has no such concept and always renders the same dark
+// design regardless of page.
 $class = '';
-if ( is_front_page() ) {
+if ( ! $is_identity && is_front_page() ) {
 	$class = 'cb-latest-insights--front';
 }
 
@@ -19,11 +26,19 @@ $taxonomy_filter = get_field( 'taxonomy_filter' );
 
 ?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-latest-insights <?= esc_attr( $class ); ?>">
+	<?php if ( $is_identity ) : ?>
+	<h2 class="cb-latest-insights__pre-title mb-0">
+		<div class="id-container pt-4 pb-3 px-4 px-md-5">
+			LATEST NEWS &amp; INSIGHTS
+		</div>
+	</h2>
+	<?php else : ?>
 	<div class="cb-latest-insights__pre-title">
 		<div class="id-container pt-1 pb-0 px-4 px-md-5">
 			LATEST NEWS &amp; INSIGHTS
 		</div>
 	</div>
+	<?php endif; ?>
 	<div class="id-container py-5 px-4 px-md-5">
 
 		<div class="row g-5">
@@ -99,6 +114,14 @@ $taxonomy_filter = get_field( 'taxonomy_filter' );
 						?>
 					</div>
 					<div class="cb-latest-insights__content">
+						<?php if ( $is_identity ) : ?>
+						<h3 class="cb-latest-insights__title mb-0">
+							<?php the_title(); ?>
+						</h3>
+						<div class="cb-latest-insights__excerpt">
+							<?php echo wp_kses_post( wp_trim_words( get_the_excerpt(), 18, '...' ) ); ?>
+						</div>
+						<?php else : ?>
 						<div class="insight-type-grid__category">
 							<?php
 							$categories = get_the_category();
@@ -111,9 +134,10 @@ $taxonomy_filter = get_field( 'taxonomy_filter' );
 							<?php the_title(); ?>
 						</div>
 						<div class="cb-latest-insights__date d-flex align-items-center gap-2">
-							<?php echo get_the_date( 'j F Y' ); ?> 
+							<?php echo get_the_date( 'j F Y' ); ?>
  							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-n900.svg' ); ?>" width=14 height=13 alt="" />
 						</div>
+						<?php endif; ?>
 					</div>
 				</a>	
 			</div>

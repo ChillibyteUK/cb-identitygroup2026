@@ -90,3 +90,39 @@
     }
   }
 }
+
+// identity's real design is a completely different dark colour scheme
+// (coda's own real cb-featured-work.scss — the base above — is light/
+// lime-themed), with its own dedicated __pre-title element instead of a
+// utility-class h2 (see the is_identity branch in cb-featured-work.php).
+.cb-site-identity .cb-featured-work {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+
+  &__pre-title {
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    padding-block: 0.5rem;
+    color: var(--col-lime-500);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-300);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    background: linear-gradient(
+      hsl(var(--hsl-primary-black) / 0),
+      hsl(var(--hsl-primary-black) / 0.6) 20%,
+      hsl(var(--hsl-primary-black) / 0.8)
+    );
+  }
+
+  &__title {
+    color: var(--col-white);
+  }
+
+  &__desc {
+    color: var(--col-neutral-500);
+  }
+}

@@ -93,3 +93,36 @@
   //   color: var(--col-neutral-800);
   // }
 }
+
+// identity's real design is a completely different dark colour scheme
+// (coda's own real cb-latest-insights.scss — the base above — is white-
+// bg/light-themed), with real cards showing an excerpt instead of a
+// category/date (see the is_identity branch in cb-latest-insights.php).
+.cb-site-identity .cb-latest-insights {
+  background-color: var(--col-primary-black);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+
+  &__pre-title {
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    padding-block: 0.5rem;
+    color: var(--col-lime-500);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-300);
+    line-height: 1;
+  }
+
+  &__image-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    color: var(--col-white);
+    margin-bottom: 0;
+  }
+
+  &__excerpt {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-light);
+    color: var(--col-neutral-500);
+  }
+}

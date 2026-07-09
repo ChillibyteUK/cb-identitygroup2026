@@ -26,7 +26,7 @@ function cb_find_hero_subtitle( $blocks ) {
 	foreach ( $blocks as $block ) {
 		if (
 			isset( $block['blockName'] ) &&
-			in_array( $block['blockName'], array( 'acf/cb_case_study_hero', 'cb/cb-case-study-hero' ), true ) &&
+			in_array( $block['blockName'], array( 'acf/cb-case-study-hero', 'cb/cb-case-study-hero' ), true ) &&
 			! empty( $block['attrs']['data']['case_study_subtitle'] )
 		) {
 			return $block['attrs']['data']['case_study_subtitle'];

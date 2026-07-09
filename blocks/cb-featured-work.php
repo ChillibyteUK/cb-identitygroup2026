@@ -193,14 +193,31 @@ if ( ! empty( $posts ) && ! empty( $selected_services ) && is_array( $selected_s
 }
 
 if ( $q->have_posts() ) {
+	// identity's real markup differs structurally (a dedicated
+	// __pre-title element instead of a utility-class h2, no padding on
+	// the cards' id-container, a white arrow icon) - not just a colour
+	// variant, so branched here rather than adding another scoped CSS
+	// override on top of two conflicting class lists.
+	$is_identity        = 'identity' === cb_site_template_suffix();
+	$cards_wrap_class   = $is_identity ? 'id-container' : 'id-container px-4 px-md-5 py-4';
+	$arrow_src          = $is_identity ? 'arrow-wh.svg' : 'arrow-bk.svg';
+	$arrow_class        = $is_identity ? 'cb-services-nav__item-icon' : 'cb-featured-work__arrow';
 	?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-featured-work">
+	<?php if ( $is_identity ) : ?>
+	<h2 class="cb-featured-work__pre-title mb-0">
+		<div class="id-container py-4 px-4 px-md-5">
+			FEATURED WORK
+		</div>
+	</h2>
+	<?php else : ?>
 	<div class="has-lime-1000-border-bottom">
 		<div class="id-container py-3 px-4 px-md-5">
 			<h2 class="fs-300 fw-regular has-lime-900-color lh-tightest pt-1 pb-0 mb-0 text-uppercase" >Featured Work</h2>
 		</div>
 	</div>
-	<div class="id-container px-4 px-md-5 py-4">
+	<?php endif; ?>
+	<div class="<?= esc_attr( $cards_wrap_class ); ?>">
 		<div class="row g-2">
 		<?php
 		global $post;
@@ -223,7 +240,7 @@ if ( $q->have_posts() ) {
 				<?= get_work_image( get_the_ID(), 'cb-featured-work__image' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<div class="cb-featured-work__content px-4 px-md-5">
 						<div class="cb-featured-work__title">
-						<?php the_title(); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-bk.svg' ); ?>" width=23 height=21 alt="" class="cb-featured-work__arrow" />
+						<?php the_title(); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/' . $arrow_src ); ?>" width=23 height=21 alt="" class="<?= esc_attr( $arrow_class ); ?>" />
 						</div>
 						<div class="cb-featured-work__desc">
 						<?php
