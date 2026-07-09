@@ -1281,3 +1281,60 @@ idtravel unaffected.
 (`palette_sweep.js`, written to the session scratchpad, not committed to
 the repo) is reusable — rerun it any time a new colour-slug mismatch is
 suspected, rather than checking one slug at a time by hand.
+
+## 2026-07-10 continued: switched focus to idtravel — 2 more real bugs, a new failure mode
+
+User: "let's move onto the Travel context... hopefully now have an
+ever-decreasing snagging list", then reported `cb-hero-prop-cta` on
+`identitytravel.com` looks nothing like `idtravel-test.local`, plus
+`cb-recent-news` wrong colours. Both real, both fixed.
+
+- **`cb-hero-prop-cta`**: the 2026-07-08 entry's reasoning for replacing
+  idtravel's own SCSS with coda's wholesale ("colours/animations in each
+  are designed to pair with their own markup") doesn't hold up under direct
+  comparison — the GSAP animation/markup is byte-identical between both
+  real sources; only static colours/typography differ. The result was
+  idtravel's real design (solid `--col-ink` bg, white text, `--col-raspberry`
+  animated bars, `--fw-book` + letter-spacing) replaced entirely by coda's
+  (gradient bg, dark text, lime accents, light weight, no letter-spacing) —
+  on idtravel's own real site. identity doesn't have this block at all, so
+  only 2 sites involved. Restored idtravel's real design as the base
+  (unscoped) rules, moved coda's real design into `.cb-site-coda`, matching
+  the pattern used throughout this session. Verified directly against
+  `identitytravel.com`: bg `rgb(17,13,37)`, bar `rgb(227,36,71)`, text white
+  — exact matches. Coda's own gradient/lime design confirmed unaffected.
+
+- **`cb-recent-news` on idtravel — a genuinely new failure mode, not a
+  simple colour-token typo**: idtravel's own real theme.json has no
+  `"primary-black"` palette slug at all, so `has-primary-black-background-color`
+  (the class idtravel's own PHP switch-case emits by default) is dead code
+  on idtravel's real site — the block's real design is a fixed raspberry
+  colour scheme regardless of category, coming entirely from its dedicated
+  `_cb_recent_news.scss` file, unopposed. This shared theme's swap list
+  *does* define `"primary-black"` for idtravel (legitimately needed
+  elsewhere, e.g. `cb-case-study-hero`), so that same class now generates a
+  real, opposing WP-core `!important` rule here that idtravel's own site
+  never has to contend with. A plain `!important` on the block's own rule
+  wasn't enough — WP-core's rule is *also* `!important` at equal
+  specificity, and equal-specificity-and-importance ties resolve by DOM
+  order, which was going the wrong way. Fixed by compounding the selector
+  with every switch-case class idtravel's PHP can emit
+  (`&.has-primary-black-background-color, &.has-ink-background-color,
+  &.has-raspberry-background-color`), scoped under `.cb-site-idtravel` —
+  higher specificity wins regardless of load order. The site scope matters:
+  identity's own `cb-recent-news-identity.php` default case emits the exact
+  same `has-primary-black-background-color` class with a genuinely
+  different, correctly-intended dark colour — an unscoped compound selector
+  would have incorrectly overridden identity too. Verified directly against
+  `identitytravel.com/insights/bta-accreditation/`: section bg
+  `rgb(227,36,71)`, pre-title bg `rgb(204,25,57)` — exact matches. Confirmed
+  (via the selector's own logic — `.cb-site-idtravel` is absent on identity
+  pages) that identity's default case is unaffected.
+
+**New lesson**: not every "wrong colour" bug in this codebase is a
+mismatched token value. This one was a *specificity/cascade* bug — a
+utility class that's harmless dead-code on one real source site becomes
+load-bearing-but-wrong once the merge's shared swap list makes it resolve
+to something real. Worth remembering when a colour bug doesn't respond to
+a token-value fix: check whether a WP-core-generated `!important` rule is
+winning a specificity tie, not just whether the *value* is wrong.
