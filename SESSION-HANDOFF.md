@@ -50,15 +50,15 @@ ACF sync after field-group changes: `wp --path=<site> acf json sync --allow-root
 
 ### What's fixed (newest first — see dated entries below for full detail on each)
 
-`cb-content-grid` rebuilt entirely from real sources (was invented, matched neither site) + 5 theme.json palette gaps closed in one sweep → h2 specificity architecture bug + `cb-lined-title`/`cb-pushthrough`/`cb-our-brands`/`cb-testimonial` real bugs → taxonomy registration gap (`service`/`region` never registered, `theme` not on `case_study` — broke `cb-featured-work`, `cb-work-by-region`, and the `cb-related-work` `theme_filter` field) → critical theme.json colour-palette-wipe bug (was silently dropping 48 of 59 colours site-wide) → 4 ACF fields restored from the original merge → 31 of 39 identity block types migrated to the standard `acf/` namespace.
+9-block re-audit against real sources (`cb-about-detail`, `cb-service-detail`, `cb-dept-email`, `cb-locations`, `cb-what-we-delivered`, `cb-gradient-intro`, `cb-full-case-study`, `cb-case-study-key-stats`, `cb-work-by-region`) + confirmed the consolidated `cb-related-work` `theme_filter` field actually works end-to-end now that the taxonomy fix has landed → `cb-content-grid` rebuilt entirely from real sources (was invented, matched neither site) + 5 theme.json palette gaps closed in one sweep → h2 specificity architecture bug + `cb-lined-title`/`cb-pushthrough`/`cb-our-brands`/`cb-testimonial` real bugs → taxonomy registration gap (`service`/`region` never registered, `theme` not on `case_study` — broke `cb-featured-work`, `cb-work-by-region`, and the `cb-related-work` `theme_filter` field) → critical theme.json colour-palette-wipe bug (was silently dropping 48 of 59 colours site-wide) → 4 ACF fields restored from the original merge → 31 of 39 identity block types migrated to the standard `acf/` namespace.
 
 ### Explicitly deferred / not yet done
 
 - `cb-content-grid-v2` (45 identity instances) — different schema, not investigated.
 - 6 more identity block types still on the old `cb/` namespace: `cb-awards-slider`, `cb-latest-insights-expo`, `cb-related-work-expo`, `cb-related-work-sports` (needs a content decision, not just a mechanical migration), `cb-sport-logos`, `cb-styled-text-image`.
-- **Not yet re-audited against real sources** (assume similar bugs until checked, given the pattern found in every block actually checked so far): `cb-about-detail`, `cb-service-detail`, `cb-dept-email`, `cb-locations`, `cb-what-we-delivered`, `cb-gradient-intro`, `cb-full-case-study`, `cb-case-study-key-stats`, `cb-work-by-region`.
 - Identity's `/news/` page renders ~6× taller than expected — template-driven, not block-related, never root-caused.
 - Any DB backups from a prior session's scratchpad won't exist in a new session — take a fresh `wp db export` before any risky migration work.
+- `cb-case-study-key-stats`'s missing-image fallback path (`img/contact-addresses-bg.jpg`) doesn't match identity's real fallback (`blocks/cb-work-index/bg.jpg`, a file that doesn't exist in this flat-file theme structure) — low-impact (only shows when a content editor hasn't set a custom background image), flagged 2026-07-10 continued but not changed since both are valid existing images and no real content currently hits this path.
 
 ---
 
@@ -983,3 +983,86 @@ Coda's own copy adds one extra field (`title`, on `multi-module_row`'s
   genuinely a different block/schema, not yet investigated) and the other
   6 previously-identified deferred block types. `cb-content-grid` itself
   is done.
+
+## 2026-07-10 continued: 9-block re-audit against real sources — 6 more confirmed bugs found and fixed
+
+Picked up the resume checklist's next item: the 9 block types ported on
+2026-07-08 that were never individually re-verified against their real
+source files (`cb-about-detail`, `cb-service-detail`, `cb-dept-email`,
+`cb-locations`, `cb-what-we-delivered`, `cb-gradient-intro`,
+`cb-full-case-study`, `cb-case-study-key-stats`, `cb-work-by-region`), plus
+re-checked the consolidated `cb-related-work` `theme_filter` field now that
+the taxonomy gap is fixed. Went through each one PHP + field-group JSON +
+SCSS against whichever real source theme(s) actually have it (`cb-about-detail`/
+`cb-service-detail`/`cb-case-study-key-stats` are identity-only;
+`cb-dept-email`/`cb-locations`/`cb-what-we-delivered`/`cb-gradient-intro`/
+`cb-full-case-study` are coda-only), verifying every fix with
+`getComputedStyle` via a Playwright scratch script against real published
+pages (not screenshots), per the session's own methodology rules. 6 of the
+9 had real, confirmed bugs; 3 were clean.
+
+- **`cb-about-detail`**: intro row's title colour used `--col-secondary`
+  (`#2f13ba`, dark blue) instead of `--col-purple-600` (`#8b7ff0`, light
+  purple) — identity's real markup applies `has-purple-600-color`, a
+  completely different palette slug than whoever wrote this block's SCSS
+  guessed. Also the section's 3 borders used opacity `0.5` where identity's
+  real file hardcodes `rgba(255,255,255,0.4)` — `0.5`, not `0.4`. Both fixed
+  and verified (`rgb(139,127,240)` and `rgba(248,248,241,0.4)` exactly) on
+  identity's real `/about/` page.
+- **`cb-service-detail`**: same border-opacity bug (`0.5` → `0.4`, 4
+  occurrences). The block's `--col-brand` colour substitution for identity's
+  real `--col-green-400` was already correct (identical hex on both sites).
+  Verified live on a real `/services/*` page.
+- **`cb-dept-email`**: border-top and link colour used `--col-brand-dark`
+  (`#4c8200` identity/coda) instead of `--col-lime-1000` (`#3d6900`) — these
+  are two genuinely different dark-green tokens, not the same value under a
+  different name; coda's real block uses `has-lime-1000-border-top`
+  specifically. Fixed, verified `rgb(61,105,0)` = `#3d6900` on coda's real
+  Contact Us page.
+- **`cb-locations`**: identical bug to `cb-dept-email` (`--col-brand-dark` →
+  `--col-lime-1000`) in the row border. Fixed and verified the same way.
+- **`cb-what-we-delivered`**: the more serious find of this pass — 5
+  border/overlay declarations used `hsl(var(--hsl-brand) / X)` (`85 100% 66%`,
+  a vivid lime green) where coda's real file hardcodes
+  `rgba(255,255,255,X)` (a neutral white overlay). This wasn't a subtle
+  shade mismatch like the others; it changed the whole visual character of
+  the block from a white-tinted translucent border/background to a
+  green-tinted one, sitewide. Fixed by substituting `--hsl-neutral-050`
+  (the established white-token pattern used everywhere else in this theme)
+  for `--hsl-brand`, preserving the real opacities (0.1/0.4) exactly.
+  Verified live on a real coda case study page — borders now render
+  `rgba(248,248,241,X)` (off-white) instead of green.
+- **`cb-full-case-study`**: the hero title `<div>` was missing the
+  `has-700-font-size` class present in both coda's real source *and* this
+  shared theme's own sibling file (`cb-work-index.php`, which correctly
+  includes it for the same markup pattern) — an internal inconsistency
+  within the shared theme itself, not just a source mismatch. Fixed. No real
+  published content uses this block yet on any test site (only the ACF
+  field-group definition post matched a content search), so verified via a
+  direct `render_block()` call through `wp eval` instead of a live page.
+- **`cb-case-study-key-stats`**: same border-opacity bug again (`0.5` → `0.4`,
+  4 occurrences), plus a font-weight token mix-up — `font-weight:
+  var(--fw-semibold)` (600) instead of `var(--fw-semi)` (500), the exact
+  same `--fw-semi`/`--fw-semibold` confusion the 2026-07-08 Phase C entry
+  already flagged and reverted once in a different file, recurring here
+  independently. Fixed both, verified `fontWeight: "500"` and
+  `rgba(248,248,241,0.4)` borders on a real identity case study page.
+- **`cb-gradient-intro`**: confirmed clean — field keys match, the
+  `--grad-main` token substitution for coda's real `.grad-main` utility
+  class resolves to byte-identical gradient stops, verified via
+  `getComputedStyle().backgroundImage` on a real coda `/about/` page.
+- **`cb-work-by-region`**: confirmed clean and, more importantly, confirmed
+  *working* — this block was completely broken before the 2026-07-08
+  taxonomy fix (the `region` taxonomy didn't exist at all). Verified on a
+  real identity page (`/middle-east/`) that it now renders real case study
+  cards correctly filtered by region.
+- **`cb-related-work`'s `theme_filter` field**: no real content currently
+  sets a non-empty value (the term-ID mapping for the old expo/sports
+  variants is still the deferred content decision it always was), so
+  couldn't verify via a real page. Verified instead via `render_block()`
+  with two different real `theme` term IDs passed directly — got two
+  different, correctly-filtered card sets back, confirming the taxonomy
+  relationship this field depends on genuinely works now (it couldn't have,
+  before the 2026-07-08 fix, since `theme` wasn't registered for
+  `case_study` at all).
+- All fixes deployed to all 3 test sites; CSS rebuilt cleanly each time.

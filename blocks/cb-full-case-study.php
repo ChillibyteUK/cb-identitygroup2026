@@ -50,7 +50,7 @@ $is_front = is_front_page();
 		$fw = $is_front ? 'fw-light' : 'fw-semi';
 		?>
 			<div class="work-index-hero__content px-4 px-md-5">
-				<div class="work-index-hero__card-title <?php echo esc_attr( $fw ); ?>">
+				<div class="work-index-hero__card-title has-700-font-size <?php echo esc_attr( $fw ); ?>">
 					<?php echo esc_html( get_the_title( $bg_case_study ) ); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" width="23" height="21" alt="" class="cb-services-nav__item-icon" />
 				</div>
 				<div class="work-index-hero__card-desc">

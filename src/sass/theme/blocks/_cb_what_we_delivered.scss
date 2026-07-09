@@ -1,8 +1,8 @@
 .cb-what-we-delivered {
   position: relative;
   background-color: var(--col-white);
-  border-top: 1px solid hsl(var(--hsl-brand) / 0.1);
-  border-bottom: 1px solid hsl(var(--hsl-brand) / 0.4);
+  border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.1);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
   isolation: isolate;
   overflow: hidden;
 
@@ -18,11 +18,11 @@
   }
 
   &__container {
-    background-color: hsl(var(--hsl-brand) / 0.1);
+    background-color: hsl(var(--hsl-neutral-050) / 0.1);
   }
   &__header {
     background-color: hsla(var(--hsl-primary-black) / 0.3);
-    border-bottom: 1px solid hsl(var(--hsl-brand) / 0.4);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
     color: var(--col-brand);
     padding-block: 1rem;
     line-height: 1;
@@ -46,7 +46,7 @@
     &[data-aos] {
       animation-name: aos-fade-up;
     }
-    border-bottom: 1px solid hsl(var(--hsl-brand) / 0.4);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
     font-weight: var(--fw-light);
     font-size: var(--fs-600);
     padding-block: 0.5rem 0.25rem;

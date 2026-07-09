@@ -2,7 +2,7 @@
   position: relative;
   background-color: var(--col-primary-black);
   border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.1);
-  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
   isolation: isolate;
   overflow: hidden;
 
@@ -26,7 +26,7 @@
     font-weight: var(--fw-regular);
     padding-block: 1rem;
     line-height: 1;
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
   }
   &__grid-wrapper {
     display: grid;
@@ -47,9 +47,9 @@
   &__stat {
     padding-block: 1rem 0.5rem;
     padding-inline: 1.25rem;
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
     font-size: var(--fs-900);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--fw-semi);
     color: var(--col-brand);
     line-height: 1;
     white-space: nowrap;
@@ -66,7 +66,7 @@
   &__descriptor {
     padding-block: 0 1rem;
     padding-inline: 1.25rem;
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
     font-size: var(--fs-500);
     font-weight: var(--fw-light);
     color: var(--col-white);
