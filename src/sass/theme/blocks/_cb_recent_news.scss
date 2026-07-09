@@ -23,27 +23,36 @@
 }
 
 // idtravel's own real theme.json has no "primary-black" palette slug, so
-// has-primary-black-background-color (and the other switch-case classes
-// idtravel's base cb-recent-news.php can emit) are dead code there — this
-// block's real design is always raspberry regardless of category. This
-// shared theme's swap list does define "primary-black" for idtravel
-// (needed by other blocks like cb-case-study-hero), so those classes now
-// generate real, opposing !important rules here too. identity's own
-// cb-recent-news-identity.php's default case emits the exact same
-// has-primary-black-background-color class with a genuinely different,
-// intended-to-apply colour, so this override must stay scoped to idtravel
-// only — a bare compound selector without the site scope would also hit
-// identity's default case.
+// has-primary-black-background-color (the class idtravel's own
+// cb-recent-news.php emits for the "news"/default category) is dead code
+// there — that specific case's real design is raspberry, coming entirely
+// from this file's base rules above, unopposed. This shared theme's swap
+// list does define "primary-black" for idtravel (needed by other blocks
+// like cb-case-study-hero), so that class now generates a real, opposing
+// !important rule here too, which needs neutralising.
+//
+// has-ink-background-color/has-neutral-800-background-color (the "tmc"
+// category) and has-raspberry-background-color/has-raspberry-450-
+// background-color (the "people" category) are NOT the same situation —
+// "ink"/"neutral-800"/"raspberry"/"raspberry-450" ARE real theme.json
+// slugs on idtravel's own site (confirmed against
+// https://identitytravel.com/insights/what-travel-data-should-your-business-be-tracking/,
+// which renders true ink/neutral-800 for its "tmc"-category recent-news
+// section, not raspberry) — so those classes correctly win already and
+// must NOT be forced to raspberry too. An earlier pass over-generalised
+// "always raspberry" from testing only the news/default category.
+//
+// identity's own cb-recent-news-identity.php default case emits the exact
+// same has-primary-black-background-color class with a genuinely
+// different, intended-to-apply colour, so this override must stay scoped
+// to idtravel only — a bare compound selector without the site scope
+// would also hit identity's default case.
 .cb-site-idtravel .cb-recent-news {
-    &.has-primary-black-background-color,
-    &.has-ink-background-color,
-    &.has-raspberry-background-color {
+    &.has-primary-black-background-color {
         background-color: var(--col-raspberry) !important;
     }
 
-    &__pre-title.has-primary-black-background-color,
-    &__pre-title.has-neutral-800-background-color,
-    &__pre-title.has-raspberry-450-background-color {
+    &__pre-title.has-primary-black-background-color {
         background-color: var(--col-raspberry-600) !important;
     }
 }
