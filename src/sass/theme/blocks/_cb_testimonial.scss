@@ -132,3 +132,9 @@
     }
   }
 }
+
+// idtravel's own real design never uppercases the author name (identity's
+// and coda's both do) — confirmed against identitytravel.com directly.
+.cb-site-idtravel .cb-testimonial__author {
+  text-transform: none;
+}

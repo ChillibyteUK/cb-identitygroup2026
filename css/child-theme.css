@@ -24064,6 +24064,10 @@ span a {
   }
 }
 
+.cb-site-idtravel .cb-testimonial__author {
+  text-transform: none;
+}
+
 .content-grid {
   font-size: var(--fs-body);
   font-weight: var(--fw-light);
