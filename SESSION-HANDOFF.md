@@ -1434,3 +1434,52 @@ every switch-case/category combination in this file against all 3 real
 sources, done once, rather than continuing to find these one at a time —
 is no longer just "worth doing eventually", it's clearly the better use of
 time at this point.
+
+## 2026-07-10 continued: idtravel's real cb-content-grid schema was never checked — a much bigger version of the same lesson
+
+User: `cb-content-grid` missing entirely in 3 places on
+`idtravel-test.local/business-travel/` vs `identitytravel.com/business-travel/`.
+Root cause, once checked: idtravel has its **own real, third, and
+completely different** `cb-content-grid` schema — a `rows` repeater with a
+`modules` sub-repeater (12 module types: h2/h3/text/list/quote/links/
+logo_grid/qa/image/video/button/empty, plus a `background_image` field
+with a scroll-parallax effect) — genuinely different from identity's/
+coda's shared `grid_rows` flexible_content schema. The 2026-07-10
+`cb-content-grid` rebuild (earlier today, same file this handoff already
+called "the biggest deferred item is done") checked identity's and coda's
+real sources thoroughly but never looked at idtravel's own real
+`blocks/cb-content-grid.php` at all — an omission of an entire third
+source, not a mismatched value inside one. Every one of idtravel's 3 real
+content-grid instances on that page silently rendered nothing after the
+rebuild, for the same reason as the *original* bug the rebuild was meant
+to fix: the saved data's field names didn't match the currently-registered
+field group.
+
+Fixed properly this time by reading idtravel's real field group and PHP
+template in full: added idtravel's real fields (`background_image`,
+`rows` with all real sub-field keys preserved) into the existing field
+group alongside `grid_rows`, added `cb-content-grid-idtravel.php` (ported
+verbatim), and made `cb-content-grid.php` route by **which field actually
+has data** (`get_field('rows')` non-empty → idtravel's template; else the
+existing `grid_rows` logic) rather than by `cb_site` — the right axis
+here, since a schema is tied to which real site's content created it, not
+to which site is currently active. No CSS scoping needed: idtravel's real
+design uses `.cb-content-grid` (with the `cb-` prefix), identity's/coda's
+uses bare `.content-grid` — the class names themselves never collided.
+
+**Verified against `identitytravel.com/business-travel/` directly**: all
+3 real instances (a plain h2/text/list row; a quote+video row; and the
+background-image/parallax row with image+quote+button) now render
+identically — confirmed via direct screenshot comparison, not just
+"element exists". Re-verified identity's and coda's own real
+`grid_rows`-based content-grid pages are unaffected.
+
+**This is the same lesson as the news/recent-news family above, just at a
+larger scale**: "checked against the real sources" needs to mean *all* the
+real sources a block is registered for, every time — not just the two
+that happened to be in scope for the task that prompted the check.
+`cb-content-grid` was explicitly flagged in this file's own "What's fixed"
+summary as fully done; it wasn't, for a third of the sites it's actually
+used on. Worth treating "block registered on 3 sites, only 2 checked" as
+a specific, nameable failure mode to watch for on every remaining block
+audit, not just a coincidence that happened twice today.
