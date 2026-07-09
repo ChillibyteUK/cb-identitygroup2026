@@ -22647,6 +22647,9 @@ header:has(.navbar-collapse.collapse.show) {
 .insight-type-grid.tmc-index .insight-type-grid__date {
   color: var(--col-ink);
 }
+.insight-type-grid.tmc-index .insight-type-grid__card:hover {
+  color: var(--col-ink);
+}
 
 .cb-site-identity .news-hero h1, .cb-site-identity .news-hero .h1 {
   border-top: 1px solid hsl(var(--hsl-neutral-050)/0.4);

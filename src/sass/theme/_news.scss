@@ -114,6 +114,13 @@
     .insight-type-grid__date {
       color: var(--col-ink);
     }
+    // this light-bg variant's real hover never changes colour (idtravel's
+    // own real source has no hover override here at all — --col-card-hover
+    // is a shared theme addition for the dark-bg variant and would
+    // otherwise turn this text white-on-white-adjacent on hover).
+    .insight-type-grid__card:hover {
+      color: var(--col-ink);
+    }
   }
 }
 
