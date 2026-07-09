@@ -1483,3 +1483,46 @@ summary as fully done; it wasn't, for a third of the sites it's actually
 used on. Worth treating "block registered on 3 sites, only 2 checked" as
 a specific, nameable failure mode to watch for on every remaining block
 audit, not just a coincidence that happened twice today.
+
+## 2026-07-10 continued: switched to identity's homepage — the exact same failure mode, plus one sitewide bug found by chance
+
+User: on identity's homepage, `cb-featured-work` and `cb-latest-insights`
+both wrong in several specific ways (listed exactly, matching what direct
+comparison against identity's own real source confirmed): featured-work's
+cards' `id-container` had padding classes identity's real markup doesn't;
+the "Featured Work" title used the wrong colour; card titles sat on the
+wrong (lime, not dark) gradient; `.cb-featured-work__desc` was rendering
+empty; latest-insights was the wrong colour and showed a category/date
+instead of identity's real excerpt. All confirmed and fixed — same
+pattern as `cb-content-grid`/`cb-hero-prop-cta` above: the shared base for
+both blocks turned out to be coda's real design faithfully (verified by
+diffing directly, byte-for-byte in `cb-latest-insights`'s case), with
+identity's genuinely different real design never checked or ported in at
+all. Branched both blocks' PHP for `cb_site === 'identity'` and added
+`.cb-site-identity` scoped SCSS, matching the session's established
+pattern.
+
+**The `.cb-featured-work__desc` emptiness led to a sitewide bug, not a
+per-site one**: `cb_find_hero_subtitle()` (the shared helper in
+`inc/cb-utility.php`, extracted from 4 duplicate copies back in Phase A)
+checks for block name `'acf/cb_case_study_hero'` (underscored) — but the
+real registered name, per `acf_slugify()`'s hyphen conversion (the exact
+mechanism the very first entry in this handoff documented), is
+`'acf/cb-case-study-hero'` (hyphenated). It never matched on any site,
+silently falling through to an excerpt fallback that's also usually empty
+(most case studies rely on the hero subtitle, not a manually-set excerpt).
+Fixed the one string; this likely fixes the same silent-empty-text problem
+anywhere else this shared helper is called (`cb-related-work` and others),
+not just `cb-featured-work` on identity — worth spot-checking those too
+if any "missing text" reports come in on other blocks.
+
+Also found and removed a second real bug while verifying: `cb-latest-
+insights`'s "front page gets a gradient background" behaviour is coda's
+own genuine, real feature (confirmed in coda's own real PHP+SCSS) that
+the shared PHP was applying unconditionally to *every* site's front page,
+including identity's, which has no such concept in its own real design at
+all. Scoped the `--front` class to non-identity sites; confirmed coda's
+own gradient is unaffected.
+
+Verified directly against `https://identityglobal.com/`: both blocks'
+colours, markup structure, and real desc/excerpt text now match exactly.
