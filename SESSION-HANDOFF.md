@@ -1338,3 +1338,36 @@ load-bearing-but-wrong once the merge's shared swap list makes it resolve
 to something real. Worth remembering when a colour bug doesn't respond to
 a token-value fix: check whether a WP-core-generated `!important` rule is
 winning a specificity tie, not just whether the *value* is wrong.
+
+## 2026-07-10 continued: fixing that idtravel bug immediately surfaced a third, invented value
+
+User: hover on `cb-recent-news` cards on idtravel should stay white, not
+turn the same colour as the background. Direct consequence of the fix
+above: `.insight-type-grid__card:hover` used `color: var(--col-brand)`,
+which matches **none** of the 3 real sources' actual intent — identity's
+real rule is explicit `var(--col-white)`, coda's is explicit
+`var(--col-primary-black)`, and idtravel's real rule references
+`--col-primary-250`, a token genuinely undefined on idtravel's own live
+site (confirmed via `getComputedStyle` on `identitytravel.com` returning
+an empty string for it) — meaning idtravel's real hover accidentally never
+changes colour at all, just inherits the ambient white text. `--col-brand`
+happens to equal idtravel's own `--col-raspberry` exactly, which is now
+also `cb-recent-news`'s real background colour after the fix above —
+raspberry-on-raspberry, invisible. The invented value had been silently
+wrong all along; today's other fix just made it visible.
+
+Added `--col-card-hover` (identity/idtravel both correctly fall back to
+`--col-white`; coda gets an explicit `--col-primary-black` override) and
+pointed the hover rule at it. Verified live: idtravel and identity hover
+stays `rgb(255,255,255)` (exact match with `identitytravel.com`), coda
+hover is `rgb(13,13,12)` (its real primary-black).
+
+**Pattern to watch for going forward**: today's `cb-hero-prop-cta`,
+`cb-recent-news` background, and this hover colour were three separate
+bugs in the same general area (identity/coda/idtravel's news + recent-news
+system), each surfaced by fixing the previous one and re-verifying rather
+than declaring victory early. Worth a deliberate pass over the rest of
+`_news.scss`/`_cb_recent_news.scss` (the `.single-blog` category-colour
+tokens, `--_link`/`--_cat-colour` etc.) against all 3 real sources rather
+than waiting for the next one-off report — same lesson as the theme.json
+palette sweep, applied to this specific file.
