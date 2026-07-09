@@ -1394,3 +1394,43 @@ token/rule, check every *other* real usage of that same class/selector
 before moving on — one dark-bg case and one light-bg case sharing a class
 name is exactly the kind of thing that looks "done" after the first
 verification but isn't.
+
+## 2026-07-10 continued: the cb-recent-news idtravel fix had itself over-generalised — same lesson, one more time
+
+User: idtravel's `single.php` "Other Related Articles" section (the "tmc"
+category) doesn't match `identitytravel.com/insights/what-travel-data-should-your-business-be-tracking/`.
+Direct cause: the original `cb-recent-news` fix (verified only against a
+*"news"*-category post) concluded "idtravel's real design is always
+raspberry regardless of category" and forced every switch-case class
+(`has-primary-black-background-color`, `has-ink-background-color`,
+`has-raspberry-background-color`, plus the matching pre-title classes) to
+raspberry. Checking the real "tmc"-category page directly disproved the
+"always" — production renders true ink (`rgb(17,13,37)`) and neutral-800
+(`rgb(59,54,82)`) there, not raspberry. Root cause, once actually checked:
+`"ink"` and `"neutral-800"` **are** real theme.json palette slugs on
+idtravel's own site (confirmed in idtravel's own `theme.json`), unlike
+`"primary-black"`, which genuinely is absent — so `has-ink-background-color`
+already resolves correctly there with no interference, and forcing it to
+raspberry was actively wrong, not just unnecessary. Same check for the
+"people" category's `has-raspberry-background-color`/`has-raspberry-450-
+background-color` confirmed those are also real, correct idtravel slugs
+(`rgb(227,36,71)` / `rgb(236,74,103)`, exact matches) needing no override
+either. Narrowed the compound-selector override to only
+`has-primary-black-background-color` and its pre-title counterpart — the
+one genuine gap. Verified all three real category pages
+(`what-travel-data-should-your-business-be-tracking` = tmc,
+`mark-eaglesham` = people, plus the original news-category post) against
+`identitytravel.com` directly; all three now match exactly.
+
+**The actual lesson, restated a third time today**: "verified on one real
+example" is not "verified". Every fix in this `_news.scss`/
+`_cb_recent_news.scss` family today turned out to have at least one
+sibling case (dark-bg vs light-bg, or a different category switch-case)
+that the first verification pass didn't cover, and every single one of
+those siblings had *already diverged* by the time it was checked. Given
+this is now the fourth surprise in the same file in one session, the
+recommendation from two entries back — a deliberate, complete pass over
+every switch-case/category combination in this file against all 3 real
+sources, done once, rather than continuing to find these one at a time —
+is no longer just "worth doing eventually", it's clearly the better use of
+time at this point.
