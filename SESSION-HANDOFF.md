@@ -1197,3 +1197,49 @@ The `.cb-site-{slug}` CSS-scoping approach already used throughout this
 theme is the right pattern to reach for immediately once one site's design
 divergence is confirmed real, not just for whichever site happened to get
 reported first.
+
+## 2026-07-10 continued: cb-recent-news block had the identical gap — applied the lesson immediately this time
+
+User reported the recent-posts section at the bottom of
+`idcoda-test.local/news/coda-joins-experience-agency-identity/` didn't
+match `identitycoda.com/news/coda-joins-experience-agency-identity/` — on
+the test site it rendered as an empty black "LATEST NEWS AND INSIGHTS"
+block with no cards; production shows a populated, light-cream "RECENT
+INSIGHTS" section. Same root cause as `index.php`/`single.php`:
+`blocks/cb-recent-news.php` was byte-identical to idtravel's own file
+(`theme`/`person` priority query, `news`/`tmc`/`people` categories) —
+identity's and coda's real version is a much simpler single-slug-filtered
+query with a completely different category set
+(`press`/`insights`/`perspectives`/`white-paper`).
+
+This is an ACF block template with a fixed `render_template` path, not a
+root theme file, so couldn't branch with `get_template_part()` the same
+way — that wraps the include in a separate function's scope, which would
+lose the `$block` local variable ACF injects before including this file.
+Used a bare `require` instead (executes directly in the calling file's own
+scope, so `$block` stays visible). Added `cb-recent-news-identity.php` and
+`cb-recent-news-coda.php` (identical to each other except the
+untagged-post default case's colours/title, same as the `single-*.php`
+pair). Fixed one more pre-existing bug found while porting: coda's own
+real source references a non-existent `arrow-nbk.svg` (confirmed absent
+from coda's own repo too) — pointed at the real, existing `arrow-bk.svg`
+instead rather than reproduce the 404.
+
+Verifying against a real post surfaced yet another theme.json palette
+gap in the same family as the earlier 48-colour wipe and the `lime-600`/
+`neutral-1100` gaps found on 2026-07-08/09: the `neutral-100` slug (used by
+the untagged-post default case's background) was never added to
+`cb_filter_editor_theme_json()`'s per-site swap list, so it rendered
+idtravel's own value (`#f0eff4`) on every site instead of identity's/coda's
+real shared value (`#f8f7f0`). Added the missing swap entries for both.
+
+**Applied the previous entry's lesson immediately this time**: checked
+identity's own recent-news rendering (not just coda's, the one reported)
+before calling it done — confirmed working (`RECENT NEWS` /
+`has-purple-900-background-color` for a real Press-category post,
+matching its real source exactly) — and confirmed idtravel unaffected.
+
+Verified directly against
+`identitycoda.com/news/coda-joins-experience-agency-identity/`: identical
+section title, background colour (`rgb(248,247,240)` exact match), and
+3-card layout.
