@@ -21,7 +21,11 @@ $section_classes = array( 'cb-pushthrough' );
 $line_class      = 'dark-lines';
 
 if ( $background_url ) {
+	// Both class names: idtravel's own SCSS targets `--has-bg`, coda's own
+	// targets bare `.has-bg` — output both so either site's real background-
+	// image rule actually applies.
 	$section_classes[] = 'cb-pushthrough--has-bg';
+	$section_classes[] = 'has-bg';
 }
 
 if ( ! empty( $block['className'] ) ) {

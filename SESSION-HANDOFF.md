@@ -686,3 +686,103 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
     actually exists for case studies.
 - All fixes deployed to all 3 test sites; CSS rebuilt, rewrite rules flushed
   (taxonomy `public`/`publicly_queryable` changed).
+
+## 2026-07-09: coda /about/ sweep — cb-lined-title never matched real source, and a new systemic bug class (ACF field-key mismatches)
+
+- User pushed back on the review process ("I thought you were comparing with
+  the old and new themes?") after spotting 5 more issues on
+  `idcoda-test.local/about/` in one pass: `cb-lined-title`, `cb-pushthrough`
+  (styling + text size/colour), `cb-our-brands` (completely wrong, missing
+  logos), `cb-testimonial` (reported "still wrong"). Fair critique — started
+  cross-checking against the real production site the user linked
+  (`https://identitycoda.com/`) in addition to the local theme-swap
+  comparison, not just reacting to individual reports.
+- **`cb-lined-title` was never actually ported from a real source** — unlike
+  most of the 14 blocks from the 2026-07-08 port, this one's PHP+SCSS was
+  invented from scratch (big `--fs-850`/`--fw-light` heading with a dedicated
+  `.cb-lined-title` class). coda's real template (used verbatim, matches the
+  "OUR JOURNEY" label style seen site-wide) is a small uppercase label —
+  `has-850-font-size`/`fw-light` on the *section*, `fs-300 fw-regular
+  lh-tightest text-uppercase` on the actual `<h2>`, no dedicated class at
+  all. Rewrote the PHP template to match coda's real markup exactly and
+  deleted the now-fully-dead `_cb_lined_title.scss` (removed its `@import`
+  too). Confirmed via side-by-side screenshot against production — now an
+  exact visual match.
+- **`cb-pushthrough`**: same "one source's whole design kept, other's
+  dropped" pattern already seen elsewhere this session. The shared base
+  SCSS is idtravel's own (transparent bg, light/dark-lines toggle,
+  `--fs-600`/`fw-book` title, `--col-purple-400` link, targets
+  `.cb-pushthrough--has-bg`). coda's real design: solid
+  `--col-primary-black`/`--col-white`, no toggle, a scoped `h2` rule at
+  `--fs-850`/`fw-light`, `--col-lime-300`/`-400` hover link, and — critically
+  — coda's own SCSS targets bare `.has-bg`, which the shared PHP template
+  never outputs (only `--has-bg`), so coda's background-image styling could
+  never have applied at all. Added a full `.cb-site-coda .cb-pushthrough`
+  override, and changed the PHP template to output *both* class names so
+  either site's rule matches regardless of which naming convention its own
+  SCSS uses.
+- **`cb-our-brands` — two independent bugs stacked on the same block**:
+  1. **Missing logos root cause: ACF field-KEY mismatch, not a missing-field
+     or template problem.** The shared theme's `group_cb_our_brands.json`
+     assigned the `brands` repeater (and its `brand_logo`/`brand_name`/`link`
+     sub-fields) hand-typed deterministic keys
+     (`field_cb_our_brands_brands` etc.) instead of preserving the real keys
+     from whichever source theme this block was originally copied from. Real
+     saved content — on **both** coda's and identity's live about pages —
+     references the *original* keys (`field_6903908fa01eb` for `brands`,
+     etc.), which don't exist in the currently-registered field group.
+     **Proved this empirically**: simulated the exact saved block data via
+     `acf_setup_meta()` + `have_rows()`/`get_field()` directly — with the
+     mismatched key, `have_rows('brands')` returns `false` and
+     `get_field('brands')` returns `null`, even though the raw row-count and
+     sub-field data are present in the block's own JSON. Swapping in the
+     real key made it resolve correctly (7 rows, correct image IDs, correct
+     names) in the same test. Fixed by remapping the field group's keys to
+     match the real saved keys — confirmed identity's own saved content uses
+     the *identical* keys (this block's PHP template literally has `@package
+     cb-identity2025` in its docblock — coda copied it verbatim from
+     identity originally — so one key fix resolves both sites, no
+     per-site conflict).
+     **This is a new, previously-undiscovered systemic risk class**:
+     simple scalar fields (text/radio/select) resolve correctly by *name*
+     regardless of key mismatches (confirmed separately for
+     `cb-testimonial`'s `style` field, which has the exact same
+     key-mismatch pattern but rendered fine) — but **repeaters, and likely
+     image/relationship/other complex field types, silently return
+     null/false on a key mismatch, with no PHP warning or error at all.**
+     Any other block field ported with an invented key instead of the real
+     one is a candidate for this same silent failure. Not yet
+     systematically audited across all ~60 field groups — flagged as a
+     priority follow-up.
+  2. **Wrong visual design, same "wholesale one source, other dropped"
+     pattern**: the base `_cb_our_brands.scss` had no section-level
+     background/text colour at all (relied on Gutenberg colour-picker
+     support) and used light-hairline (`hsl(--hsl-neutral-050)`) borders —
+     this design doesn't match *either* real source. Both identity's and
+     coda's own real `cb-our-brands` are a fixed **dark** section
+     (`--col-neutral-1100` bg, white text, `rgba(255,255,255,0.4)`
+     borders, `--col-lime-300` pre-title/closing-card text) — nobody needs
+     the light/editor-driven version. Replaced the base file's colours
+     wholesale to match (kept the existing grid-based card layout, which was
+     already close to correct).
+  3. **`--col-lime-600` gap found and fixed yesterday also covers this
+     block's mismatch discovery pattern** — same root cause class
+     (invented/wrong values not checked against real per-site sources)
+     recurring across unrelated blocks, reinforcing that the original
+     Phase A merge + the 2026-07-08 "port 19 missing blocks" pass both need
+     systematic re-verification against real sources, not just reactive
+     fixes as reports come in.
+- **`cb-testimonial`**: re-screenshotted fresh (both instances on the about
+  page) after redeploying yesterday's fix + rebuilding CSS — both now render
+  correctly (dark green text on white/lime-200 badges, matching production's
+  lime-green "Together, we deliver..." reference text exactly). Likely
+  "still wrong" was reported against a pre-redeploy state. No further code
+  change needed here, but flagged for the user to re-check live.
+- **Not yet done**: systematic re-audit of the other ~10 blocks from the
+  2026-07-08 port (`cb-about-detail`, `cb-service-detail`, `cb-dept-email`,
+  `cb-locations`, `cb-what-we-delivered`, `cb-gradient-intro`,
+  `cb-full-case-study`, `cb-case-study-key-stats`, `cb-work-by-region`, the
+  consolidated `cb-related-work`) against their real sources — given
+  `cb-lined-title` turned out to be entirely invented and `cb-our-brands`
+  had a silent field-key bug, confidence in the rest of that batch is now
+  low without direct verification. Should be next.

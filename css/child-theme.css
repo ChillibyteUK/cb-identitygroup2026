@@ -22330,6 +22330,35 @@ header:has(.navbar-collapse.collapse.show) {
   font-size: var(--fs-600);
   font-weight: var(--fw-light);
 }
+.cb-site-coda .cb-pushthrough {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.4);
+}
+.cb-site-coda .cb-pushthrough.has-bg {
+  background-image: var(--_bg-url);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.cb-site-coda .cb-pushthrough__pretitle {
+  color: var(--col-lime-300);
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.4);
+}
+.cb-site-coda .cb-pushthrough h2, .cb-site-coda .cb-pushthrough .h2, .cb-site-coda .cb-pushthrough__title {
+  font-size: var(--fs-850);
+  font-weight: var(--fw-light);
+}
+.cb-site-coda .cb-pushthrough__desc {
+  font-size: var(--fs-500);
+  font-weight: var(--fw-regular);
+}
+.cb-site-coda .cb-pushthrough__link {
+  color: var(--col-lime-300);
+}
+.cb-site-coda .cb-pushthrough__link:hover, .cb-site-coda .cb-pushthrough__link:focus-visible {
+  color: var(--col-lime-400);
+}
 
 .cb-site-identity .cb-cta__title {
   font-size: var(--fs-850);
@@ -23192,22 +23221,27 @@ span a {
   mask-image: url("data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20id%3D%22Layer_2%22%20data-name%3D%22Layer%202%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20398.65%20362.53%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20.cls-1%20%7B%0A%20%20%20%20%20%20%20%20fill%3A%20%230d0d0c%3B%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%3C/style%3E%0A%20%20%3C/defs%3E%0A%20%20%3Cg%20id%3D%22Layer_1-2%22%20data-name%3D%22Layer%201%22%3E%0A%20%20%20%20%3Cpolygon%20class%3D%22cls-1%22%20points%3D%22200.92%20142.28%2064.22%20131.55%20199.33%20131.55%20397.67%20131.55%20397.67%2091.92%20199.33%2091.92%2088.96%2091.92%20201.4%2080.07%20324.74%2067.07%20395.28%2073.07%20396.43%2059.52%20398.65%2059.29%20397.44%2047.71%20398.64%2033.58%20395.92%2033.35%20394.5%2019.88%20324.33%2027.27%20201%2016.79%203.37%200%20.02%2039.49%20115.38%2049.29%200%2061.45%203.21%2091.92%20.98%2091.92%20.98%20131.55%202.81%20131.55%20.08%20166.26%20197.82%20181.78%20242.36%20185.28%20198.74%20186.56%2087.99%20189.82%207.53%20175.49%204.54%20192.28%20.49%20192.4%201.06%20211.83%20.58%20214.51%201.14%20214.61%201.65%20232.01%2085.07%20229.55%20195.85%20249.28%20205.45%20250.99%20199.33%20250.99%20.98%20250.99%20.98%20290.62%20170.63%20290.62%20.11%20303.14%201.56%20322.9%20.98%20322.9%20.98%20362.53%20199.33%20362.53%20397.67%20362.53%20397.67%20322.9%20272.09%20322.9%20398.63%20313.62%20396.94%20290.62%20397.67%20290.62%20397.67%20250.99%20397.01%20250.99%20398.07%20245.04%20279.04%20223.84%20398.17%20220.34%20397%20180.72%20396.85%20180.73%20398.65%20157.79%20200.92%20142.28%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E");
 }
 
+.cb-our-brands {
+  background-color: var(--col-neutral-1100);
+  color: var(--col-white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
 .cb-our-brands__pre-title {
-  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   padding-block: 1.5rem 1.25rem;
-  color: var(--col-brand);
+  color: var(--col-lime-300);
   font-weight: var(--fw-regular);
   font-size: var(--fs-300);
   line-height: 1;
   text-transform: uppercase;
 }
 .cb-our-brands__intro {
-  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   padding-block: 6rem 2rem;
 }
 .cb-our-brands__title {
-  font-size: var(--fs-700);
-  font-weight: var(--fw-book);
+  font-size: var(--fs-850);
+  font-weight: var(--fw-light);
   line-height: var(--lh-700);
   width: min(100%, 60ch);
   text-wrap: balance;
@@ -23258,7 +23292,7 @@ span a {
   text-transform: uppercase;
   font-weight: var(--fw-light);
   font-size: var(--fs-50);
-  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
 }
 .cb-our-brands .brand-card__strap {
@@ -23276,12 +23310,12 @@ span a {
   color: var(--col-white);
 }
 .cb-our-brands .brand-card__last {
-  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
   padding-top: 1.5rem;
   font-size: var(--fs-400);
   font-weight: var(--fw-regular);
   letter-spacing: var(--ls--5);
-  color: var(--col-purple-400);
+  color: var(--col-lime-300);
 }
 
 .cb-pushthrough {
@@ -26791,19 +26825,6 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   .cb-child-page-nav__card {
     aspect-ratio: 4/5;
   }
-}
-
-.cb-lined-title {
-  border-top: 1px solid var(--col-brand-dark);
-  border-bottom: 1px solid var(--col-brand-dark);
-}
-.cb-lined-title h2, .cb-lined-title .h2 {
-  font-size: var(--fs-850);
-  font-weight: var(--fw-light);
-  line-height: var(--lh-tightest);
-  text-transform: uppercase;
-  padding-block: 1rem 0.75rem;
-  margin-bottom: 0;
 }
 
 .cb-about-detail {

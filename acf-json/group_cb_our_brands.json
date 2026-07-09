@@ -63,7 +63,7 @@
             "append": ""
         },
         {
-            "key": "field_cb_our_brands_brands",
+            "key": "field_6903908fa01eb",
             "label": "Brands",
             "name": "brands",
             "aria-label": "",
@@ -85,7 +85,7 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_cb_our_brands_brand_logo",
+                    "key": "field_69039096a01ec",
                     "label": "Brand Logo",
                     "name": "brand_logo",
                     "aria-label": "",
@@ -112,7 +112,7 @@
                     "parent_repeater": "field_cb_our_brands_brands"
                 },
                 {
-                    "key": "field_cb_our_brands_brand_name",
+                    "key": "field_690390a4a01ed",
                     "label": "Brand Name",
                     "name": "brand_name",
                     "aria-label": "",
@@ -134,7 +134,7 @@
                     "parent_repeater": "field_cb_our_brands_brands"
                 },
                 {
-                    "key": "field_cb_our_brands_link",
+                    "key": "field_690390aaa01ee",
                     "label": "Link",
                     "name": "link",
                     "aria-label": "",

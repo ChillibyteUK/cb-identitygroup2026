@@ -1,8 +1,12 @@
 .cb-our-brands {
+  background-color: var(--col-neutral-1100);
+  color: var(--col-white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
   &__pre-title {
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-block: 1.5rem 1.25rem;
-    color: var(--col-brand);
+    color: var(--col-lime-300);
     font-weight: var(--fw-regular);
     font-size: var(--fs-300);
     line-height: 1;
@@ -10,13 +14,13 @@
   }
 
   &__intro {
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-block: 6rem 2rem;
   }
 
   &__title {
-    font-size: var(--fs-700);
-    font-weight: var(--fw-book);
+    font-size: var(--fs-850);
+    font-weight: var(--fw-light);
     line-height: var(--lh-700);
     width: min(100%, 60ch);
     text-wrap: balance;
@@ -69,7 +73,7 @@
       text-transform: uppercase;
       font-weight: var(--fw-light);
       font-size: var(--fs-50);
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
       margin-bottom: 1rem;
     }
 
@@ -94,12 +98,12 @@
     }
 
     &__last {
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
       padding-top: 1.5rem;
       font-size: var(--fs-400);
       font-weight: var(--fw-regular);
       letter-spacing: var(--ls--5);
-      color: var(--col-purple-400);
+      color: var(--col-lime-300);
     }
   }
 }

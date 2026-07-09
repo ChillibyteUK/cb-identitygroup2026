@@ -104,6 +104,52 @@
       font-weight: var(--fw-light);
     }
   }
+
+  // cb-pushthrough: another wholesale-one-source-kept case. The shared base
+  // file (_cb_pushthrough.scss) is idtravel's own — transparent background
+  // with a light/dark-lines toggle. coda's own is a fixed solid dark
+  // background (--col-primary-black/--col-white, no toggle at all), a
+  // different background-image class name (coda's SCSS targets `.has-bg`,
+  // the shared PHP template only ever outputs idtravel's
+  // `.cb-pushthrough--has-bg`), a scoped `h2` font rule instead of idtravel's
+  // `&__title` class rule, and different pretitle/desc/link colours+sizes.
+  .cb-pushthrough {
+    background-color: var(--col-primary-black);
+    color: var(--col-white);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+
+    &.has-bg {
+      background-image: var(--_bg-url);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    &__pretitle {
+      color: var(--col-lime-300);
+      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    }
+
+    h2,
+    &__title {
+      font-size: var(--fs-850);
+      font-weight: var(--fw-light);
+    }
+
+    &__desc {
+      font-size: var(--fs-500);
+      font-weight: var(--fw-regular);
+    }
+
+    &__link {
+      color: var(--col-lime-300);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--col-lime-400);
+      }
+    }
+  }
 }
 
 // identity's cb-cta shares idtravel's dark-background/light-text colour
