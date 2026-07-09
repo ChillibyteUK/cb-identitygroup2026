@@ -1,6 +1,6 @@
 .cb-dept-email {
   &__row {
-    border-top: 1px solid var(--col-lime-1000);
+    border-top: 1px solid hsl(var(--hsl-lime-1000) / 0.4);
   }
   &__department {
     font-size: var(--fs-600);

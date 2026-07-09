@@ -24,7 +24,7 @@
     text-decoration: none;
     transition: color 0.3s ease;
     &:hover {
-      color: var(--col-purple-400);
+      color: var(--col-footer-link-hover, var(--col-purple-400));
     }
   }
 

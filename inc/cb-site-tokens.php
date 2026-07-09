@@ -157,6 +157,7 @@ function cb_get_site_tokens_table() {
 			'--fs-500' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)',
 			'--fs-h2' => 'var(--fs-500)',
 			'--fw-h2' => 'var(--fw-regular)', // identity's own real h2.
+			'--col-footer-link-hover' => 'var(--col-neutral-500)', // identity's own real footer link hover.
 			'--fs-600' => 'clamp(1.3125rem, 0.9rem + 1.2vw, 1.999rem)',
 			'--fs-700' => 'clamp(1.4375rem, 0.9rem + 1.4vw, 2.25rem)',
 			'--fs-800' => 'clamp(1.5rem, 0.9rem + 1.6vw, 2.5rem)',
@@ -264,6 +265,7 @@ function cb_get_site_tokens_table() {
 			'--fs-500' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)',
 			'--fs-h2' => 'var(--fs-500)',
 			'--fw-h2' => 'var(--fw-light)',  // coda's own real h2.
+			'--col-footer-link-hover' => 'var(--col-lime-300)', // coda's own real footer link hover.
 			'--fs-600' => 'clamp(1.3125rem, 0.9rem + 1.2vw, 1.999rem)',
 			'--fs-700' => 'clamp(1.4375rem, 0.9rem + 1.4vw, 2.25rem)',
 			'--fs-800' => 'clamp(1.5rem, 0.9rem + 1.6vw, 2.5rem)',
@@ -383,6 +385,7 @@ function cb_get_site_tokens_table() {
 			'--fs-500' => 'clamp(1.4444rem, 1.25rem + 0.9vw, 1.75rem)',
 			'--fs-h2' => 'var(--fs-700)',
 			'--fw-h2' => 'var(--fw-book)',   // idtravel's own real h2: matches the base fallback.
+			'--col-footer-link-hover' => 'var(--col-purple-400)', // idtravel's own real footer link hover.
 			'--fs-600' => 'clamp(1.6667rem, 1.4rem + 1.2vw, 2rem)',
 			'--fs-700' => 'clamp(1.9444rem, 1.6rem + 1.4vw, 2.25rem)',
 			'--fs-850' => 'clamp(2.3333rem, 1.9rem + 2vw, 3.125rem)',

@@ -22507,7 +22507,7 @@ header:has(.navbar-collapse.collapse.show) {
   transition: color 0.3s ease;
 }
 .footer a:hover {
-  color: var(--col-purple-400);
+  color: var(--col-footer-link-hover, var(--col-purple-400));
 }
 .footer__logo {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
@@ -26689,7 +26689,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-dept-email__row {
-  border-top: 1px solid var(--col-lime-1000);
+  border-top: 1px solid hsl(var(--hsl-lime-1000)/0.4);
 }
 .cb-dept-email__department {
   font-size: var(--fs-600);
@@ -26709,7 +26709,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-locations__row {
-  border-top: 1px solid var(--col-lime-1000);
+  border-top: 1px solid hsl(var(--hsl-lime-1000)/0.4);
 }
 .cb-locations__name {
   font-size: var(--fs-700);
