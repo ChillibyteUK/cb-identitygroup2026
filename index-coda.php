@@ -1,30 +1,34 @@
 <?php
 /**
- * Template for displaying the blog index page.
+ * Template for displaying the blog index page — coda's own real design.
+ *
+ * coda's real news index hero is a two-heading, lime-bordered light design,
+ * genuinely different from idtravel's single-heading dark hero (the shared
+ * index.php this was forked from). Included from index.php when
+ * cb_site_template_suffix() === 'coda'.
  *
  * @package cb-identitygroup2026
  */
 
 defined( 'ABSPATH' ) || exit;
 
-// identity's/coda's real news index designs are genuinely different from
-// idtravel's (the base body below) — see index-identity.php/index-coda.php.
-$cb_site = cb_site_template_suffix();
-if ( 'identity' === $cb_site || 'coda' === $cb_site ) {
-	get_template_part( 'index-' . $cb_site );
-	return;
-}
-
 $page_for_posts = get_option( 'page_for_posts' );
 
 get_header( cb_site_template_suffix() );
 ?>
 <main id="main" class="news-insights">
-	<section class="news-insights-hero has-neutral-400-border-bottom">
-		<div class="has-neutral-400-border-top has-neutral-400-border-bottom mt-5">
-			<h1 class="id-container px-4 px-md-5 has-white-color font-hero pt-2 pb-2">
-				Newsroom and perspectives
+	<section class="news-insights-hero has-lime-1000-border-bottom">
+		<div class="has-lime-1000-border-top has-lime-1000-border-bottom mt-4">
+			<h1 class="id-container px-4 px-md-5 fs-850 fw-light has-lime-1100-color lh-tightest pt-2 pb-1">
+				Insights &amp; perspectives
 			</h1>
+		</div>
+		<div class="has-lime-1000-border-bottom mb-4">
+			<div class="id-container px-4 px-md-5">
+				<h1 class="fw-light has-neutral-700-color fs-500 lh-tightest pt-2 pb-1">
+					Here's how we're shaping what's next
+				</h1>
+			</div>
 		</div>
 		<div class="id-container px-4 px-md-5 pt-5 pb-5">
 			<div class="row">
@@ -47,20 +51,12 @@ get_header( cb_site_template_suffix() );
 			<div class="row g-5">
 			<?php
 			$args = array(
-                'post_type'      => 'post',
-                'post_status'    => array( 'publish' ),
-                'orderby'        => 'date',
-                'order'          => 'DESC', // Descending order.
-                'posts_per_page' => -1,    // Get all posts.
-				// only in the insights or perspective categories.
-				'tax_query'      => array(
-					array(
-						'taxonomy' => 'category',
-						'field'    => 'slug',
-						'terms'    => array( 'insights', 'news' ),
-					),
-				),
-            );
+				'post_type'      => 'post',
+				'post_status'    => array( 'publish' ),
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'posts_per_page' => -1,
+			);
 			$q = new WP_Query( $args );
 
 			$counter = 0;
@@ -77,25 +73,12 @@ get_header( cb_site_template_suffix() );
 					case 3:
 						$col_class = 'col-md-3 insight-type-grid__card-3';
 						break;
-					case 4:
-						$col_class = 'col-md-6 insight-type-grid__card-4';
-						break;
-					case 5:
-						$col_class = 'col-md-3 insight-type-grid__card-5';
-						break;
-					case 6:
-						$col_class = 'col-md-3 insight-type-grid__card-6';
-						break;
-					case 7:
-						$col_class = 'col-md-12 insight-type-grid__card-7';
-						break;
 					default:
 						$col_class = 'col-md-6';
 						break;
 				}
-
 				?>
-			<div class="<?php echo esc_attr( $col_class ); ?>">			
+			<div class="<?php echo esc_attr( $col_class ); ?>">
 				<a href="<?php echo esc_url( get_permalink() ); ?>" class="insight-type-grid__card">
 					<div class="insight-type-grid__image-wrapper">
 						<?php
@@ -120,15 +103,12 @@ get_header( cb_site_template_suffix() );
 						</div>
 						<div class="insight-type-grid__date d-flex align-items-center gap-2">
 							<?php echo get_the_date( 'j F Y' ); ?>
-							<?= cb_sanitise_svg( get_stylesheet_directory_uri() . '/img/arrow-n600.svg', 'insight-type-grid__arrow', 14, 13 ) ?>
+							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-n900.svg' ); ?>" width="14" height="13" alt="" />
 						</div>
 					</div>
-				</a>	
+				</a>
 			</div>
 				<?php
-				if ( $counter >= 7 ) {
-					$counter = 0;
-				}
 			}
 			wp_reset_postdata();
 			?>
