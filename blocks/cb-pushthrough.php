@@ -71,8 +71,12 @@ $section_style = $background_url ? sprintf( '--_bg-url: url(%s);', esc_url_raw( 
 				<?php
 				if ( 'Text' === $left_type ) {
 					if ( $title ) {
+						// identity's real h2 has no width constraint at all - both
+						// coda's and idtravel's real sources do (25ch), so this
+						// stays as-is for them.
+						$is_identity = 'identity' === cb_site_template_suffix();
 						?>
-						<h2 class="cb-pushthrough__title w-constrained" style="--width:25ch"><?= esc_html( $title ); ?></h2>
+						<h2 class="cb-pushthrough__title<?= $is_identity ? '' : ' w-constrained'; ?>"<?= $is_identity ? '' : ' style="--width:25ch"'; ?>><?= esc_html( $title ); ?></h2>
 						<?php
 					}
 					if ( $left_content ) {
