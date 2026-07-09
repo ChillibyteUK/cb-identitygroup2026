@@ -22573,7 +22573,7 @@ header:has(.navbar-collapse.collapse.show) {
   text-decoration: none;
 }
 .insight-type-grid__card:hover {
-  color: var(--col-brand);
+  color: var(--col-card-hover, var(--col-white));
 }
 .insight-type-grid__card:hover .insight-type-grid__image {
   transform: scale(1.05);

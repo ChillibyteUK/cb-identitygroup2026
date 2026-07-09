@@ -266,6 +266,7 @@ function cb_get_site_tokens_table() {
 			'--fs-h2' => 'var(--fs-500)',
 			'--fw-h2' => 'var(--fw-light)',  // coda's own real h2.
 			'--col-footer-link-hover' => 'var(--col-lime-300)', // coda's own real footer link hover.
+			'--col-card-hover' => 'var(--col-primary-black)', // coda's own real insight-type-grid__card hover colour (light bg, needs dark text).
 			'--fs-600' => 'clamp(1.3125rem, 0.9rem + 1.2vw, 1.999rem)',
 			'--fs-700' => 'clamp(1.4375rem, 0.9rem + 1.4vw, 2.25rem)',
 			'--fs-800' => 'clamp(1.5rem, 0.9rem + 1.6vw, 2.5rem)',
