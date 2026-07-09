@@ -1526,3 +1526,70 @@ own gradient is unaffected.
 
 Verified directly against `https://identityglobal.com/`: both blocks'
 colours, markup structure, and real desc/excerpt text now match exactly.
+
+## 2026-07-10 continued: identity header nav, coda nav font-size, and two more identity/about-page block gaps
+
+User: identity's active/hover nav colour should be `var(--col-green-400)`
+and has no "text-scaling", plus sizing looked off. Checked identity's real
+`_header.scss` directly: it's a genuinely simpler design than idtravel's
+(the shared base) — no font-weight change on hover/active at all
+(idtravel's and coda's real headers both bold the link and use a hidden
+`::after` "reserve the bold width" trick specifically so that weight
+change doesn't reflow the layout — the "text-scaling" the user meant;
+identity's real source has neither), `--fs-200` not `--fs-100` for the
+nav-link font-size, and `--col-lime-400` (identity's own real
+`--col-green-400`, already renamed during the earlier lime-naming
+standardisation — same `#B8FF52` value) for hover/active colour. Added a
+`.cb-site-identity header` block to `_header-site-overrides.scss`.
+Verifying the size fix surfaced a real per-site `--fs-200` token gap too
+(identity's/coda's real value is `1.125rem`/18px; the shared base
+`1.1111rem` is idtravel's own value) — added the missing override.
+
+**That same verification pass found coda has the identical bug in the
+other direction**: coda's own real header also uses `--fs-200` for the
+*regular* (non-hover) nav link, but the shared base rule uses idtravel's
+`--fs-100` there too. Flagged it rather than fixing it inline (out of
+scope for what was asked); user confirmed, fixed with a
+`.cb-site-coda header a, a.nav-link { font-size: var(--fs-200); }`
+addition to the existing coda block.
+
+**Two more real gaps found on identity's `/about/` page, same session,
+same "identity's real design never checked" pattern**:
+
+- `cb-awards-slider` was rendering as nothing at all — its content was
+  still saved under the old `cb/cb-awards-slider` namespace, which was
+  correctly identified back on 2026-07-08 as functionally redundant with
+  `cb-logo-slider`'s `logo_source: specific` mode, but the actual content
+  *migration* (rewriting the saved block comment from
+  `cb/cb-awards-slider` to `acf/cb-logo-slider` with the right field keys)
+  was never done — "confirmed redundant" and "migrated" turned out to be
+  two different things. Only 1 real published instance existed (the About
+  page itself), not the ~38 an earlier count referenced — much smaller
+  scope than expected, done as a single direct `wp_update_post()` string
+  replacement rather than a broader script, DB backed up first. Verified
+  live: 20 real logo images now render in the marquee (10 unique × 2 loop
+  copies).
+- `cb-pushthrough` on identity had never been given the same treatment as
+  the 2026-07-09 fix that added coda's real (fixed dark theme, not
+  Gutenberg-colour-picker-driven) design — identity's real design is the
+  same *kind* of fixed-dark-theme override, just with its own colours/
+  sizes, verified directly against identity's own real source. Also found
+  a PHP-level sizing bug while fixing this: both coda's and idtravel's real
+  `<h2>` constrains to 25 characters wide via a `w-constrained` utility
+  class + inline `--width` custom property, but identity's real `<h2>` has
+  no such constraint at all — skipped it for identity specifically.
+
+Verified against `https://identityglobal.com/about/` at a matching 1440px
+viewport (`--fs-850` is a `clamp()`, so viewport width matters for an
+exact match): background, h2 size (unconstrained), link colour, and desc
+size all exact matches.
+
+**Recurring theme across this whole session, worth stating plainly for
+whoever picks this up next**: almost every real bug found today was the
+same root cause wearing a different outfit — a block or template gets
+built/fixed by checking one or two of the three real sites, and the third
+(usually identity, sometimes coda) is either left on the wrong base design
+entirely, or gets a colour-only fix that misses a structural/sizing
+difference underneath. The reliable tell is direct comparison against the
+real production URL with matching viewport width — not the source diff
+alone, and not a screenshot glance.
