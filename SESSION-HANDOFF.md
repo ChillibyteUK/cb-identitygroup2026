@@ -1153,3 +1153,47 @@ than expected, 2966px → 19217px):
   both bugs found this session were only caught because of a specific
   real-world report, not a systematic sweep. Worth doing if more "page X
   looks wrong on site Y" reports come in.
+
+## 2026-07-10 continued: index-identity.php fix was incomplete — coda needed the same treatment
+
+User reported `idcoda-test.local/news/` still didn't match
+`identitycoda.com/news/` after the fix above. Correct instinct to check —
+the earlier fix only branched `index.php` for `identity`; coda was still
+silently rendering idtravel's dark-themed hero markup verbatim, and I'd
+only ported *identity's* real `_news.scss` (scoped `.cb-site-identity`),
+never coda's. Confirmed by fetching `identitycoda.com/news/` directly:
+real production coda is light-bg/dark-text, matching coda's own real
+`_news.scss` (`.news-insights { background-color: var(--col-white); }`,
+`.insight-type-grid { color: var(--col-primary-black); }`) — completely
+different from what was deployed.
+
+Fixed properly this time: added `index-coda.php` (coda's real two-heading
+"Insights & perspectives" / "Here's how we're shaping what's next" hero,
+lime-1000 borders, unbounded single-section grid — ported verbatim) and
+extended the `index.php` branch to cover `coda` alongside `identity`.
+Added coda's real `_news.scss` (news index *and* single-post design) under
+`.cb-site-coda`. Also caught that **identity's own single-post styling had
+the same gap** — the earlier pass only ported identity's news-*index* CSS,
+not its `.single-blog` single-post design; added that too, inside the
+existing `.cb-site-identity` scope.
+
+Hit one bug while verifying: the idtravel-derived base rule
+`.news-insights-hero { color: var(--col-white); }` isn't overridden by
+`.cb-site-coda`, so the hero's body paragraph text (not the link, which had
+its own colour) rendered invisible white-on-white against the new light
+background — only the green mailto link was visible, with a large blank
+gap where the paragraph text should have been. Added the missing
+`color: var(--col-primary-black)` override.
+
+**Verified directly against `identitycoda.com/news/`**: same hero copy and
+colours, same card grid and images. Height 3643px vs production's 3495px —
+close enough to be content-volume noise, not a template gap.
+
+**Lesson for next time**: when one site's per-site-template gap gets fixed
+reactively (news-page height report → identity), proactively check whether
+the *other* non-base sites have the identical gap before calling it done —
+don't wait for a second bug report to discover coda needed the same fix.
+The `.cb-site-{slug}` CSS-scoping approach already used throughout this
+theme is the right pattern to reach for immediately once one site's design
+divergence is confirmed real, not just for whichever site happened to get
+reported first.
