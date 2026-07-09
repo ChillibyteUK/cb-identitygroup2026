@@ -152,6 +152,7 @@ function cb_get_site_tokens_table() {
 			'--col-white'          => '#fff',
 			'--col-neutral-50'     => '#f8f7f0',
 			// Font sizes (identity's own clamp scale).
+			'--fs-200' => '1.125rem', // identity's own real value (differs from the shared base, which is idtravel's).
 			'--fs-300' => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)',
 			'--fs-400' => 'clamp(1.0625rem, 0.9rem + 0.6vw, 1.375rem)',
 			'--fs-500' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)',
@@ -260,6 +261,7 @@ function cb_get_site_tokens_table() {
 			'--col-primary'        => '#0d0d0c',
 			'--col-white'          => '#fff',
 			'--col-neutral-50'     => '#f8f7f0',
+			'--fs-200' => '1.125rem', // coda's own real value too (differs from the shared base, which is idtravel's).
 			'--fs-300' => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)',
 			'--fs-400' => 'clamp(1.0625rem, 0.9rem + 0.6vw, 1.375rem)',
 			'--fs-500' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)',

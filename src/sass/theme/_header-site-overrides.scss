@@ -139,6 +139,40 @@
   }
 }
 
+// identity's real nav is a simpler design than idtravel's (the shared
+// base header.scss this theme forked from): a different font-size
+// (--fs-200, not --fs-100), no font-weight change on hover/active at all
+// (idtravel's and coda's real headers both bold the link on hover/active
+// and use a hidden ::after "reserve the bold width" trick specifically to
+// stop that reflowing the layout - identity's real source has neither),
+// and --col-lime-400 (identity's own real --col-green-400, renamed during
+// the earlier lime-naming standardisation - same value, #B8FF52) as the
+// hover/active colour rather than idtravel's --col-purple-500.
+.cb-site-identity header {
+  a,
+  a.nav-link {
+    font-size: var(--fs-200);
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      color: var(--col-lime-400);
+      font-weight: var(--fw-regular);
+    }
+  }
+
+  .current_page_item > .nav-link,
+  .current_page_parent > .nav-link,
+  .current-page-ancestor > .nav-link,
+  .current-menu-parent > .nav-link,
+  .current-menu-ancestor > .nav-link,
+  .dropdown.current-page-ancestor > .nav-link,
+  .dropdown.current-menu-item > .nav-link {
+    color: var(--col-lime-400);
+    font-weight: var(--fw-regular);
+  }
+}
+
 // identity's cb-cta shares idtravel's dark-background/light-text colour
 // scheme (no colour override needed), but its own title/content font sizes
 // match coda's real values (--fs-850/--fs-600), not idtravel's smaller

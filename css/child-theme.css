@@ -22354,6 +22354,28 @@ header:has(.navbar-collapse.collapse.show) {
   color: var(--col-lime-400);
 }
 
+.cb-site-identity header a,
+.cb-site-identity header a.nav-link {
+  font-size: var(--fs-200);
+}
+.cb-site-identity header a:hover, .cb-site-identity header a:focus, .cb-site-identity header a:focus-visible,
+.cb-site-identity header a.nav-link:hover,
+.cb-site-identity header a.nav-link:focus,
+.cb-site-identity header a.nav-link:focus-visible {
+  color: var(--col-lime-400);
+  font-weight: var(--fw-regular);
+}
+.cb-site-identity header .current_page_item > .nav-link,
+.cb-site-identity header .current_page_parent > .nav-link,
+.cb-site-identity header .current-page-ancestor > .nav-link,
+.cb-site-identity header .current-menu-parent > .nav-link,
+.cb-site-identity header .current-menu-ancestor > .nav-link,
+.cb-site-identity header .dropdown.current-page-ancestor > .nav-link,
+.cb-site-identity header .dropdown.current-menu-item > .nav-link {
+  color: var(--col-lime-400);
+  font-weight: var(--fw-regular);
+}
+
 .cb-site-identity .cb-cta__title {
   font-size: var(--fs-850);
   font-weight: var(--fw-regular);
