@@ -7,6 +7,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// identity's real news index is a genuinely different two-section, capped
+// design (not just a styling variant) — see index-identity.php.
+if ( 'identity' === cb_site_template_suffix() ) {
+	get_template_part( 'index-identity' );
+	return;
+}
+
 $page_for_posts = get_option( 'page_for_posts' );
 
 get_header( cb_site_template_suffix() );

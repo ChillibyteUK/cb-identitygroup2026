@@ -114,6 +114,7 @@ function cb_get_site_tokens_table() {
 			'--col-neutral-800'    => '#5e5d55',
 			'--hsl-neutral-800'    => '53 5% 35%',
 			'--col-neutral-700'    => '#77766c',
+			'--col-neutral-600'    => '#939287', // identity's/coda's own real value (differs from the shared base).
 			'--col-neutral-500'    => '#aeada1',
 			'--col-neutral-400'    => '#c9c7bc',
 			'--hsl-neutral-400'    => '51 11% 76%',
@@ -230,6 +231,7 @@ function cb_get_site_tokens_table() {
 			'--col-neutral-800'    => '#5e5d55',
 			'--hsl-neutral-800'    => '53 5% 35%',
 			'--col-neutral-700'    => '#77766c',
+			'--col-neutral-600'    => '#939287', // identity's/coda's own real value (differs from the shared base).
 			'--col-neutral-500'    => '#aeada1',
 			'--col-neutral-400'    => '#c9c7bc',
 			'--hsl-neutral-400'    => '51 11% 76%',

@@ -117,6 +117,146 @@
   }
 }
 
+// identity's real news/insights index page is a genuinely different
+// two-section design (Insights + Press, each capped at 3 posts) from
+// idtravel's single unbounded section this file was otherwise built from
+// — see index-identity.php. Ported wholesale from identity's own real
+// _news.scss rather than merged into the shared rules above, since the
+// class names themselves differ (.news-hero not .news-insights-hero,
+// .insight-type__header doesn't exist in the idtravel-derived markup).
+.cb-site-identity {
+  .news-hero {
+    h1 {
+      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      font-size: var(--fs-850);
+      font-weight: var(--fw-semi);
+      color: var(--col-white);
+    }
+    h2 {
+      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      font-size: var(--fs-600);
+      color: var(--col-neutral-800);
+      font-weight: var(--fw-regular);
+      margin-bottom: 0;
+    }
+    &__content {
+      color: var(--col-white);
+      font-size: var(--fs-500);
+      padding-block: 2rem 4rem;
+      a {
+        color: var(--col-lime-500);
+        text-decoration: none;
+      }
+    }
+  }
+  .insight-type {
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    &__header {
+      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      display: block;
+      position: relative;
+      background-color: var(--col-primary-black);
+      isolation: isolate;
+      overflow: hidden;
+      color: var(--col-white);
+      font-size: var(--fs-800);
+      font-weight: var(--fw-regular);
+      text-decoration: none;
+      padding-block: 1rem;
+      line-height: 1;
+      &:hover {
+        color: var(--col-white);
+        text-decoration: none;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background: url(../img/bg180.webp) center / cover no-repeat fixed;
+      }
+    }
+  }
+
+  .news-insights {
+    background-color: var(--col-primary-black);
+  }
+
+  .insight-type-grid {
+    color: var(--col-white);
+    &__card {
+      text-decoration: none;
+      &:hover {
+        color: var(--col-white);
+        .insight-type-grid__image {
+          transform: scale(1.05);
+        }
+      }
+    }
+    &.grid-type-1 {
+      .insight-type-grid__card-1 .insight-type-grid__image {
+        aspect-ratio: 4 / 3;
+      }
+      .insight-type-grid__card-2 .insight-type-grid__image {
+        aspect-ratio: 16 / 9;
+      }
+      .insight-type-grid__card-3 .insight-type-grid__image {
+        aspect-ratio: 5 / 4;
+      }
+      .insight-type-grid__date {
+        color: var(--col-neutral-600);
+      }
+    }
+    &.grid-type-2 {
+      background-color: var(--col-purple-900);
+      .insight-type-grid__card-4 .insight-type-grid__image {
+        aspect-ratio: 16 / 9;
+      }
+      .insight-type-grid__card-5 .insight-type-grid__image {
+        aspect-ratio: 4 / 3;
+      }
+      .insight-type-grid__card-6 .insight-type-grid__image {
+        aspect-ratio: 1 / 1;
+      }
+      .insight-type-grid__date {
+        color: var(--col-purple-200);
+      }
+    }
+    &__image-wrapper {
+      overflow: hidden;
+      margin-bottom: 0.25rem;
+    }
+    &__image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    &__category {
+      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-size: var(--fs-50);
+    }
+    &__title {
+      font-weight: var(--fw-semi);
+      font-size: var(--fs-50);
+      margin-bottom: 0.5rem;
+    }
+    &__date {
+      text-transform: uppercase;
+      font-size: var(--fs-50);
+    }
+  }
+}
+
 .single-blog {
   &.post-news {
     --_background: var(--col-ink);
