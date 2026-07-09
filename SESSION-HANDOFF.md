@@ -1371,3 +1371,26 @@ than declaring victory early. Worth a deliberate pass over the rest of
 tokens, `--_link`/`--_cat-colour` etc.) against all 3 real sources rather
 than waiting for the next one-off report — same lesson as the theme.json
 palette sweep, applied to this specific file.
+
+**Immediate consequence, same day**: the `--col-card-hover` fix above
+directly broke `.insight-type-grid.tmc-index` (`cb-tmc-post-index`,
+idtravel-only, used on `/do-i-need-travel-management/`) — a light-bg/
+dark-text variant reusing the same `.insight-type-grid__card` class.
+idtravel's real source has no hover override inside `.tmc-index` at all
+(same "undefined token → silently never changes colour" mechanism as the
+`--col-primary-250` bug), so giving `--col-card-hover` a real fallback
+value fixed the dark-bg case but turned this variant's ink text white on
+hover instead of leaving it unchanged. Added an explicit
+`.tmc-index .insight-type-grid__card:hover { color: var(--col-ink); }`
+override (wins via specificity, no `!important` needed). Verified against
+`identitytravel.com/do-i-need-travel-management/`: this variant's card
+colour is `rgb(17,13,37)` before *and* after hover on both sites; the
+dark-bg `cb-recent-news` card re-verified still correctly turns white.
+Confirmed `.tmc-index`/`cb-tmc-post-index` doesn't exist on identity's or
+coda's real repos at all — idtravel-only, no cross-site risk.
+
+**This reinforces the lesson two entries up**: after any fix to a shared
+token/rule, check every *other* real usage of that same class/selector
+before moving on — one dark-bg case and one light-bg case sharing a class
+name is exactly the kind of thing that looks "done" after the first
+verification but isn't.
