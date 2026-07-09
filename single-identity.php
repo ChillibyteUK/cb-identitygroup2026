@@ -1,21 +1,15 @@
 <?php
 /**
- * Template for displaying single posts.
+ * Template for displaying single posts — identity's own real design.
+ *
+ * identity's real category taxonomy is press/insights/perspectives, not
+ * idtravel's news/people/tmc (the shared single.php this was forked from).
+ * Included from single.php when cb_site_template_suffix() === 'identity'.
  *
  * @package cb-identitygroup2026
  */
 
 defined( 'ABSPATH' ) || exit;
-
-// identity's and coda's real category taxonomy (press/insights/perspectives)
-// and single-post styling differ genuinely from idtravel's (news/people/tmc)
-// this file was forked from — see single-identity.php / single-coda.php.
-$cb_site = cb_site_template_suffix();
-if ( 'identity' === $cb_site || 'coda' === $cb_site ) {
-	get_template_part( 'single-' . $cb_site );
-	return;
-}
-
 get_header( cb_site_template_suffix() );
 
 // get categories.
@@ -25,24 +19,19 @@ if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 	$first_category = $categories[0];
 }
 
-$category_slug = $first_category instanceof WP_Term ? $first_category->slug : 'news';
+$category_slug = $first_category instanceof WP_Term ? $first_category->slug : 'press';
 $post_style    = $category_slug;
 
 switch ( $post_style ) {
-	case 'news':
-		$post_style = 'post-news';
+	case 'press':
+		$post_style = 'post-press';
 		break;
 	case 'insights':
+	case 'perspectives':
 		$post_style = 'post-insight';
 		break;
-	case 'people':
-		$post_style = 'post-people';
-		break;
-	case 'tmc':
-		$post_style = 'post-tmc';
-		break;
 	default:
-		$post_style = 'post-news';
+		$post_style = 'post-press';
 		break;
 }
 
@@ -78,7 +67,7 @@ switch ( $post_style ) {
 	</div>
 	<div class="category-wrapper">
 		<div class="id-container px-4 px-md-5">
-			<div class="category <?= esc_attr( $category_slug ); ?>"><?= esc_html( $first_category instanceof WP_Term ? $first_category->name : 'News' ); ?></div>
+			<div class="category <?= esc_attr( $category_slug ); ?>"><?= esc_html( $first_category instanceof WP_Term ? $first_category->name : 'Press' ); ?></div>
 		</div>
 	</div>
 	<div class="post-title">
@@ -114,40 +103,7 @@ switch ( $post_style ) {
 	</div>
 
 	<?php
-	$cta = null;
-	$btype = $category_slug;
-	$person = null;
-
-	switch ( $category_slug ) {
-		case 'news':
-			$cta = get_field( 'press_cta', 'option' );
-			break;
-		case 'insights':
-			$cta = get_field( 'insight_cta', 'option' );
-			break;
-		case 'people':
-			$cta = get_field( 'people_cta', 'option' );
-			$person = get_the_terms( get_the_ID(), 'person' );
-				if ( $person && ! is_wp_error( $person ) ) {
-					$person = $person[0];
-				} else {
-					$person = null;
-				}
-			$btype = 'people';
-			break;
-		case 'tmc':
-			$cta = get_field( 'press_cta', 'option' );
-			break;
-		default:
-			$cta = get_field( 'press_cta', 'option' );
-			break;
-	}
-
-	set_query_var( 'cta_choice', $cta );
-	set_query_var( 'blog_type', $btype );
-	set_query_var( 'person', $person );
-	$themes = get_the_terms( get_the_ID(), 'theme' );
-	set_query_var( 'theme', ( $themes && ! is_wp_error( $themes ) ) ? $themes[0] : null );
+	set_query_var( 'blog_type', $category_slug );
 	?>
 	<section class="recent-news">
 		<?php
@@ -156,6 +112,19 @@ switch ( $post_style ) {
 	</section>
 	<?php
 
+	switch ( $category_slug ) {
+		case 'press':
+			$cta = get_field( 'press_cta', 'option' );
+			break;
+		case 'insights':
+		case 'perspectives':
+			$cta = get_field( 'insight_cta', 'option' );
+			break;
+		default:
+			$cta = get_field( 'press_cta', 'option' );
+			break;
+	}
+	set_query_var( 'cta_choice', $cta );
 	get_template_part( 'blocks/cb-cta' );
 
 	?>
