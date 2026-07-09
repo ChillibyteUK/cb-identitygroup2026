@@ -23775,11 +23775,9 @@ span a {
  * @package  cb-idtravel2026
  */
 .cb-recent-news {
-  background-color: var(--col-brand);
   color: var(--col-white);
 }
 .cb-recent-news__pre-title {
-  background-color: var(--col-raspberry-600);
   border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
   border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
   padding-block: 1rem 0.75rem;
@@ -23790,6 +23788,13 @@ span a {
 }
 .cb-recent-news .insight-type-grid__date {
   color: var(--col-raspberry-100);
+}
+
+.cb-site-idtravel .cb-recent-news.has-primary-black-background-color, .cb-site-idtravel .cb-recent-news.has-ink-background-color, .cb-site-idtravel .cb-recent-news.has-raspberry-background-color {
+  background-color: var(--col-raspberry) !important;
+}
+.cb-site-idtravel .cb-recent-news__pre-title.has-primary-black-background-color, .cb-site-idtravel .cb-recent-news__pre-title.has-neutral-800-background-color, .cb-site-idtravel .cb-recent-news__pre-title.has-raspberry-450-background-color {
+  background-color: var(--col-raspberry-600) !important;
 }
 
 .cb-business-travel-nav {

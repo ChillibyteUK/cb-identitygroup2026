@@ -5,11 +5,9 @@
  */
 
 .cb-recent-news {
-    background-color: var(--col-brand);
     color: var(--col-white);
 
     &__pre-title {
-        background-color: var(--col-raspberry-600);
         border-top: 1px solid hsl( var(--hsl-neutral-050) / 0.5);
         border-bottom: 1px solid hsl( var(--hsl-neutral-050) / 0.5);
         padding-block: 1rem 0.75rem;
@@ -21,5 +19,31 @@
 
     .insight-type-grid__date {
         color: var(--col-raspberry-100);
+    }
+}
+
+// idtravel's own real theme.json has no "primary-black" palette slug, so
+// has-primary-black-background-color (and the other switch-case classes
+// idtravel's base cb-recent-news.php can emit) are dead code there — this
+// block's real design is always raspberry regardless of category. This
+// shared theme's swap list does define "primary-black" for idtravel
+// (needed by other blocks like cb-case-study-hero), so those classes now
+// generate real, opposing !important rules here too. identity's own
+// cb-recent-news-identity.php's default case emits the exact same
+// has-primary-black-background-color class with a genuinely different,
+// intended-to-apply colour, so this override must stay scoped to idtravel
+// only — a bare compound selector without the site scope would also hit
+// identity's default case.
+.cb-site-idtravel .cb-recent-news {
+    &.has-primary-black-background-color,
+    &.has-ink-background-color,
+    &.has-raspberry-background-color {
+        background-color: var(--col-raspberry) !important;
+    }
+
+    &__pre-title.has-primary-black-background-color,
+    &__pre-title.has-neutral-800-background-color,
+    &__pre-title.has-raspberry-450-background-color {
+        background-color: var(--col-raspberry-600) !important;
     }
 }
