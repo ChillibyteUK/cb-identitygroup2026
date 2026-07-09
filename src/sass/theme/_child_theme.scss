@@ -459,7 +459,14 @@ for (; i < all.length; i++) {
   border-bottom: 1px solid hsl(var(--hsl-lime-1000) / 0.4) !important;
 }
 
-.service-parents {
+// This duplicates the earlier .service-parents rule with different values
+// - a pre-existing oddity present in coda's and idtravel's own real
+// sources too (same two blocks, same two colours, unreconciled there
+// either), where the later block naturally wins by cascade order.
+// identity's own real source has only ONE .service-parents rule (no
+// duplicate/override) using --col-lime-500, so this second block needs
+// scoping to not also override identity's only real rule.
+body:not(.cb-site-identity) .service-parents {
   list-style: none;
   padding-left: 0;
   margin-top: 3rem;
