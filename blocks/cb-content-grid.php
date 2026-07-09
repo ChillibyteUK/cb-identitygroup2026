@@ -115,6 +115,15 @@ if ( ! function_exists( 'cb_normalize_excel_paste' ) ) {
 	}
 }
 
+// idtravel's own real content-grid schema (a `rows` repeater, completely
+// different from identity's/coda's `grid_rows` flexible_content below) —
+// route by which field actually has data, not by cb_site, since that's
+// what determines which real template the saved content needs.
+if ( ! empty( get_field( 'rows' ) ) ) {
+	require get_theme_file_path( 'blocks/cb-content-grid-idtravel.php' );
+	return;
+}
+
 // Get grid rows from block data.
 $grid_rows = $block['data']['grid_rows'] ?? array();
 if ( empty( $grid_rows ) ) {
