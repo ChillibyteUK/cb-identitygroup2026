@@ -7,20 +7,6 @@
 // wholesale, scoped under the cb-site-coda body class added by
 // cb_add_site_body_class() in inc/cb-site-tokens.php.
 .cb-site-coda {
-  // coda's own global h2 is a genuinely different scale from idtravel's
-  // (the shared base file's source): --fs-500/--fw-light vs idtravel's
-  // --fs-700/--fw-book. Affects every block using a bare <h2> with no
-  // block-specific font-size override — cb-feature-list's title is the
-  // reported case, but this is a global rule, not a per-block one, so any
-  // other bare-h2 usage on coda gets the same fix.
-  h2,
-  .h2 {
-    font-size: var(--fs-500);
-    font-weight: var(--fw-light);
-    line-height: 1.1;
-    letter-spacing: -0.005em;
-  }
-
   header {
     background-color: var(--col-white) !important;
 
@@ -143,6 +129,7 @@
 
     &__link {
       color: var(--col-lime-300);
+      border-top-color: hsl(var(--hsl-neutral-050) / 0.4);
 
       &:hover,
       &:focus-visible {

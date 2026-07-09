@@ -155,6 +155,8 @@ function cb_get_site_tokens_table() {
 			'--fs-300' => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)',
 			'--fs-400' => 'clamp(1.0625rem, 0.9rem + 0.6vw, 1.375rem)',
 			'--fs-500' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)',
+			'--fs-h2' => 'var(--fs-500)',
+			'--fw-h2' => 'var(--fw-regular)', // identity's own real h2.
 			'--fs-600' => 'clamp(1.3125rem, 0.9rem + 1.2vw, 1.999rem)',
 			'--fs-700' => 'clamp(1.4375rem, 0.9rem + 1.4vw, 2.25rem)',
 			'--fs-800' => 'clamp(1.5rem, 0.9rem + 1.6vw, 2.5rem)',
@@ -260,6 +262,8 @@ function cb_get_site_tokens_table() {
 			'--fs-300' => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)',
 			'--fs-400' => 'clamp(1.0625rem, 0.9rem + 0.6vw, 1.375rem)',
 			'--fs-500' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)',
+			'--fs-h2' => 'var(--fs-500)',
+			'--fw-h2' => 'var(--fw-light)',  // coda's own real h2.
 			'--fs-600' => 'clamp(1.3125rem, 0.9rem + 1.2vw, 1.999rem)',
 			'--fs-700' => 'clamp(1.4375rem, 0.9rem + 1.4vw, 2.25rem)',
 			'--fs-800' => 'clamp(1.5rem, 0.9rem + 1.6vw, 2.5rem)',
@@ -377,6 +381,8 @@ function cb_get_site_tokens_table() {
 			// idtravel has no --fs-300/800/950 in its own tokens file (a pre-existing gap, not invented here).
 			'--fs-400' => 'clamp(1.2222rem, 1.1rem + 0.6vw, 1.375rem)',
 			'--fs-500' => 'clamp(1.4444rem, 1.25rem + 0.9vw, 1.75rem)',
+			'--fs-h2' => 'var(--fs-700)',
+			'--fw-h2' => 'var(--fw-book)',   // idtravel's own real h2: matches the base fallback.
 			'--fs-600' => 'clamp(1.6667rem, 1.4rem + 1.2vw, 2rem)',
 			'--fs-700' => 'clamp(1.9444rem, 1.6rem + 1.4vw, 2.25rem)',
 			'--fs-850' => 'clamp(2.3333rem, 1.9rem + 2vw, 3.125rem)',
@@ -469,6 +475,7 @@ function cb_filter_editor_theme_json( $theme_json ) {
 			array( 'slug' => 'primary-black', 'name' => 'Primary Black', 'color' => '#0D0D0C' ),
 			array( 'slug' => 'ink', 'name' => 'Ink', 'color' => '#0D0D0C' ),
 			array( 'slug' => 'lime-900', 'name' => 'Lime 900', 'color' => '#4c8200' ),
+			array( 'slug' => 'lime-600', 'name' => 'Lime 600', 'color' => '#94dd2c' ),
 			array( 'slug' => 'lime-1000', 'name' => 'Lime 1000', 'color' => '#3d6900' ),
 			array( 'slug' => 'lime-1100', 'name' => 'Lime 1100', 'color' => '#345a00' ),
 			array( 'slug' => 'raspberry', 'name' => 'Raspberry', 'color' => '#4c8200' ),
@@ -482,6 +489,7 @@ function cb_filter_editor_theme_json( $theme_json ) {
 			array( 'slug' => 'primary-black', 'name' => 'Primary Black', 'color' => '#0d0d0c' ),
 			array( 'slug' => 'ink', 'name' => 'Ink', 'color' => '#0d0d0c' ),
 			array( 'slug' => 'lime-900', 'name' => 'Lime 900', 'color' => '#4c8200' ),
+			array( 'slug' => 'lime-600', 'name' => 'Lime 600', 'color' => '#94dd2c' ),
 			array( 'slug' => 'lime-1000', 'name' => 'Lime 1000', 'color' => '#3d6900' ),
 			array( 'slug' => 'lime-1100', 'name' => 'Lime 1100', 'color' => '#345a00' ),
 			array( 'slug' => 'raspberry', 'name' => 'Raspberry', 'color' => '#4c8200' ),
@@ -495,6 +503,7 @@ function cb_filter_editor_theme_json( $theme_json ) {
 			array( 'slug' => 'primary-black', 'name' => 'Primary Black', 'color' => '#110d25' ),
 			array( 'slug' => 'ink', 'name' => 'Ink', 'color' => '#110d25' ),
 			array( 'slug' => 'lime-900', 'name' => 'Lime 900', 'color' => '#900720' ),
+			array( 'slug' => 'lime-600', 'name' => 'Lime 600', 'color' => '#cc1939' ),
 			array( 'slug' => 'lime-1000', 'name' => 'Lime 1000', 'color' => '#7b0319' ),
 			array( 'slug' => 'lime-1100', 'name' => 'Lime 1100', 'color' => '#7b0319' ),
 			array( 'slug' => 'raspberry', 'name' => 'Raspberry', 'color' => '#e32447' ),

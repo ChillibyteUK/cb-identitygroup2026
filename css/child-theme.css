@@ -21703,8 +21703,8 @@ h1,
 h2,
 .h2,
 .font-h2 {
-  font-size: var(--fs-700);
-  font-weight: var(--fw-book);
+  font-size: var(--fs-h2, var(--fs-700));
+  font-weight: var(--fw-h2, var(--fw-book));
   line-height: var(--lh-700);
   letter-spacing: var(--ls--10);
 }
@@ -22265,13 +22265,6 @@ header:has(.navbar-collapse.collapse.show) {
   transition: none !important;
 }
 
-.cb-site-coda h2,
-.cb-site-coda .h2 {
-  font-size: var(--fs-500);
-  font-weight: var(--fw-light);
-  line-height: 1.1;
-  letter-spacing: -0.005em;
-}
 .cb-site-coda header {
   background-color: var(--col-white) !important;
 }
@@ -22355,6 +22348,7 @@ header:has(.navbar-collapse.collapse.show) {
 }
 .cb-site-coda .cb-pushthrough__link {
   color: var(--col-lime-300);
+  border-top-color: hsl(var(--hsl-neutral-050)/0.4);
 }
 .cb-site-coda .cb-pushthrough__link:hover, .cb-site-coda .cb-pushthrough__link:focus-visible {
   color: var(--col-lime-400);
@@ -23658,6 +23652,7 @@ span a {
 }
 .cb-testimonial__author {
   margin-bottom: 0.75rem;
+  text-transform: uppercase;
 }
 .cb-testimonial__company {
   display: table;

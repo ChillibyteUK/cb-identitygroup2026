@@ -786,3 +786,70 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
   `cb-lined-title` turned out to be entirely invented and `cb-our-brands`
   had a silent field-key bug, confidence in the rest of that batch is now
   low without direct verification. Should be next.
+
+## 2026-07-09 continued: yesterday's "fixes" left real gaps — user called this out directly
+
+User: *"I thought you were trying to do this properly? I am getting tired of
+asking you to fix things you say you've fixed!"* — fair. The previous fixes
+in this file were verified by eyeballing a screenshot and judging "looks
+about right," not by checking actual computed values against real source
+numbers. Four concrete gaps found as a direct result:
+
+- **`cb-lined-title` still had the wrong font size — caused by my own
+  previous fix.** Fixed the block's own markup correctly (fs-300/fw-regular
+  utility classes), but the `.cb-site-coda h2` override added for
+  `cb-feature-list` has selector specificity `(0,1,1)` (class + element) —
+  **higher** than a single utility class like `.fs-300` `(0,1,0)`— so it won
+  regardless of the utility classes being present, silently overriding them
+  back to `--fs-500`/`--fw-light`. This was a real architectural mistake, not
+  a one-off: any block anywhere that sets its own font-size utility class on
+  a bare `<h2>` inside `.cb-site-coda` was equally broken.
+  **Real fix**: removed the scoped override entirely. Added `--fs-h2`/
+  `--fw-h2` custom properties (per-site: idtravel `--fs-700`/`--fw-book`,
+  identity `--fs-500`/`--fw-regular`, coda `--fs-500`/`--fw-light` — checked
+  identity's own real h2 rule for the first time here, it turned out to
+  differ from coda's weight too) and pointed the base `h2, .h2, .font-h2`
+  rule at them with a same-as-before fallback. This keeps the base rule at
+  its original bare-element specificity `(0,0,1)`, so any utility class
+  `(0,1,0)` on a specific element correctly overrides it again — matching
+  how the override mechanism already works in every one of the 3 sites' own
+  real themes. Verified numerically post-fix: `lined-title` h2 → 20px/400
+  (matches coda's real `--fs-300` clamp exactly), `cb-feature-list__title`
+  (no utility override) → 28.016px/300 (matches `--fs-500`/`--fw-light`
+  correctly via the token fallback), `cb-cta__title` (its own explicit
+  override, untouched) → 42.56px/300, unaffected.
+- **`cb-pushthrough__link` had no visible border-top.** The border rule was
+  actually present (`border-top: 1px solid var(--cb-pushthrough-line-color)`
+  from the shared base file) but resolved to a *dark* ink colour at 25%
+  opacity — invisible against coda's solid black background, since coda's
+  override never touched that specific custom property. Added an explicit
+  `border-top-color: hsl(var(--hsl-neutral-050) / 0.4)` to the coda link
+  override, matching coda's real light-line value. Verified via computed
+  style: `1px solid rgba(248,248,241,0.4)`.
+- **`cb-testimonial` background was missing — `has-lime-600-background-color`
+  had no CSS rule at all**, because `lime-600` was never added as a
+  **theme.json palette entry** — only as a `--col-lime-600` custom property
+  (added 2026-07-08 for use *inside* the testimonial's own colour-variant
+  SCSS, a completely different mechanism from the WP-core-generated
+  `has-{slug}-background-color` utility classes, which require a theme.json
+  palette slug to exist before WP will generate any rule for them at all).
+  Added `lime-600` to theme.json's base palette (idtravel's raspberry-600
+  value, `#cc1939`, as the static fallback) and to the per-site override
+  filter (identity/coda real value `#94dd2c`). Verified via computed style:
+  `rgb(148, 221, 44)` = `#94dd2c` exactly, on both testimonial instances on
+  the about page.
+- **`cb-testimonial__author` wasn't uppercase.** Both real sources
+  (identity's and coda's own `cb-testimonial.scss`) apply
+  `text-transform: uppercase` to `__author` only, not `__company` — the
+  shared theme's SCSS had this commented out on both, added during the
+  2026-07-08 restore pass without checking real values first (same root
+  cause as `cb-lined-title` — verified-by-eye instead of verified-by-source).
+  Uncommented it on `__author` only. Verified via computed style + text
+  content unaffected (CSS-only transform).
+
+**Process change going forward**: every fix in this session from here on is
+being verified with an actual computed-style check (`getComputedStyle` via
+Playwright) against the *specific expected value* from the real source
+file, not a visual screenshot judgement call. Screenshots are still useful
+for catching things a computed-style check wouldn't think to look for, but
+they're a first pass, not the verification step.

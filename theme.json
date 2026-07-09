@@ -152,6 +152,12 @@
           "origin": "theme"
         },
         {
+          "name": "Lime 600",
+          "slug": "lime-600",
+          "color": "#cc1939",
+          "origin": "theme"
+        },
+        {
           "name": "Lime 1000",
           "slug": "lime-1000",
           "color": "#7b0319",

@@ -80,8 +80,16 @@ h1,
 h2,
 .h2,
 .font-h2 {
-  font-size: var(--fs-700);
-  font-weight: var(--fw-book);
+  // Per-site: idtravel's own real h2 is --fs-700/--fw-book (the fallback
+  // here, so idtravel needs no override); identity's is --fs-500/--fw-regular;
+  // coda's is --fs-500/--fw-light. Uses --fs-h2/--fw-h2 (defined per site in
+  // cb-site-tokens.php) rather than a `.cb-site-{slug} h2` scoped override,
+  // since a compound class+element selector is MORE specific than a
+  // single utility class like `.fs-300` and would win over it wherever a
+  // block deliberately overrides its own heading's size — exactly the bug
+  // this caused on cb-lined-title (2026-07-09).
+  font-size: var(--fs-h2, var(--fs-700));
+  font-weight: var(--fw-h2, var(--fw-book));
   line-height: var(--lh-700);
   letter-spacing: var(--ls--10);
 }

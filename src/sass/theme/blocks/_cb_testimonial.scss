@@ -18,12 +18,11 @@
     font-size: var(--fs-700);
     letter-spacing: var(--ls--15);
     font-weight: var(--fw-book);
-    // text-transform: uppercase;
   }
 
   &__author {
     margin-bottom: 0.75rem;
-    // text-transform: uppercase;
+    text-transform: uppercase;
   }
 
   &__company {
