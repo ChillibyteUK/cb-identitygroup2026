@@ -1243,3 +1243,41 @@ Verified directly against
 `identitycoda.com/news/coda-joins-experience-agency-identity/`: identical
 section title, background colour (`rgb(248,247,240)` exact match), and
 3-card layout.
+
+## 2026-07-10 continued: comprehensive theme.json neutral-scale palette sweep
+
+User reported "The Impact" (`cb-content-grid`, native Gutenberg
+`has-neutral-900-background-color`) rendering the wrong colour on a real
+coda case study vs `identitycoda.com`. Same class of bug as the
+`neutral-100` gap fixed earlier today — `neutral-900` was also never added
+to `cb_filter_editor_theme_json()`'s per-site swap list.
+
+Given this was the third theme.json palette-swap gap surfaced in one
+session, ran a comprehensive sweep this time instead of fixing reactively
+again: wrote a script cross-referencing every theme.json palette slug's
+real per-site value (parsed directly from identity's/coda's/idtravel's own
+`_tokens.scss`) against the current swap list. Found 6 more real gaps
+(identity and coda share identical real values for all of them, both
+missing): `neutral-200`, `neutral-300`, `neutral-500`, `neutral-600`,
+`neutral-900`, `neutral-1000`. (`neutral-600`'s `--col-*` custom-property
+form was already fixed earlier today for the `cb-case-study-key-stats`
+work — this is the separate theme.json-palette mechanism rule #4 in the
+resume checklist explicitly warns to check independently; easy to think a
+slug is "done" after fixing only one of the two mechanisms.) Fixed all 6
+in one pass. 4 further candidates the sweep flagged were false positives —
+coda's own `_tokens.scss` defines those specific tokens as
+`hsl(var(--hsl-x))` chains that already resolve to the exact hex in the
+swap list; the sweep script's plain-text parser couldn't resolve the
+indirection, but the inline `// #hex` comments in coda's own source
+confirmed no actual gap.
+
+Verified on the real page: "The Impact" section background now
+`rgb(80,80,73)`, exact match with
+`identitycoda.com/work/global-investigator-meeting-series/`. Also spot-
+checked identity's own `neutral-900` usage (also fixed) and confirmed
+idtravel unaffected.
+
+**Worth doing eventually**: the sweep script
+(`palette_sweep.js`, written to the session scratchpad, not committed to
+the repo) is reusable — rerun it any time a new colour-slug mismatch is
+suspected, rather than checking one slug at a time by hand.
