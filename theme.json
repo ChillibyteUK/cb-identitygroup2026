@@ -134,6 +134,12 @@
           "origin": "theme"
         },
         {
+          "name": "neutral-1100",
+          "slug": "neutral-1100",
+          "color": "#040013",
+          "origin": "theme"
+        },
+        {
           "name": "ink",
           "slug": "ink",
           "color": "#110d25",
@@ -149,6 +155,24 @@
           "name": "Lime 900",
           "slug": "lime-900",
           "color": "#900720",
+          "origin": "theme"
+        },
+        {
+          "name": "Lime 700",
+          "slug": "lime-700",
+          "color": "#cc1939",
+          "origin": "theme"
+        },
+        {
+          "name": "Lime 200",
+          "slug": "lime-200",
+          "color": "#ffb8c6",
+          "origin": "theme"
+        },
+        {
+          "name": "Green 400",
+          "slug": "green-400",
+          "color": "#f66f88",
           "origin": "theme"
         },
         {
@@ -299,6 +323,12 @@
           "name": "purple-800",
           "slug": "purple-800",
           "color": "#4c35d0",
+          "origin": "theme"
+        },
+        {
+          "name": "purple-900",
+          "slug": "purple-900",
+          "color": "#2f13ba",
           "origin": "theme"
         },
         {

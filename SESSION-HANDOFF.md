@@ -853,3 +853,71 @@ Playwright) against the *specific expected value* from the real source
 file, not a visual screenshot judgement call. Screenshots are still useful
 for catching things a computed-style check wouldn't think to look for, but
 they're a first pass, not the verification step.
+
+## 2026-07-10: cb-content-grid rebuilt from scratch — the biggest deferred item is done
+
+User: "the whole content-grid block is missing" on a real coda case study,
+with a direct production-vs-local comparison link. This was the headline
+item flagged as deferred since 2026-07-08 ("structurally different schema
+— 200+ instances, the biggest remaining item").
+
+**Root cause, fully confirmed this time**: the shared theme's
+`cb-content-grid` field group (`rows` → `modules` repeater, 33 fields) and
+its PHP template were an invention from an earlier merge pass — they don't
+match *either* real source at all. Both identity's and coda's real
+`cb-content-grid` are the **same original block**, byte-identical field
+keys (coda copied identity's wholesale, confirmed via matching ACF field
+keys, e.g. `field_68f8aab8e1d5d` for `grid_rows` on both): a `flexible_content`
+field named `grid_rows` with two layouts, `multi-module_row` (a nested
+`module` repeater) and `single_module_row` (fields directly on the layout).
+Real PHP templates render by reading `$block['data']['grid_rows_X_...']`
+keys directly with hand-rolled string concatenation — deliberately
+bypassing ACF's `have_rows()`/`get_sub_field()` API entirely, presumably
+because the original author already knew ACF's field-registration lookups
+are fragile for nested repeaters (see 2026-07-09's `cb-our-brands` finding).
+Coda's own copy adds one extra field (`title`, on `multi-module_row`'s
+`module` only) that identity's doesn't have — used to render an optional
+`<h2 class="content-grid-title">` before text modules.
+
+**Fixed**: replaced the field group JSON, PHP template, and SCSS entirely.
+- Field group: identity's real structure (preserving its exact keys) plus
+  coda's extra `title` field merged into the `multi-module_row` layout only.
+- PHP template: coda's real file (the superset — handles both layouts,
+  both naming conventions for module counting, robust fallbacks), with
+  identity's dedicated `background` radio field added as a second colour
+  source alongside coda's native Gutenberg colour-picker mechanism (both
+  are real, both needed — neither site's real content uses only one).
+- SCSS: coda's real design (light bg/dark text default) as the base, plus
+  a `.cb-site-identity .content-grid` override for identity's real design
+  (dark bg/light text default, `purple-200` light-scheme flip) — genuinely
+  different defaults, not just a colour swap, same pattern as `cb-cta`/
+  `cb-pushthrough`/`cb-our-brands` before it.
+- **Follow-on discovery**: fixing this surfaced 5 more theme.json palette
+  gaps the same way `lime-600` was found on 2026-07-09 — real content
+  referencing colour slugs (`lime-200`, `lime-700`/`green-400` from
+  identity's pre-lime-rename content, `neutral-1100`, `purple-900`) that
+  were never registered, so their `has-{slug}-background-color` classes
+  silently rendered nothing. This time, instead of waiting for the next
+  one to surface reactively, did a **comprehensive sweep**: extracted every
+  colour slug actually used across all 3 sites' real content — both literal
+  `has-{slug}-color` strings (dedicated ACF fields) *and* the native
+  Gutenberg `"backgroundColor":"{slug}"`/`"textColor":"{slug}"` JSON
+  attributes (a completely different storage mechanism the first sweep on
+  2026-07-09 missed) — and diffed the full list against theme.json in one
+  pass. Found and fixed all 5 gaps at once rather than one per bug report.
+- **Migrated identity's real content** to `acf/` namespace for this block
+  specifically (107 posts, 200 block instances) — safe to do now that the
+  target schema is verified to actually match. Learned from the earlier
+  `cb-related-work`/`cb-latest-insights` prefix-collision bug: explicitly
+  excluded `cb-content-grid-v2` (a literal prefix match, still deferred) by
+  matching only `wp:cb/cb-content-grid ` (trailing space) and the exact
+  `"name":"cb/cb-content-grid"` string, verified the v2 count was
+  unchanged (45 before, 45 after) before and after. DB backed up first
+  (`db-backups/idglobal-test-pre-content-grid-migration.sql`).
+- Verified via direct `getComputedStyle` checks (not screenshots) on real
+  case studies on both sites: all colour/background combinations resolve
+  to their exact expected hex values.
+- **Still deferred**: `cb-content-grid-v2` (45 identity instances,
+  genuinely a different block/schema, not yet investigated) and the other
+  6 previously-identified deferred block types. `cb-content-grid` itself
+  is done.

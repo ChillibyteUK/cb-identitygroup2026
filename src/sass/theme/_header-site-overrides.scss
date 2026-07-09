@@ -304,4 +304,27 @@
       color: var(--col-lime-400);
     }
   }
+
+  // cb-content-grid: identity's own real default is dark bg/light text
+  // (opposite of coda's light/dark base this shared file uses), with its
+  // own light-scheme flip on `has-purple-200-background-color` (coda has no
+  // equivalent — its two flip classes are neutral-900/1100, already the
+  // base file's default).
+  .content-grid {
+    color: var(--col-white);
+
+    .content-grid-title {
+      color: var(--col-brand);
+      border-color: hsl(var(--hsl-neutral-050) / 0.5);
+    }
+
+    &.has-purple-200-background-color {
+      color: var(--col-primary-black);
+
+      .content-grid-title {
+        color: var(--col-secondary);
+        border-color: hsl(var(--hsl-ink) / 0.2);
+      }
+    }
+  }
 }

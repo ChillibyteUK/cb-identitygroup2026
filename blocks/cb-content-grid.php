@@ -1,391 +1,337 @@
 <?php
 /**
- * CB Content Grid Block Template
+ * Block template for CB Content Grid.
+ *
+ * Ported 2026-07-10 from identity's/coda's real templates (near-identical,
+ * same field keys - coda's own theme copied identity's schema wholesale,
+ * adding one extra `title` field per multi-module_row module). The shared
+ * theme's previous version invented an entirely different `rows`/`modules`
+ * repeater schema that matched neither site's real saved content at all -
+ * silently rendering nothing, since `$block['data']['grid_rows']` (what
+ * every real content-grid instance on every site actually has) was never
+ * read. See SESSION-HANDOFF.md 2026-07-10 for the full story.
  *
  * @package cb-identitygroup2026
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$block_id = $block['id'] ?? wp_unique_id( 'cb-content-grid-' );
-
-$rows               = get_field( 'rows' );
-$background_image   = get_field( 'background_image' );
-$section_style_attr = '';
-
-if ( empty( $rows ) ) {
-	return;
-}
-
-if ( $background_image ) {
-	$background_image_url = wp_get_attachment_image_url( $background_image, 'full' );
-
-	if ( $background_image_url ) {
-		$section_style_attr = sprintf( '--cb-content-grid-bg: url(%s);', esc_url_raw( $background_image_url ) );
-	}
-}
-
-$bg_class = '';
-$line_class = 'dark-lines';
-if ( isset( $block['supports']['color']['background'] ) && $block['supports']['color']['background'] ) {
-	$bg_color = $block['backgroundColor'] ?? '';
-	if ( $bg_color ) {
-		$bg_class = 'has-' . esc_attr( $bg_color ) . '-background-color';
-
-		if ( preg_match( '/(\d+)(?!.*\d)/', $bg_color, $matches ) ) {
-			$line_class = (int) $matches[1] >= 600 ? 'light-lines' : 'dark-lines';
-		} else {
-			$line_class = 'light-lines';
+if ( ! function_exists( 'cb_normalize_excel_paste' ) ) {
+	/**
+	 * Normalize HTML content pasted from Excel.
+	 *
+	 * @param string $html The HTML content to normalize.
+	 * @return string The normalized HTML content.
+	 */
+	function cb_normalize_excel_paste( $html ) {
+		$html = (string) $html;
+		if ( '' === trim( $html ) ) {
+			return $html;
 		}
-	}
-}
+		$prev = libxml_use_internal_errors( true );
+		$doc  = new DOMDocument();
+		$doc->loadHTML( '<?xml encoding="utf-8" ?><div id="cb-normalize-wrapper">' . $html . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+		$xpath = new DOMXPath( $doc );
 
-$text_class = '';
-if ( isset( $block['supports']['color']['text'] ) && $block['supports']['color']['text'] ) {
-	$text_color = $block['textColor'] ?? '';
-	if ( $text_color ) {
-		$text_class = 'has-' . esc_attr( $text_color ) . '-color';
-	}
-}
+		// Deepest-first processing of ewa-rteLine wrappers.
+		$nodes = $xpath->query( '//*[contains(concat(" ", normalize-space(@class), " "), " ewa-rteLine ")]' );
+		$arr   = array();
+		foreach ( $nodes as $n ) {
+			$arr[] = $n;
+		}
+		$arr = array_reverse( $arr );
 
-$section_classes = array( 'cb-content-grid' );
-$section_classes[] = $line_class;
-if ( $bg_class ) {
-	$section_classes[] = $bg_class;
-}
-if ( $text_class ) {
-	$section_classes[] = $text_class;
-}
-if ( $section_style_attr ) {
-	$section_classes[] = 'cb-content-grid--has-background-image';
-}
-?>
-<section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"<?= $section_style_attr ? ' style="' . esc_attr( $section_style_attr ) . '"' : ''; ?>>
-	<div class="id-container py-5 px-4 px-md-5">
-		<?php
-		foreach ( $rows as $row_index => $row ) {
-			$column_layout = $row['column_layout'] ?? '12';
-			$modules       = $row['modules'] ?? array();
-			$has_h2_module = false;
-
-			foreach ( $modules as $module ) {
-				if ( 'h2' === ( $module['module_type'] ?? '' ) && ! empty( $module['h2_text'] ) ) {
-					$has_h2_module = true;
-					break;
+		foreach ( $arr as $div ) {
+			$has_child_ewa = false;
+			foreach ( $div->childNodes as $child ) {
+				if ( $child instanceof DOMElement ) {
+					$cls = $child->getAttribute( 'class' );
+					if ( $cls && preg_match( '/(^|\s)ewa-?rteLine(\s|$)/i', $cls ) ) {
+						$has_child_ewa = true;
+						break;
+					}
 				}
 			}
 
-			$row_classes = array( 'cb-content-grid__row  pt-4 pb-5' );
-
-			if ( $has_h2_module ) {
-				$row_classes[] = 'cb-content-grid__row--has-h2';
+			// Is this wrapper effectively empty?
+			$has_non_empty = false;
+			foreach ( $div->childNodes as $child ) {
+				if ( $child instanceof DOMText ) {
+					if ( trim( $child->wholeText ) !== '' ) {
+						$has_non_empty = true;
+						break;
+					}
+				} elseif ( $child instanceof DOMElement ) {
+					if ( strtolower( $child->tagName ) === 'br' || trim( $child->textContent ) !== '' ) {
+						$has_non_empty = true;
+						break;
+					}
+				}
 			}
 
-			$grid_classes = array( 'row', 'g-5' );
-
-			if ( 'Yes' === $row['has_line'][0] ) {
-				$row_classes[] = 'cb-content-grid__row--has-line';
+			if ( ! $has_non_empty && ! $has_child_ewa ) {
+				if ( $div->parentNode ) {
+					$div->parentNode->removeChild( $div );
+				}
+				continue;
 			}
 
-			switch ( $column_layout ) {
-				case '12':
-					$grid_classes[] = 'cb-content-grid__row--full';
-					break;
-				case '6-6':
-					$grid_classes[] = 'cb-content-grid__row--two-col';
-					break;
-				case '4-8':
-					$grid_classes[] = 'cb-content-grid__row--third-twothirds';
-					break;
-				case '8-4':
-					$grid_classes[] = 'cb-content-grid__row--twothirds-third';
-					break;
-				case '4-4-4':
-					$grid_classes[] = 'cb-content-grid__row--three-col';
-					break;
-				case '3-3-3-3':
-					$grid_classes[] = 'cb-content-grid__row--four-col';
-					break;
+			if ( $has_child_ewa ) {
+				// Unwrap: move children out.
+				while ( $div->firstChild ) {
+					$div->parentNode->insertBefore( $div->firstChild, $div );
+				}
+				$div->parentNode->removeChild( $div );
+			} else {
+				// Convert to paragraph.
+				$p = $doc->createElement( 'p' );
+				while ( $div->firstChild ) {
+					$p->appendChild( $div->firstChild );
+				}
+				$div->parentNode->replaceChild( $p, $div );
+			}
+		}
+
+		// Remove empty generic divs left over.
+		$empties = $xpath->query( '//div[not(normalize-space()) and not(*)]' );
+		foreach ( $empties as $e ) {
+			if ( $e->parentNode ) {
+				$e->parentNode->removeChild( $e );
+			}
+		}
+
+		$out     = '';
+		$wrapper = $doc->getElementById( 'cb-normalize-wrapper' );
+		if ( $wrapper ) {
+			foreach ( $wrapper->childNodes as $child ) {
+				$out .= $doc->saveHTML( $child );
+			}
+		} else {
+			$out = $html;
+		}
+		libxml_clear_errors();
+		libxml_use_internal_errors( $prev );
+		return $out;
+	}
+}
+
+// Get grid rows from block data.
+$grid_rows = $block['data']['grid_rows'] ?? array();
+if ( empty( $grid_rows ) ) {
+	return;
+}
+
+// Two background mechanisms exist across real content: identity's own
+// dedicated "background" radio field, and coda's use of Gutenberg's native
+// colour picker (block backgroundColor/textColor attributes). Support both.
+$background_field = get_field( 'background' );
+$bg                = $background_field ? $background_field : ( ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '' );
+$fg                = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
+$section_id        = $block['anchor'] ?? null;
+
+?>
+<section id="<?= esc_attr( $section_id ); ?>" class="content-grid <?= esc_attr( $bg ); ?> <?= esc_attr( $fg ); ?>">
+	<div class="id-container pt-5 px-4 px-md-5">
+	<?php
+	foreach ( $grid_rows as $row_index => $layout ) {
+		// Support both 'multi-module_row' and 'multi_module_row' for compatibility.
+		if ( 'single_module_row' === $layout ) { // --- Single module row ---
+			$mtype      = $block['data'][ 'grid_rows_' . $row_index . '_module_type' ] ?? '';
+			$width_raw  = $block['data'][ 'grid_rows_' . $row_index . '_column_width' ] ?? 12;
+			$offset_raw = $block['data'][ 'grid_rows_' . $row_index . '_column_offset' ] ?? 0;
+			$width      = intval( $width_raw );
+			$offset     = intval( $offset_raw );
+
+			if ( $width < 1 || $width > 12 ) {
+				$width = 12;
+			}
+			if ( $offset < 0 ) {
+				$offset = 0;
+			}
+			if ( $offset > 11 ) {
+				$offset = 11;
+			}
+			if ( $width + $offset > 12 ) {
+				$offset = max( 0, 12 - $width );
+			}
+			$class = trim( $block['data'][ 'grid_rows_' . $row_index . '_custom_class' ] ?? '' );
+
+			$col_classes = array(
+				'col-md-' . esc_attr( $width ),
+			);
+			if ( $offset && '0' !== $offset ) {
+				$col_classes[] = 'offset-md-' . esc_attr( $offset );
+			}
+			if ( $class ) {
+				$col_classes[] = sanitize_html_class( $class );
 			}
 			?>
-			<div class="<?= esc_attr( implode( ' ', $row_classes ) ); ?>" data-row-index="<?= esc_attr( $row_index ); ?>">
-				<div class="<?= esc_attr( implode( ' ', $grid_classes ) ); ?>" data-aos-stagger-group>
+			<div class="row g-5 pb-5">
+				<div class="<?= esc_attr( implode( ' ', $col_classes ) ); ?>" data-aos="fade-up">
 					<?php
-					foreach ( $modules as $module_index => $module ) {
-						$module_type = $module['module_type'] ?? 'empty';
+					if ( 'image' === $mtype || 'Image' === $mtype ) {
+						$image_id = $block['data'][ 'grid_rows_' . $row_index . '_image' ] ?? null;
+						$caption  = $block['data'][ 'grid_rows_' . $row_index . '_caption' ] ?? '';
+						$aspect   = $block['data'][ 'grid_rows_' . $row_index . '_aspect_ratio' ] ?? '';
 
-						$col_classes = array( 'cb-content-grid__module' );
-
-						switch ( $column_layout ) {
-							case '12':
-								$col_classes[] = 'col-md-12';
+						switch ( $aspect ) {
+							case 'Native':
+								$aspect_class = '';
 								break;
-							case '6-6':
-								$col_classes[] = 'col-md-6';
+							case '21x9':
+								$aspect_class = 'ratio ratio-21x9';
 								break;
-							case '4-8':
-								$col_classes[] = 0 === $module_index ? 'col-md-4' : 'col-md-8';
+							case '16x9':
+								$aspect_class = 'ratio ratio-16x9';
 								break;
-							case '8-4':
-								$col_classes[] = 0 === $module_index ? 'col-md-8' : 'col-md-4';
+							case '4x3':
+								$aspect_class = 'ratio ratio-4x3';
 								break;
-							case '4-4-4':
-								$col_classes[] = 'col-md-4';
+							case '1x1':
+								$aspect_class = 'ratio ratio-1x1';
 								break;
-							case '3-3-3-3':
-								$col_classes[] = 'col-md-3';
-								break;
+							default:
+								$aspect_class = '';
+						}
+						if ( $image_id ) {
+							echo '<div class="img-cover ' . esc_attr( $aspect_class ) . '">';
+							echo wp_get_attachment_image( $image_id, 'full', false, array( 'class' => 'img-fluid' ) );
+							echo '</div>';
 						}
 
-						$col_classes[] = 'cb-content-grid__module--' . esc_attr( $module_type );
-						?>
-						<div class="<?= esc_attr( implode( ' ', $col_classes ) ); ?>" data-module-index="<?= esc_attr( $module_index ); ?>" data-aos="fade">
+						if ( $caption ) {
+							echo '<p class="image-caption small text-muted mt-2">' . esc_html( $caption ) . '</p>';
+						}
+					} elseif ( 'text' === $mtype || 'Text' === $mtype ) {
+						$block_title = $block['data'][ 'grid_rows_' . $row_index . '_title' ] ?? '';
+						if ( $block_title ) {
+							echo '<h2 class="content-grid-title mb-4">' . esc_html( $block_title ) . '</h2>';
+						}
+						$text = $block['data'][ 'grid_rows_' . $row_index . '_text' ] ?? '';
+						$text = cb_normalize_excel_paste( $text );
+						echo apply_filters( 'the_content', $text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					} elseif ( 'video' === $mtype || 'Video' === $mtype ) {
+						$vimeo_url = $block['data'][ 'grid_rows_' . $row_index . '_vimeo_url' ] ?? '';
+						if ( $vimeo_url ) {
+							echo '<div class="ratio ratio-16x9">';
+							?>
+							<iframe src="<?= esc_url( cb_vimeo_url_with_dnt( $vimeo_url ) ); ?>" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
 							<?php
-							switch ( $module_type ) {
-								case 'h2':
-									$h2_text = $module['h2_text'] ?? '';
-									if ( $h2_text ) {
-										?>
-										<h2 class="cb-content-grid__h2"><?= wp_kses_post( $h2_text ); ?></h2>
-										<?php
-									}
-									break;
+							echo '</div>';
+						}
+					}
+					?>
+				</div>
+			</div>
+			<?php
+		} elseif ( 'multi_module_row' === $layout || 'multi-module_row' === $layout ) { // --- Multi-module row ---
+			// Try to determine module count by looking for the highest module index.
+			$modules_count = 0;
+			// Prefer 'grid_rows_X_module' (as in real saved data), fallback to 'grid_rows_X_modules'.
+			if ( isset( $block['data'][ 'grid_rows_' . $row_index . '_module' ] ) ) {
+				$modules_count = intval( $block['data'][ 'grid_rows_' . $row_index . '_module' ] );
+			} elseif ( isset( $block['data'][ 'grid_rows_' . $row_index . '_modules' ] ) ) {
+				$modules_count = intval( $block['data'][ 'grid_rows_' . $row_index . '_modules' ] );
+			} else {
+				// Try to count by scanning keys.
+				foreach ( $block['data'] as $k => $v ) {
+					if ( strpos( $k, 'grid_rows_' . $row_index . '_module_' ) === 0 && strpos( $k, '_module_type' ) !== false ) {
+						++$modules_count;
+					}
+				}
+			}
+			if ( $modules_count > 0 ) {
+				?>
+				<div class="row g-5 pb-5">
+					<?php
+					for ( $module_index = 0; $module_index < $modules_count; $module_index++ ) {
+						$mtype      = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_module_type' ] ?? '';
+						$width_raw  = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_column_width' ] ?? 12;
+						$offset_raw = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_column_offset' ] ?? 0;
+						$width      = intval( $width_raw );
+						$offset     = intval( $offset_raw );
 
-								case 'h3':
-									$h3_text = $module['h3_text'] ?? '';
-									if ( $h3_text ) {
-										?>
-										<h3 class="cb-content-grid__h3"><?= wp_kses_post( $h3_text ); ?></h3>
-										<?php
-									}
-									break;
+						if ( $width < 1 || $width > 12 ) {
+							$width = 12;
+						}
+						if ( $offset < 0 ) {
+							$offset = 0;
+						}
+						if ( $offset > 11 ) {
+							$offset = 11;
+						}
+						if ( $width + $offset > 12 ) {
+							$offset = max( 0, 12 - $width );
+						}
+						$class = trim( $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_custom_class' ] ?? '' );
 
-								case 'text':
-									$text_content = $module['text_content'] ?? '';
-									$text_fs      = $module['text_font_size'] ?? 'fs-100';
-									$text_fw      = $module['text_font_weight'] ?? 'fw-regular';
-									?>
-									<div class="cb-content-grid__text <?= esc_attr( $text_fs ); ?> <?= esc_attr( $text_fw ); ?>">
-										<?= wp_kses_post( $text_content ); ?>
-									</div>
-									<?php
-									break;
+						$col_classes = array(
+							'col-md-' . esc_attr( $width ),
+						);
+						if ( $offset && '0' !== $offset ) {
+							$col_classes[] = 'offset-md-' . esc_attr( $offset );
+						}
+						if ( $class ) {
+							$col_classes[] = sanitize_html_class( $class );
+						}
+						?>
+						<div class="<?= esc_attr( implode( ' ', $col_classes ) ); ?>" data-aos="fade-up">
+							<?php
+							if ( 'image' === $mtype || 'Image' === $mtype ) {
+								$image_id = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_image' ] ?? null;
+								$caption  = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_caption' ] ?? '';
+								$aspect   = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_aspect_ratio' ] ?? '';
 
-								case 'list':
-									$list_content = $module['list_content'] ?? '';
-									$list_fs     = $module['list_font_size'] ?? 'fs-100';
-									$list_fw     = $module['list_font_weight'] ?? 'fw-regular';
-									if ( $list_content ) {
-										?>
-										<ul class="cb-content-grid__list <?= esc_attr( $list_fs ); ?> <?= esc_attr( $list_fw ); ?>">
-											<?= cb_list( $list_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-										</ul>
-										<?php
-									}
-									break;
-
-								case 'quote':
-									$quote_text = $module['quote_text'] ?? '';
-									$quote_link = $module['quote_link'] ?? array();
-
-									if ( $quote_text ) {
-										?>
-										<div class="cb-content-grid__quote-wrap">
-											<blockquote class="cb-content-grid__quote mb-4"><?= wp_kses_post( $quote_text ); ?></blockquote>
-											<?php if ( ! empty( $quote_link['url'] ) && ! empty( $quote_link['title'] ) ) : ?>
-												<a class="id-button id-button--sm mt-4" href="<?= esc_url( $quote_link['url'] ); ?>" target="<?= esc_attr( $quote_link['target'] ?: '_self' ); ?>">
-													<?= esc_html( $quote_link['title'] ); ?>
-												</a>
-											<?php endif; ?>
-										</div>
-										<?php
-									}
-									break;
-
-								case 'links':
-									$links_rows = $module['links_rows'] ?? array();
-
-									if ( ! empty( $links_rows ) && is_array( $links_rows ) ) {
-										?>
-										<div class="cb-content-grid__links">
-											<?php foreach ( $links_rows as $links_row ) : ?>
-												<?php
-												$link_title = $links_row['title'] ?? '';
-												$file_url   = $links_row['file'] ?? '';
-
-												if ( ! $file_url ) {
-													continue;
-												}
-												?>
-												<a class="cb-content-grid__links-link" href="<?= esc_url( $file_url ); ?>" target="_blank" rel="noopener noreferrer">
-													<?= esc_html( $link_title ? $link_title : wp_basename( $file_url ) ); ?>
-													<?= cb_sanitise_svg( get_stylesheet_directory() . '/img/arrow-n600.svg', '', 38, 29 ); ?>
-												</a>
-											<?php endforeach; ?>
-										</div>
-										<?php
-									}
-									break;
-
-								case 'logo_grid':
-									$logo_grid_rows = $module['logo_grid_rows'] ?? array();
-
-									if ( ! empty( $logo_grid_rows ) && is_array( $logo_grid_rows ) ) {
-										?>
-										<div class="cb-content-grid__logo-grid">
-											<?php foreach ( $logo_grid_rows as $logo_grid_row ) : ?>
-												<?php
-												$row_title = $logo_grid_row['title'] ?? '';
-												$row_logos = $logo_grid_row['logo'] ?? array();
-
-												if ( empty( $row_logos ) || ! is_array( $row_logos ) ) {
-													continue;
-												}
-												?>
-												<div class="cb-content-grid__logo-grid-row row g-4 align-items-start">
-													<div class="col-lg-3">
-														<?php if ( $row_title ) : ?>
-															<h3 class="cb-content-grid__logo-grid-title"><?= esc_html( $row_title ); ?></h3>
-														<?php endif; ?>
-													</div>
-													<div class="col-lg-9">
-														<div class="cb-content-grid__logo-grid-gallery">
-															<?php foreach ( $row_logos as $logo_id ) : ?>
-																<div class="cb-content-grid__logo-grid-item">
-																	<?= wp_get_attachment_image( $logo_id, 'full', false, array( 'class' => 'cb-content-grid__logo-grid-image', 'alt' => get_post_meta( $logo_id, '_wp_attachment_image_alt', true ) ) ); ?>
-																</div>
-															<?php endforeach; ?>
-														</div>
-													</div>
-												</div>
-											<?php endforeach; ?>
-										</div>
-										<?php
-									}
-									break;
-
-								case 'image':
-									$image_id     = $module['image'] ?? null;
-									$aspect       = $module['image_aspect_ratio'] ?? '16x9';
-									$image_mode   = $module['image_size'] ?? '';
-									$image_size   = 'contain' === $image_mode ? 'cb-content-grid__image-contain' : '';
-									$native_class = ( 'native' === $aspect && 'contain' === $image_mode ) ? 'cb-content-grid__image-native' : '';
-									$aspect_class = '';
-									$wrap_style   = '';
-
-									switch ( $aspect ) {
-										case 'native':
-											$aspect_class = '';
-											break;
-										case '21x9':
-											$aspect_class = 'ratio ratio-21x9';
-											break;
-										case '16x9':
-											$aspect_class = 'ratio ratio-16x9';
-											break;
-										case '4x3':
-											$aspect_class = 'ratio ratio-4x3';
-											break;
-										case '1x1':
-											$aspect_class = 'ratio ratio-1x1';
-											break;
-									}
-
-									if ( $image_id ) {
-										if ( $native_class ) {
-											$image_src = wp_get_attachment_image_src( $image_id, 'full' );
-
-											if ( ! empty( $image_src[1] ) ) {
-												$wrap_style = sprintf( 'style="width:min(100%%, %dpx);"', (int) $image_src[1] );
-											}
-										}
-										?>
-										<div class="cb-content-grid__image-wrap <?= esc_attr( $aspect_class ); ?> <?= esc_attr( $image_size ); ?> <?= esc_attr( $native_class ); ?>" <?= $wrap_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-											<?= wp_get_attachment_image( $image_id, 'full', false, array( 'class' => 'img-fluid cb-content-grid__image' ) ); ?>
-										</div>
-										<?php
-									}
-
-									break;
-
-								case 'button':
-									$button_link = $module['button_link'] ?? array();
-									$cta_text    = $module['cta_text'] ?? '';
-									if ( ! empty( $button_link['url'] ) && ! empty( $button_link['title'] ) ) {
-										?>
-										<a class="id-button mb-5 mt-3" href="<?= esc_url( $button_link['url'] ); ?>" target="<?= esc_attr( $button_link['target'] ?: '_self' ); ?>"><?= esc_html( $button_link['title'] ); ?></a>
-										<?php
-									}
-									if ( $cta_text ) {
-										?>
-										<div class="cta-hero__cta-title"><?= esc_html( $cta_text ); ?></div>
-										<?php
-									}
-									break;
-
-								case 'video':
-									$video_url = $module['video_url'] ?? '';
-
-									if ( $video_url ) {
-										$video_url = cb_vimeo_url_with_dnt( $video_url );
-										?>
-										<div class="cb-content-grid__video-wrap ratio ratio-16x9">
-											<iframe
-												class="cb-content-grid__video"
-												src="<?= esc_url( $video_url ); ?>"
-												title="Vimeo video player"
-												frameborder="0"
-												allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-												referrerpolicy="strict-origin-when-cross-origin"
-												allowfullscreen>
-											</iframe>
-										</div>
-										<?php
-									}
-									break;
-
-								case 'qa':
-									$qa_rows = $module['qa_rows'] ?? array();
-
-									if ( ! empty( $qa_rows ) && is_array( $qa_rows ) ) {
-										$first_q = $module['lead_first'] ? 'cb-content-grid__qa-question--first' : '';
-										$first_a = $module['lead_first'] ? 'cb-content-grid__qa-answer--first' : '';
-										$large_q = ! empty( $module['large_left'] ) ? 'cb-content-grid__qa-question--large' : '';
-										?>
-										<div class="cb-content-grid__qa">
-											<?php foreach ( $qa_rows as $qa_row ) : ?>
-												<?php
-												$qa_question = $qa_row['qa_question'] ?? '';
-												$qa_answer   = $qa_row['qa_answer'] ?? '';
-
-												if ( ! $qa_question && ! $qa_answer ) {
-													continue;
-												}
-												?>
-												<div class="cb-content-grid__qa-row row g-4 pb-5 align-items-start">
-													<div class="col-lg-6">
-														<?php if ( $qa_question ) : ?>
-															<h3 class="cb-content-grid__qa-question <?= esc_attr( trim( $first_q . ' ' . $large_q ) ); ?>"><?= wp_kses_post( $qa_question ); ?></h3>
-														<?php endif; ?>
-													</div>
-													<div class="col-lg-6">
-														<?php if ( $qa_answer ) : ?>
-															<div class="cb-content-grid__qa-answer <?= esc_attr( $first_a ); ?>"><?= wp_kses_post( $qa_answer ); ?></div>
-														<?php endif; ?>
-													</div>
-												</div>
-											<?php 
-												$first_q = $first_a = '';
-											endforeach;
-											?>
-										</div>
-										<?php
-									}
-									break;
-
-								case 'empty':
-								default:
-									break;
+								switch ( $aspect ) {
+									case 'Native':
+										$aspect_class = '';
+										break;
+									case '21x9':
+										$aspect_class = 'ratio ratio-21x9';
+										break;
+									case '16x9':
+										$aspect_class = 'ratio ratio-16x9';
+										break;
+									case '4x3':
+										$aspect_class = 'ratio ratio-4x3';
+										break;
+									case '1x1':
+										$aspect_class = 'ratio ratio-1x1';
+										break;
+									default:
+										$aspect_class = '';
+								}
+								if ( $image_id ) {
+									echo '<div class="img-cover ' . esc_attr( $aspect_class ) . '">';
+									echo wp_get_attachment_image(
+										$image_id,
+										'full',
+										false,
+										array(
+											'class' => 'img-fluid',
+											'alt'   => get_post_meta( $image_id, '_wp_attachment_image_alt', true ),
+										)
+									);
+									echo '</div>';
+								}
+								if ( $caption ) {
+									echo '<p class="image-caption small text-muted mt-2">' . esc_html( $caption ) . '</p>';
+								}
+							} elseif ( 'text' === $mtype || 'Text' === $mtype ) {
+								$block_title = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_title' ] ?? '';
+								if ( $block_title ) {
+									echo '<h2 class="content-grid-title mb-4">' . esc_html( $block_title ) . '</h2>';
+								}
+								$text = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_text' ] ?? '';
+								$text = cb_normalize_excel_paste( $text );
+								echo apply_filters( 'the_content', $text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							} elseif ( 'video' === $mtype || 'Video' === $mtype ) {
+								$vimeo_url = $block['data'][ 'grid_rows_' . $row_index . '_module_' . $module_index . '_vimeo_url' ] ?? '';
+								if ( $vimeo_url ) {
+									echo '<div class="ratio ratio-16x9">';
+									echo wp_kses_post( wp_oembed_get( esc_url( cb_vimeo_url_with_dnt( $vimeo_url ) ) ) );
+									echo '</div>';
+								}
 							}
 							?>
 						</div>
@@ -393,89 +339,12 @@ if ( $section_style_attr ) {
 					}
 					?>
 				</div>
-			</div>
-			<?php
+				<?php
+			} else {
+				echo '<!-- No modules found for row ' . esc_html( $row_index ) . ' -->';
+			}
 		}
-		?>
+	}
+	?>
 	</div>
 </section>
-
-<?php if ( $section_style_attr ) : ?>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-	var section = document.getElementById(<?= wp_json_encode( $block_id ); ?>);
-	if (!section) return;
-
-	var ticking = false;
-
-	function update() {
-		var rect = section.getBoundingClientRect();
-		var windowHeight = window.innerHeight;
-
-		if (rect.bottom > 0 && rect.top < windowHeight) {
-			var percent = (windowHeight - rect.top) / (windowHeight + rect.height);
-			percent = Math.max(0, Math.min(1, percent));
-			var translateY = (percent - 0.5) * 240; // Adjust the multiplier for more/less parallax
-			section.style.setProperty('--cb-content-grid-parallax-y', translateY.toFixed(1) + 'px');
-		}
-
-		ticking = false;
-	}
-
-	function onScroll() {
-		if (!ticking) {
-			window.requestAnimationFrame(update);
-			ticking = true;
-		}
-	}
-
-	window.addEventListener('scroll', onScroll, { passive: true });
-	window.addEventListener('resize', onScroll);
-	onScroll();
-});
-</script>
-<?php endif; ?>
-
-<script>
-(function() {
-	function matchImageHeights() {
-		var rows = document.querySelectorAll('.cb-content-grid__row');
-		rows.forEach(function(row) {
-			var modules = row.querySelectorAll('.cb-content-grid__module--image');
-			if (modules.length < 2) return;
-
-			var maxHeight = 0;
-			var images = [];
-
-			modules.forEach(function(mod) {
-				var img = mod.querySelector('.cb-content-grid__image-wrap');
-				if (img) {
-					var rect = img.getBoundingClientRect();
-					if (rect.height > maxHeight) {
-						maxHeight = rect.height;
-					}
-					images.push(img);
-				}
-			});
-
-			if (maxHeight > 0) {
-				images.forEach(function(img) {
-					img.style.height = maxHeight + 'px';
-				});
-			}
-		});
-	}
-
-	var resizeTimer;
-	window.addEventListener('resize', function() {
-		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(matchImageHeights, 100);
-	});
-
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', matchImageHeights);
-	} else {
-		matchImageHeights();
-	}
-})();
-</script>
