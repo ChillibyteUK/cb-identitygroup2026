@@ -10,6 +10,16 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// identity's and coda's real cb-recent-news designs (category/colour
+// scheme, single-slug-filtered query) differ genuinely from idtravel's
+// (the base body below, with its theme/person priority query) — see
+// cb-recent-news-identity.php / cb-recent-news-coda.php.
+$cb_site = cb_site_template_suffix();
+if ( 'identity' === $cb_site || 'coda' === $cb_site ) {
+	require get_theme_file_path( 'blocks/cb-recent-news-' . $cb_site . '.php' );
+	return;
+}
+
 // Block ID.
 $block_id   = $block['id'] ?? '';
 $blog_type  = get_query_var( 'blog_type', '' );
