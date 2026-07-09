@@ -25093,8 +25093,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-hero-prop-cta {
-  background: var(--grad-main);
-  color: var(--col-primary-black);
+  background: var(--col-ink);
+  color: var(--col-white);
 }
 .cb-hero-prop-cta__title {
   position: relative;
@@ -25124,22 +25124,23 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-hero-prop-cta__title .bar {
   position: absolute;
   inset: -0.1em -0.6em; /* keeps bars wider than text */
-  background: var(--col-white);
+  background: var(--col-raspberry);
   z-index: 1;
   opacity: 0;
 }
 .cb-hero-prop-cta__title .text {
   position: relative;
   z-index: 2;
-  color: var(--col-brand-dark);
+  color: var(--col-white);
   font-size: 11.5vw;
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-book);
+  letter-spacing: var(--ls--20);
   opacity: 0;
   text-align: left;
 }
 @media (min-width: 768px) {
   .cb-hero-prop-cta__title .text {
-    font-size: 5.5vw;
+    font-size: 7vw;
   }
 }
 .cb-hero-prop-cta__title .line:nth-child(1) {
@@ -25167,15 +25168,50 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   transform: rotate(-6deg);
 }
 .cb-hero-prop-cta__content-heading {
-  font-size: var(--fs-800);
+  font-size: var(--fs-700);
   line-height: 1;
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-book);
   padding-block: 0.15em 0.1em;
-  border-top: 1px solid var(--col-brand-dark);
-  border-bottom: 1px solid var(--col-brand-dark);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
 }
 .cb-hero-prop-cta__content {
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  font-size: var(--fs-700);
+  line-height: var(--lh-700);
+  letter-spacing: var(--ls--15);
+  font-weight: var(--fw-light);
+  padding-top: 1rem;
+}
+
+.cb-site-coda .cb-hero-prop-cta {
+  background: var(--grad-main);
+  color: var(--col-primary-black);
+}
+.cb-site-coda .cb-hero-prop-cta__title .bar {
+  background: var(--col-white);
+}
+.cb-site-coda .cb-hero-prop-cta__title .text {
+  color: var(--col-lime-900);
+  font-weight: var(--fw-light);
+  letter-spacing: normal;
+}
+@media (min-width: 768px) {
+  .cb-site-coda .cb-hero-prop-cta__title .text {
+    font-size: 5.5vw;
+  }
+}
+.cb-site-coda .cb-hero-prop-cta__content-heading {
+  font-size: var(--fs-800);
+  font-weight: var(--fw-light);
+  border-bottom: 1px solid var(--col-lime-900);
+}
+.cb-site-coda .cb-hero-prop-cta__content {
+  border-top: 0;
   font-size: var(--fs-500);
+  line-height: normal;
+  letter-spacing: normal;
+  font-weight: initial;
+  padding-top: 0;
 }
 
 .cb-decision-gate {

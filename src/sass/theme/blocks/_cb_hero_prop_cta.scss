@@ -1,6 +1,6 @@
 .cb-hero-prop-cta {
-  background: var(--grad-main);
-  color: var(--col-primary-black);
+  background: var(--col-ink);
+  color: var(--col-white);
 
   // animated bit
   &__title {
@@ -31,7 +31,7 @@
     .bar {
       position: absolute;
       inset: -0.1em -0.6em; /* keeps bars wider than text */
-      background: var(--col-white);
+      background: var(--col-raspberry);
       z-index: 1;
       opacity: 0;
     }
@@ -39,12 +39,13 @@
     .text {
       position: relative;
       z-index: 2;
-      color: var(--col-brand-dark);
+      color: var(--col-white);
       font-size: 11.5vw;
       @media (min-width: 768px) {
-        font-size: 5.5vw;
+        font-size: 7vw;
       }
-      font-weight: var(--fw-light);
+      font-weight: var(--fw-book);
+      letter-spacing: var(--ls--20);
       opacity: 0;
       text-align: left;
     }
@@ -82,14 +83,57 @@
   // end animated bit
 
   &__content-heading {
-    font-size: var(--fs-800);
+    font-size: var(--fs-700);
     line-height: 1;
-    font-weight: var(--fw-light);
+    font-weight: var(--fw-book);
     padding-block: 0.15em 0.1em;
-    border-top: 1px solid var(--col-brand-dark);
-    border-bottom: 1px solid var(--col-brand-dark);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
   }
   &__content {
-    font-size: var(--fs-500);
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    font-size: var(--fs-700);
+    line-height: var(--lh-700);
+    letter-spacing: var(--ls--15);
+    font-weight: var(--fw-light);
+    padding-top: 1rem;
+  }
+}
+
+// coda's real design is a genuinely different colour scheme (gradient bg,
+// dark text, lime accents) from idtravel's (solid ink bg, white text,
+// raspberry bars) — same PHP/animation markup, different static styling,
+// so scoped here rather than mixed into the base rules above.
+.cb-site-coda {
+  .cb-hero-prop-cta {
+    background: var(--grad-main);
+    color: var(--col-primary-black);
+
+    &__title {
+      .bar {
+        background: var(--col-white);
+      }
+      .text {
+        color: var(--col-lime-900);
+        @media (min-width: 768px) {
+          font-size: 5.5vw;
+        }
+        font-weight: var(--fw-light);
+        letter-spacing: normal;
+      }
+    }
+
+    &__content-heading {
+      font-size: var(--fs-800);
+      font-weight: var(--fw-light);
+      border-bottom: 1px solid var(--col-lime-900);
+    }
+    &__content {
+      border-top: 0;
+      font-size: var(--fs-500);
+      line-height: normal;
+      letter-spacing: normal;
+      font-weight: initial;
+      padding-top: 0;
+    }
   }
 }
