@@ -1,5 +1,67 @@
 # Session Handoff: cb-identitygroup2026
 
+## ⏩ Resume checklist (read this first, then skim the dated log below for detail)
+
+**Project**: consolidating `cb-identity2025`, `cb-coda2026`, `cb-idtravel2026`
+into one shared theme, `cb-identitygroup2026`, switching branding/content
+per site via a `cb_site` ACF option field (`identity` | `coda` | `idtravel`).
+
+**Primary dev copy** (git repo, `main` branch, pushed to
+`ChillibyteUK/cb-identitygroup2026`):
+`/var/www/idtravel/wp-content/themes/cb-identitygroup2026`. Check
+`git log --oneline -5` and `git status` on arrival — should be clean.
+
+**Three live-content test clones**, all currently running this shared theme:
+
+| Site | URL | Path | `cb_site` |
+|---|---|---|---|
+| Identity | `http://idglobal-test.local/` | `/var/www/idglobal-test` | `identity` |
+| Coda | `http://idcoda-test.local/` | `/var/www/idcoda-test` | `coda` |
+| Idtravel | `http://idtravel-test.local/` | `/var/www/idtravel-test` | `idtravel` |
+
+Each also still has its *original* theme installed for direct comparison
+via `wp theme activate` (identity's real original is a separate checkout
+at `/var/www/id`, not inside the test clone). Real production reference
+for coda: `https://identitycoda.com/` — fetch/screenshot directly when
+checking coda-specific things.
+
+**Deploy workflow** (no CI, manual):
+```bash
+cd /var/www/idtravel/wp-content/themes/cb-identitygroup2026 && npm run css
+for path in /var/www/idtravel-test /var/www/idcoda-test /var/www/idglobal-test; do
+  rsync -a --exclude='.git' /var/www/idtravel/wp-content/themes/cb-identitygroup2026/ "$path/wp-content/themes/cb-identitygroup2026/"
+done
+```
+ACF sync after field-group changes: `wp --path=<site> acf json sync --allow-root` (run per-site, can time out if batched).
+
+### Methodology rules — do not regress on these
+
+1. **Verify every fix with `getComputedStyle` via Playwright against the exact expected value from the real source file — never by eyeballing a screenshot.** Multiple "fixed" things were reported wrong again after being verified only by eye. Screenshots are a first-pass check, not the verification step.
+2. **Always check identity's and coda's real source files before writing or fixing a block.** Never invent a design. The single biggest source of bugs was code written earlier "from scratch" without checking real sources.
+3. **Selector specificity**: a compound `.cb-site-{slug} h2` selector `(0,1,1)` beats a bare utility class like `.fs-300` `(0,1,0)` and will silently override it. Prefer per-site CSS custom properties (e.g. `--fs-h2`/`--fw-h2`, set in `cb-site-tokens.php`, consumed with a fallback in the base rule) over scoped element overrides whenever the base rule needs to stay overridable by a utility class.
+4. **Two separate colour mechanisms, check both, every time:**
+   - Custom `--col-*` tokens (used *inside* block SCSS) — per-site in `inc/cb-site-tokens.php`.
+   - `theme.json` **palette slugs** — required for WP's auto-generated `.has-{slug}-color`/`.has-{slug}-background-color` classes to render *anything*. A `--col-X` custom property existing does NOT mean the matching WP utility class works. Found this gap 6 separate times before finally doing one comprehensive sweep instead of fixing reactively.
+   - When sweeping: check literal `has-{slug}-color` strings (content/templates/ACF choices) **and** native Gutenberg `"backgroundColor":"{slug}"`/`"textColor":"{slug}"` JSON attributes in real saved content — a completely different storage mechanism, easy to undercount if you only grep for the literal class string.
+5. **ACF field KEYS matter, not just names, for complex field types.** If saved content references a field key that doesn't match the currently-registered field group's key for that same-named field, `get_field()`/`have_rows()` silently return `null`/`false` — no warning, no error. Confirmed via direct `acf_setup_meta()` simulation. Scalar fields (text/radio/select) resolve fine regardless; **repeaters and flexible_content do not.**
+6. **Real ACF block data lives inline in `post_content`'s block-comment JSON `data` attribute**, not `wp_postmeta`. The most robust real templates (`cb-content-grid`) read it via direct `$block['data']['field_name']` string-key access rather than `have_rows()`/`get_sub_field()`, sidestepping rule 5 entirely.
+7. **Never migrate a block namespace with a blind `str_replace` without checking for prefix collisions** (`cb-related-work` is a prefix of `cb-related-work-expo`; `cb-content-grid` is a prefix of `cb-content-grid-v2`). Match on a trailing space or the exact JSON string, and diff the "should be unchanged" sibling's count before/after.
+8. **Always `browser.close()` in a `finally` block on any ad-hoc Playwright script.** 14 leaked debug scripts once ate ~12GB RAM for 15 hours from a missing `finally`. If anything feels sluggish: `ps aux | grep -E "node -e|ms-playwright" | grep -v grep`.
+
+### What's fixed (newest first — see dated entries below for full detail on each)
+
+`cb-content-grid` rebuilt entirely from real sources (was invented, matched neither site) + 5 theme.json palette gaps closed in one sweep → h2 specificity architecture bug + `cb-lined-title`/`cb-pushthrough`/`cb-our-brands`/`cb-testimonial` real bugs → taxonomy registration gap (`service`/`region` never registered, `theme` not on `case_study` — broke `cb-featured-work`, `cb-work-by-region`, and the `cb-related-work` `theme_filter` field) → critical theme.json colour-palette-wipe bug (was silently dropping 48 of 59 colours site-wide) → 4 ACF fields restored from the original merge → 31 of 39 identity block types migrated to the standard `acf/` namespace.
+
+### Explicitly deferred / not yet done
+
+- `cb-content-grid-v2` (45 identity instances) — different schema, not investigated.
+- 6 more identity block types still on the old `cb/` namespace: `cb-awards-slider`, `cb-latest-insights-expo`, `cb-related-work-expo`, `cb-related-work-sports` (needs a content decision, not just a mechanical migration), `cb-sport-logos`, `cb-styled-text-image`.
+- **Not yet re-audited against real sources** (assume similar bugs until checked, given the pattern found in every block actually checked so far): `cb-about-detail`, `cb-service-detail`, `cb-dept-email`, `cb-locations`, `cb-what-we-delivered`, `cb-gradient-intro`, `cb-full-case-study`, `cb-case-study-key-stats`, `cb-work-by-region`.
+- Identity's `/news/` page renders ~6× taller than expected — template-driven, not block-related, never root-caused.
+- Any DB backups from a prior session's scratchpad won't exist in a new session — take a fresh `wp db export` before any risky migration work.
+
+---
+
 ## 2026-07-07 follow-up: real WP instance, major bug found and fixed
 
 Continued this from a local install with wp-cli, Node, and the full build
