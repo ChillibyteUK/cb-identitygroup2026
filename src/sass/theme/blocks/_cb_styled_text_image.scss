@@ -1,0 +1,28 @@
+.cb-styled-text-image {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  font-size: var(--fs-800);
+  line-height: 1.5;
+  text-wrap: balance;
+
+  &__pre-title {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-block: 0.5rem;
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-300);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  &__image-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

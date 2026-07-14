@@ -95,13 +95,20 @@ $col-light: #f2f2f2;
      TYPOGRAPHY (families/weights)
      ========================= */
   --font-family:
-    "Suisse International", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Suisse", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 
   --fw-light: 300;
   --fw-regular: 400;
   --fw-book: 450;
   --fw-semibold: 600;
+  // Referenced across 15+ base block SCSS files (case-study-hero,
+  // region/culture/innovation page headers, featured-work, etc.) but was
+  // never actually defined anywhere in the shared theme - a silent,
+  // sitewide bug (undefined custom property = inherited/wrong weight
+  // wherever used). identity's and coda's real value is 500; idtravel's
+  // own real source doesn't use this token name at all.
+  --fw-semi: 500;
 
   /* line heights */
   --lh-50: 1.4;

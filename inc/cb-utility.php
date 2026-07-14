@@ -53,18 +53,40 @@ function cb_find_hero_subtitle( $blocks ) {
  * @return array The block, with blockName rewritten if it matches a legacy name.
  */
 function cb_rename_legacy_block_names( $block ) {
+	// Targets must be hyphenated, not underscored: acf_register_block_type()
+	// runs acf_slugify() on the name, which converts underscores to
+	// hyphens - so a block registered with 'name' => 'cb_case_study_hero'
+	// actually ends up registered as 'acf/cb-case-study-hero', not
+	// 'acf/cb_case_study_hero'. Verified directly via
+	// WP_Block_Type_Registry::get_all_registered() - all 8 original
+	// entries here had underscored targets that matched no registered
+	// block at all, silently rendering empty for any content still on the
+	// legacy 'cb/' name.
 	static $renames = array(
-		'cb/cb-case-study-hero'     => 'acf/cb_case_study_hero',
-		'cb/cb-brand-title-text'    => 'acf/cb_brand_title_text',
-		'cb/cb-culture-page-header' => 'acf/cb_culture_page_header',
-		'cb/cb-innovation-header'   => 'acf/cb_innovation_header',
-		'cb/cb-policies-page'       => 'acf/cb_policies_page',
-		'cb/cb-region-page-header'  => 'acf/cb_region_page_header',
-		'cb/cb-file-block'          => 'acf/cb_file_block',
-		'cb/cb-work-carousel'       => 'acf/cb_work_carousel',
+		'cb/cb-case-study-hero'     => 'acf/cb-case-study-hero',
+		'cb/cb-brand-title-text'    => 'acf/cb-brand-title-text',
+		'cb/cb-culture-page-header' => 'acf/cb-culture-page-header',
+		'cb/cb-innovation-header'   => 'acf/cb-innovation-header',
+		'cb/cb-policies-page'       => 'acf/cb-policies-page',
+		'cb/cb-region-page-header'  => 'acf/cb-region-page-header',
+		'cb/cb-file-block'          => 'acf/cb-file-block',
+		'cb/cb-work-carousel'       => 'acf/cb-work-carousel',
+		'cb/cb-content-grid-v2'     => 'acf/cb-content-grid-v2',
+		'cb/cb-styled-text-image'   => 'acf/cb-styled-text-image',
 	);
 	if ( isset( $block['blockName'] ) && isset( $renames[ $block['blockName'] ] ) ) {
-		$block['blockName'] = $renames[ $block['blockName'] ];
+		$new_name           = $renames[ $block['blockName'] ];
+		$block['blockName'] = $new_name;
+		// acf_render_block_callback() reads $attributes['name'] itself
+		// (separately from the WP block registry lookup that blockName
+		// drives) to resolve which ACF block config/field group to use -
+		// leaving it on the old 'cb/...' value makes ACF's own callback
+		// silently render nothing, even though WordPress successfully
+		// dispatches to the right render_callback via the renamed
+		// blockName above.
+		if ( isset( $block['attrs']['name'] ) ) {
+			$block['attrs']['name'] = $new_name;
+		}
 	}
 	return $block;
 }
