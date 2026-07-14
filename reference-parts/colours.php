@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme colour reference output from _props.scss
+ * Theme colour reference output from _tokens.scss
  *
  * @package cb-identitygroup2026
  */
@@ -9,10 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Path to _props.scss.
-$file_path = get_stylesheet_directory() . '/src/sass/theme/_props.scss';
+// Path to _tokens.scss (renamed from _props.scss during the Phase C token consolidation).
+$file_path = get_stylesheet_directory() . '/src/sass/theme/_tokens.scss';
 if ( ! file_exists( $file_path ) ) {
-	echo '<p>Could not find _props.scss</p>';
+	echo '<p>Could not find _tokens.scss</p>';
 	return;
 }
 
@@ -78,7 +78,7 @@ ksort( $colours );
 </style>
 <div class="container-xl">
 	<h1>Colours</h1>
-	<p>From <code>src/sass/theme/_props.scss</code></p>
+	<p>From <code>src/sass/theme/_tokens.scss</code>. These are the shared base values (idtravel, the fork base) — per-site overrides applied at runtime via <code>inc/cb-site-tokens.php</code> aren't reflected here.</p>
 
 	<div class="colour-grid">
 		<?php

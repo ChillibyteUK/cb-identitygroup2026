@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme typography reference output from _props.scss
+ * Theme typography reference output from _tokens.scss
  *
  * @package cb-identitygroup2026
  */
@@ -9,10 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Path to _props.scss.
-$file_path = get_stylesheet_directory() . '/src/sass/theme/_props.scss';
+// Path to _tokens.scss (renamed from _props.scss during the Phase C token consolidation).
+$file_path = get_stylesheet_directory() . '/src/sass/theme/_tokens.scss';
 if ( ! file_exists( $file_path ) ) {
-	echo '<p>Could not find _props.scss</p>';
+	echo '<p>Could not find _tokens.scss</p>';
 	return;
 }
 
@@ -75,18 +75,22 @@ uksort(
 
 <div class="container-xl">
 	<h1>Typography</h1>
-	<p>From <code>src/sass/theme/_props.scss</code></p>
+	<p>From <code>src/sass/theme/_tokens.scss</code></p>
 
 	<h2>Font Families</h2>
-	<div class="typography-grid two-col">
-		<?php foreach ( $families as $name => $value ) : ?>
-			<div class="card">
-				<strong>--<?= esc_html( $name ); ?></strong>
-				<code><?= esc_html( $value ); ?></code>
-				<p class="demo" style="font-family: var(--<?= esc_attr( $name ); ?>);">The quick brown fox jumps over the lazy dog.</p>
-			</div>
-		<?php endforeach; ?>
-	</div>
+	<?php if ( empty( $families ) ) : ?>
+		<p><em>No <code>--ff-*</code> family tokens defined — the theme currently uses a single <code>--font-family</code> stack rather than a named scale.</em></p>
+	<?php else : ?>
+		<div class="typography-grid two-col">
+			<?php foreach ( $families as $name => $value ) : ?>
+				<div class="card">
+					<strong>--<?= esc_html( $name ); ?></strong>
+					<code><?= esc_html( $value ); ?></code>
+					<p class="demo" style="font-family: var(--<?= esc_attr( $name ); ?>);">The quick brown fox jumps over the lazy dog.</p>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	<?php endif; ?>
 
 	<h2>Font Weights</h2>
 	<div class="typography-grid four-col">
@@ -94,7 +98,7 @@ uksort(
 			<div class="card">
 				<strong>--<?= esc_html( $name ); ?></strong>
 				<code><?= esc_html( $value ); ?></code>
-				<p class="demo" style="font-weight: var(--<?= esc_attr( $name ); ?>); font-family: var(--ff-body);">The quick brown fox</p>
+				<p class="demo" style="font-weight: var(--<?= esc_attr( $name ); ?>); font-family: var(--font-family);">The quick brown fox</p>
 			</div>
 		<?php endforeach; ?>
 	</div>
@@ -105,7 +109,7 @@ uksort(
 			<div class="card">
 				<strong>--<?= esc_html( $name ); ?></strong>
 				<code><?= esc_html( $value ); ?></code>
-				<p class="demo" style="font-size: var(--<?= esc_attr( $name ); ?>); font-family: var(--ff-body);">The quick brown fox jumps over the lazy dog.</p>
+				<p class="demo" style="font-size: var(--<?= esc_attr( $name ); ?>); font-family: var(--font-family);">The quick brown fox jumps over the lazy dog.</p>
 			</div>
 		<?php endforeach; ?>
 	</div>
