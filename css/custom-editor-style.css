@@ -84,12 +84,13 @@
      TYPOGRAPHY (families/weights)
      ========================= */
   --font-family:
-    "Suisse International", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Suisse", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --fw-light: 300;
   --fw-regular: 400;
   --fw-book: 450;
   --fw-semibold: 600;
+  --fw-semi: 500;
   /* line heights */
   --lh-50: 1.4;
   --lh-100: 1.55;
@@ -219,12 +220,13 @@
      TYPOGRAPHY (families/weights)
      ========================= */
   --font-family:
-    "Suisse International", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    "Suisse", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --fw-light: 300;
   --fw-regular: 400;
   --fw-book: 450;
   --fw-semibold: 600;
+  --fw-semi: 500;
   /* line heights */
   --lh-50: 1.4;
   --lh-100: 1.55;

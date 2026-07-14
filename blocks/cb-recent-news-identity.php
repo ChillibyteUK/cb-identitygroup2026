@@ -47,25 +47,25 @@ switch ( $blog_type ) {
 	case 'insights':
 		$background    = 'has-neutral-1100-background-color';
 		$section_title = 'has-neutral-1000-background-color';
-		$arrow         = '/img/arrow-n600.svg';
+		$arrow         = '/img/arrow-n600-solid.svg';
 		$block_title   = 'RECENT INSIGHTS';
 		break;
 	case 'perspectives':
 		$background    = 'has-neutral-1100-background-color';
 		$section_title = 'has-neutral-1000-background-color';
-		$arrow         = '/img/arrow-n600.svg';
+		$arrow         = '/img/arrow-n600-solid.svg';
 		$block_title   = 'RECENT PERSPECTIVES';
 		break;
 	case 'white-paper':
 		$background    = 'has-neutral-1100-background-color';
 		$section_title = 'has-neutral-1000-background-color';
-		$arrow         = '/img/arrow-n600.svg';
+		$arrow         = '/img/arrow-n600-solid.svg';
 		$block_title   = 'RECENT WHITE PAPERS';
 		break;
 	default:
 		$background    = 'has-primary-black-background-color';
 		$section_title = 'has-primary-black-background-color';
-		$arrow         = '/img/arrow-n600.svg';
+		$arrow         = '/img/arrow-n600-solid.svg';
 		$block_title   = 'INSIGHTS &amp; PERSPECTIVES';
 		break;
 }

@@ -106,7 +106,7 @@ get_header( cb_site_template_suffix() );
 						</div>
 						<div class="insight-type-grid__date d-flex align-items-center gap-2">
 							<?php echo get_the_date( 'j F Y' ); ?>
-							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-n600.svg' ); ?>" width="14" height="13" alt="" />
+							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-n600-solid.svg' ); ?>" width="14" height="13" alt="" />
 						</div>
 					</div>
 				</a>

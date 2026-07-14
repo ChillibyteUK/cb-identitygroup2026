@@ -60,7 +60,10 @@ function cb_get_site_tokens_table() {
 			'--col-brand'          => '#B8FF52',
 			'--hsl-brand'          => '85 100% 66%',
 			'--col-brand-light'    => '#CAFC83',
-			'--col-brand-dark'     => '#4c8200',
+			// same hex-vs-hsl rounding issue as --col-lime-900 (identical
+			// underlying value) - see the fuller comment on coda's copy of
+			// this key below.
+			'--col-brand-dark'     => 'hsl(var(--hsl-lime-900))',
 			'--col-secondary'      => '#2f13ba',
 			'--col-secondary-light' => '#e0deff',
 			'--col-secondary-dark' => '#190A83',
@@ -105,7 +108,7 @@ function cb_get_site_tokens_table() {
 			'--col-raspberry-100'  => '#EEFED9',
 			'--col-raspberry-400'  => '#B8FF52',
 			'--hsl-raspberry-400'  => '85 100% 66%',
-			'--col-raspberry-600'  => '#4c8200',
+			'--col-raspberry-600'  => 'hsl(var(--hsl-raspberry-600))',
 			'--hsl-raspberry-600'  => '85 100% 25%',
 			'--col-neutral-1100'   => '#22211E',
 			// Rest of identity's own neutral scale.
@@ -169,6 +172,18 @@ function cb_get_site_tokens_table() {
 			'--lh-tight'     => '1.1',
 			'--lh-snug'      => '1.2',
 			'--lh-normal'    => '1.5',
+			// WP-generated has-{slug}-font-size utility class targets. theme.json's
+			// fontSizes scale is a single static scale (byte-identical to idtravel's
+			// own --fs-500/700/850, since the theme.json base was forked from
+			// idtravel) with no per-site variant at all - identity's and coda's own
+			// real --fs-500/700/850 values differ from it. Only overriding the 3
+			// slugs actually used anywhere in this shared theme's templates
+			// (has-500/700/850-font-size, confirmed via grep) rather than inventing
+			// values for the other 8 registered slugs nothing here ever uses.
+			// Found via the QA tool's widened per-element check on coda's /work/.
+			'--wp--preset--font-size--500' => 'var(--fs-500)',
+			'--wp--preset--font-size--700' => 'var(--fs-700)',
+			'--wp--preset--font-size--850' => 'var(--fs-850)',
 			// WP-generated has-{slug}-color/-background-color utility class targets —
 			// see cb_filter_editor_theme_json() for why these specific slugs.
 			'--wp--preset--color--primary-black'  => '#0D0D0C',
@@ -187,7 +202,13 @@ function cb_get_site_tokens_table() {
 			'--col-brand'          => '#b8ff52',
 			'--hsl-brand'          => '85 100% 66%',
 			'--col-brand-light'    => '#CAFC83',
-			'--col-brand-dark'     => '#4c8200',
+			// --col-brand-dark is this shared theme's own generic alias for
+			// lime-900 (not a name real coda's _tokens.scss uses itself) -
+			// same hex-vs-hsl rounding bug as --col-lime-900: confirmed via
+			// .text-page .post-content's --_colour on modern-slavery, work,
+			// and privacy-policy (real=rgb(74,128,0), local=rgb(76,130,0)
+			// before this fix).
+			'--col-brand-dark'     => 'hsl(var(--hsl-lime-900))',
 			'--col-secondary'      => '#2f13ba',
 			'--col-secondary-light' => '#e0deff',
 			'--col-secondary-dark' => '#190a83',
@@ -202,14 +223,24 @@ function cb_get_site_tokens_table() {
 			'--ff-body'            => '"Suisse", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
 			'--ff-accent'          => '"Suisse", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
 			'--col-lime-400'       => '#b8ff52',
-			'--col-lime-300'       => '#CAFC83',
-			'--col-lime-900'       => '#4c8200',
+			// coda's real _tokens.scss computes lime-300/900/1000/200 from
+			// their --hsl-* value at render time (`hsl(var(--hsl-lime-XXX))`),
+			// not a hardcoded hex - the hex comments in that file are only
+			// approximations. This shared theme previously hardcoded those
+			// approximations as the actual values, which are off by 1-2 per
+			// channel from what the browser actually computes from the HSL
+			// - confirmed as the exact, recurring "rounding" colour diffs
+			// across many coda pages (contact-us, about, work, services/*,
+			// modern-slavery, privacy-policy). Switched to the same dynamic
+			// hsl(var()) form real coda uses so these resolve identically.
+			'--col-lime-300'       => 'hsl(var(--hsl-lime-300))',
+			'--col-lime-900'       => 'hsl(var(--hsl-lime-900))',
 			// Rest of coda's own lime scale (_tokens.scss).
 			'--col-lime-1100'      => '#345a00',
-			'--col-lime-1000'      => '#3d6900',
+			'--col-lime-1000'      => 'hsl(var(--hsl-lime-1000))',
 			'--col-lime-800'       => '#5e9f00',
 			'--col-lime-600'       => '#94dd2c',
-			'--col-lime-200'       => '#ddfbb2',
+			'--col-lime-200'       => 'hsl(var(--hsl-lime-200))',
 			'--col-lime-100'       => '#eefed9',
 			'--hsl-lime-1000'      => '85 100% 21%',
 			'--hsl-lime-900'       => '85 100% 25%',
@@ -221,7 +252,7 @@ function cb_get_site_tokens_table() {
 			'--col-raspberry-100'  => '#eefed9',
 			'--col-raspberry-400'  => '#b8ff52',
 			'--hsl-raspberry-400'  => '85 100% 66%',
-			'--col-raspberry-600'  => '#4c8200',
+			'--col-raspberry-600'  => 'hsl(var(--hsl-raspberry-600))',
 			'--hsl-raspberry-600'  => '85 100% 25%',
 			'--col-lime-500'       => '#adf448',
 			'--col-neutral-1100'   => '#22211e',
@@ -279,10 +310,19 @@ function cb_get_site_tokens_table() {
 			'--lh-tight'     => '1.1',
 			'--lh-snug'      => '1.2',
 			'--lh-normal'    => '1.5',
+			// same missing has-{slug}-font-size gap as identity above - see its
+			// comment for the full explanation.
+			'--wp--preset--font-size--500' => 'var(--fs-500)',
+			'--wp--preset--font-size--700' => 'var(--fs-700)',
+			'--wp--preset--font-size--850' => 'var(--fs-850)',
 			'--wp--preset--color--primary-black'  => '#0d0d0c',
 			'--wp--preset--color--ink'            => '#0d0d0c',
-			'--wp--preset--color--lime-900'       => '#4c8200',
-			'--wp--preset--color--lime-1000'      => '#3d6900',
+			// same hex-vs-hsl rounding fix as --col-lime-900/1000 above -
+			// these feed the has-lime-900/1000-color Gutenberg preset
+			// classes directly, which is what several of the flagged pages
+			// (contact-us, about) actually use.
+			'--wp--preset--color--lime-900'       => 'hsl(var(--hsl-lime-900))',
+			'--wp--preset--color--lime-1000'      => 'hsl(var(--hsl-lime-1000))',
 			'--wp--preset--color--lime-1100'      => '#345a00',
 			'--wp--preset--color--raspberry'      => '#4c8200',
 			'--wp--preset--color--raspberry-450'  => '#5e9f00',
@@ -381,7 +421,6 @@ function cb_get_site_tokens_table() {
 			// is its own --fw-book (450), reused here rather than inventing
 			// a number. Flag for design review if a different weight is wanted.
 			'--fw-semi'            => '450',
-			'--font-family'        => '"Suisse International", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
 			// idtravel has no --fs-300/800/950 in its own tokens file (a pre-existing gap, not invented here).
 			'--fs-400' => 'clamp(1.2222rem, 1.1rem + 0.6vw, 1.375rem)',
 			'--fs-500' => 'clamp(1.4444rem, 1.25rem + 0.9vw, 1.75rem)',
@@ -430,9 +469,21 @@ function cb_output_site_token_overrides() {
 		return;
 	}
 
+	// !important on every declaration: something in this install still
+	// prints its own :root{ --wp--preset--color--*: ... } block (theme.json's
+	// global styles - cb-theme.php's `remove_action( 'wp_enqueue_scripts',
+	// 'wp_enqueue_global_styles' )` does NOT fully suppress it, confirmed by
+	// inspecting the rendered page directly) regardless of this function's
+	// wp_head priority - a plain cascade-order fix (printing later) doesn't
+	// reliably win. This is exactly why the --wp--preset--color--lime-900/
+	// 1000 fix had zero effect on has-lime-900/1000-color utility classes:
+	// --col-lime-* (not a --wp--preset name) was never re-declared by that
+	// other block, so those were never clobbered, but the --wp--preset-*
+	// ones always were. !important resolves the tie unconditionally,
+	// independent of print order.
 	$declarations = array();
 	foreach ( $table[ $site ] as $var => $value ) {
-		$declarations[] = esc_attr( $var ) . ': ' . $value . ';';
+		$declarations[] = esc_attr( $var ) . ': ' . $value . ' !important;';
 	}
 
 	printf(
@@ -440,8 +491,8 @@ function cb_output_site_token_overrides() {
 		implode( ' ', $declarations )
 	);
 }
-add_action( 'wp_head', 'cb_output_site_token_overrides' );
-add_action( 'admin_head', 'cb_output_site_token_overrides' );
+add_action( 'wp_head', 'cb_output_site_token_overrides', 100 );
+add_action( 'admin_head', 'cb_output_site_token_overrides', 100 );
 
 /**
  * Injects the current cb_site's colour palette and font sizes into the

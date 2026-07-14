@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+cb_deprecated_block_notice( 'CB Child Page Nav', $is_preview );
+
 $specialist_parent = get_page_by_path( 'specialist-travel' );
 
 if ( ! $specialist_parent instanceof WP_Post ) {

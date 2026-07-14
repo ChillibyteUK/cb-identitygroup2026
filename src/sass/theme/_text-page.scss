@@ -32,3 +32,71 @@
     }
   }
 }
+
+// idtravel's own real _tokens.scss never defines --col-primary-black at
+// all - on real production this makes the base rule's `color:
+// var(--col-primary-black)` an invalid declaration that inherits from
+// the body instead (confirmed: identitytravel.com's real text-page
+// colour matches its own body colour exactly). The shared theme's
+// cb-site-tokens.php gives idtravel a real, defined substitute value for
+// --col-primary-black (legitimately needed elsewhere, e.g.
+// cb-case-study-hero/cb-recent-news), which makes this one particular
+// declaration resolve to an actual colour instead of correctly falling
+// through - same "genuinely undefined on idtravel's real site, invented
+// value activates dead code" pattern already found for --col-ink and the
+// has-lime-* classes.
+.cb-site-idtravel .text-page {
+  color: inherit;
+
+  .post-content {
+    // same undefined-on-real story for --col-brand-dark (feeds --_colour
+    // below) and the .table rule's direct --col-primary-black reference.
+    > .container:first-of-type,
+    h2 {
+      color: inherit;
+    }
+
+    .table,
+    .wp-block-table table {
+      color: inherit !important;
+    }
+  }
+}
+
+// identity's real text-page (used by /policies/privacy-policy/,
+// /cookie-policy/, /policies/modern-slavery/, etc.) is a fixed dark theme,
+// not coda's/idtravel's light one the base rule above is built from.
+.cb-site-identity .text-page {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
+  .post-title {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-block: 1rem;
+
+    h1 {
+      font-size: var(--fs-850);
+      font-weight: var(--fw-light);
+    }
+  }
+
+  .post-content {
+    --_colour: var(--col-lime-400);
+
+    > .container:first-of-type {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+    }
+
+    h2 {
+      border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+      font-weight: var(--fw-semi);
+    }
+
+    .table,
+    .wp-block-table table {
+      color: var(--col-white) !important;
+    }
+  }
+}

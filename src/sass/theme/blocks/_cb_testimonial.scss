@@ -10,14 +10,16 @@
     text-wrap: balance;
   }
 
+  // identity's and coda's real values (--fs-800/--fw-regular); idtravel's
+  // real value is different (--fs-700/--fw-book) - overridden back below.
   &__author,
   &__company {
     display: inline-block;
     padding: 0.5em 0.6em 0.35em;
     line-height: 1;
-    font-size: var(--fs-700);
+    font-size: var(--fs-800);
     letter-spacing: var(--ls--15);
-    font-weight: var(--fw-book);
+    font-weight: var(--fw-regular);
   }
 
   &__author {
@@ -126,6 +128,43 @@
     }
   }
 
+  // identity's real design has two more background-colour variants than
+  // were carried over during consolidation - added to match
+  // identityglobal.com exactly (--col-green-* renamed to the shared
+  // --col-lime-*/--col-brand tokens per the established convention, same
+  // hex values).
+  &.has-purple-900-background-color {
+    .cb-testimonial__quote {
+      color: var(--col-brand);
+    }
+
+    .cb-testimonial__author {
+      color: var(--col-purple-900);
+      background-color: var(--col-brand);
+    }
+
+    .cb-testimonial__company {
+      color: var(--col-purple-900);
+      background-color: var(--col-lime-200);
+    }
+  }
+
+  &.has-neutral-100-background-color {
+    .cb-testimonial__quote {
+      color: var(--col-purple-900);
+    }
+
+    .cb-testimonial__author {
+      color: var(--col-white);
+      background-color: var(--col-purple-900);
+    }
+
+    .cb-testimonial__company {
+      color: var(--col-purple-900);
+      background-color: var(--col-purple-200);
+    }
+  }
+
   @media (max-width: 767.98px) {
     &__quote {
       font-size: var(--fs-700);
@@ -133,8 +172,39 @@
   }
 }
 
+// "has-primary-black-background-color" is a real, distinct choice on both
+// coda's and identity's sites, but with different real colours per site -
+// the base rule above is coda's; this overrides it back to identity's own
+// values (--col-green-400 renamed to --col-brand per the established
+// lime/green convention, same hex).
+.cb-site-identity .cb-testimonial.has-primary-black-background-color {
+  .cb-testimonial__quote {
+    color: var(--col-brand);
+  }
+
+  .cb-testimonial__author {
+    color: var(--col-primary-black);
+    background-color: var(--col-brand);
+  }
+
+  .cb-testimonial__company {
+    color: var(--col-brand);
+    background-color: var(--col-neutral-900);
+  }
+}
+
 // idtravel's own real design never uppercases the author name (identity's
 // and coda's both do) — confirmed against identitytravel.com directly.
 .cb-site-idtravel .cb-testimonial__author {
   text-transform: none;
+}
+
+// idtravel's own real author/company size+weight also differs from
+// identity's/coda's (--fs-700/--fw-book, not --fs-800/--fw-regular).
+.cb-site-idtravel {
+  .cb-testimonial__author,
+  .cb-testimonial__company {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-book);
+  }
 }

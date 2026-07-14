@@ -1,30 +1,39 @@
+// This used to be two separate families ("Suisse International", serving
+// idtravel/travel, vs "Suisse" for identity/coda) pointing at two
+// different font files. Inspecting both files' embedded name-table
+// metadata (via fonttools) found identity's/coda's file has complete,
+// correct per-weight naming and a standard Swiss Typefaces retail-licence
+// URL; travel's/idtravel's file (confirmed still live on
+// identitytravel.com, not just a stale local copy) has identical,
+// generic, corrupted metadata across all 4 weights (no family name, a
+// garbled full name, a malformed version string, postscript name just
+// "Font") - a strong signal of a font that's been stripped/re-exported
+// through a third-party tool rather than delivered as a proper licensed
+// package. Consolidated onto identity's/coda's file (the one with intact,
+// standard metadata) for every site. This retail package only has
+// Light/Regular/SemiBold (300/400/500) - no dedicated Book (450) weight
+// like idtravel's original file had, so --fw-book requests now fall back
+// to the browser's nearest-weight match (typically Regular) instead of a
+// dedicated face. Flagged to the user rather than silently accepted.
 @font-face {
-  font-family: "Suisse International";
-  src: url("../fonts/SuisseIntl-Light.woff2") format("woff");
+  font-family: "Suisse";
+  src: url("../fonts/Suisse-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Suisse International";
-  src: url("../fonts/SuisseIntl-Regular.woff2") format("woff");
+  font-family: "Suisse";
+  src: url("../fonts/Suisse-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Suisse International";
-  src: url("../fonts/SuisseIntl-Book.woff2") format("woff");
-  font-weight: 450;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Suisse International";
-  src: url("../fonts/SuisseIntl-Semibold.woff2") format("woff");
+  font-family: "Suisse";
+  src: url("../fonts/Suisse-SemiBold.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -75,6 +84,49 @@ h1,
   font-weight: var(--fw-book);
   line-height: var(--lh-850);
   letter-spacing: var(--ls--15);
+}
+
+// identity's AND coda's real global h1 rule are byte-identical to each
+// other (--fs-700, line-height 1, letter-spacing -0.01em, no explicit
+// font-weight - falls back to Bootstrap's own heading default, which
+// resolves to 500 for this theme's variables, confirmed directly against
+// identityglobal.com, not assumed) - the base above is idtravel's real
+// value verbatim (confirmed identical against idtravel's own real
+// _typography.scss). Real identity additionally has `text-wrap: balance`
+// active on this rule; coda's real has the exact same line present but
+// commented out (disabled) - kept that same split here.
+//
+// Scoped to `.content-grid h1` rather than a bare global `h1`: the only
+// two confirmed real bugs this rule fixes (/usa/, /about/culture/) are
+// both inside .content-grid. A bare `h1` selector here is a class+element
+// selector (0,1,1), which outranks the single utility classes
+// (`.fs-850`, `.fw-light`, etc.) that other pages apply directly to their
+// h1 to size it per-instance - it silently overrode those on coda's
+// /about/careers/ and /news/ (confirmed via DOM: their h1 has `fs-850`
+// applied directly, no wrapping .content-grid), even though it came
+// earlier in source order, because specificity beats source order.
+.cb-site-identity,
+.cb-site-coda {
+  .content-grid {
+    h1,
+    .h1,
+    .font-h1 {
+      font-size: var(--fs-700);
+      font-weight: var(--fw-semi);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+  }
+}
+
+.cb-site-identity {
+  .content-grid {
+    h1,
+    .h1,
+    .font-h1 {
+      text-wrap: balance;
+    }
+  }
 }
 
 h2,
@@ -210,9 +262,23 @@ button,
   font-weight: var(--fw-book);
 }
 
+// idtravel's own real source is the only one where .fw-semi and
+// .fw-semibold are the same class/token - identity's and coda's real
+// sources both keep them completely separate (`.fw-semi { font-weight:
+// var(--fw-semi); }`, a distinct token from --fw-semibold). Confirmed via
+// the QA tool's widened per-element check on coda's /work/ (real weight
+// 500, i.e. coda's own --fw-semi; local was resolving to the global
+// --fw-semibold default of 600 instead). Split below for identity/coda.
 .fw-semi,
 .fw-semibold {
   font-weight: var(--fw-semibold);
+}
+
+.cb-site-identity,
+.cb-site-coda {
+  .fw-semi {
+    font-weight: var(--fw-semi);
+  }
 }
 
 .fs-50 {

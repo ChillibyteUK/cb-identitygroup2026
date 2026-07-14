@@ -1,12 +1,12 @@
 .cb-related-work {
   background-color: var(--col-primary-black);
   color: var(--col-white);
-  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
   &__pre-title {
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-block: 0.5rem;
-    color: var(--col-brand);
+    color: var(--col-lime-500);
     font-weight: var(--fw-regular);
     font-size: var(--fs-300);
     line-height: 1;

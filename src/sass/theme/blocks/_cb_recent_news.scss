@@ -56,3 +56,13 @@
         background-color: var(--col-raspberry-600) !important;
     }
 }
+
+// identity's real "Press" category (has-purple-900-background-color) uses
+// a light-lavender date colour - never ported over during consolidation.
+// !important to match real's own technique: needed because _news.scss's
+// higher-specificity .cb-site-identity .insight-type-grid.grid-type-1
+// .insight-type-grid__date rule would otherwise win over this file's
+// 2-class selector regardless of source order.
+.cb-recent-news.has-purple-900-background-color .insight-type-grid__date {
+    color: var(--col-purple-200) !important;
+}

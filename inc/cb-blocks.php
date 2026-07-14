@@ -1097,6 +1097,47 @@ function acf_blocks() {
 			)
 		);
 
+		// Existed in identity's own repo but never migrated during the
+		// original merge (still saved under the legacy cb/ namespace in
+		// published content - see cb_rename_legacy_block_names()).
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_content_grid_v2',
+				'title'           => __( 'CB Content Grid V2' ),
+				'category'        => 'layout',
+				'icon'            => 'grid-view',
+				'render_template' => 'blocks/cb-content-grid-v2.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+					'color'     => array(
+						'background' => true,
+						'text'       => true,
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'cb_styled_text_image',
+				'title'           => __( 'CB Styled Text Image' ),
+				'category'        => 'layout',
+				'icon'            => 'align-pull-left',
+				'render_template' => 'blocks/cb-styled-text-image.php',
+				'mode'            => 'edit',
+				'supports'        => array(
+					'mode'      => false,
+					'anchor'    => true,
+					'className' => true,
+					'align'     => true,
+				),
+			)
+		);
+
     }
 }
 add_action( 'acf/init', 'acf_blocks' );

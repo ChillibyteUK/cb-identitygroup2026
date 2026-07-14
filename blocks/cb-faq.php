@@ -86,19 +86,29 @@ $block_id   = $block['anchor'] ?? ( $block['id'] ?? wp_unique_id( 'cb-faq-' ) );
 $extra      = $block['className'] ?? '';
 $bg         = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
 $fg         = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
-$line_class = 'dark-lines';
 $is_post_context = is_singular( 'post' );
+$is_identity      = 'identity' === cb_site_template_suffix();
 
-if ( ! empty( $block['backgroundColor'] ) ) {
-	if ( preg_match( '/(\d+)(?!.*\d)/', $block['backgroundColor'], $matches ) ) {
-		$line_class = (int) $matches[1] >= 600 ? 'light-lines' : 'dark-lines';
-	} else {
-		$line_class = 'light-lines';
+// identity's own real cb-faq is a fixed dark theme with no Gutenberg
+// backgroundColor-driven light/dark-lines toggle at all (see the
+// .cb-site-identity .cb-faq override in _header-site-overrides.scss) -
+// coda's and idtravel's real sources both have the toggle.
+$line_class = '';
+if ( ! $is_identity ) {
+	$line_class = 'dark-lines';
+
+	if ( ! empty( $block['backgroundColor'] ) ) {
+		if ( preg_match( '/(\d+)(?!.*\d)/', $block['backgroundColor'], $matches ) ) {
+			$line_class = (int) $matches[1] >= 600 ? 'light-lines' : 'dark-lines';
+		} else {
+			$line_class = 'light-lines';
+		}
 	}
 }
 
 ?>
 <?php if ( $is_post_context ) : ?>
+	<?php if ( $is_identity ) : ?><div class="container"><?php endif; ?>
 	<?php foreach ( $faqs as $faq ) : ?>
 		<?php
 		$question = $faq['question'] ?? '';
@@ -115,6 +125,7 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 	<?= wpautop( wp_kses_post( $answer ) ); ?>
 		<?php endif; ?>
 	<?php endforeach; ?>
+	<?php if ( $is_identity ) : ?></div><?php endif; ?>
 <?php else : ?>
 <section class="cb-faq <?= esc_attr( trim( $bg . ' ' . $fg . ' ' . $line_class . ' ' . $extra ) ); ?>" id="<?= esc_attr( $block_id ); ?>">
 	<div class="id-container px-4 px-md-5">
@@ -128,13 +139,13 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 			}
 			?>
 			<div class="cb-faq__item row" data-aos="fade-up" data-aos-delay="<?= esc_attr( $index * 100 ); ?>">
-				<div class="col-lg-6">
+				<div class="<?= $is_identity ? 'col-md-6' : 'col-lg-6'; ?>">
 					<?php if ( '' !== trim( $question ) ) : ?>
 						<p class="cb-faq__question"><?= esc_html( $question ); ?></p>
 					<?php endif; ?>
 				</div>
-				<div class="col-lg-1"></div>
-				<div class="col-lg-5">
+				<div class="<?= $is_identity ? 'col-md-1' : 'col-lg-1'; ?>"></div>
+				<div class="<?= $is_identity ? 'col-md-5' : 'col-lg-5'; ?>">
 					<?php if ( '' !== trim( wp_strip_all_tags( $answer ) ) ) : ?>
 						<div class="cb-faq__answer">
 							<?= wp_kses_post( $answer ); ?>

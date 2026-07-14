@@ -10,16 +10,22 @@ defined( 'ABSPATH' ) || exit;
 // Block ID.
 $block_id = $block['id'] ?? '';
 
-$l = get_field( 'contact_link' );
+$l           = get_field( 'contact_link' );
+$is_identity = 'identity' === cb_site_template_suffix();
 
 ?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-contact-page">
+	<?php if ( ! $is_identity ) : ?>
 	<div class="cb-contact-page__title">
 		<h1 class="id-container px-4 px-md-5">
 			Contact
 		</h1>
 	</div>
+	<?php endif; ?>
     <div class="id-container px-4 px-md-5">
+		<?php if ( $is_identity ) : ?>
+		<h1>Contact Us</h1>
+		<?php endif; ?>
         <div class="row cb-contact-page__intro-content">
             <div class="col-md-6">
                 <div class="pt-5 pb-4 cb-contact-page__intro-text">
@@ -55,6 +61,7 @@ $l = get_field( 'contact_link' );
                 </div>
             </div>
         </div>
+        <?php if ( $is_identity ) : ?>
         <div class="cb-contact-page__emails">
             <div class="row align-items-start">
                 <div class="col-md-6 mb-3">
@@ -101,6 +108,7 @@ $l = get_field( 'contact_link' );
                 </div>
             </div>
         </div>
+        <?php endif; ?>
         <div class="cb-contact-page__emails">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-3">

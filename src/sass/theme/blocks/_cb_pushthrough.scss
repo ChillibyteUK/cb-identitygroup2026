@@ -18,6 +18,16 @@
     background-position: center;
   }
 
+  // identity's and coda's real sources both use this bare class (rather
+  // than idtravel's BEM `--has-bg` modifier above) and both include
+  // `background-attachment: fixed`, confirmed identical against each.
+  &.has-bg {
+    background-image: var(--_bg-url);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
   &__overlay {
     position: absolute;
     inset: 0;

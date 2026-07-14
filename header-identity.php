@@ -23,13 +23,13 @@ if ( session_status() === PHP_SESSION_NONE ) {
         charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1">
     <link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Light.woff2' ); ?>"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/Suisse-Light.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Regular.woff2' ); ?>"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/Suisse-Regular.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-SemiBold.woff2' ); ?>"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/Suisse-SemiBold.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
 	<script src="https://cdn.c360a.salesforce.com/beacon/c360a/e8456c26-3421-4df1-bfd7-274c60e29ab8/scripts/c360a.min.js?wtcp_id=1NDQ200000006i9OAA"></script>
     <?php

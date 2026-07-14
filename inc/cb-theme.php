@@ -16,6 +16,9 @@ require_once CB_THEME_DIR . '/inc/cb-posttypes.php';
 require_once CB_THEME_DIR . '/inc/cb-taxonomies.php';
 require_once CB_THEME_DIR . '/inc/cb-site-tokens.php';
 
+if ( is_admin() ) {
+	require_once CB_THEME_DIR . '/inc/cb-migrations-admin.php';
+}
 
 require_once CB_THEME_DIR . '/inc/cb-blocks.php';
 
@@ -401,7 +404,7 @@ if ( ! function_exists( 'get_work_image' ) ) {
                 foreach ( $blocks as $block ) {
                     if (
                         isset( $block['blockName'] ) &&
-                        'cb/cb-full-image' === $block['blockName'] &&
+                        in_array( $block['blockName'], array( 'acf/cb-full-image', 'cb/cb-full-image' ), true ) &&
                         ! empty( $block['attrs']['data']['image'] )
                     ) {
                         $image_id = $block['attrs']['data']['image'];
@@ -446,6 +449,50 @@ add_filter(
 					$field['choices'][ $title ] = $title;
 				}
 			}
+		}
+
+		return $field;
+	}
+);
+
+// cb-testimonial's "style" choices are real per-site - identity, coda, and
+// idtravel each have their own real background-colour variants with their
+// own matching quote/author/company colours (see _cb_testimonial.scss).
+// Swapping the choices in per-site (rather than shipping one merged list)
+// keeps editors from picking a variant that belongs to a different site.
+add_filter(
+	'acf/load_field/name=style',
+	function ( $field ) {
+		if ( 'field_cb_testimonial_style' !== $field['key'] ) {
+			return $field;
+		}
+
+		switch ( cb_site_template_suffix() ) {
+			case 'identity':
+				$field['choices'] = array(
+					'has-neutral-100-background-color'  => 'Light',
+					'has-purple-900-background-color'   => 'Purple',
+					'has-primary-black-background-color' => 'Dark',
+				);
+				$field['default_value'] = '';
+				break;
+			case 'coda':
+				$field['choices'] = array(
+					'has-lime-600-background-color'      => 'Lime',
+					'has-primary-black-background-color' => 'Black',
+					'has-neutral-300-background-color'   => 'Neutral',
+					'has-white-background-color'         => 'White',
+				);
+				$field['default_value'] = '';
+				break;
+			default:
+				$field['choices'] = array(
+					'has-neutral-200-background-color' => 'Light',
+					'has-raspberry-background-color'   => 'Raspberry',
+					'has-purple-400-background-color'  => 'Purple',
+				);
+				$field['default_value'] = 'has-neutral-200-background-color';
+				break;
 		}
 
 		return $field;

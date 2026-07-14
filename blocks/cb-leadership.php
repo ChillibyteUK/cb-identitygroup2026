@@ -7,21 +7,32 @@
 
 defined( 'ABSPATH' ) || exit;
 
-// Support Gutenberg color picker.
-$bg              = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
-$fg              = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
-$line_class      = 'dark-lines';
-$section_classes = array( 'leadership' );
+// coda's real design is a plain, static section with no colour-picker
+// support at all (`class="leadership has-neutral-300-background-color"`,
+// hardcoded) - idtravel's real design genuinely does support the
+// Gutenberg colour picker with this dynamic dark-lines/light-lines logic.
+// This file was originally built from idtravel's source, which silently
+// became coda's design too until this was checked against coda's own
+// real block directly.
+if ( 'coda' === cb_site_template_suffix() ) {
+	$section_classes = array( 'leadership', 'has-neutral-300-background-color' );
+} else {
+	// Support Gutenberg color picker.
+	$bg              = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
+	$fg              = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
+	$line_class      = 'dark-lines';
+	$section_classes = array( 'leadership' );
 
-if ( ! empty( $block['backgroundColor'] ) ) {
-	if ( preg_match( '/(\d+)(?!.*\d)/', $block['backgroundColor'], $matches ) ) {
-		$line_class = (int) $matches[1] >= 600 ? 'light-lines' : 'dark-lines';
-	} else {
-		$line_class = 'light-lines';
+	if ( ! empty( $block['backgroundColor'] ) ) {
+		if ( preg_match( '/(\d+)(?!.*\d)/', $block['backgroundColor'], $matches ) ) {
+			$line_class = (int) $matches[1] >= 600 ? 'light-lines' : 'dark-lines';
+		} else {
+			$line_class = 'light-lines';
+		}
 	}
-}
 
-$section_classes = array_merge( $section_classes, array_filter( array( $bg, $fg, $line_class ) ) );
+	$section_classes = array_merge( $section_classes, array_filter( array( $bg, $fg, $line_class ) ) );
+}
 
 
 ?>

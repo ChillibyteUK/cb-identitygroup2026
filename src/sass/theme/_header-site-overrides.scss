@@ -105,7 +105,7 @@
   .cb-pushthrough {
     background-color: var(--col-primary-black);
     color: var(--col-white);
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
     &.has-bg {
       background-image: var(--_bg-url);
@@ -116,7 +116,7 @@
 
     &__pretitle {
       color: var(--col-lime-300);
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     h2,
@@ -132,7 +132,7 @@
 
     &__link {
       color: var(--col-lime-300);
-      border-top-color: hsl(var(--hsl-neutral-050) / 0.4);
+      border-top-color: rgba(255, 255, 255, 0.4);
 
       &:hover,
       &:focus-visible {
@@ -151,10 +151,28 @@
 // match coda's link colours exactly, but the h2/desc font sizes and
 // pretitle colour differ).
 .cb-site-identity {
+  // identity's real body background is a fixed dark colour, not the
+  // shared base's --col-neutral-50 (coda's/idtravel's real value) - without
+  // this, any gap between two dark sections (e.g. margin that collapses
+  // through and escapes a section's own box, as cb-about-page-header's
+  // __content-wrapper does) shows the light body colour through as a
+  // visible band instead of blending seamlessly like on the real site.
+  background-color: var(--col-primary-black);
+
+  // identity's real sitewide default text weight is --fw-light (300), not
+  // --fw-regular (400) like coda's/idtravel's real body rule (both
+  // confirmed to match the shared base exactly - only identity diverges).
+  // High-impact: any text with no explicit font-weight of its own
+  // (WYSIWYG-authored paragraphs, utility-class text with only a
+  // font-size class like .fs-500, etc.) inherits this, so a mismatch here
+  // shows up as scattered, hard-to-trace 300-vs-400 differences all over
+  // the site rather than in one obvious place.
+  font-weight: var(--fw-light);
+
   .cb-pushthrough {
     background-color: var(--col-primary-black);
     color: var(--col-white);
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
     &.has-bg {
       background-image: var(--_bg-url);
@@ -166,8 +184,8 @@
     &__pretitle {
       color: var(--col-lime-400);
       margin-top: 1rem;
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     h2,
@@ -182,19 +200,43 @@
 
     &__desc {
       font-size: var(--fs-400);
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      font-weight: var(--fw-light);
+      line-height: 1.5;
+      letter-spacing: normal;
+      text-wrap: balance;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     &__link {
+      display: inline-block;
       color: var(--col-white);
       font-weight: var(--fw-semi);
       font-size: var(--fs-500);
+      line-height: normal;
+      letter-spacing: normal;
       border-top: 0;
+      padding-top: 0;
+      margin-bottom: 0.5rem;
 
       &:hover,
       &:focus-visible {
         color: var(--col-lime-300);
       }
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: rgba(47, 19, 186, 0.8);
+    }
+
+    .overlay--white {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .overlay--black {
+      background-color: rgba(13, 13, 12, 0.2);
     }
   }
 }
@@ -239,6 +281,9 @@
 // --fs-700/--fs-400 that the shared base file (idtravel's own) uses.
 .cb-site-identity {
   .cb-cta {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
     &__title {
       font-size: var(--fs-850);
       font-weight: var(--fw-regular);
@@ -250,6 +295,44 @@
       font-weight: var(--fw-light);
     }
   }
+
+  // identity's real cb-faq is a fixed dark theme with no colour-picker
+  // variability at all - the shared base file (idtravel's real design) is
+  // a transparent, Gutenberg backgroundColor-driven light-lines/dark-lines
+  // toggle instead. Previously masked on test because the (wrong) light
+  // body background made the base file's un-set text/border colours look
+  // plausible; became visibly broken (dark text/borders on a dark page)
+  // once the body background was corrected to identity's real value.
+  .cb-faq {
+    background-color: var(--col-primary-black);
+    color: var(--col-white);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
+    &__item:not(:first-child) {
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    &__answer a {
+      color: var(--col-purple-300);
+      text-decoration: underline;
+    }
+  }
+
+  // identity's own real _cb_image_feature_overlay.scss also references
+  // var(--col-ink) for this base background-color, but identity's own real
+  // _tokens.scss never actually defines that custom property - on real
+  // production it resolves as invalid and falls through to
+  // background-color's initial value, transparent (confirmed: real is
+  // rgba(0,0,0,0) on every /services/* hero). The shared theme's
+  // cb-site-tokens.php gives identity a real, defined --col-ink (correctly
+  // needed elsewhere - header, footer, testimonial, etc.), which
+  // inadvertently activates this one dead code path. Same failure mode
+  // already found/fixed for idtravel's --col-ink/--col-brand-dark/
+  // has-lime-* usages earlier this session, just on identity this time.
+  .cb-image-feature-overlay {
+    background-color: transparent;
+  }
 }
 
 // The mirror of the above: these blocks are all byte-for-byte coda's own
@@ -259,12 +342,12 @@
 .cb-site-identity {
   .cb-full-video {
     background-color: var(--col-primary-black);
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   .cb-full-image {
     background-color: var(--col-primary-black);
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
     // identity's own overlay is a full-cover darkening scrim, not the
     // shared version's thin decorative top strip - structurally different,
@@ -286,22 +369,116 @@
     }
   }
 
-  .cb-latest-insights {
+  // .cb-latest-insights and .cb-featured-work identity overrides live in
+  // their own block files (_cb_latest_insights.scss / _cb_featured_work.scss)
+  // - duplicate rules used to also exist here with a different (wrong)
+  // border opacity; removed rather than left as dead-but-wrong code, since
+  // the block-file versions always win the cascade (same specificity,
+  // later source order via blocks/blocks.scss).
+
+  // coda's real cb-work-index is light-lime/dark-text (confirmed directly
+  // against identitycoda.com/work/, which the base file matches) - identity's
+  // real source has no background/colour rule on .cb-work-index at all, so
+  // it just inherits the (dark) body background/text colour instead.
+  .cb-work-index {
     background-color: var(--col-primary-black);
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    color: var(--col-white);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
     &__pre-title {
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      color: var(--col-lime-500);
     }
   }
 
-  .cb-featured-work {
+  // real's markup has a "has-primary-black-background-color" class here
+  // (set as a per-block colour-picker choice in the editor); the shared
+  // PHP template hardcodes the section's classes with no colour-picker
+  // support at all, so it's never applied - same fixed value every time
+  // on identity, so just setting it directly here is equivalent and avoids
+  // a PHP change for a value that never actually varies.
+  .work-index-hero {
     background-color: var(--col-primary-black);
-    color: var(--col-white);
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+  }
+
+  .cb-our-brands {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
 
     &__pre-title {
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      color: var(--col-brand);
+    }
+
+    &__last {
+      color: var(--col-brand);
+    }
+  }
+
+  .cb-logo-slider {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  // identity's real cb-contact-form is a fixed dark theme (the shared base
+  // is idtravel's real light one) with its own markup structure - see the
+  // is_identity branch in cb-contact-form.php.
+  .cb-contact-form {
+    &__title {
+      color: var(--col-white);
+      margin-block: 6rem 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      font-size: var(--fs-900);
+      font-weight: var(--fw-semi);
+    }
+
+    &__intro {
+      color: var(--col-white);
+      font-size: var(--fs-800);
+      line-height: 1.5;
+      padding-bottom: 6rem;
+    }
+  }
+
+  .cb-contact-form-spacer {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  form {
+    .gform-field-label.gform-field-label--type-inline.gfield_consent_label,
+    .gfield_label {
+      color: var(--col-white);
+    }
+
+    .ginput_container input[type="text"],
+    .ginput_container input[type="email"],
+    .ginput_container textarea {
+      background-color: rgba(255, 255, 255, 0.4);
+      color: var(--col-white);
+    }
+
+    .gform_confirmation_message_1.gform_confirmation_message {
+      color: var(--col-lime-400);
+    }
+  }
+
+  // identity's real markup nests __title inside __inner (no padding-top
+  // on the section) - the base file's separate top-level h1 + padding-top
+  // is idtravel's real structure, branched in cb-careers-page.php.
+  .cb-careers-page {
+    padding-top: 0;
+
+    &__title {
+      margin-block: 6rem 4rem;
+      font-size: var(--fs-900);
+      font-weight: var(--fw-semi);
+    }
+
+    &__content {
+      font-size: var(--fs-800);
+      padding-bottom: 6rem;
+
+      p:first-child {
+        font-size: var(--fs-800);
+      }
     }
   }
 
@@ -315,15 +492,29 @@
 
     h1 {
       color: var(--col-white) !important;
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5) !important;
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5) !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
     }
 
-    &__intro-text a {
-      color: var(--col-lime-400);
+    &__intro-text {
+      font-size: var(--fs-700);
+      line-height: 1.5;
+      text-wrap: balance;
 
-      &:hover {
-        color: var(--col-lime-300);
+      p {
+        font-size: var(--fs-700);
+      }
+
+      p:not(:first-of-type) {
+        font-size: var(--fs-500);
+      }
+
+      a {
+        color: var(--col-lime-400);
+
+        &:hover {
+          color: var(--col-lime-300);
+        }
       }
     }
   }
@@ -341,17 +532,35 @@
     &__header {
       background-color: hsl(0 0% 100% / 0.1);
     }
+
+    &__item {
+      padding-block: 1rem;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    &__item-icon {
+      width: 40px;
+      height: 37px;
+
+      @media (min-width: 768px) {
+        width: 65px;
+        height: 60px;
+      }
+    }
   }
 
   .work-index-hero {
     h1 {
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
       color: var(--col-white);
     }
 
     h2 {
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       color: var(--col-neutral-800);
     }
   }
@@ -359,21 +568,48 @@
   // cb-contact-page: identity is the only theme that ever had an opinion on
   // this block (coda didn't have it at all; idtravel's light, no-background
   // version won the merge) - restoring identity's own dark scheme.
+  //
+  // This override previously fixed colour and font-weight but missed
+  // font-size - found via the QA tool's widened per-element check
+  // (previously only sampled the first text match per section, so every
+  // "New business"/"PR & Media"/"Talent" h2 past the page's h1 was never
+  // actually checked). Real identity sets no font-size at all on these h2s,
+  // letting them inherit the site's global h2 default (--fs-h2, i.e.
+  // --fs-500 for identity) instead of the unscoped base rule's explicit
+  // --fs-700 - confirmed 28.016px real vs 34.56px local. Only touching what
+  // was actually measured as different here - an earlier pass at this fix
+  // also added unproven `initial` resets on font-weight/letter-spacing
+  // elsewhere in this block, which is a mistake (`initial` is the CSS
+  // spec-default, not "fall through to a lower-specificity rule" - it
+  // introduced a real regression on __intro-text's font-weight and made
+  // the very font-size bug worse, dropping it to browser-default 16px).
   .cb-contact-page {
     background-color: var(--col-primary-black);
     color: var(--col-white);
+    padding-block-start: 8rem;
 
-    h1,
+    h1 {
+      border-color: rgba(255, 255, 255, 0.4);
+      font-size: var(--fs-850);
+      font-weight: var(--fw-semi);
+      line-height: 1;
+    }
+
     &__emails {
-      border-color: hsl(var(--hsl-neutral-050) / 0.5);
+      border-color: rgba(255, 255, 255, 0.4);
+
+      h2 {
+        font-weight: var(--fw-light);
+        font-size: var(--fs-h2);
+      }
     }
   }
 
   .cb-contact-addresses__title {
     background-color: var(--col-primary-black);
-    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
-    color: var(--col-lime-400);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--col-lime-500);
     background-image: url(../img/contact-addresses-bg.jpg);
     background-size: cover;
     background-position: center;
@@ -388,14 +624,19 @@
     background-color: var(--col-neutral-1100);
     color: var(--col-white);
 
+    h2 {
+      font-weight: var(--fw-light);
+    }
+
     &__office {
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     a,
     .is-group,
     &__caveat {
       color: var(--col-lime-400);
+      font-weight: var(--fw-light);
     }
   }
 
@@ -409,7 +650,23 @@
 
     .content-grid-title {
       color: var(--col-brand);
-      border-color: hsl(var(--hsl-neutral-050) / 0.5);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    // real identity's markup also allows a bare, unclassed <h2> (from a
+    // WYSIWYG/rich-text module row, not the structured title field coda's
+    // real design always uses) - the shared theme's .content-grid-title
+    // class rule above doesn't apply to it at all, so it was falling
+    // through to this file's base .content-grid { color: var(--col-white) }
+    // with no size/border of its own.
+    h2 {
+      padding-top: 0.25rem;
+      margin-bottom: 1rem;
+      font-size: var(--fs-600);
+      color: var(--col-brand);
+      line-height: 1;
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     &.has-purple-200-background-color {
@@ -419,6 +676,37 @@
         color: var(--col-secondary);
         border-color: hsl(var(--hsl-ink) / 0.2);
       }
+
+      h2 {
+        color: var(--col-purple-900);
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      }
     }
+  }
+}
+
+// .id-button: identity's and coda's real sources both use --fs-700/
+// --fw-regular; the shared base file's --fs-600/--fw-book is idtravel's
+// own real value. --fw-book isn't even a defined token in identity's or
+// coda's real _tokens.scss at all (idtravel-only concept), so this
+// wasn't just a size/weight tweak - it was idtravel's whole design kept
+// wholesale for a button used sitewide, on every site.
+.cb-site-identity,
+.cb-site-coda {
+  .id-button {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-regular);
+  }
+}
+
+// coda's real pretitle is --fs-300 - identity's and idtravel's real values
+// match the shared base (--fs-200). Previously wrongly scoped to identity
+// too (confirmed via DOM: it was overriding identity's /services/ pushthrough
+// pretitle from 18px to 20px) despite this same comment already saying
+// identity matches the base - the classic one-site-fix-applied-to-both bug.
+.cb-site-coda {
+  .cb-pushthrough__pretitle {
+    font-size: var(--fs-300);
   }
 }

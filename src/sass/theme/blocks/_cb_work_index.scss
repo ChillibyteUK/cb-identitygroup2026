@@ -175,7 +175,7 @@
     background-color: var(--col-primary-black);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    background-image: url("../cb-work-index/bg.jpg");
+    background-image: url("../img/work-index-bg.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -258,4 +258,105 @@
 }
 .ts-placeholder {
   color: var(--col-neutral-500, #aaa);
+}
+
+// Identity's real design is a dark hero/black-background work index with a
+// working filter bar - the base rules above are coda's real design (light
+// lime background, filter bar disabled in coda's own real content too).
+.cb-site-identity {
+  .work-index-hero {
+    h1 {
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      font-size: var(--fs-850);
+      font-weight: var(--fw-semi);
+      color: var(--col-white);
+    }
+    h2 {
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      font-size: var(--fs-600);
+      color: var(--col-neutral-800);
+      font-weight: var(--fw-regular);
+      margin-bottom: 0;
+    }
+    .overlay {
+      height: auto;
+      background: linear-gradient(
+        180deg,
+        rgba(13, 13, 12, 1) 0%,
+        rgba(13, 13, 12, 0.2) 20%,
+        rgba(13, 13, 12, 0) 30%
+      );
+      opacity: 1;
+    }
+    &__content {
+      background: linear-gradient(
+        rgba(13, 13, 12, 0),
+        rgba(13, 13, 12, 0.5) 10%,
+        rgba(13, 13, 12, 0.8)
+      );
+      padding: 2.5rem 2rem 2rem 1rem;
+    }
+    &__title {
+      font-size: var(--fs-700);
+      font-weight: var(--fw-semi);
+    }
+    &__desc {
+      font-size: var(--fs-600);
+      font-weight: var(--fw-light);
+      color: var(--col-neutral-500);
+      margin-top: 0.5rem;
+    }
+  }
+
+  .cb-work-index {
+    background-color: var(--col-primary-black);
+    color: var(--col-white);
+
+    &__filter-bar {
+      background-color: var(--col-primary-black);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      background-image: url("../img/work-index-bg.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      @supports (-webkit-touch-callout: none) {
+        background-attachment: scroll;
+      }
+      &__container {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    &__content {
+      background: linear-gradient(
+        rgba(13, 13, 12, 0),
+        rgba(13, 13, 12, 0.5) 10%,
+        rgba(13, 13, 12, 0.8)
+      );
+      padding: 2.5rem 2rem 1rem 1rem;
+
+      @media (min-width: 768px) {
+        padding: 2.5rem 2rem 2rem 1rem;
+      }
+    }
+    &__title {
+      font-size: var(--fs-300);
+      font-weight: var(--fw-semi);
+      color: var(--col-white);
+
+      .cb-services-nav__item-icon {
+        width: 23px;
+        height: 21px;
+        filter: none;
+      }
+    }
+    &__desc {
+      font-size: var(--fs-200);
+      font-weight: var(--fw-light);
+      color: var(--col-neutral-500);
+      margin-top: 0.5rem;
+    }
+  }
 }

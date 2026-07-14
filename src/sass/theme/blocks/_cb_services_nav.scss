@@ -49,6 +49,23 @@
       font-size: var(--fs-600);
     }
   }
+  // Missing entirely before this fix. Identity's own real markup wraps its
+  // item text in an <h3 class="cb-services-nav__item-title">; coda's real
+  // markup uses a plain <div> instead, which just inherits __item's own
+  // font-size/weight with no rule of its own needed. Without this rule,
+  // identity's h3 fell back to the generic h3 typography rule
+  // (--fs-600/--fw-book, in _typography.scss) instead of real identity's
+  // actual --fs-850/--fw-light (byte-identical to __item's own value, and
+  // real identity's own source declares it redundantly on both, same
+  // values - kept that same redundancy here rather than de-duplicating).
+  &__item-title {
+    font-size: var(--fs-850);
+    font-weight: var(--fw-light);
+
+    @media (max-width: 767px) {
+      font-size: var(--fs-600);
+    }
+  }
   &__item-icon {
     width: 62px;
     height: 45px;

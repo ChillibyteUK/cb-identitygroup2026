@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+cb_deprecated_block_notice( 'CB Child Page Nav', $is_preview );
+
 $business_travel_parent = get_page_by_path( 'business-travel' );
 
 if ( ! $business_travel_parent instanceof WP_Post ) {

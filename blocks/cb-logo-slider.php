@@ -36,3 +36,14 @@ if ( ! empty( $block['className'] ) ) {
 		</div>
 	</div>
 </section>
+<?php if ( 'identity' === cb_site_template_suffix() ) : ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	var section = document.getElementById('<?= esc_js( $block_id ); ?>');
+	var track = section && section.querySelector('.cb-logo-slider__track');
+	if (!track) return;
+	var pxPerSecond = 80; // matches identityglobal.com's real cb-logo-slider pace
+	track.style.animationDuration = (track.scrollWidth / 2 / pxPerSecond) + 's';
+});
+</script>
+<?php endif; ?>

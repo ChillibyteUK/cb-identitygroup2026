@@ -2,11 +2,11 @@
   background-color: var(--col-primary-black);
   color: var(--col-white);
   padding-bottom: 6rem;
-  border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
-  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
   &__pre-title {
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-block: 0.5rem;
     color: var(--col-purple-300);
     font-weight: var(--fw-regular);
@@ -19,7 +19,7 @@
     padding-top: 1rem;
   }
   &__row:not(:first-child) {
-    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
   }
   &__row--intro &__title {
     color: var(--col-purple-600);

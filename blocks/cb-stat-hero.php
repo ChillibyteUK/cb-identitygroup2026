@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+cb_deprecated_block_notice( 'CB Stats (with "Show Hero" enabled)', $is_preview );
+
 $block_title = get_field( 'title' ) ? get_field( 'title' ) : '';
 
 $block_link = get_field( 'cta_link' );

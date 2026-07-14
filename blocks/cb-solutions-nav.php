@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+cb_deprecated_block_notice( 'CB Child Page Nav', $is_preview );
+
 $solutions_parent = get_page_by_path( 'solutions' );
 
 if ( ! $solutions_parent instanceof WP_Post ) {

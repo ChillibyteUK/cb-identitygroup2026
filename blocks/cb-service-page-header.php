@@ -7,9 +7,32 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$width   = get_field( 'content_width' ) ? get_field( 'content_width' ) . 'ch' : '50ch';
-$balance = get_field( 'balance' ) ? 'text-wrap: balance;' : '';
+$width       = get_field( 'content_width' ) ? get_field( 'content_width' ) . 'ch' : '50ch';
+$balance     = get_field( 'balance' ) ? 'text-wrap: balance;' : '';
+$is_identity = 'identity' === cb_site_template_suffix();
 
+// identity's real design is a much simpler h1 + intro-text flow with no
+// bordered title box, no subtitle, and no link/button - a structural
+// difference, not just a colour/sizing one, so it gets its own markup
+// rather than a shared-with-coda template with unused fields.
+if ( $is_identity ) {
+	$block_id = $block['id'] ?? '';
+	?>
+	<section id="<?php echo esc_attr( $block_id ); ?>" class="cb-service-page-header">
+		<div class="id-container px-4 px-md-5">
+			<h1><?= esc_html( get_field( 'title' ) ); ?></h1>
+			<div class="row">
+				<div class="col-md-9">
+					<div class="cb-service-page-header__intro-text">
+						<?= wp_kses_post( get_field( 'content' ) ); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php
+	return;
+}
 ?>
 <section class="service-page-header">
 	<div class="has-lime-1000-border-top has-lime-1000-border-bottom mt-4">

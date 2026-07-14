@@ -158,10 +158,10 @@
     }
   }
   .insight-type {
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     &__header {
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
       display: block;
       position: relative;
       background-color: var(--col-primary-black);
@@ -270,11 +270,21 @@
     background-color: var(--col-primary-black);
     color: var(--col-white);
 
+    // --_first-colour is consumed by a more specific selector further
+    // down in this file (idtravel's real `.post-content .container:
+    // first-of-type > p:first-of-type` rule, unscoped since it's the
+    // shared base) that otherwise beats this block's own less-specific
+    // container-level rule for the first paragraph's own text colour
+    // specifically - identity's real CSS only ever defines --_colour, so
+    // mirror it here rather than leaving --_first-colour on idtravel's
+    // real value (--col-purple-500) for every post type.
     &.post-press {
       --_colour: var(--col-purple-600);
+      --_first-colour: var(--col-purple-600);
     }
     &.post-insight {
       --_colour: var(--col-lime-400);
+      --_first-colour: var(--col-lime-400);
     }
 
     .post-hero-image {
@@ -300,8 +310,8 @@
     }
 
     .category-wrapper {
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
       color: var(--_colour);
       text-transform: uppercase;
       font-weight: var(--fw-regular);
@@ -310,7 +320,7 @@
       padding-block: 0.5rem 0.25rem;
     }
     .post-title {
-      border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
       padding-block: 1rem;
       h1 {
         font-size: var(--fs-850);
@@ -318,7 +328,7 @@
       }
     }
     .post-date-row {
-      border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
       padding-bottom: 2rem;
       .post-date {
         color: var(--col-neutral-600);
@@ -514,8 +524,19 @@
 // idtravel-derived dark rules above) — ported wholesale from coda's own
 // real _news.scss rather than merged into the shared rules.
 .cb-site-coda {
+  // real coda's own .news-insights-hero sets no `color` at all (only the
+  // `a` link colour below) - confirmed via its own real _news.scss. Text
+  // just falls through to Bootstrap's default (#212529, rgb(33,37,41)).
+  // The explicit --col-primary-black here was a near-black approximation
+  // that's visually similar but numerically different (rgb(13,13,12)) -
+  // found via the QA tool's widened per-element check on /news/'s intro
+  // paragraphs. `color: unset` (not just omitting the property) is
+  // required to actually cancel the unscoped base rule above
+  // (`.news-insights-hero { color: var(--col-white); }`), which still
+  // applies to every site including coda otherwise.
   .news-insights-hero {
-    color: var(--col-primary-black);
+    color: unset;
+
     a {
       color: var(--col-lime-900);
       text-decoration: none;

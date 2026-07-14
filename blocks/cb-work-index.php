@@ -10,6 +10,8 @@ defined( 'ABSPATH' ) || exit;
 // Block ID.
 $block_id = $block['id'] ?? '';
 
+$is_identity = 'identity' === cb_site_template_suffix();
+
 $bg_case_study = get_field( 'hero_case_study' )[0] ?? null;
 
 if ( ! $bg_case_study ) {
@@ -28,6 +30,20 @@ if ( ! $bg_case_study ) {
 	}
 }
 ?>
+<?php if ( $is_identity ) : ?>
+<section class="work-index-hero has-primary-black-background-color pt-5">
+	<h1 class="mt-5">
+		<div class="id-container px-4 px-md-5 pt-2">
+			Our work
+		</div>
+	</h1>
+	<h2>
+		<div class="id-container px-4 px-md-5 pt-2 pb-1">
+			Where experience changes everything
+		</div>
+	</h2>
+	<div class="id-container">
+<?php else : ?>
 <section class="work-index-hero">
 	<div class="work-index-hero__title my-4">
 		<h1 class="has-850-font-size fw-light">
@@ -44,11 +60,12 @@ if ( ! $bg_case_study ) {
 	<div class="work-index-hero__intro grad-main pt-1 pb-5">
 		<div class="id-container px-4 px-md-5">
 			<p class="has-700-font-size fw-light">
-				From global congresses to investigator meetings, we deliver healthcare experiences with technical precision and creative clarity. Every programme is designed to bring complex science to life – whether live, hybrid, or digital. 
+				From global congresses to investigator meetings, we deliver healthcare experiences with technical precision and creative clarity. Every programme is designed to bring complex science to life – whether live, hybrid, or digital.
 			</p>
 		</div>
 	</div>
 	<div class="id-container">
+<?php endif; ?>
 		<?php
 			// get title and thumbnail of first sticky or latest case study for background image.
 
@@ -63,12 +80,14 @@ if ( ! $bg_case_study ) {
 		}
 		?>
 			<div class="overlay"></div>
+			<?php if ( ! $is_identity ) : ?>
 			<div class="bottom-overlay"></div>
+			<?php endif; ?>
 			<div class="work-index-hero__content px-4 px-md-5">
-				<div class="work-index-hero__card-title has-700-font-size fw-semi">
+				<div class="work-index-hero__<?= $is_identity ? 'title' : 'card-title has-700-font-size fw-semi'; ?>">
 					<?php echo esc_html( get_the_title( $bg_case_study ) ); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" width=23 height=21 alt="" class="cb-services-nav__item-icon" />
 				</div>
-				<div class="work-index-hero__card-desc">
+				<div class="work-index-hero__<?= $is_identity ? 'desc' : 'card-desc'; ?>">
 					<?php
 					// get the case_study_subtitle field from the cb-case-study-hero block if available.
 					$post_blocks = parse_blocks( get_post_field( 'post_content', $bg_case_study ) );
@@ -92,10 +111,9 @@ if ( ! $bg_case_study ) {
 	</div>
 </section>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-work-index">
-	<?php
-	/* // phpcs:disable
+	<?php if ( $is_identity ) : ?>
 	<div class="cb-work-index__filter-bar py-4 px-4 px-md-5">
-		<div class="id-container py-4 cb-work-index__filters" data-service-map='<?php echo esc_attr( $service_map_json ); ?>' data-theme-map='<?php echo esc_attr( $theme_map_json ); ?>'>
+		<div class="id-container py-4 cb-work-index__filters">
 			<div class="row g-4 align-items-center">
 				<div class="col-12 col-md-2 col-lg-2 col-x1-1">
 					FILTER BY:
@@ -133,20 +151,19 @@ if ( ! $bg_case_study ) {
 			?>
 				</div>
 				<div class="col-md-2">
-					<button id="cb-work-index-filter-reset" class="btn btn-id-outline-lime">Reset</button>
+					<button id="cb-work-index-filter-reset" class="btn btn-id-outline-green">Reset</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	// phpcs:enable 
-	*/
-	?>
+	<?php else : ?>
 	<div class="has-lime-1000-border-bottom">
 		<div class="id-container py-3 px-4 px-md-5">
 			<h2 class="fs-300 fw-regular lh-tightest pt-1 pb-0 mb-0 text-uppercase" >Featured Work</h2>
 		</div>
 	</div>
-	<div class="id-container px-4 px-md-5 py-4">
+	<?php endif; ?>
+	<div class="id-container<?= $is_identity ? '' : ' px-4 px-md-5 py-4'; ?>">
 		<div class="cb-work-index__cards row g-2">
 			<?php
 
@@ -235,6 +252,8 @@ if ( ! $bg_case_study ) {
 				wp_reset_postdata();
 			}
 			?>
+		</div>
+	</div>
 </section>
 <?php
 add_action(

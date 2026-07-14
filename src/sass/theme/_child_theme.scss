@@ -455,6 +455,30 @@ for (; i < all.length; i++) {
   border-top: 1px solid hsl(var(--hsl-lime-1000) / 0.4) !important;
 }
 
+// idtravel's own real theme.json has no lime palette at all - every
+// has-lime-*-color/-border-* class is genuinely undefined CSS there (no
+// border, no colour, just inherited defaults), confirmed directly against
+// identitytravel.com/privacy-policy/ etc. The classes only appear in
+// idtravel's own real templates (text-page.php, single-case_study.php) as
+// copy-paste leftovers from coda's real source - not a deliberate design.
+// Neutralise rather than repurpose (unlike has-primary-black-*, which
+// idtravel's real design DOES want a substitute colour for elsewhere).
+.cb-site-idtravel {
+  .has-lime-1000-border-top,
+  .has-lime-1000-border-bottom,
+  .has-lime-900-border-top,
+  .has-lime-900-border-bottom {
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+
+  .has-lime-1100-color,
+  .has-lime-1000-color,
+  .has-lime-900-color {
+    color: inherit !important;
+  }
+}
+
 .has-lime-1000-border-bottom {
   border-bottom: 1px solid hsl(var(--hsl-lime-1000) / 0.4) !important;
 }

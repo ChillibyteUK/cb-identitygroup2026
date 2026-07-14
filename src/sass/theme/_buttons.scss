@@ -107,6 +107,23 @@
   }
 }
 
+.btn-id-outline-green {
+  // identity's own _tokens.scss calls this colour "green" (--col-green-400,
+  // #B8FF52) - the shared theme standardised on coda's "lime" naming for
+  // the same colour-identical scale (see cb-site-tokens.php), so --col-brand
+  // (identity's value: #B8FF52) is the correct equivalent here.
+  --_bg: transparent;
+  --_fg: var(--col-brand);
+  --_bd: var(--col-brand);
+  border-radius: 0;
+  height: 34px;
+  &:hover {
+    background-color: var(--col-brand);
+    color: var(--col-primary-black);
+    border-color: var(--col-brand);
+  }
+}
+
 .btn:focus-visible {
   outline: 2px solid var(--col-accent-400);
   outline-offset: 2px;
