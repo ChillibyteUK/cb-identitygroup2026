@@ -55,11 +55,21 @@
     &__pretitle {
         border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         border-top: 1px solid rgba(255, 255, 255, 0.4);
-        margin-bottom: 1rem;
+        padding-block: 1rem;
         color: var(--col-brand);
         font-size: var(--fs-300);
         font-weight: var(--fw-regular);
+        line-height: 1;
         text-transform: uppercase;
+
+        // Matched to cb-services-nav__header (2026-07-14): padding
+        // replaces the previous margin-bottom-only approach, line-height
+        // was previously unset (rendering ~1.55x taller than intended),
+        // and the inner .id-container's own pt-*/pb-* utility classes are
+        // zeroed so padding doesn't compound across both layers.
+        > .id-container {
+            padding-block: 0 !important;
+        }
     }
 
     &__list {

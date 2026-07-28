@@ -74,11 +74,6 @@
   .post-title {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-block: 1rem;
-
-    h1 {
-      font-size: var(--fs-850);
-      font-weight: var(--fw-light);
-    }
   }
 
   .post-content {
@@ -91,7 +86,6 @@
     h2 {
       border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
-      font-weight: var(--fw-semi);
     }
 
     .table,

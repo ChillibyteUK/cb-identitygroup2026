@@ -159,15 +159,11 @@
   // visible band instead of blending seamlessly like on the real site.
   background-color: var(--col-primary-black);
 
-  // identity's real sitewide default text weight is --fw-light (300), not
-  // --fw-regular (400) like coda's/idtravel's real body rule (both
-  // confirmed to match the shared base exactly - only identity diverges).
-  // High-impact: any text with no explicit font-weight of its own
-  // (WYSIWYG-authored paragraphs, utility-class text with only a
-  // font-size class like .fs-500, etc.) inherits this, so a mismatch here
-  // shows up as scattered, hard-to-trace 300-vs-400 differences all over
-  // the site rather than in one obvious place.
-  font-weight: var(--fw-light);
+  // Typography (sizes/weights/letter-spacing/line-height) is a deliberate
+  // 2026-07-14 client decision to use idtravel's throughout, not identity's
+  // own real values - the sitewide font-weight override that used to live
+  // here has been removed, along with every typography property in the
+  // overrides below. Colour/background/border overrides are unaffected.
 
   .cb-pushthrough {
     background-color: var(--col-primary-black);
@@ -188,21 +184,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
 
-    h2,
-    &__title {
-      font-size: var(--fs-850);
-      font-weight: var(--fw-light);
-    }
-
-    &__left-content {
-      font-size: var(--fs-600);
-    }
-
     &__desc {
-      font-size: var(--fs-400);
-      font-weight: var(--fw-light);
-      line-height: 1.5;
-      letter-spacing: normal;
       text-wrap: balance;
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
@@ -210,10 +192,6 @@
     &__link {
       display: inline-block;
       color: var(--col-white);
-      font-weight: var(--fw-semi);
-      font-size: var(--fs-500);
-      line-height: normal;
-      letter-spacing: normal;
       border-top: 0;
       padding-top: 0;
       margin-bottom: 0.5rem;
@@ -241,25 +219,20 @@
   }
 }
 
-// identity's real nav is a simpler design than idtravel's (the shared
-// base header.scss this theme forked from): a different font-size
-// (--fs-200, not --fs-100), no font-weight change on hover/active at all
-// (idtravel's and coda's real headers both bold the link on hover/active
-// and use a hidden ::after "reserve the bold width" trick specifically to
-// stop that reflowing the layout - identity's real source has neither),
-// and --col-lime-400 (identity's own real --col-green-400, renamed during
-// the earlier lime-naming standardisation - same value, #B8FF52) as the
-// hover/active colour rather than idtravel's --col-purple-500.
+// identity's real nav colour (--col-lime-400, identity's own real
+// --col-green-400 renamed during the earlier lime-naming standardisation,
+// same value #B8FF52) as the hover/active colour rather than idtravel's
+// --col-purple-500. Font-size/weight now intentionally follow idtravel's
+// shared base rule (2026-07-14 typography decision) - no override here any
+// more, including on hover/active, which now bolds the same way idtravel's
+// and coda's real headers do.
 .cb-site-identity header {
   a,
   a.nav-link {
-    font-size: var(--fs-200);
-
     &:hover,
     &:focus,
     &:focus-visible {
       color: var(--col-lime-400);
-      font-weight: var(--fw-regular);
     }
   }
 
@@ -271,29 +244,18 @@
   .dropdown.current-page-ancestor > .nav-link,
   .dropdown.current-menu-item > .nav-link {
     color: var(--col-lime-400);
-    font-weight: var(--fw-regular);
   }
 }
 
 // identity's cb-cta shares idtravel's dark-background/light-text colour
-// scheme (no colour override needed), but its own title/content font sizes
-// match coda's real values (--fs-850/--fs-600), not idtravel's smaller
-// --fs-700/--fs-400 that the shared base file (idtravel's own) uses.
+// scheme (no colour override needed). Title/content font sizes now
+// intentionally follow the shared base file's (idtravel's own) --fs-700/
+// --fs-400 too (2026-07-14 typography decision) - previously matched
+// coda's real --fs-850/--fs-600 instead.
 .cb-site-identity {
   .cb-cta {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-
-    &__title {
-      font-size: var(--fs-850);
-      font-weight: var(--fw-regular);
-      line-height: 1.1;
-    }
-
-    &__content {
-      font-size: var(--fs-600);
-      font-weight: var(--fw-light);
-    }
   }
 
   // identity's real cb-faq is a fixed dark theme with no colour-picker
@@ -404,8 +366,11 @@
   .cb-our-brands {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
 
+    // Matched to cb-services-nav__header (2026-07-14): base (unscoped,
+    // shared with coda/idtravel) uses 1.5rem/1.25rem - identity-only here.
     &__pre-title {
       color: var(--col-brand);
+      padding-block: 1rem;
     }
 
     &__last {
@@ -426,14 +391,10 @@
       margin-block: 6rem 4rem;
       border-top: 1px solid rgba(255, 255, 255, 0.4);
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      font-size: var(--fs-900);
-      font-weight: var(--fw-semi);
     }
 
     &__intro {
       color: var(--col-white);
-      font-size: var(--fs-800);
-      line-height: 1.5;
       padding-bottom: 6rem;
     }
   }
@@ -468,17 +429,10 @@
 
     &__title {
       margin-block: 6rem 4rem;
-      font-size: var(--fs-900);
-      font-weight: var(--fw-semi);
     }
 
     &__content {
-      font-size: var(--fs-800);
       padding-bottom: 6rem;
-
-      p:first-child {
-        font-size: var(--fs-800);
-      }
     }
   }
 
@@ -497,17 +451,7 @@
     }
 
     &__intro-text {
-      font-size: var(--fs-700);
-      line-height: 1.5;
       text-wrap: balance;
-
-      p {
-        font-size: var(--fs-700);
-      }
-
-      p:not(:first-of-type) {
-        font-size: var(--fs-500);
-      }
 
       a {
         color: var(--col-lime-400);
@@ -568,21 +512,9 @@
   // cb-contact-page: identity is the only theme that ever had an opinion on
   // this block (coda didn't have it at all; idtravel's light, no-background
   // version won the merge) - restoring identity's own dark scheme.
-  //
-  // This override previously fixed colour and font-weight but missed
-  // font-size - found via the QA tool's widened per-element check
-  // (previously only sampled the first text match per section, so every
-  // "New business"/"PR & Media"/"Talent" h2 past the page's h1 was never
-  // actually checked). Real identity sets no font-size at all on these h2s,
-  // letting them inherit the site's global h2 default (--fs-h2, i.e.
-  // --fs-500 for identity) instead of the unscoped base rule's explicit
-  // --fs-700 - confirmed 28.016px real vs 34.56px local. Only touching what
-  // was actually measured as different here - an earlier pass at this fix
-  // also added unproven `initial` resets on font-weight/letter-spacing
-  // elsewhere in this block, which is a mistake (`initial` is the CSS
-  // spec-default, not "fall through to a lower-specificity rule" - it
-  // introduced a real regression on __intro-text's font-weight and made
-  // the very font-size bug worse, dropping it to browser-default 16px).
+  // Typography (h1/h2 size/weight/line-height) now intentionally follows
+  // idtravel's shared base rule too (2026-07-14 decision) - no override
+  // needed any more.
   .cb-contact-page {
     background-color: var(--col-primary-black);
     color: var(--col-white);
@@ -590,18 +522,10 @@
 
     h1 {
       border-color: rgba(255, 255, 255, 0.4);
-      font-size: var(--fs-850);
-      font-weight: var(--fw-semi);
-      line-height: 1;
     }
 
     &__emails {
       border-color: rgba(255, 255, 255, 0.4);
-
-      h2 {
-        font-weight: var(--fw-light);
-        font-size: var(--fs-h2);
-      }
     }
   }
 
@@ -624,10 +548,6 @@
     background-color: var(--col-neutral-1100);
     color: var(--col-white);
 
-    h2 {
-      font-weight: var(--fw-light);
-    }
-
     &__office {
       border-top: 1px solid rgba(255, 255, 255, 0.4);
     }
@@ -636,7 +556,6 @@
     .is-group,
     &__caveat {
       color: var(--col-lime-400);
-      font-weight: var(--fw-light);
     }
   }
 
@@ -662,9 +581,7 @@
     h2 {
       padding-top: 0.25rem;
       margin-bottom: 1rem;
-      font-size: var(--fs-600);
       color: var(--col-brand);
-      line-height: 1;
       border-top: 1px solid rgba(255, 255, 255, 0.4);
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
@@ -686,13 +603,11 @@
   }
 }
 
-// .id-button: identity's and coda's real sources both use --fs-700/
-// --fw-regular; the shared base file's --fs-600/--fw-book is idtravel's
-// own real value. --fw-book isn't even a defined token in identity's or
-// coda's real _tokens.scss at all (idtravel-only concept), so this
-// wasn't just a size/weight tweak - it was idtravel's whole design kept
-// wholesale for a button used sitewide, on every site.
-.cb-site-identity,
+// .id-button: coda's real source uses --fs-700/--fw-regular; the shared
+// base file's --fs-600/--fw-book is idtravel's own real value. Identity
+// used to share this override too, but its typography now intentionally
+// follows idtravel's shared base rule instead (2026-07-14 decision), so
+// it's coda-only here now.
 .cb-site-coda {
   .id-button {
     font-size: var(--fs-700);

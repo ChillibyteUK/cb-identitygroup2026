@@ -11,6 +11,16 @@ per site via a `cb_site` ACF option field (`identity` | `coda` | `idtravel`).
 `/var/www/idtravel/wp-content/themes/cb-identitygroup2026`. Check
 `git log --oneline -5` and `git status` on arrival — should be clean.
 
+⚠️ **This is a build/staging location only — never a site to browse or
+review.** It happens to sit inside a live WP install (`idtravel.local`),
+but that install is not one of the three reviewable environments and
+should never be opened in a browser for QA/screenshots/verification. All
+visual checking happens on the three test clones below. Confirmed
+2026-07-28: this WP install had accumulated 83 orphaned files (a stale
+duplicate SCSS/CSS/PHP tree — see dated log) purely because it was being
+half-treated as a fourth site; keep it strictly build-only going forward
+to avoid drift like that recurring.
+
 **Three live-content test clones**, all currently running this shared theme:
 
 | Site | URL | Path | `cb_site` |
@@ -2892,3 +2902,159 @@ findings above.
 regressions, totals unchanged from immediately before this entry (identity 21 pass/6 flag, coda 8
 pass/9 flag, idtravel 19 pass/17 flag) - confirming the temporary test-render pages created and deleted
 during the unused-block audit left no residue.
+
+## 2026-07-14: deliberate design change - identity's typography now follows idtravel's, not its own real values
+
+User, directly: "I want the typography (sizes, weights, letter spacing, line height) from the Travel
+variant to be applied to the Global variant." A genuine client-requested design decision, not a bug fix
+- everything this session (and the whole project) had painstakingly made identity match its OWN real
+production typography now had to be deliberately undone in the opposite direction, for exactly these 4
+properties only (colour, background, borders, structural markup differences all stay as they were).
+
+**Scope discipline, checked twice**: only font-size, font-weight, letter-spacing, and line-height were
+touched. `text-wrap: balance`, colours, backgrounds, and border rules inside the same `.cb-site-identity`
+blocks were explicitly left alone throughout - confirmed by grep after every file, not assumed.
+
+**Two-part mechanism, not one**:
+1. `cb_get_site_tokens_table()` in `cb-site-tokens.php`: removed every `--fs-*`/`--ls-*` override from
+   identity's array (they fall through to the shared base `_tokens.scss`, which is idtravel's own scale
+   verbatim - the theme was forked from idtravel). Also updated identity's editor font-size presets
+   (`cb_filter_editor_theme_json()`'s small/medium/large/x-large) to match.
+2. Every `.cb-site-identity { ... }` scoped SCSS rule across 10 files
+   (`_header-site-overrides.scss`, `_typography.scss`, `_news.scss`, `_text-page.scss`,
+   `_cb_image_feature_overlay.scss`, `_cb_featured_work.scss`, `_cb_work_index.scss`,
+   `_cb_latest_insights.scss`) had its font-size/weight/letter-spacing/line-height properties stripped
+   out, leaving colour/background/border properties in place. Several rules became empty and were
+   deleted outright. Two rules that were previously shared `.cb-site-identity, .cb-site-coda` selectors
+   (`.id-button`, `.fw-semi`, `.content-grid h1`) were split so coda keeps its own override and identity
+   falls through to the base.
+
+**Two real mistakes caught and corrected before deploying, both by checking rather than assuming
+"removed = falls through correctly" held universally**:
+- `--fw-semi`, `--lh-tightest`/`--lh-tight`/`--lh-snug`/`--lh-normal`: a rigorous token-by-token diff of
+  idtravel's own row against the shared base turned up that idtravel *itself* overrides `--fw-semi` away
+  from the base (450, not the base's 500), and that the 4 `--lh-*` semantic aliases don't exist in the
+  base at all (they're consumed directly, with no fallback, by shared components identity also renders -
+  e.g. `cb-pushthrough__desc` uses `--lh-snug`). Simply deleting identity's rows for these would have left
+  them genuinely undefined - a real regression, not parity with idtravel. Restored with idtravel's exact
+  values instead of leaving them removed.
+- `cb-our-brands__title` and `cb-testimonial__author`/`__company`: these two components have the
+  *inverse* structure from every other override in the file - the unscoped base rule represents coda's
+  real value, and idtravel has its *own* scoped override (`.cb-site-idtravel {...}`) departing from it.
+  Deleting identity's (nonexistent, in this case) override would have left identity on coda's value, not
+  idtravel's. Fixed by adding `.cb-site-identity` into idtravel's existing selector instead of touching
+  the base. Found by spot-checking actual computed styles against idtravel's test site after the first
+  deploy, not assumed safe from the token-removal pattern alone - the rest of the file follows the normal
+  pattern (base = idtravel, override = something else) and got the delete-only treatment.
+
+**Verification method**: real production is not the reference for this change (identity's own real
+typography is the thing being deliberately abandoned), so `qa/compare-site.js` against
+identityglobal.com doesn't apply here. Verified instead by reading resolved `getComputedStyle` custom
+property values directly on both idglobal-test and idtravel-test and confirming exact parity for every
+`--fs-*`/`--fw-*`/`--lh-*`/`--ls-*` token, then spot-checking real rendered components
+(`cb-pushthrough__desc`/`__title`, `cb-our-brands__title`) on both sites' `/about/` pages for exact
+`fontSize`/`fontWeight`/`lineHeight` match. A full-page screenshot of identity's `/about/` afterward
+confirmed no visual breakage (text renders at sensible sizes, no overlap, no layout collapse).
+
+**Not touched, deliberately**: the 8 dead blocks, the 35 single-site blocks' own internal typography
+(they already consume the same shared tokens, so they inherited this change automatically with no
+per-file edits needed), and every colour/background/border override in every file edited above.
+
+## 2026-07-14 continued: pre-title/signpost vertical padding standardised to identity's cb-services-nav__header (11 components) - two rounds of self-caught errors before it actually worked
+
+User: identify every "block title/pre-title/signpost" element and fix its vertical padding to match
+`cb-services-nav__header` (`padding-block: 1rem`, i.e. 16px/16px), identity-only, and list+propose before
+touching anything. Two real mistakes surfaced and were corrected *before* the user let this proceed -
+worth recording both, since each one invalidated an entire round of "verified" findings:
+
+**Mistake 1**: first pass claimed `cb-latest-insights__pre-title` needed no change ("base is 1rem,
+already correct"), based on a SCSS reading that had *already* surfaced a `.cb-site-identity
+.cb-latest-insights__pre-title { padding-block: 0.5rem; }` override contradicting that - the override
+was read but the conclusion written up ignored it. User caught this directly ("doesn't look anything
+like cb-services-nav__header"). Response: stopped trusting source-reading alone and re-verified every
+item's *actual rendered* `getComputedStyle` padding via Playwright instead.
+
+**Mistake 2, bigger**: that re-verification still only checked each pre-title element's own padding -
+missing that most of these components wrap an inner `.id-container` div carrying its own Bootstrap
+vertical-padding utility classes (`pt-4 pb-3`, `py-4`, `pt-2 pb-1`, etc.), applied directly in the PHP
+templates, invisible to any SCSS-only read. The *true* total (outer + inner) told a completely
+different story - several components were already *larger* than the target, not smaller
+(`cb-featured-work__pre-title`: 32px/32px total vs the 16px/16px target; `cb-about-detail`/
+`cb-latest-insights`: 32px/24px). User: *"check EVERYTHING. Do not be so fucking lazy. Line height,
+margin, padding - they all affect the rendered output!"* - fair. Full re-audit walked the actual DOM
+chain (padding/margin/line-height/font-size/border, outer and inner) for every item via Playwright
+before proposing anything a second time, which also surfaced a third defect: `cb-policies-page`,
+`cb-file-block`, and `cb-service-detail` never set `line-height` at all on this element, rendering at
+the ambient ~1.55 body ratio (27.9px) instead of a tight 1.0 (18px) - invisible unless you check
+computed `line-height`, not just padding.
+
+Also found and excluded during discovery (not part of the fix, not bugs either):
+- `cb-work-index__pre-title` - dead CSS, the live PHP template never outputs this class at all.
+- `cb-recent-news__pre-title` - never rendered on identity; `cb-recent-news.php` dispatches to
+  `cb-recent-news-identity.php`, which outputs `cb-latest-insights__pre-title` instead - already
+  covered by that component's own fix.
+- `cb-pushthrough__pretitle` - excluded from this round at the user's request (has its own extra
+  `margin-top: 1rem` and missing `line-height` needing a separate decision later).
+
+**The fix, once the real shape of the problem was known**: for every affected component, set the outer
+element's `padding-block: 1rem` and, where an inner `.id-container` carries its own vertical padding,
+zero it out (`padding-block: 0 !important`) rather than trying to net the two layers to the right total
+- matches the reference's own structure (all padding on one layer) rather than two layers that happen
+to sum correctly. **The `!important` was not optional** - a first attempt without it silently did
+nothing, because Bootstrap's own `.pt-*`/`.pb-*`/`.py-*` utilities are themselves `!important` in this
+theme's compiled CSS, so a plain override (regardless of specificity) never wins against them. Caught by
+re-verifying computed styles again after the "fix" and finding the inner padding completely unchanged.
+
+Edited: `_cb_related_work.scss`, `_cb_policies_page.scss`, `_cb_culture_page_header.scss` (two separate
+rules, the careers header and `.culture-life`), `_cb_file_block.scss`, `_cb_brand_title_text.scss`,
+`_cb_about_detail.scss`, `_cb_service_detail.scss` (all identity-exclusive, base rule edited directly)
+plus `_cb_latest_insights.scss`, `_cb_featured_work.scss`, and the `.cb-our-brands__pre-title` rule in
+`_header-site-overrides.scss` (all shared with coda, so a `.cb-site-identity`-scoped addition instead of
+touching the base).
+
+**Verification**: walked the full DOM chain (outer padding, inner padding, line-height, total rendered
+height via `getBoundingClientRect`) for every one of the 11 items plus the reference itself, before and
+after. Final result: 8 of 11 render at exactly 51px total height with 16px/16px outer padding and 0px/0px
+inner padding, identical to the reference. `cb-policies-page`/`cb-file-block` land at 52px - the 1px
+difference is the already-flagged, deliberately-untouched double border (top+bottom vs the reference's
+bottom-only), not a padding gap. `cb-brand-title-text` renders at 65px total, but its own padding is
+confirmed 16px/16px - the extra height is from the large H1 it wraps (a structurally different, bigger
+heading), not a padding defect. `cb-pushthrough` untouched per instruction.
+
+## 2026-07-28: unfucked the dev-copy/test-clone drift — 83 orphaned files in idglobal-test, root cause and cleanup
+
+User had been visiting `http://idglobal-test.local/` believing it was a normal test clone, then got confused
+seeing dev-session changes appear there and asked directly what was going on — surfaced that the primary dev
+copy (`/var/www/idtravel`) was being half-treated as a fourth reviewable site, when it's actually just the
+git-tracked build/staging location the three test clones get rsync'd from. Also re-surfaced an earlier,
+never-fully-answered question ("why are there loads of `_.scss` files in the root of the theme") which had
+been answered too narrowly at the time (checked only the primary dev copy, found nothing, stopped there).
+
+**Root cause, found via `diff -rq` between the primary dev copy and each test clone**: `idglobal-test`'s theme
+folder had a stale, duplicate SCSS/CSS/PHP tree sitting directly in the theme root and in `blocks/` (which
+should be PHP-templates-only) — 15 loose `_*.scss` partials at root, 59 more inside `blocks/`, a stale fork
+of `cb-site-tokens.php` missing the 2026-07-14 typography-parity fix, and 8 compiled CSS/map files that
+duplicate `css/`'s real build output. None of it was live: the actual build only compiles
+`src/sass/child-theme.scss` (which `@import`s from `src/sass/theme/`), and `functions.php` enqueues
+`css/child-theme.min.css` + requires `inc/cb-site-tokens.php` — confirmed by grepping the enqueue/require call
+sites directly, not by inference. This is exactly this project's already-documented "duplicate/misplaced file"
+bug class, just at file-tree scope instead of a single CSS rule.
+
+Separately, all three test clones (not just idglobal-test) had one file going the *other* direction:
+`_cb_lined_title.scss` existed in all three but not in the primary copy. Root cause: it was deliberately
+deleted from the primary source on 2026-07-09 (documented at `blocks/_blocks.scss:59` — the real block markup
+uses only existing utility classes, no dedicated styling needed) but `rsync` without `--delete` only adds/
+updates, never removes, so the dead file survived in all three downstream copies indefinitely.
+
+**Fix**: deleted all 83 confirmed-orphaned files from `idglobal-test` (verified against enqueue/require call
+sites first, user confirmed the specific file list before deletion per this project's git-safety norms), then
+`rsync`'d the primary copy over it to restore correct current content. Deleted the leftover
+`_cb_lined_title.scss` from all three test clones. Post-fix `diff -rq --exclude=.git --exclude=node_modules`
+between the primary copy and each of the three test clones is now completely empty — exact match. Verified
+`idglobal-test` still serves a 200, correct enqueued `css/child-theme.min.css` loads with real content
+including the latest pre-title fixes.
+
+**Process fix, not just a one-off cleanup**: added a warning to this file's Resume checklist (top) that
+`/var/www/idtravel` is build/staging-only and must never be opened in a browser or treated as a fourth site —
+that's the actual root cause of both this drift and the original miscategorized "loads of `_.scss` files"
+question.

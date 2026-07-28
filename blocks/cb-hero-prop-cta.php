@@ -27,47 +27,41 @@ if ( ! empty( $block_id ) ) {
 <section <?= wp_kses_post( $section_attrs ); ?>>
 	<div class="id-container px-4 px-md-5 py-5">
 		<div class="cb-hero-prop-cta__container">
-			<?php
-			$section_title = get_field( 'title' );
-			$section_title = is_string( $section_title ) ? trim( $section_title ) : '';
-			if ( '' !== $section_title ) {
-				$lines   = preg_split( '/<br\s*\/?>/i', $section_title );
-				$lines   = array_filter( array_map( 'trim', $lines ) );
-				$c       = 1;
-				$wrapped = array_map(
-					function ( $line ) use ( &$c ) {
-						$output = '<div class="line"><div class="bar bar' . $c . '"></div><div class="text text' . $c . '">' . wp_kses_post( $line ) . '</div></div>';
-						$c++;
-						return $output;
-					},
-					$lines
-				);
-				?>
-				<div class="row">
-					<div class="col-md-7 mb-5 d-flex justify-content-center align-items-center">
-						<div class="cb-hero-prop-cta__title ps-5 ps-md-0">
+			<div class="row g-5">
+				<?php
+				$section_title = get_field( 'title' );
+				$section_title = is_string( $section_title ) ? trim( $section_title ) : '';
+				if ( '' !== $section_title ) {
+					$lines   = preg_split( '/<br\s*\/?>/i', $section_title );
+					$lines   = array_filter( array_map( 'trim', $lines ) );
+					$c       = 1;
+					$wrapped = array_map(
+						function ( $line ) use ( &$c ) {
+							$output = '<div class="line"><div class="bar bar' . $c . '"></div><div class="text text' . $c . '">' . wp_kses_post( $line ) . '</div></div>';
+							$c++;
+							return $output;
+						},
+						$lines
+					);
+					?>
+					<div class="col-md-6 mb-md-5 d-flex flex-column align-items-center">
+						<div class="cb-hero-prop-cta__title ps-5 ps-lg-0">
 							<?= wp_kses_post( implode( '', $wrapped ) ); ?>
 						</div>
 					</div>
-				</div>
-				<?php
-			}
-			?>
-		</div>
-		<?php
-		$content_heading  = get_field( 'content_heading' );
-		$content          = get_field( 'content' );
-		$cta_link         = get_field( 'link' );
-		$link_url         = is_array( $cta_link ) ? ( $cta_link['url'] ?? '' ) : '';
-		$link_title       = is_array( $cta_link ) ? ( $cta_link['title'] ?? '' ) : '';
-		$link_target      = is_array( $cta_link ) ? ( $cta_link['target'] ?? '' ) : '';
-		$link_target_attr = ! empty( $link_target ) ? ' target="' . esc_attr( $link_target ) . '"' : '';
-		$has_content      = ! empty( $content_heading ) || ! empty( $content ) || ( $link_url && $link_title );
-		if ( $has_content ) {
-			?>
-			<div class="cb-brand-title-text__content-wrapper pb-5">
-				<div class="row">
-					<div class="col-md-6 offset-md-6">
+					<?php
+				}
+				$content_heading  = get_field( 'content_heading' );
+				$content          = get_field( 'content' );
+				$cta_link         = get_field( 'link' );
+				$link_url         = is_array( $cta_link ) ? ( $cta_link['url'] ?? '' ) : '';
+				$link_title       = is_array( $cta_link ) ? ( $cta_link['title'] ?? '' ) : '';
+				$link_target      = is_array( $cta_link ) ? ( $cta_link['target'] ?? '' ) : '';
+				$link_target_attr = ! empty( $link_target ) ? ' target="' . esc_attr( $link_target ) . '"' : '';
+				$has_content      = ! empty( $content_heading ) || ! empty( $content ) || ( $link_url && $link_title );
+				if ( $has_content ) {
+					?>
+					<div class="col-md-6 align-self-end">
 						<?php
 						if ( ! empty( $content_heading ) ) {
 							?>
@@ -94,11 +88,11 @@ if ( ! empty( $block_id ) ) {
 						}
 						?>
 					</div>
-				</div>
+					<?php
+				}
+				?>
 			</div>
-			<?php
-		}
-		?>
+		</div>
 	</div>
 </section>
 <?php

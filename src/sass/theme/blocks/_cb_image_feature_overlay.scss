@@ -68,9 +68,7 @@
   }
 }
 
-// idtravel's own real design (--fw-book, 450) is the base above; identity's
-// real value for this same hero h1 is --fw-semi (500) - this block doesn't
-// exist in coda's real source at all.
-.cb-site-identity .cb-image-feature-overlay--hero h1 {
-  font-weight: var(--fw-semi);
-}
+// idtravel's own real design (--fw-book, 450) used to be overridden to
+// identity's real value (--fw-semi, 500) for this hero h1 - identity's
+// typography now intentionally follows idtravel's throughout (2026-07-14
+// decision), so no override here any more.

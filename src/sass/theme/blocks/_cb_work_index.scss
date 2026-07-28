@@ -267,16 +267,12 @@
   .work-index-hero {
     h1 {
       border-top: 1px solid rgba(255, 255, 255, 0.4);
-      font-size: var(--fs-850);
-      font-weight: var(--fw-semi);
       color: var(--col-white);
     }
     h2 {
       border-top: 1px solid rgba(255, 255, 255, 0.4);
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      font-size: var(--fs-600);
       color: var(--col-neutral-800);
-      font-weight: var(--fw-regular);
       margin-bottom: 0;
     }
     .overlay {
@@ -297,13 +293,7 @@
       );
       padding: 2.5rem 2rem 2rem 1rem;
     }
-    &__title {
-      font-size: var(--fs-700);
-      font-weight: var(--fw-semi);
-    }
     &__desc {
-      font-size: var(--fs-600);
-      font-weight: var(--fw-light);
       color: var(--col-neutral-500);
       margin-top: 0.5rem;
     }
@@ -342,8 +332,6 @@
       }
     }
     &__title {
-      font-size: var(--fs-300);
-      font-weight: var(--fw-semi);
       color: var(--col-white);
 
       .cb-services-nav__item-icon {
@@ -353,8 +341,6 @@
       }
     }
     &__desc {
-      font-size: var(--fs-200);
-      font-weight: var(--fw-light);
       color: var(--col-neutral-500);
       margin-top: 0.5rem;
     }

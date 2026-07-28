@@ -5,12 +5,19 @@
 
   &__pre-title {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    padding-block: 0.5rem;
+    padding-block: 1rem;
     color: var(--col-lime-500);
     font-weight: var(--fw-regular);
     font-size: var(--fs-300);
     line-height: 1;
     text-transform: uppercase;
+
+    // Matched to cb-services-nav__header (2026-07-14): all vertical
+    // padding lives on this element, none on the inner .id-container -
+    // zeroing its pt-*/pb-* utility classes so the two don't compound.
+    > .id-container {
+      padding-block: 0 !important;
+    }
   }
   &__card {
     aspect-ratio: 16 / 9;

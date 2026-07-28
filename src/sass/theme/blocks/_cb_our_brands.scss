@@ -108,12 +108,16 @@
   }
 }
 
-// __title's base above (--fs-850/--fw-light) is identity's and coda's real
-// value verbatim (both real sources use this exact size/weight on their
-// own equivalent element, `__intro`, just under a different class name -
-// confirmed against both directly). idtravel's own real value for this
-// same field is --fs-700/--fw-book.
-.cb-site-idtravel .cb-our-brands__title {
-  font-size: var(--fs-700);
-  font-weight: var(--fw-book);
+// __title's base above (--fs-850/--fw-light) is coda's real value verbatim
+// (its own real source uses this exact size/weight on its own equivalent
+// element, `__intro`, just under a different class name). idtravel's own
+// real value for this same field is --fs-700/--fw-book - identity now uses
+// idtravel's typography throughout (2026-07-14 decision), so it's grouped
+// with idtravel here rather than falling through to coda's value.
+.cb-site-identity,
+.cb-site-idtravel {
+  .cb-our-brands__title {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-book);
+  }
 }

@@ -140,7 +140,12 @@ function cb_get_site_tokens_table() {
 			'--col-ink'            => '#0D0D0C',
 			'--hsl-ink'            => '60 4% 5%',
 			'--hsl-primary-black'  => '60 4% 5%',
-			'--fw-semi'            => '500',
+			// idtravel's own real value is 450, not the shared base's 500 -
+			// matched here as part of the 2026-07-14 typography decision
+			// (this one actually differs from the base, unlike most of the
+			// other fs-*/fw-* tokens removed above, which were redundant
+			// with it).
+			'--fw-semi'            => '450',
 			'--col-purple-900'     => '#2f13ba',
 			'--col-purple-200'     => '#e0deff',
 			'--col-purple-1000'    => '#190A83',
@@ -154,36 +159,34 @@ function cb_get_site_tokens_table() {
 			'--col-primary'        => '#0D0D0C',
 			'--col-white'          => '#fff',
 			'--col-neutral-50'     => '#f8f7f0',
-			// Font sizes (identity's own clamp scale).
-			'--fs-200' => '1.125rem', // identity's own real value (differs from the shared base, which is idtravel's).
-			'--fs-300' => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)',
-			'--fs-400' => 'clamp(1.0625rem, 0.9rem + 0.6vw, 1.375rem)',
-			'--fs-500' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)',
-			'--fs-h2' => 'var(--fs-500)',
-			'--fw-h2' => 'var(--fw-regular)', // identity's own real h2.
-			'--col-footer-link-hover' => 'var(--col-neutral-500)', // identity's own real footer link hover.
-			'--fs-600' => 'clamp(1.3125rem, 0.9rem + 1.2vw, 1.999rem)',
-			'--fs-700' => 'clamp(1.4375rem, 0.9rem + 1.4vw, 2.25rem)',
-			'--fs-800' => 'clamp(1.5rem, 0.9rem + 1.6vw, 2.5rem)',
-			'--fs-850' => 'clamp(1.875rem, 0.95rem + 1.9vw, 3.125rem)',
-			'--fs-900' => 'clamp(3rem, 1rem + 3vw, 5rem)',
-			'--fs-950' => 'clamp(3.4375rem, 1rem + 4vw, 6.25rem)',
+			// Deliberate client decision (2026-07-14): identity's typography
+			// (sizes, weights, letter-spacing, line-height) is now idtravel's,
+			// not identity's own real values. Most of the --fs-*/--fw-*/
+			// --ls-* overrides that used to live here were simply removed so
+			// identity falls through to the shared base _tokens.scss, which
+			// is idtravel's own scale verbatim for those (the theme was
+			// forked from idtravel) - confirmed by diffing idtravel's own row
+			// in this table against the base, token by token, rather than
+			// assumed. --fw-semi (above) and the 4 --lh-* aliases below are
+			// the only two exceptions: idtravel's own row genuinely overrides
+			// --fw-semi away from the base (450, not 500), and --lh-tightest/
+			// tight/snug/normal don't exist in the base _tokens.scss at all
+			// (they're consumed directly, with no fallback, by shared
+			// components identity also renders - e.g. cb-pushthrough's
+			// __desc uses --lh-snug) - removing them outright rather than
+			// matching idtravel's actual values would have left them
+			// genuinely undefined for identity, a real regression caught by
+			// checking every removed token's consumers for a missing
+			// fallback, not by assuming "removed = falls through correctly"
+			// held for all of them. This is intentional and no longer a bug:
+			// identity's real production typography is deliberately NOT the
+			// reference for these 4 properties any more. Colour tokens are
+			// untouched.
 			'--lh-tightest' => '1',
-			'--lh-tight'     => '1.1',
-			'--lh-snug'      => '1.2',
-			'--lh-normal'    => '1.5',
-			// WP-generated has-{slug}-font-size utility class targets. theme.json's
-			// fontSizes scale is a single static scale (byte-identical to idtravel's
-			// own --fs-500/700/850, since the theme.json base was forked from
-			// idtravel) with no per-site variant at all - identity's and coda's own
-			// real --fs-500/700/850 values differ from it. Only overriding the 3
-			// slugs actually used anywhere in this shared theme's templates
-			// (has-500/700/850-font-size, confirmed via grep) rather than inventing
-			// values for the other 8 registered slugs nothing here ever uses.
-			// Found via the QA tool's widened per-element check on coda's /work/.
-			'--wp--preset--font-size--500' => 'var(--fs-500)',
-			'--wp--preset--font-size--700' => 'var(--fs-700)',
-			'--wp--preset--font-size--850' => 'var(--fs-850)',
+			'--lh-tight'     => '1.05',
+			'--lh-snug'      => '1.1',
+			'--lh-normal'    => '1.55',
+			'--col-footer-link-hover' => 'var(--col-neutral-500)', // identity's own real footer link hover.
 			// WP-generated has-{slug}-color/-background-color utility class targets —
 			// see cb_filter_editor_theme_json() for why these specific slugs.
 			'--wp--preset--color--primary-black'  => '#0D0D0C',
@@ -598,11 +601,14 @@ function cb_filter_editor_theme_json( $theme_json ) {
 	);
 
 	$font_sizes = array(
+		// identity now uses idtravel's font-size scale (deliberate 2026-07-14
+		// client decision - see cb_get_site_tokens_table() above), so its
+		// editor presets match idtravel's rather than defining its own.
 		'identity' => array(
-			array( 'slug' => 'small', 'name' => 'Small', 'size' => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)' ),
-			array( 'slug' => 'medium', 'name' => 'Medium', 'size' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)' ),
-			array( 'slug' => 'large', 'name' => 'Large', 'size' => 'clamp(1.875rem, 0.95rem + 1.9vw, 3.125rem)' ),
-			array( 'slug' => 'x-large', 'name' => 'X-Large', 'size' => 'clamp(3rem, 1rem + 3vw, 5rem)' ),
+			array( 'slug' => 'small', 'name' => 'Small', 'size' => 'clamp(1.2222rem, 1.1rem + 0.6vw, 1.375rem)' ),
+			array( 'slug' => 'medium', 'name' => 'Medium', 'size' => 'clamp(1.4444rem, 1.25rem + 0.9vw, 1.75rem)' ),
+			array( 'slug' => 'large', 'name' => 'Large', 'size' => 'clamp(2.3333rem, 1.9rem + 2vw, 3.125rem)' ),
+			array( 'slug' => 'x-large', 'name' => 'X-Large', 'size' => 'clamp(3.3333rem, 2.6rem + 3vw, 5rem)' ),
 		),
 		'coda'     => array(
 			array( 'slug' => 'small', 'name' => 'Small', 'size' => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)' ),

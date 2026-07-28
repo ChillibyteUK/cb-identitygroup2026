@@ -12,9 +12,13 @@
 // package. Consolidated onto identity's/coda's file (the one with intact,
 // standard metadata) for every site. This retail package only has
 // Light/Regular/SemiBold (300/400/500) - no dedicated Book (450) weight
-// like idtravel's original file had, so --fw-book requests now fall back
-// to the browser's nearest-weight match (typically Regular) instead of a
-// dedicated face. Flagged to the user rather than silently accepted.
+// like idtravel's original file had. 450 is genuinely the right semantic
+// value for --fw-book; the bug was in font MATCHING, not the token: per
+// the CSS font-matching spec, an unmatched weight between 400 and 500
+// searches upward first, so 450 was silently resolving to the SemiBold
+// (500) face - visibly heavier than intended - instead of Regular (400).
+// Fixed 2026-07-28 by widening the Regular face's declared weight range
+// to explicitly claim 450, so it renders with Regular's actual glyphs.
 @font-face {
   font-family: "Suisse";
   src: url("../fonts/Suisse-Light.woff2") format("woff2");
@@ -26,7 +30,7 @@
 @font-face {
   font-family: "Suisse";
   src: url("../fonts/Suisse-Regular.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: 400 450;
   font-style: normal;
   font-display: swap;
 }
@@ -97,15 +101,19 @@ h1,
 // commented out (disabled) - kept that same split here.
 //
 // Scoped to `.content-grid h1` rather than a bare global `h1`: the only
-// two confirmed real bugs this rule fixes (/usa/, /about/culture/) are
-// both inside .content-grid. A bare `h1` selector here is a class+element
-// selector (0,1,1), which outranks the single utility classes
-// (`.fs-850`, `.fw-light`, etc.) that other pages apply directly to their
-// h1 to size it per-instance - it silently overrode those on coda's
-// /about/careers/ and /news/ (confirmed via DOM: their h1 has `fs-850`
-// applied directly, no wrapping .content-grid), even though it came
-// earlier in source order, because specificity beats source order.
-.cb-site-identity,
+// confirmed real bug this rule fixes (/about/careers/, /news/) is inside
+// .content-grid. A bare `h1` selector here is a class+element selector
+// (0,1,1), which outranks the single utility classes (`.fs-850`,
+// `.fw-light`, etc.) that other pages apply directly to their h1 to size
+// it per-instance - it silently overrode those on coda's /about/careers/
+// and /news/ (confirmed via DOM: their h1 has `fs-850` applied directly,
+// no wrapping .content-grid), even though it came earlier in source
+// order, because specificity beats source order.
+//
+// coda-only now: identity's content-grid h1 used to match this too
+// (fixing /usa/ and /about/culture/), but identity's typography now
+// intentionally follows idtravel's shared base h1 rule instead
+// (2026-07-14 decision) - no override needed for identity any more.
 .cb-site-coda {
   .content-grid {
     h1,
@@ -133,13 +141,17 @@ h2,
 .h2,
 .font-h2 {
   // Per-site: idtravel's own real h2 is --fs-700/--fw-book (the fallback
-  // here, so idtravel needs no override); identity's is --fs-500/--fw-regular;
-  // coda's is --fs-500/--fw-light. Uses --fs-h2/--fw-h2 (defined per site in
-  // cb-site-tokens.php) rather than a `.cb-site-{slug} h2` scoped override,
-  // since a compound class+element selector is MORE specific than a
-  // single utility class like `.fs-300` and would win over it wherever a
-  // block deliberately overrides its own heading's size — exactly the bug
-  // this caused on cb-lined-title (2026-07-09).
+  // here, so idtravel needs no override); coda's is --fs-500/--fw-light.
+  // Identity used to override to --fs-500/--fw-regular too, but its
+  // typography now intentionally follows idtravel's fallback instead
+  // (2026-07-14 decision) - its --fs-h2/--fw-h2 overrides were removed
+  // from cb-site-tokens.php, so this falls through automatically. Uses
+  // --fs-h2/--fw-h2 (defined per site in cb-site-tokens.php) rather than a
+  // `.cb-site-{slug} h2` scoped override, since a compound class+element
+  // selector is MORE specific than a single utility class like `.fs-300`
+  // and would win over it wherever a block deliberately overrides its own
+  // heading's size — exactly the bug this caused on cb-lined-title
+  // (2026-07-09).
   font-size: var(--fs-h2, var(--fs-700));
   font-weight: var(--fw-h2, var(--fw-book));
   line-height: var(--lh-700);
@@ -263,18 +275,19 @@ button,
 }
 
 // idtravel's own real source is the only one where .fw-semi and
-// .fw-semibold are the same class/token - identity's and coda's real
-// sources both keep them completely separate (`.fw-semi { font-weight:
-// var(--fw-semi); }`, a distinct token from --fw-semibold). Confirmed via
-// the QA tool's widened per-element check on coda's /work/ (real weight
-// 500, i.e. coda's own --fw-semi; local was resolving to the global
-// --fw-semibold default of 600 instead). Split below for identity/coda.
+// .fw-semibold are the same class/token - coda's real source keeps them
+// completely separate (`.fw-semi { font-weight: var(--fw-semi); }`, a
+// distinct token from --fw-semibold). Confirmed via the QA tool's widened
+// per-element check on coda's /work/ (real weight 500, i.e. coda's own
+// --fw-semi; local was resolving to the global --fw-semibold default of
+// 600 instead). Coda-only: identity used to get this split too, but its
+// typography now intentionally follows idtravel's merged .fw-semi/
+// .fw-semibold behaviour instead (2026-07-14 decision).
 .fw-semi,
 .fw-semibold {
   font-weight: var(--fw-semibold);
 }
 
-.cb-site-identity,
 .cb-site-coda {
   .fw-semi {
     font-weight: var(--fw-semi);

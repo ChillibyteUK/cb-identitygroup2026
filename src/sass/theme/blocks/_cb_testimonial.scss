@@ -199,8 +199,11 @@
   text-transform: none;
 }
 
-// idtravel's own real author/company size+weight also differs from
-// identity's/coda's (--fs-700/--fw-book, not --fs-800/--fw-regular).
+// idtravel's own real author/company size+weight also differs from coda's
+// (--fs-700/--fw-book, not --fs-800/--fw-regular). Identity now uses
+// idtravel's typography throughout (2026-07-14 decision), so it's grouped
+// with idtravel here too rather than falling through to coda's value.
+.cb-site-identity,
 .cb-site-idtravel {
   .cb-testimonial__author,
   .cb-testimonial__company {

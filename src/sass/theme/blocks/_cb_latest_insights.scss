@@ -104,11 +104,16 @@
 
   &__pre-title {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    padding-block: 0.5rem;
+    padding-block: 1rem;
     color: var(--col-lime-500);
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-300);
-    line-height: 1;
+
+    // Matched to cb-services-nav__header (2026-07-14): the inner
+    // .id-container's own pt-4/pb-3 utility classes were compounding with
+    // this element's own padding, giving 32px/24px total instead of the
+    // intended 16px/16px. coda (unscoped base above) is untouched.
+    > .id-container {
+      padding-block: 0 !important;
+    }
   }
 
   &__image-wrapper {
@@ -121,8 +126,6 @@
   }
 
   &__excerpt {
-    font-size: var(--fs-200);
-    font-weight: var(--fw-light);
     color: var(--col-neutral-500);
   }
 }
