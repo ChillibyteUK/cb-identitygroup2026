@@ -1,0 +1,13 @@
+// The block template (blocks/cb-lined-title.php) hardcodes the WP
+// palette-generated has-lime-1000-border-top/-bottom classes directly on
+// its <section> - identity wants rgba(255,255,255,0.4) instead, matching
+// the dark-background border colour used elsewhere in its design
+// (2026-07-28). idtravel/coda keep the lime border untouched.
+// !important required: .has-lime-1000-border-top/-bottom themselves
+// compile with !important (WP palette-generated border utilities, same
+// pattern as Bootstrap's spacing utilities elsewhere in this theme), so
+// a plain override is silently ignored regardless of specificity.
+.cb-site-identity section.has-lime-1000-border-top.has-lime-1000-border-bottom {
+  border-top-color: rgba(255, 255, 255, 0.4) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.4) !important;
+}

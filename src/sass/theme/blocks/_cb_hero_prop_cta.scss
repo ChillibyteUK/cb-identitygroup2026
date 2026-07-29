@@ -156,6 +156,10 @@
 
 .cb-site-identity {
   .cb-hero-prop-cta {
+    // Matches cb-brand-title-text's own border-bottom on this dark
+    // (--col-ink) background.
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
     &__title {
       .bar {
         background: var(--col-brand);

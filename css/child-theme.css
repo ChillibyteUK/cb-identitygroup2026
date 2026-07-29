@@ -25741,6 +25741,9 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   padding-top: 0;
 }
 
+.cb-site-identity .cb-hero-prop-cta {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
 .cb-site-identity .cb-hero-prop-cta__title .bar {
   background: var(--col-brand);
 }
@@ -26490,7 +26493,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 .cb-site-identity .cb-latest-insights__pre-title {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
   padding-block: 1rem;
   color: var(--col-lime-500);
 }
@@ -26676,8 +26679,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   }
 }
 .cb-services-nav__item-icon {
-  width: 62px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
 }
 .cb-services-nav.cb-services-nav--front .cb-services-nav__item {
   font-weight: var(--fw-light);
@@ -27914,6 +27917,11 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   .cb-child-page-nav__card {
     aspect-ratio: 4/5;
   }
+}
+
+.cb-site-identity section.has-lime-1000-border-top.has-lime-1000-border-bottom {
+  border-top-color: rgba(255, 255, 255, 0.4) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .cb-about-detail {

@@ -56,9 +56,10 @@
 
 // Existed in identity's/coda's own repos but never migrated during the
 // original merge — added 2026-07-08 audit.
-// cb_lined_title's SCSS removed 2026-07-09: its real markup (ported from
-// coda's own template) uses only existing utility classes, no dedicated
-// .cb-lined-title styling at all.
+// cb_lined_title's SCSS removed 2026-07-09 (its real markup uses only
+// existing utility classes, no dedicated .cb-lined-title styling), then
+// re-added 2026-07-28 for a single identity-only border-colour override.
+@import "cb_lined_title";
 @import "cb_about_detail";
 @import "cb_service_detail";
 @import "cb_dept_email";

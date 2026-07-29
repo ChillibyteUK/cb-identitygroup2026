@@ -15,9 +15,6 @@
       ]
     },
     "color": {
-      "defaultPalette": false,
-      "defaultGradients": false,
-      "defaultDuotone": false,
       "palette": [
         {
           "name": "white",
@@ -134,63 +131,9 @@
           "origin": "theme"
         },
         {
-          "name": "neutral-1100",
-          "slug": "neutral-1100",
-          "color": "#040013",
-          "origin": "theme"
-        },
-        {
           "name": "ink",
           "slug": "ink",
           "color": "#110d25",
-          "origin": "theme"
-        },
-        {
-          "name": "Primary Black",
-          "slug": "primary-black",
-          "color": "#110d25",
-          "origin": "theme"
-        },
-        {
-          "name": "Lime 900",
-          "slug": "lime-900",
-          "color": "#900720",
-          "origin": "theme"
-        },
-        {
-          "name": "Lime 700",
-          "slug": "lime-700",
-          "color": "#cc1939",
-          "origin": "theme"
-        },
-        {
-          "name": "Lime 200",
-          "slug": "lime-200",
-          "color": "#ffb8c6",
-          "origin": "theme"
-        },
-        {
-          "name": "Green 400",
-          "slug": "green-400",
-          "color": "#f66f88",
-          "origin": "theme"
-        },
-        {
-          "name": "Lime 600",
-          "slug": "lime-600",
-          "color": "#cc1939",
-          "origin": "theme"
-        },
-        {
-          "name": "Lime 1000",
-          "slug": "lime-1000",
-          "color": "#7b0319",
-          "origin": "theme"
-        },
-        {
-          "name": "Lime 1100",
-          "slug": "lime-1100",
-          "color": "#7b0319",
           "origin": "theme"
         },
         {
@@ -326,12 +269,6 @@
           "origin": "theme"
         },
         {
-          "name": "purple-900",
-          "slug": "purple-900",
-          "color": "#2f13ba",
-          "origin": "theme"
-        },
-        {
           "name": "purple",
           "slug": "purple",
           "color": "#2f13ba",
@@ -407,6 +344,24 @@
           "name": "indigo-450",
           "slug": "indigo-450",
           "color": "#8544cc",
+          "origin": "theme"
+        },
+        {
+          "name": "grey-200",
+          "slug": "grey-200",
+          "color": "#e5e5e5",
+          "origin": "theme"
+        },
+        {
+          "name": "grey-600",
+          "slug": "grey-600",
+          "color": "#666",
+          "origin": "theme"
+        },
+        {
+          "name": "primary-500",
+          "slug": "primary-500",
+          "color": "#3c52e0",
           "origin": "theme"
         }
       ]

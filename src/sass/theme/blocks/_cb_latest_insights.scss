@@ -103,7 +103,10 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
   &__pre-title {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    // !important required: the base (coda) rule's border-bottom above
+    // also compiles with !important, so a plain override here is
+    // silently ignored (2026-07-28).
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
     padding-block: 1rem;
     color: var(--col-lime-500);
 
