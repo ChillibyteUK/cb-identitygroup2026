@@ -201,7 +201,8 @@ if ( $q->have_posts() ) {
 	$is_identity        = 'identity' === cb_site_template_suffix();
 	$cards_wrap_class   = $is_identity ? 'id-container' : 'id-container px-4 px-md-5 py-4';
 	$arrow_src          = $is_identity ? 'arrow-wh.svg' : 'arrow-bk.svg';
-	$arrow_class        = $is_identity ? 'cb-services-nav__item-icon' : 'cb-featured-work__arrow';
+	// $arrow_class        = $is_identity ? 'cb-services-nav__item-icon' : 'cb-featured-work__arrow';
+	$arrow_class        = 'cb-featured-work__arrow';
 	?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-featured-work">
 	<?php if ( $is_identity ) : ?>

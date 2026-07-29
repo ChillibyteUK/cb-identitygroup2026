@@ -145,6 +145,13 @@
     }
     &__content {
       color: var(--col-white);
+      // Dropped in the 2026-07-14 typography-parity sweep on the wrong
+      // assumption it would fall through to an idtravel equivalent - this
+      // selector is identity-exclusive (idtravel has no .news-hero__content
+      // at all), so it was left with no font-size whatsoever. Restored to
+      // identity's own real original value (2026-07-29).
+      font-size: var(--fs-500);
+      font-weight: var(--fw-light);
       padding-block: 2rem 4rem;
       a {
         color: var(--col-lime-500);
@@ -164,6 +171,7 @@
       overflow: hidden;
       color: var(--col-white);
       text-decoration: none;
+      font-size: var(--fs-800);
       padding-block: 1rem;
       &:hover {
         color: var(--col-white);

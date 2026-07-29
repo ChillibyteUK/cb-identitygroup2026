@@ -22853,6 +22853,8 @@ header:has(.navbar-collapse.collapse.show) {
 }
 .cb-site-identity .news-hero__content {
   color: var(--col-white);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-light);
   padding-block: 2rem 4rem;
 }
 .cb-site-identity .news-hero__content a {
@@ -22872,6 +22874,7 @@ header:has(.navbar-collapse.collapse.show) {
   overflow: hidden;
   color: var(--col-white);
   text-decoration: none;
+  font-size: var(--fs-800);
   padding-block: 1rem;
 }
 .cb-site-identity .insight-type__header:hover {
@@ -26679,8 +26682,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   }
 }
 .cb-services-nav__item-icon {
-  width: 35px;
-  height: 35px;
+  width: 62px;
+  height: 45px;
 }
 .cb-services-nav.cb-services-nav--front .cb-services-nav__item {
   font-weight: var(--fw-light);

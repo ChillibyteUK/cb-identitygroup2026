@@ -167,25 +167,32 @@ function cb_get_site_tokens_table() {
 			// is idtravel's own scale verbatim for those (the theme was
 			// forked from idtravel) - confirmed by diffing idtravel's own row
 			// in this table against the base, token by token, rather than
-			// assumed. --fw-semi (above) and the 4 --lh-* aliases below are
-			// the only two exceptions: idtravel's own row genuinely overrides
-			// --fw-semi away from the base (450, not 500), and --lh-tightest/
-			// tight/snug/normal don't exist in the base _tokens.scss at all
-			// (they're consumed directly, with no fallback, by shared
-			// components identity also renders - e.g. cb-pushthrough's
-			// __desc uses --lh-snug) - removing them outright rather than
-			// matching idtravel's actual values would have left them
-			// genuinely undefined for identity, a real regression caught by
-			// checking every removed token's consumers for a missing
-			// fallback, not by assuming "removed = falls through correctly"
-			// held for all of them. This is intentional and no longer a bug:
-			// identity's real production typography is deliberately NOT the
-			// reference for these 4 properties any more. Colour tokens are
-			// untouched.
+			// assumed. --fw-semi (above), the 4 --lh-* aliases below, and
+			// --fs-800 are the exceptions: idtravel's own row genuinely
+			// overrides --fw-semi away from the base (450, not 500), and
+			// --lh-tightest/tight/snug/normal and --fs-800 don't exist in the
+			// base _tokens.scss at all - idtravel's own scale has no "800"
+			// rung, it jumps 700 straight to 850 - they're consumed directly,
+			// with no fallback, by shared components identity also renders
+			// (e.g. cb-pushthrough's __desc uses --lh-snug) or by
+			// identity-exclusive markup with no idtravel equivalent to fall
+			// through to (.insight-type__header, .news-hero__content -
+			// 2026-07-29) - removing them outright rather than matching
+			// idtravel's actual values (or, where idtravel has none,
+			// identity's own real original value) would have left them
+			// genuinely undefined, a real regression caught by checking
+			// every removed token's consumers for a missing fallback, not by
+			// assuming "removed = falls through correctly" held for all of
+			// them. This is intentional and no longer a bug: identity's real
+			// production typography is deliberately NOT the reference for
+			// these properties any more. Colour tokens are untouched.
 			'--lh-tightest' => '1',
 			'--lh-tight'     => '1.05',
 			'--lh-snug'      => '1.1',
 			'--lh-normal'    => '1.55',
+			// identity's own real value (cb-identity2025/_tokens.scss) -
+			// idtravel has no "800" rung to fall through to instead.
+			'--fs-800'       => 'clamp(1.5rem, 0.9rem + 1.6vw, 2.5rem)',
 			'--col-footer-link-hover' => 'var(--col-neutral-500)', // identity's own real footer link hover.
 			// WP-generated has-{slug}-color/-background-color utility class targets —
 			// see cb_filter_editor_theme_json() for why these specific slugs.
