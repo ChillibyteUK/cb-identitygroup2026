@@ -275,6 +275,12 @@
           "origin": "theme"
         },
         {
+          "name": "purple-900",
+          "slug": "purple-900",
+          "color": "#2f13ba",
+          "origin": "theme"
+        },
+        {
           "name": "purple-950",
           "slug": "purple-950",
           "color": "#220d9d",

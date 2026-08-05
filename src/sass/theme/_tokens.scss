@@ -62,6 +62,12 @@ $col-light: #f2f2f2;
   --col-purple-700: #7162e1;
   --col-purple-800: #4c35d0;
   --col-purple: #2f13ba;
+  // Alias of --col-purple (same #2f13ba) under the numbered slug real
+  // content already references (block style "Purple Dark" on CB Content
+  // Grid uses has-purple-900-background-color) - the scale otherwise
+  // jumps straight from -800 to the unsuffixed 900-equivalent rung with
+  // no -900 name for theme.json's generator to pick up (2026-08-05).
+  --col-purple-900: #2f13ba;
   --col-purple-950: #220d9d;
   --col-purple-1000: #190a83;
   --hsl-purple-1100: 247 86% 23%;
