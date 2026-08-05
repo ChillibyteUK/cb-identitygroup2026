@@ -125,6 +125,11 @@
 
   &__title {
     color: var(--col-white);
+    // --fw-semi is repurposed to match idtravel's 450 for identity
+    // (2026-07-14 decision) - identity's real title weight here is
+    // genuinely 500, confirmed against https://identityglobal.com/
+    // (2026-07-29).
+    font-weight: 500;
   }
 
   &__desc {

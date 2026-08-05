@@ -74,6 +74,16 @@
   .post-title {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-block: 1rem;
+
+    // Real source has its own h1 rule here; this file had none at all,
+    // so h1 was falling through to the sitewide h1 default (--fw-book),
+    // not identity's real value (2026-07-29).
+    h1 {
+      font-size: var(--fs-850);
+      font-weight: var(--fw-light);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
   }
 
   .post-content {
@@ -86,6 +96,11 @@
     h2 {
       border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+      // --fw-semi is repurposed to match idtravel's 450 for identity
+      // (2026-07-14 decision) - identity's real h2 weight is genuinely
+      // 500, hardcoded for the same reason as cb-hero-prop-cta/
+      // cb-pushthrough/cb-our-brands (2026-07-29).
+      font-weight: 500;
     }
 
     .table,

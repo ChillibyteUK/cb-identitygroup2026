@@ -265,15 +265,26 @@
 // lime background, filter bar disabled in coda's own real content too).
 .cb-site-identity {
   .work-index-hero {
+    // Real source sets font-size/font-weight on h1/h2/__title/__desc that
+    // this override never carried - all 4 were falling through to
+    // whatever generic default applied (sitewide h1/h2, or nothing at all
+    // for __title/__desc, which have no base rule of their own here)
+    // (2026-07-29). --fw-semi is hardcoded rather than tokenised because
+    // it's repurposed to match idtravel's 450 for identity (2026-07-14
+    // decision) - identity's real h1 weight here is genuinely 500.
     h1 {
       border-top: 1px solid rgba(255, 255, 255, 0.4);
       color: var(--col-white);
+      font-size: var(--fs-850);
+      font-weight: 500;
     }
     h2 {
       border-top: 1px solid rgba(255, 255, 255, 0.4);
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
       color: var(--col-neutral-800);
       margin-bottom: 0;
+      font-size: var(--fs-600);
+      font-weight: var(--fw-regular);
     }
     .overlay {
       height: auto;
@@ -284,6 +295,10 @@
         rgba(13, 13, 12, 0) 30%
       );
       opacity: 1;
+    }
+    &__title {
+      font-size: var(--fs-700);
+      font-weight: 500;
     }
     &__content {
       background: linear-gradient(
@@ -296,6 +311,8 @@
     &__desc {
       color: var(--col-neutral-500);
       margin-top: 0.5rem;
+      font-size: var(--fs-600);
+      font-weight: var(--fw-light);
     }
   }
 
@@ -333,6 +350,11 @@
     }
     &__title {
       color: var(--col-white);
+      // --fw-semi is repurposed to match idtravel's 450 for identity
+      // (2026-07-14 decision) - identity's real title weight here is
+      // genuinely 500, confirmed against https://identityglobal.com/work/
+      // (2026-07-29).
+      font-weight: 500;
 
       .cb-services-nav__item-icon {
         width: 23px;

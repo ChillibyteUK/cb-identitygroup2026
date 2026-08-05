@@ -126,9 +126,19 @@
   &__title {
     color: var(--col-white);
     margin-bottom: 0;
+    // --fw-semi is repurposed to match idtravel's 450 for identity
+    // (2026-07-14 decision) - identity's real title weight here is
+    // genuinely 500, confirmed against https://identityglobal.com/
+    // (2026-07-29).
+    font-weight: 500;
   }
 
   &__excerpt {
     color: var(--col-neutral-500);
+    // This was identified in the 2026-07-29 audit but never actually
+    // applied - the base __excerpt rule is commented out (coda shows a
+    // date instead), so this had no font-size/weight to inherit at all.
+    font-size: var(--fs-200);
+    font-weight: var(--fw-light);
   }
 }

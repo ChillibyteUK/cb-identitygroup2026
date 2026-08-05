@@ -70,7 +70,10 @@
   &__desc {
     font-size: var(--fs-400);
     font-weight: var(--fw-regular);
-    line-height: var(--lh-snug);
+    // Confirmed against https://identitytravel.com/ (2026-07-29):
+    // idtravel's real value is --lh-normal (1.55), not --lh-snug (1.1) -
+    // a pre-existing bug in this base rule, not from today's changes.
+    line-height: var(--lh-normal);
     letter-spacing: var(--ls--5);
     padding-bottom: 1rem;
     text-wrap: balance;

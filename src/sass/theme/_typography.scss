@@ -1,27 +1,18 @@
-// This used to be two separate families ("Suisse International", serving
-// idtravel/travel, vs "Suisse" for identity/coda) pointing at two
-// different font files. Inspecting both files' embedded name-table
-// metadata (via fonttools) found identity's/coda's file has complete,
-// correct per-weight naming and a standard Swiss Typefaces retail-licence
-// URL; travel's/idtravel's file (confirmed still live on
-// identitytravel.com, not just a stale local copy) has identical,
-// generic, corrupted metadata across all 4 weights (no family name, a
-// garbled full name, a malformed version string, postscript name just
-// "Font") - a strong signal of a font that's been stripped/re-exported
-// through a third-party tool rather than delivered as a proper licensed
-// package. Consolidated onto identity's/coda's file (the one with intact,
-// standard metadata) for every site. This retail package only has
-// Light/Regular/SemiBold (300/400/500) - no dedicated Book (450) weight
-// like idtravel's original file had. 450 is genuinely the right semantic
-// value for --fw-book; the bug was in font MATCHING, not the token: per
-// the CSS font-matching spec, an unmatched weight between 400 and 500
-// searches upward first, so 450 was silently resolving to the SemiBold
-// (500) face - visibly heavier than intended - instead of Regular (400).
-// Fixed 2026-07-28 by widening the Regular face's declared weight range
-// to explicitly claim 450, so it renders with Regular's actual glyphs.
+// Real per-weight SuisseIntl files, wired up 2026-07-29 - replaces the
+// earlier Light/Regular/SemiBold-only setup that had to fake 450 via a
+// font-matching range trick on the Regular face (a real fix, but a
+// workaround for a missing file, not the actual font). Weight numbers
+// match idtravel's own real original _typography.scss exactly
+// (cb-idtravel2026) - the one place this weight set already existed
+// correctly before the merge. Only these 4 weights are wired up -
+// Hairline/Thin/Medium/Bold/Black and all italics exist as files in
+// fonts/ but aren't used by any --fw-* token or component on any site,
+// so they're deliberately not referenced here (dead @font-face
+// declarations still cost a request when something on the page happens
+// to match them).
 @font-face {
   font-family: "Suisse";
-  src: url("../fonts/Suisse-Light.woff2") format("woff2");
+  src: url("../fonts/SuisseIntl-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -29,15 +20,23 @@
 
 @font-face {
   font-family: "Suisse";
-  src: url("../fonts/Suisse-Regular.woff2") format("woff2");
-  font-weight: 400 450;
+  src: url("../fonts/SuisseIntl-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Suisse";
-  src: url("../fonts/Suisse-SemiBold.woff2") format("woff2");
+  src: url("../fonts/SuisseIntl-Book.woff2") format("woff2");
+  font-weight: 450;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse";
+  src: url("../fonts/SuisseIntl-Semibold.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;

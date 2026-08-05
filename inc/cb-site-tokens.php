@@ -193,6 +193,18 @@ function cb_get_site_tokens_table() {
 			// identity's own real value (cb-identity2025/_tokens.scss) -
 			// idtravel has no "800" rung to fall through to instead.
 			'--fs-800'       => 'clamp(1.5rem, 0.9rem + 1.6vw, 2.5rem)',
+			// Same story as --fs-800 above: idtravel's scale tops out at
+			// --fs-900, no "950" rung to fall through to. Confirmed via
+			// identity's own real cb-identity2025/_tokens.scss (2026-07-29) -
+			// used by cb-about-page-header h1, which was silently rendering
+			// at the browser default (18px) with nothing to fall back on.
+			'--fs-950'       => 'clamp(3.4375rem, 1rem + 4vw, 6.25rem)',
+			// Same story again: idtravel has no "300" rung either (documented
+			// pre-existing gap, see the file-level comment near the top of this
+			// function). Used by cb-contact-page__emails a and
+			// cb-contact-addresses__title, both silently rendering at the
+			// browser default (2026-07-29).
+			'--fs-300'       => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)',
 			'--col-footer-link-hover' => 'var(--col-neutral-500)', // identity's own real footer link hover.
 			// WP-generated has-{slug}-color/-background-color utility class targets —
 			// see cb_filter_editor_theme_json() for why these specific slugs.

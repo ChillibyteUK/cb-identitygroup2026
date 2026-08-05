@@ -182,7 +182,7 @@ if ( ! empty( $posts ) ) {
 					<?= get_work_image( $post_id, 'cb-related-work__image' ); ?>
 					<div class="cb-related-work__content px-4 px-md-5">
 						<div class="cb-related-work__title">
-							<?php echo esc_html( get_the_title( $post_id ) ); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" width="23" height="21" alt="" class="cb-services-nav__item-icon" />
+							<?php echo esc_html( get_the_title( $post_id ) ); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" width="23" height="21" alt="" class="cb-featured-work__arrow" />
 						</div>
 						<div class="cb-related-work__desc">
 							<?php

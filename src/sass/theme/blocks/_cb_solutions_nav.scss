@@ -138,7 +138,9 @@
     color: var(--col-white);
     text-shadow: 0 1px 2px hsl(var(--hsl-ink) / 0.45);
     font-size: var(--fs-200);
-    line-height: var(--lh-300);
+    // Confirmed against https://identitytravel.com/ (2026-07-29):
+    // idtravel's real value is --lh-normal (1.55), not --lh-300 (1.4).
+    line-height: var(--lh-normal);
     font-weight: var(--fw-semibold);
     text-wrap: balance;
   }

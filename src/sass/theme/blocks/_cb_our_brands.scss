@@ -79,6 +79,13 @@
 
     &__strap {
       font-size: var(--fs-400);
+      // idtravel's own real weight is --fw-semibold (600) - confirmed
+      // against https://identitytravel.com/about/ (2026-07-29). Coda's
+      // own real weight (500) differs and lives in its own override
+      // below, rather than here in the shared base (a mistake briefly
+      // made this same day: changing this to --fw-semi broke idtravel,
+      // since idtravel's own --fw-semi token is a repurposed alias for
+      // 450, not its real 600 value).
       font-weight: var(--fw-semibold);
     }
 
@@ -100,6 +107,10 @@
     &__last {
       border-top: 1px solid rgba(255, 255, 255, 0.4);
       padding-top: 1.5rem;
+      // idtravel's own real value (confirmed against
+      // https://identitytravel.com/about/, 2026-07-29). Coda's own real
+      // value (--fs-500) differs and lives in its own override below -
+      // same mistake as __strap above, corrected the same way.
       font-size: var(--fs-400);
       font-weight: var(--fw-regular);
       letter-spacing: var(--ls--5);
@@ -111,13 +122,86 @@
 // __title's base above (--fs-850/--fw-light) is coda's real value verbatim
 // (its own real source uses this exact size/weight on its own equivalent
 // element, `__intro`, just under a different class name). idtravel's own
-// real value for this same field is --fs-700/--fw-book - identity now uses
-// idtravel's typography throughout (2026-07-14 decision), so it's grouped
-// with idtravel here rather than falling through to coda's value.
-.cb-site-identity,
+// real value for this same field is --fs-700/--fw-book.
 .cb-site-idtravel {
   .cb-our-brands__title {
     font-size: var(--fs-700);
     font-weight: var(--fw-book);
+  }
+}
+
+// identity's own real cb-our-brands (confirmed 2026-07-29 by direct
+// comparison against https://identityglobal.com/about/, not just the old
+// cb-identity2025 checkout) - identity was wrongly grouped into the
+// idtravel override above, forcing --fs-700/--fw-book onto __title when
+// identity's real rendering is --fs-850/--fw-light (i.e. the base rule
+// was already correct for identity; the combined selector defeated it).
+// Confirmed live values: block border-top/bottom both present (only
+// border-bottom existed here), __intro padding-block is 1rem/1rem (not
+// 6rem/2rem), brand-card__strap is --fs-300/--fw-semi (not --fs-400/
+// --fw-semibold), brand-card__last is --fw-light (not --fw-regular).
+.cb-site-identity {
+  .cb-our-brands {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    // Contains the 100vw full-bleed trick below (width:100vw always
+    // includes scrollbar width, which overhangs the real viewport and
+    // creates a horizontal scrollbar otherwise).
+    overflow-x: hidden;
+  }
+
+  .cb-our-brands__intro {
+    padding-block: 1rem;
+    // Real source has __intro as a direct child of the section (no
+    // id-container wrapper), so its border-bottom spans the full
+    // viewport edge to edge. The shared PHP template (used by all 3
+    // sites, no site-conditional branching) nests it inside an
+    // id-container instead, which would need a bigger, riskier markup
+    // change to fix for everyone - broken out here via CSS, scoped to
+    // identity only, instead (2026-07-29).
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding-inline: 1.5rem;
+
+    @media (min-width: 768px) {
+      padding-inline: 3rem;
+    }
+  }
+
+  .brand-card__strap {
+    font-size: var(--fs-300);
+    // --fw-semi is repurposed to match idtravel's 450 for identity (2026-
+    // 07-14 decision) - identity's real strap weight is genuinely 500,
+    // same reason this is hardcoded rather than tokenised as the
+    // cb-hero-prop-cta/cb-pushthrough fixes are.
+    font-weight: 500;
+  }
+
+  .brand-card__last {
+    font-size: var(--fs-500);
+    font-weight: var(--fw-light);
+    // Real source uses --col-green-400, which doesn't exist in this
+    // consolidated theme - identity's green scale was renamed to lime
+    // during consolidation, and --col-lime-400 (#B8FF52) is that same
+    // real colour under the new name, not --col-lime-300 (#CAFC83, a
+    // different, lighter shade) the base rule uses (2026-07-29).
+    color: var(--col-lime-400);
+  }
+
+  .cb-our-brands__pre-title {
+    color: var(--col-lime-400);
+  }
+}
+
+// coda's own real strap weight (confirmed against
+// https://identitycoda.com/about/, 2026-07-29) - genuinely --fw-semi
+// (500), which is coda's own un-repurposed value, distinct from
+// idtravel's real --fw-semibold (600) in the shared base rule above.
+.cb-site-coda {
+  .brand-card__strap {
+    font-weight: var(--fw-semi);
+  }
+
+  .brand-card__last {
+    font-size: var(--fs-500);
   }
 }
