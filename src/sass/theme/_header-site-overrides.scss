@@ -305,6 +305,48 @@
   .dropdown.current-menu-item > .nav-link {
     color: var(--col-lime-400);
   }
+
+  // identity's real logo renders taller than idtravel's (25px vs 18px,
+  // same aspect ratio as coda's equivalent fix above) - confirmed against
+  // cb-identity2025/src/sass/theme/_header.scss (2026-08-05).
+  .logo-clip {
+    height: 25px;
+  }
+  .logo-inner svg {
+    height: 25px;
+  }
+}
+
+// identity's real header has a logo reveal/hover animation that never got
+// ported during consolidation: on load the logo bars slide in from a
+// clipped offset, and hovering temporarily resets to the fully-revealed
+// position. idtravel's and coda's real headers have no such animation
+// (confirmed against their own real _header.scss sources, 2026-08-05),
+// so this stays identity-scoped rather than moving into the shared base.
+// The offset itself is computed and applied via --logo-final-offset by the
+// header logo clip animation IIFE in custom-javascript.js, which toggles
+// the .animate class on load/resize - safe to run unconditionally there
+// since it's a no-op without these matching CSS rules.
+.cb-site-identity .logo-clip {
+  &:hover .logo-inner {
+    transform: translateX(0);
+  }
+}
+.cb-site-identity .logo-inner {
+  transition: transform 700ms cubic-bezier(0.22, 0.9, 0.32, 1);
+  will-change: transform;
+}
+.cb-site-identity .logo-clip.animate .logo-inner {
+  transform: translateX(var(--logo-final-offset, 0px));
+}
+@media (prefers-reduced-motion: reduce) {
+  .cb-site-identity .logo-inner {
+    transition: none;
+    transform: translateX(0) !important;
+  }
+  .cb-site-identity .logo-clip {
+    transition: none;
+  }
 }
 
 // identity's cb-cta shares idtravel's dark-background/light-text colour
