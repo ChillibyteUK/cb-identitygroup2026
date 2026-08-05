@@ -23,13 +23,17 @@
  * "cb-latest-insights-expo". Verified against idglobal-test's current
  * (already-migrated) content: running this script there is a no-op, and a
  * `sort -u` of every remaining `wp:cb/…` name after running matches exactly
- * the two block types intentionally left on the old namespace forever
- * (`cb-content-grid-v2`, `cb-styled-text-image` - see cb_rename_legacy_block_names()
- * in inc/cb-utility.php, which handles those two at render time instead).
+ * the two block types left on the old namespace at the time this script was
+ * written (`cb-content-grid-v2`, `cb-styled-text-image` - see
+ * cb_rename_legacy_block_names() in inc/cb-utility.php, which handles both
+ * at render time as a permanent safety net regardless of DB migration
+ * status). `cb-content-grid-v2` has since gotten its own DB migration (007)
+ * - that "never migrated, forever" framing turned out to just be unfinished
+ * work, not a real schema blocker. `cb-styled-text-image` remains deferred.
  *
  * Does NOT touch: cb-content-grid (separate script, 006 - different schema
- * history), cb-content-grid-v2 / cb-styled-text-image (deliberately never
- * migrated at DB level, rely on the render-time rename filter),
+ * history), cb-content-grid-v2 (separate script, 007), cb-styled-text-image
+ * (still deferred, relies on the render-time rename filter),
  * cb-awards-slider / cb-sport-logos (migration 001), cb-latest-insights-expo
  * (migration 002), cb-related-work-expo / cb-related-work-sports
  * (migrations 003 / 004).

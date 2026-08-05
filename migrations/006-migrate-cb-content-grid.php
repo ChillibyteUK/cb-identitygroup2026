@@ -12,9 +12,8 @@
  * the namespace rename.
  *
  * "cb-content-grid" is a literal string prefix of "cb-content-grid-v2" (a
- * separate, deliberately-still-deferred block - relies on the render-time
- * rename filter in inc/cb-utility.php, never migrated at the DB level).
- * Guards against that collision by requiring a trailing space after the
+ * separate block with its own migration, 007). Guards against that
+ * collision by requiring a trailing space after the
  * block name in the HTML comment token, and an exact closing quote on the
  * JSON "name" attribute.
  *
