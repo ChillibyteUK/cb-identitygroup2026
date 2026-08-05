@@ -327,10 +327,13 @@
 // header logo clip animation IIFE in custom-javascript.js, which toggles
 // the .animate class on load/resize - safe to run unconditionally there
 // since it's a no-op without these matching CSS rules.
-.cb-site-identity .logo-clip {
-  &:hover .logo-inner {
-    transform: translateX(0);
-  }
+// The extra `header` element selector here is deliberate, not decorative:
+// this needs to beat .logo-clip.animate .logo-inner below on specificity
+// (both are otherwise 4 classes each, and .animate would win cascade-order
+// ties since it comes later), the same way the original theme's version of
+// this rule (nested inside its own `header {}` block) did.
+.cb-site-identity header .logo-clip:hover .logo-inner {
+  transform: translateX(0);
 }
 .cb-site-identity .logo-inner {
   transition: transform 700ms cubic-bezier(0.22, 0.9, 0.32, 1);

@@ -22479,7 +22479,7 @@ header:has(.navbar-collapse.collapse.show) {
   height: 25px;
 }
 
-.cb-site-identity .logo-clip:hover .logo-inner {
+.cb-site-identity header .logo-clip:hover .logo-inner {
   transform: translateX(0);
 }
 
