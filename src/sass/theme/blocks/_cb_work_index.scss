@@ -4,6 +4,19 @@
   h1 {
     border-top: 1px solid hsl(var(--hsl-lime-900) / 0.4);
     color: var(--col-primary-black);
+    // Pinned explicitly here (2026-08-05) so size/leading stay identical
+    // across every site this block runs on (idtravel, coda, identity) -
+    // only font-weight varies per site, via the site-scoped overrides
+    // below. line-height is safe as a token (--lh-850 is 1.1 everywhere,
+    // no per-site override exists) but font-size is hardcoded rather than
+    // var(--fs-850): coda's own --fs-850 clamp() formula genuinely
+    // diverges from idtravel/identity's (discovered while implementing
+    // this - a pre-existing token gap, not introduced here), so the token
+    // itself can't guarantee "same size everywhere". This literal value
+    // matches idtravel's and identity's shared --fs-850 clamp exactly.
+    font-size: clamp(2.3333rem, 1.9rem + 2vw, 3.125rem);
+    line-height: var(--lh-850);
+    font-weight: var(--fw-book);
   }
   h2 {
     border-top: 1px solid hsl(var(--hsl-lime-900) / 0.4);
@@ -269,14 +282,13 @@
     // this override never carried - all 4 were falling through to
     // whatever generic default applied (sitewide h1/h2, or nothing at all
     // for __title/__desc, which have no base rule of their own here)
-    // (2026-07-29). --fw-semi is hardcoded rather than tokenised because
-    // it's repurposed to match idtravel's 450 for identity (2026-07-14
-    // decision) - identity's real h1 weight here is genuinely 500.
+    // (2026-07-29). Font-size/line-height now come from the shared base
+    // rule above (2026-08-05) so they stay identical across every site
+    // this block runs on - only weight is scoped here.
     h1 {
       border-top: 1px solid rgba(255, 255, 255, 0.4);
       color: var(--col-white);
-      font-size: var(--fs-850);
-      font-weight: 500;
+      font-weight: var(--fw-semibold);
     }
     h2 {
       border-top: 1px solid rgba(255, 255, 255, 0.4);
@@ -299,6 +311,15 @@
     &__title {
       font-size: var(--fs-700);
       font-weight: 500;
+
+      // Matches coda's/idtravel's own __card-title icon size (2026-08-05) -
+      // identity's own equivalent (&__title, not &__card-title) had no
+      // icon rule at all, so it was falling back to the <img> tag's raw
+      // HTML width/height attributes (23x21) instead.
+      .cb-services-nav__item-icon {
+        width: 40px;
+        height: 36px;
+      }
     }
     &__content {
       background: linear-gradient(
@@ -366,5 +387,58 @@
       color: var(--col-neutral-500);
       margin-top: 0.5rem;
     }
+  }
+}
+
+// idtravel started reusing this block (previously coda/identity only,
+// 2026-08-05) with the base rules above (coda's real light-lime design) -
+// travel's own real dark aesthetic elsewhere in the theme uses
+// --col-ink/--col-white (e.g. cb-hero-prop-cta), not coda's light bg, so
+// scoped here the same way identity's dark variant is above.
+.cb-site-idtravel {
+  .work-index-hero {
+    // The section itself carries no background in the base rule above -
+    // coda gets away with that because the page's own default background
+    // happens to be light already. __intro below covers the intro
+    // paragraph's own strip, but the h1/h2 title area sits directly on
+    // this section background, above __intro, so it needs its own colour
+    // too (2026-08-05).
+    background-color: var(--col-ink);
+
+    h1 {
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      color: var(--col-white);
+    }
+    h2 {
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      color: var(--col-neutral-500);
+    }
+    &__intro {
+      // Overrides the `grad-main` utility class hardcoded onto this
+      // element in the PHP template (shared with coda, not site-branched
+      // there) - two classes here out-specificities that single class.
+      background: var(--col-ink);
+
+      p {
+        color: var(--col-white);
+      }
+    }
+  }
+
+  .cb-work-index {
+    background-color: var(--col-ink);
+    color: var(--col-white);
+  }
+}
+
+// coda's own real h1 weight (previously applied via a `fw-light` utility
+// class in the PHP template directly - moved here 2026-08-05 so all 3
+// sites' weights live in one place, now that idtravel also uses this
+// block and needs its own --fw-book weight via the shared base rule
+// above).
+.cb-site-coda {
+  .work-index-hero h1 {
+    font-weight: var(--fw-light);
   }
 }

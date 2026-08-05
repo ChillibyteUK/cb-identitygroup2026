@@ -46,7 +46,7 @@ if ( ! $bg_case_study ) {
 <?php else : ?>
 <section class="work-index-hero">
 	<div class="work-index-hero__title my-4">
-		<h1 class="has-850-font-size fw-light">
+		<h1>
 			<div class="id-container px-4 px-md-5 pt-2">
 				Work
 			</div>
