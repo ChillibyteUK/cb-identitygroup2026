@@ -112,6 +112,17 @@
     letter-spacing: var(--ls--15);
     font-weight: var(--fw-light);
     padding-top: 1rem;
+
+    // Editorial toggle (content_small_text ACF field) - defaults off/large.
+    // Two classes on one element to out-specificity the plain &__content
+    // rules above (including this same selector on idtravel/identity), so
+    // the toggle works regardless of site. On coda, &__content is already
+    // hardcoded to --fs-500 by its own site override further down this
+    // file, so this modifier is a harmless no-op there either way.
+    &.cb-hero-prop-cta__content--small {
+      font-size: var(--fs-500);
+      line-height: var(--lh-500);
+    }
   }
 }
 

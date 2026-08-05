@@ -71,8 +71,12 @@ if ( ! empty( $block_id ) ) {
 							<?php
 						}
 						if ( ! empty( $content ) ) {
+							$content_classes = 'cb-hero-prop-cta__content text-balance';
+							if ( get_field( 'content_small_text' ) ) {
+								$content_classes .= ' cb-hero-prop-cta__content--small';
+							}
 							?>
-							<div class="cb-hero-prop-cta__content text-balance" data-aos="fade-up" data-aos-delay="100">
+							<div class="<?= esc_attr( $content_classes ); ?>" data-aos="fade-up" data-aos-delay="100">
 								<?= wp_kses_post( $content ); ?>
 							</div>
 							<?php
