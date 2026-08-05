@@ -26202,6 +26202,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .work-index-hero {
   position: relative;
   z-index: 1;
+  display: flow-root;
 }
 .work-index-hero h1, .work-index-hero .h1 {
   border-top: 1px solid hsl(var(--hsl-lime-900)/0.4);
@@ -26541,12 +26542,6 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   color: var(--col-neutral-500);
-}
-.cb-site-idtravel .work-index-hero__intro {
-  background: var(--col-ink);
-}
-.cb-site-idtravel .work-index-hero__intro p {
-  color: var(--col-white);
 }
 .cb-site-idtravel .cb-work-index {
   background-color: var(--col-ink);

@@ -1,6 +1,15 @@
 .work-index-hero {
   position: relative;
   z-index: 1;
+  // Contains child margins (specifically &__title's Bootstrap `my-4`) so
+  // they can't collapse through this section and reveal the page's own
+  // background above it. Invisible on coda (page bg happens to be the
+  // same near-white tone already) and never triggered on identity
+  // (that branch uses padding on the section directly instead) - real on
+  // all 3 sites regardless, only visible once idtravel's dark background
+  // exposed it (2026-08-05). Fixed here, not per-site, since this is a
+  // structural bug, not a design difference.
+  display: flow-root;
   h1 {
     border-top: 1px solid hsl(var(--hsl-lime-900) / 0.4);
     color: var(--col-primary-black);
@@ -399,10 +408,10 @@
   .work-index-hero {
     // The section itself carries no background in the base rule above -
     // coda gets away with that because the page's own default background
-    // happens to be light already. __intro below covers the intro
-    // paragraph's own strip, but the h1/h2 title area sits directly on
-    // this section background, above __intro, so it needs its own colour
-    // too (2026-08-05).
+    // happens to be light already. Travel has no &__intro element at all
+    // (that paragraph is coda-specific copy, not rendered in the PHP
+    // template's travel branch), so only the section itself and the
+    // h1/h2 title area need colour here.
     background-color: var(--col-ink);
 
     h1 {
@@ -413,16 +422,6 @@
       border-top: 1px solid rgba(255, 255, 255, 0.4);
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
       color: var(--col-neutral-500);
-    }
-    &__intro {
-      // Overrides the `grad-main` utility class hardcoded onto this
-      // element in the PHP template (shared with coda, not site-branched
-      // there) - two classes here out-specificities that single class.
-      background: var(--col-ink);
-
-      p {
-        color: var(--col-white);
-      }
     }
   }
 

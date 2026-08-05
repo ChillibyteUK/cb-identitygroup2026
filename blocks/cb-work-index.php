@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || exit;
 $block_id = $block['id'] ?? '';
 
 $is_identity = 'identity' === cb_site_template_suffix();
+$is_coda     = 'coda' === cb_site_template_suffix();
 
 $bg_case_study = get_field( 'hero_case_study' )[0] ?? null;
 
@@ -43,7 +44,7 @@ if ( ! $bg_case_study ) {
 		</div>
 	</h2>
 	<div class="id-container">
-<?php else : ?>
+<?php elseif ( $is_coda ) : ?>
 <section class="work-index-hero">
 	<div class="work-index-hero__title my-4">
 		<h1>
@@ -63,6 +64,21 @@ if ( ! $bg_case_study ) {
 				From global congresses to investigator meetings, we deliver healthcare experiences with technical precision and creative clarity. Every programme is designed to bring complex science to life – whether live, hybrid, or digital.
 			</p>
 		</div>
+	</div>
+	<div class="id-container">
+<?php else : ?>
+<section class="work-index-hero">
+	<div class="work-index-hero__title my-4">
+		<h1>
+			<div class="id-container px-4 px-md-5 pt-2">
+				Work
+			</div>
+		</h1>
+		<h2 class="has-500-font-size fw-light">
+			<div class="id-container px-4 px-md-5 pt-2 pb-1">
+				Where experience changes everything
+			</div>
+		</h2>
 	</div>
 	<div class="id-container">
 <?php endif; ?>
