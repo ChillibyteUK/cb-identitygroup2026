@@ -118,26 +118,15 @@ $taxonomy_filter = get_field( 'taxonomy_filter' );
 						<h3 class="cb-latest-insights__title mb-0">
 							<?php the_title(); ?>
 						</h3>
-						<div class="cb-latest-insights__excerpt">
-							<?php echo wp_kses_post( wp_trim_words( get_the_excerpt(), 18, '...' ) ); ?>
-						</div>
 						<?php else : ?>
-						<div class="insight-type-grid__category">
-							<?php
-							$categories = get_the_category();
-							if ( ! empty( $categories ) ) {
-								echo esc_html( $categories[0]->name );
-							}
-							?>
-						</div>
 						<div class="cb-latest-insights__title">
 							<?php the_title(); ?>
 						</div>
+						<?php endif; ?>
 						<div class="cb-latest-insights__date d-flex align-items-center gap-2">
 							<?php echo get_the_date( 'j F Y' ); ?>
- 							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-n900.svg' ); ?>" width=14 height=13 alt="" />
+ 							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/' . ( $is_identity ? 'arrow-wh.svg' : 'arrow-n900.svg' ) ); ?>" width=14 height=13 alt="" />
 						</div>
-						<?php endif; ?>
 					</div>
 				</a>	
 			</div>

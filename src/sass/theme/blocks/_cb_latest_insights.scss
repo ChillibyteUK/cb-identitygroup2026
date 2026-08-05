@@ -133,12 +133,11 @@
     font-weight: 500;
   }
 
-  &__excerpt {
+  // Cards now show title + date only, matching cb-recent-news - the base
+  // __date rule's --col-neutral-900 (#1d1933, near-black) is invisible
+  // against this dark background, so it needs its own colour here the
+  // same way __title does (2026-08-05).
+  &__date {
     color: var(--col-neutral-500);
-    // This was identified in the 2026-07-29 audit but never actually
-    // applied - the base __excerpt rule is commented out (coda shows a
-    // date instead), so this had no font-size/weight to inherit at all.
-    font-size: var(--fs-200);
-    font-weight: var(--fw-light);
   }
 }

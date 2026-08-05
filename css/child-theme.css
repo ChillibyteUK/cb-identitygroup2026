@@ -26668,10 +26668,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   margin-bottom: 0;
   font-weight: 500;
 }
-.cb-site-identity .cb-latest-insights__excerpt {
+.cb-site-identity .cb-latest-insights__date {
   color: var(--col-neutral-500);
-  font-size: var(--fs-200);
-  font-weight: var(--fw-light);
 }
 
 .cb-featured-work {
