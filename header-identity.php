@@ -106,9 +106,9 @@ if ( session_status() === PHP_SESSION_NONE ) {
 	}
 	?>
 <header id="wrapper-navbar" class="fixed-top py-2">
-	<nav class="navbar navbar-expand-lg">
-		<div class="id-container d-flex px-4 px-md-5 gap-4">
-            <div class="d-flex justify-content-between w-100 w-lg-auto align-items-center py-0">
+	<nav class="navbar navbar-expand-xl">
+		<div class="d-flex px-4 px-md-5 gap-4 w-100 w-xl-auto">
+            <div class="d-flex justify-content-between w-100 w-xl-auto align-items-center py-0">
                 <a href="/" class="logo-clip" id="site-logo-clip" aria-label="Identity Homepage">
 					<div class="logo-inner" id="site-logo-inner">
 						<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 835.66 81.83">
