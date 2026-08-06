@@ -27280,8 +27280,11 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-innovation-header__quote {
   font-size: var(--fs-900);
+  line-height: var(--lh-600);
   font-weight: var(--fw-light);
-  margin-bottom: 0.5em;
+  letter-spacing: var(--ls--40);
+  text-wrap: balance;
+  margin-bottom: 0.75em;
   color: var(--col-purple-400);
 }
 .cb-innovation-header__author {
