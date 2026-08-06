@@ -25,9 +25,9 @@ get_header( cb_site_template_suffix() );
 		</div>
 		<div class="has-lime-1000-border-bottom mb-4">
 			<div class="id-container px-4 px-md-5">
-				<h1 class="fw-light has-neutral-700-color fs-500 lh-tightest pt-2 pb-1">
+				<div class="fw-light has-neutral-700-color fs-500 lh-tightest pt-2 pb-1">
 					Here's how we're shaping what's next
-				</h1>
+				</div>
 			</div>
 		</div>
 		<div class="id-container px-4 px-md-5 pt-5 pb-5">
