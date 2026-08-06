@@ -8,6 +8,13 @@
     line-height: var(--lh-600);
     letter-spacing: var(--ls--40);
     text-wrap: balance;
+
+    // Quotes over 130 characters (plain text, tags stripped - see
+    // cb-testimonial.php) get a smaller size so they don't overrun the
+    // layout (2026-08-06).
+    &--long {
+      font-size: var(--fs-850);
+    }
   }
 
   // identity's and coda's real values (--fs-800/--fw-regular); idtravel's
@@ -168,6 +175,13 @@
   @media (max-width: 767.98px) {
     &__quote {
       font-size: var(--fs-700);
+
+      // Keep the mobile-compact size even for long quotes - without this,
+      // &--long's equal-specificity selector would win here too, since it
+      // comes later in the source (2026-08-06).
+      &--long {
+        font-size: var(--fs-700);
+      }
     }
   }
 }

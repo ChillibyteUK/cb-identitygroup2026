@@ -24371,6 +24371,9 @@ span a {
   letter-spacing: var(--ls--40);
   text-wrap: balance;
 }
+.cb-testimonial__quote--long {
+  font-size: var(--fs-850);
+}
 .cb-testimonial__author, .cb-testimonial__company {
   display: inline-block;
   padding: 0.5em 0.6em 0.35em;
@@ -24476,6 +24479,9 @@ span a {
 }
 @media (max-width: 767.98px) {
   .cb-testimonial__quote {
+    font-size: var(--fs-700);
+  }
+  .cb-testimonial__quote--long {
     font-size: var(--fs-700);
   }
 }
@@ -25147,7 +25153,7 @@ span a {
   padding-bottom: 1rem;
 }
 .cb-solutions-nav h2, .cb-solutions-nav .h2 {
-  width: min(80vw, 50%);
+  width: max(80vw, 50%);
   text-wrap: balance;
 }
 .cb-solutions-nav__intro {

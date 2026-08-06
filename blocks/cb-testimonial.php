@@ -27,10 +27,18 @@ if ( $style ) {
 if ( ! empty( $block['className'] ) ) {
 	$classes[] = $block['className'];
 }
+
+// Long quotes get a smaller size so they don't overrun the layout -
+// counted on the plain-text length (tags stripped), not the raw field
+// value, so an editor's <br>/formatting doesn't skew the count.
+$quote_classes = array( 'cb-testimonial__quote' );
+if ( mb_strlen( wp_strip_all_tags( $quote ) ) > 130 ) {
+	$quote_classes[] = 'cb-testimonial__quote--long';
+}
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $classes ) ); ?>">
 	<div class="id-container px-4 px-md-5 py-5" data-aos="fade-up">
-		<div class="cb-testimonial__quote">&ldquo;<?= wp_kses_post( $quote ); ?>&rdquo;</div>
+		<div class="<?= esc_attr( implode( ' ', $quote_classes ) ); ?>">&ldquo;<?= wp_kses_post( $quote ); ?>&rdquo;</div>
 
 		<?php if ( $author ) : ?>
 			<div class="cb-testimonial__author"><?= esc_html( $author ); ?></div>
