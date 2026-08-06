@@ -25511,6 +25511,7 @@ span a {
 }
 
 .cb-contact-page {
+  background-color: var(--col-white);
   padding-block-start: 4rem;
 }
 .cb-contact-page h1, .cb-contact-page .h1 {
@@ -25603,9 +25604,6 @@ span a {
   font-weight: var(--fw-regular);
 }
 
-.cb-site-coda .cb-contact-page {
-  background-color: var(--col-white);
-}
 .cb-site-coda .cb-contact-addresses__title {
   background-color: var(--col-neutral-100);
   color: var(--col-lime-1000);

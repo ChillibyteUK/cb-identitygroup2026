@@ -1,4 +1,10 @@
 .cb-contact-page {
+    // Explicit rather than relying on an implicit page default: the body
+    // itself carries a site-wide --col-neutral-050 tint on some
+    // environments (confirmed via stg-identitytravel-staging.kinsta.cloud
+    // vs identitytravel.com/contact/, 2026-08-06), which this block would
+    // otherwise inherit instead of the true white its real design needs.
+    background-color: var(--col-white);
     padding-block-start: 4rem;
     h1 {
         border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
@@ -106,20 +112,14 @@
     }
 }
 
-// coda's real page background stays white from the top down to the
-// Locations title (the base .cb-contact-page rule above sets no
-// background at all - true for identity's own real design too, which
-// gets its own separate dark override elsewhere, but coda's real design
-// needs it explicit here rather than relying on an implicit page default
-// that could change). The Locations title itself continues the
-// --col-neutral-100 background used by .cb-contact-addresses below it
-// (rather than its own separate --col-neutral-050), so the title and the
-// address listings read as one continuous block down to the footer
-// (2026-08-06).
+// coda's real Locations title continues the --col-neutral-100 background
+// used by .cb-contact-addresses below it (rather than its own separate
+// --col-neutral-050), so the title and the address listings read as one
+// continuous block down to the footer (2026-08-06). The white top-section
+// background is now set on the base .cb-contact-page rule above (true for
+// every site except identity, which has its own dark override elsewhere),
+// so no coda-specific rule is needed for that part any more.
 .cb-site-coda {
-    .cb-contact-page {
-        background-color: var(--col-white);
-    }
     .cb-contact-addresses__title {
         background-color: var(--col-neutral-100);
         color: var(--col-lime-1000);
