@@ -27,6 +27,6 @@ $block_title = get_field( 'title' ) ?: 'Signpost Subheader';
 ?>
 <section class="cb-signpost-header <?= esc_attr( trim( $bg . ' ' . $fg . ' ' . $line_class . ' ' . $extra ) ); ?>" id="<?= esc_attr( $section_id ); ?>">
 	<div class="id-container px-4 px-md-5">
-		<?= esc_html( $block_title ); ?>
+		<h2><?= esc_html( $block_title ); ?></h2>
 	</div>
 </section>

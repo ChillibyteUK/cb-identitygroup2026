@@ -24810,10 +24810,13 @@ span a {
   --cb-signpost-header-line-color: hsl(var(--hsl-ink) / 0.25);
   border-top: 1px solid var(--cb-signpost-header-line-color);
   border-bottom: 1px solid var(--cb-signpost-header-line-color);
+  padding-block: 1rem 0.75rem;
+}
+.cb-signpost-header h2, .cb-signpost-header .h2 {
+  margin: 0;
   text-transform: uppercase;
   font-size: var(--fs-200);
   font-weight: var(--fw-regular);
-  padding-block: 1rem 0.75rem;
   line-height: 1;
 }
 .cb-signpost-header.light-lines {
