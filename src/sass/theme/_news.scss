@@ -4,6 +4,23 @@
     color: var(--col-purple-500);
     text-decoration: none;
   }
+
+  // Was previously styled entirely by inline utility classes
+  // (font-hero/pt-2/pb-2/has-neutral-400-border-*) in index.php/
+  // taxonomy-person.php - moved here and aligned to cb-work-index.php's
+  // already-established "page-title hero h1" pattern (2026-08-06):
+  // --fs-850/--lh-850 rather than the --fs-875/--lh-875 this h1 used to
+  // reference via .font-hero (a genuinely larger, one-off size used
+  // nowhere else), border-top only directly on the h1 rather than
+  // top+bottom on a separate wrapper div.
+  h1 {
+    color: var(--col-white);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: var(--fs-850);
+    line-height: var(--lh-850);
+    font-weight: var(--fw-book);
+    padding-top: 0.5rem;
+  }
 }
 
 .news-insights {
@@ -136,6 +153,14 @@
     h1 {
       border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
       color: var(--col-white);
+      // Size/leading/weight/padding were simply missing here (not a
+      // verified-different value like the border colour above) - aligned
+      // to cb-work-index.php's own already-established identity treatment
+      // (2026-08-06), since both are the same "page-title hero h1" role.
+      font-size: var(--fs-850);
+      line-height: var(--lh-850);
+      font-weight: var(--fw-semibold);
+      padding: 0;
     }
     h2 {
       border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.4);
@@ -525,6 +550,21 @@
     a {
       color: var(--col-lime-900);
       text-decoration: none;
+    }
+
+    // Cancels the new shared base h1 rule above almost entirely: coda's
+    // real two-heading, lime-bordered design (index-coda.php) is
+    // confirmed different on purpose and stays untouched - border-top
+    // and colour must not come from the base rule here, since coda's own
+    // border already lives on its own wrapper div, not the h1. The one
+    // genuine gap being fixed is line-height, which the base rule's
+    // --lh-850 replaces coda's hardcoded literal `1` (via its own
+    // lh-tightest utility class) with (2026-08-06).
+    h1 {
+      border-top: 0;
+      color: unset;
+      font-weight: var(--fw-light);
+      line-height: var(--lh-850);
     }
   }
 

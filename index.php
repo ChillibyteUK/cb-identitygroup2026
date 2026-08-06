@@ -20,9 +20,9 @@ $page_for_posts = get_option( 'page_for_posts' );
 get_header( cb_site_template_suffix() );
 ?>
 <main id="main" class="news-insights">
-	<section class="news-insights-hero has-neutral-400-border-bottom">
-		<div class="has-neutral-400-border-top has-neutral-400-border-bottom mt-5">
-			<h1 class="id-container px-4 px-md-5 has-white-color font-hero pt-2 pb-2">
+	<section class="news-insights-hero">
+		<div class="mt-5">
+			<h1 class="id-container px-4 px-md-5">
 				Newsroom and perspectives
 			</h1>
 		</div>
