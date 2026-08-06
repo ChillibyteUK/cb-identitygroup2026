@@ -19,7 +19,7 @@ get_header( cb_site_template_suffix() );
 <main id="main" class="news-insights">
 	<section class="news-hero has-primary-black-background-color pt-5">
 		<h1 class="mt-5">
-			<div class="id-container px-4 px-md-5 pt-1">
+			<div class="id-container px-4 px-md-5 pt-2">
 				News, insights, and perspectives
 			</div>
 		</h1>
