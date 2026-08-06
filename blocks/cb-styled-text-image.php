@@ -7,8 +7,6 @@
 
 defined( 'ABSPATH' ) || exit;
 
-cb_deprecated_block_notice( '', $is_preview );
-
 $block_id = $block['anchor'] ?? ( $block['id'] ?? wp_unique_id( 'cb-styled-text-image-' ) );
 
 $section_title = get_field( 'section_title' );

@@ -24821,7 +24821,7 @@ span a {
 .cb-signpost-header h2, .cb-signpost-header .h2 {
   margin: 0;
   text-transform: uppercase;
-  font-size: var(--fs-200);
+  font-size: var(--fs-300);
   font-weight: var(--fw-regular);
   line-height: 1;
 }

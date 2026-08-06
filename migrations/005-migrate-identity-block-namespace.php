@@ -27,16 +27,15 @@
  * written (`cb-content-grid-v2`, `cb-styled-text-image` - see
  * cb_rename_legacy_block_names() in inc/cb-utility.php, which handles both
  * at render time as a permanent safety net regardless of DB migration
- * status). `cb-content-grid-v2` has since gotten its own DB migration (007)
- * - that "never migrated, forever" framing turned out to just be unfinished
- * work, not a real schema blocker. `cb-styled-text-image` remains deferred.
+ * status). Both have since gotten their own DB migration (007, 008) - that
+ * "never migrated, forever" framing turned out to just be unfinished work
+ * in both cases, not a real schema blocker or genuine non-use.
  *
  * Does NOT touch: cb-content-grid (separate script, 006 - different schema
  * history), cb-content-grid-v2 (separate script, 007), cb-styled-text-image
- * (still deferred, relies on the render-time rename filter),
- * cb-awards-slider / cb-sport-logos (migration 001), cb-latest-insights-expo
- * (migration 002), cb-related-work-expo / cb-related-work-sports
- * (migrations 003 / 004).
+ * (separate script, 008), cb-awards-slider / cb-sport-logos (migration 001),
+ * cb-latest-insights-expo (migration 002), cb-related-work-expo /
+ * cb-related-work-sports (migrations 003 / 004).
  *
  * Idempotent: once a post is migrated it no longer contains the old block
  * name, so re-running this script is always safe.
