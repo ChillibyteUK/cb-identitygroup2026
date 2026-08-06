@@ -39,6 +39,25 @@
     }
 }
 
+// Aligns travel's emails section to identity global's real, smaller size
+// (confirmed live against https://identityglobal.com/contact/, 2026-08-06:
+// h2 28.016px/fw-light, links 20px/fw-light) - not a literal token-name
+// match, since --fs-500/--fs-700 don't resolve to the same px value on
+// every site. --fs-500 happens to already be travel's own closest rung to
+// that h2 size (measured 28px); --fs-300 is the identity-only token
+// nearest the link size but is undefined for idtravel (a documented
+// pre-existing gap - falls through to nothing), so --fs-400 (22px) is the
+// closest real, defined rung travel actually has.
+.cb-site-idtravel .cb-contact-page__emails {
+    h2 {
+        font-size: var(--fs-500);
+        font-weight: var(--fw-light);
+    }
+    a {
+        font-size: var(--fs-400);
+    }
+}
+
 .cb-contact-addresses__title {
     background-color: var(--col-neutral-050);
     border-top: 1px solid hsl(var(--hsl-ink) / 0.25);

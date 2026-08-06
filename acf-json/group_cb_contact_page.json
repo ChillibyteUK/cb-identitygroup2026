@@ -95,12 +95,12 @@
             "selected": 0
         },
         {
-            "key": "field_6904b7140486d",
-            "label": "New Business Email",
-            "name": "new_business",
+            "key": "field_69cd1f0e1a001",
+            "label": "Email Departments",
+            "name": "email_departments",
             "aria-label": "",
-            "type": "email",
-            "instructions": "",
+            "type": "repeater",
+            "instructions": "Rows render as label/email pairs, side by side. Consecutive rows with \"Start new section\" left off are grouped under one shared divider - only check it to start a visually separate section (e.g. before PR & Media, before Talent).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -108,196 +108,101 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_690c6c1a9b288",
-            "label": "New Business Phone",
-            "name": "new_business_phone",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6904b7200486e",
-            "label": "New Business US",
-            "name": "new_business_us",
-            "aria-label": "",
-            "type": "email",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_690c6c2a9b289",
-            "label": "New Business US Phone",
-            "name": "new_business_us_phone",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6904b73104870",
-            "label": "New Business ME",
-            "name": "new_business_me",
-            "aria-label": "",
-            "type": "email",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_690c6c3c9b28a",
-            "label": "New Business ME Phone",
-            "name": "new_business_me_phone",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6904b81096ceb",
-            "label": "PR & Media",
-            "name": "pr_media",
-            "aria-label": "",
-            "type": "email",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_690c6c4f9b28b",
-            "label": "PR & Media Phone",
-            "name": "pr_media_phone",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6904b81d96cec",
-            "label": "Talent",
-            "name": "talent",
-            "aria-label": "",
-            "type": "email",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_690c6c6b9b28c",
-            "label": "Talent Phone",
-            "name": "talent_phone",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Department",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_69cd1f0e1a002",
+                    "label": "Department",
+                    "name": "department",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_69cd1f0e1a001"
+                },
+                {
+                    "key": "field_69cd1f0e1a003",
+                    "label": "Email",
+                    "name": "email",
+                    "aria-label": "",
+                    "type": "email",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_69cd1f0e1a001"
+                },
+                {
+                    "key": "field_69cd1f0e1a004",
+                    "label": "Phone",
+                    "name": "phone",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_69cd1f0e1a001"
+                },
+                {
+                    "key": "field_69cd1f0e1a005",
+                    "label": "Start new section",
+                    "name": "new_section",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Leave off to group this row with the one above (e.g. New Business/US/ME under one heading-less shared block).",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_69cd1f0e1a001"
+                }
+            ]
         },
         {
             "key": "field_6904b73d04871",
@@ -500,5 +405,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1775033363
+    "modified": 1786014198
 }
