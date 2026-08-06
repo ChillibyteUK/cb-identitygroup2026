@@ -12,7 +12,11 @@ $bg         = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['background
 $fg         = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
 $section_id = $block['anchor'] ?? null;
 $extra      = $block['className'] ?? '';
-$line_class = 'dark-lines';
+// identity global's own real default background behind this block is dark,
+// unlike coda's/idtravel's light default - needs light-tinted lines to stay
+// visible, same convention used elsewhere in the theme for identity's dark
+// sections.
+$line_class = 'identity' === cb_site_template_suffix() ? 'light-lines' : 'dark-lines';
 
 if ( ! empty( $block['backgroundColor'] ) ) {
 	if ( preg_match( '/(\d+)(?!.*\d)/', $block['backgroundColor'], $matches ) ) {
