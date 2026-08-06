@@ -5,16 +5,6 @@
   line-height: 1.5;
   text-wrap: balance;
 
-  &__pre-title {
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    padding-block: 0.5rem;
-    font-weight: var(--fw-regular);
-    font-size: var(--fs-300);
-    line-height: 1;
-    text-transform: uppercase;
-  }
-
   &__image-wrapper {
     width: 100%;
     aspect-ratio: 16/9;

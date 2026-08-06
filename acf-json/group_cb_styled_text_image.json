@@ -21,53 +21,6 @@
             "esc_html": 0
         },
         {
-            "key": "field_690337ac4f9c3",
-            "label": "Section Title",
-            "name": "section_title",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "75",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_690337624f9c2",
-            "label": "Title Colour",
-            "name": "title_colour",
-            "aria-label": "",
-            "type": "radio",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "25",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "has-purple-600-color": "Purple",
-                "has-green-400-color": "Green"
-            },
-            "default_value": "has-purple-600-color",
-            "return_format": "value",
-            "allow_null": 0,
-            "other_choice": 0,
-            "allow_in_bindings": 0,
-            "layout": "horizontal",
-            "save_other_choice": 0
-        },
-        {
             "key": "field_690337c64f9c4",
             "label": "Text Content",
             "name": "text_content",
