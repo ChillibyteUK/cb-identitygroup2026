@@ -26,7 +26,7 @@ if ( ! empty( $block['backgroundColor'] ) ) {
 	}
 }
 
-$block_title = get_field( 'title' ) ?: 'Signpost Subheader';
+$block_title = get_field( 'title' ) ? get_field( 'title' ) : 'Signpost Subheader';
 
 ?>
 <section class="cb-signpost-header <?= esc_attr( trim( $bg . ' ' . $fg . ' ' . $line_class . ' ' . $extra ) ); ?>" id="<?= esc_attr( $section_id ); ?>">
