@@ -25532,12 +25532,14 @@ span a {
   text-decoration: underline;
 }
 
-.cb-site-idtravel .cb-contact-page__emails h2, .cb-site-idtravel .cb-contact-page__emails .h2 {
-  font-size: var(--fs-500);
+.cb-site-coda .cb-contact-page__emails h2, .cb-site-coda .cb-contact-page__emails .h2 {
+  font-size: var(--fs-600);
   font-weight: var(--fw-light);
 }
-.cb-site-idtravel .cb-contact-page__emails a {
+.cb-site-coda .cb-contact-page__emails a {
+  color: var(--col-lime-1000);
   font-size: var(--fs-400);
+  font-weight: var(--fw-regular);
 }
 
 .cb-contact-addresses__title {
