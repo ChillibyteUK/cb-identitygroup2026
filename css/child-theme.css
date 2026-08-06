@@ -21743,6 +21743,33 @@ h4,
   font-weight: var(--fw-semibold);
 }
 
+h1.wp-block-heading, .wp-block-heading.h1 {
+  font-size: var(--fs-850);
+  font-weight: var(--fw-wpb-h1, var(--fw-book));
+  line-height: var(--lh-850);
+  letter-spacing: var(--ls--15);
+}
+
+h2.wp-block-heading, .wp-block-heading.h2 {
+  font-size: var(--fs-700);
+  font-weight: var(--fw-wpb-h2, var(--fw-book));
+  line-height: var(--lh-700);
+  letter-spacing: var(--ls--10);
+}
+
+h3.wp-block-heading, .wp-block-heading.h3 {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-wpb-h3, var(--fw-book));
+  line-height: var(--lh-600);
+  letter-spacing: var(--ls--5);
+}
+
+h4.wp-block-heading, .wp-block-heading.h4 {
+  font-size: var(--fs-500);
+  line-height: var(--lh-500);
+  font-weight: var(--fw-semibold);
+}
+
 h1,
 .h1 {
   margin-bottom: 0;

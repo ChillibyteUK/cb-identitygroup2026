@@ -205,6 +205,13 @@ function cb_get_site_tokens_table() {
 			// cb-contact-addresses__title, both silently rendering at the
 			// browser default (2026-07-29).
 			'--fs-300'       => 'clamp(1rem, 0.95rem + 0.5vw, 1.25rem)',
+			// Default Heading-block weights (h1.wp-block-heading etc. in
+			// _typography.scss) per explicit 2026-08-06 spec - identity's are
+			// the only ones that diverge from the --fw-book fallback on every
+			// level.
+			'--fw-wpb-h1'    => 'var(--fw-semibold)',
+			'--fw-wpb-h2'    => 'var(--fw-light)',
+			'--fw-wpb-h3'    => 'var(--fw-light)',
 			'--col-footer-link-hover' => 'var(--col-neutral-500)', // identity's own real footer link hover.
 			// WP-generated has-{slug}-color/-background-color utility class targets —
 			// see cb_filter_editor_theme_json() for why these specific slugs.
@@ -320,6 +327,11 @@ function cb_get_site_tokens_table() {
 			'--fs-500' => 'clamp(1.1875rem, 0.9rem + 1vw, 1.751rem)',
 			'--fs-h2' => 'var(--fs-500)',
 			'--fw-h2' => 'var(--fw-light)',  // coda's own real h2.
+			// Default Heading-block weight (h2.wp-block-heading in
+			// _typography.scss) per explicit 2026-08-06 spec - coda's h1/h3
+			// both want the --fw-book fallback, so only h2 needs an override
+			// here.
+			'--fw-wpb-h2' => 'var(--fw-light)',
 			'--col-footer-link-hover' => 'var(--col-lime-300)', // coda's own real footer link hover.
 			'--col-card-hover' => 'var(--col-primary-black)', // coda's own real insight-type-grid__card hover colour (light bg, needs dark text).
 			'--fs-600' => 'clamp(1.3125rem, 0.9rem + 1.2vw, 1.999rem)',

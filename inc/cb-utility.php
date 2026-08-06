@@ -101,6 +101,10 @@ add_filter( 'render_block_data', 'cb_rename_legacy_block_names' );
  * keeps working while editors are steered away from adding new instances.
  *
  * @param string $replacement Human-readable name of the block to use instead.
+ *                             Leave empty for blocks with no direct
+ *                             replacement (e.g. simply unused across every
+ *                             site) - the message adjusts accordingly rather
+ *                             than naming a nonexistent successor block.
  * @param bool   $is_preview  The block template's $is_preview variable.
  */
 function cb_deprecated_block_notice( $replacement, $is_preview ) {
@@ -109,7 +113,11 @@ function cb_deprecated_block_notice( $replacement, $is_preview ) {
 	}
 	?>
 	<div class="cb-deprecated-block-notice" style="background:#fcf0f1;border-left:4px solid #d63638;padding:10px 14px;margin-bottom:1rem;font-size:13px;line-height:1.4;">
-		<strong>Deprecated block.</strong> Use <strong><?php echo esc_html( $replacement ); ?></strong> instead — this block is scheduled for removal.
+		<?php if ( '' !== $replacement ) : ?>
+			<strong>Deprecated block.</strong> Use <strong><?php echo esc_html( $replacement ); ?></strong> instead — this block is scheduled for removal.
+		<?php else : ?>
+			<strong>Deprecated block.</strong> Not used on any site — this block is scheduled for removal.
+		<?php endif; ?>
 	</div>
 	<?php
 }

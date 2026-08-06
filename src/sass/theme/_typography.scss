@@ -174,6 +174,46 @@ h4,
   font-weight: var(--fw-semibold);
 }
 
+// Default heading styling for the core Heading block only (WordPress adds
+// the `wp-block-heading` class to whatever level an editor picks with no
+// further styling of its own) - by explicit 2026-08-06 spec. Deliberately
+// does NOT touch the bare h1-h4/.h1-.h4/.font-h1-.font-h4 rules above,
+// which govern every other heading instance in the theme (custom blocks
+// that size their own headings via those utility classes, etc.) - a
+// compound element+class selector here outranks those bare rules for
+// anything that also carries wp-block-heading, without changing what the
+// bare rules contribute anywhere else.
+//
+// Size/leading/letter-spacing are identical across every site per the
+// spec; only weight varies, via --fw-wpb-h1/h2/h3 (defined per site in
+// cb-site-tokens.php, same fallback-token pattern as the existing
+// --fw-h2 above) - named distinctly from --fw-h2 since that token serves
+// the separate, pre-existing generic-h2 rule above, not this one. H4's
+// weight (--fw-semibold) is the same on every site, so needs no token.
+h1.wp-block-heading {
+  font-size: var(--fs-850);
+  font-weight: var(--fw-wpb-h1, var(--fw-book));
+  line-height: var(--lh-850);
+  letter-spacing: var(--ls--15);
+}
+h2.wp-block-heading {
+  font-size: var(--fs-700);
+  font-weight: var(--fw-wpb-h2, var(--fw-book));
+  line-height: var(--lh-700);
+  letter-spacing: var(--ls--10);
+}
+h3.wp-block-heading {
+  font-size: var(--fs-600);
+  font-weight: var(--fw-wpb-h3, var(--fw-book));
+  line-height: var(--lh-600);
+  letter-spacing: var(--ls--5);
+}
+h4.wp-block-heading {
+  font-size: var(--fs-500);
+  line-height: var(--lh-500);
+  font-weight: var(--fw-semibold);
+}
+
 h1,
 .h1 {
   margin-bottom: 0;
