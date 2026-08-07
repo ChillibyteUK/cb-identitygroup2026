@@ -13,16 +13,18 @@ defined( 'ABSPATH' ) || exit;
 <div id="footer-top"></div>
 
 <footer class="footer pt-5 pb-4">
-    <div class="id-container px-4 px-md-5">
-        <div class="row pb-4 g-4">
+	<div class="id-container px-4 px-md-5">
+		<div class="row pb-4 g-4">
 			<!-- 1. Social icons -->
 			<div class="col-12 col-md-6 col-lg-4 order-9 order-md-1">
-				<!-- <div class="footer-title--lg mb-3">Connect. Share. Follow.</div> -->
+				<strong>
+					<?= do_shortcode( '[contact_email]' ); ?>
+				</strong>
 				<?= do_shortcode( '[social_icons class="fa-2x"]' ); ?>
 			</div>
 			<!-- 2. Services -->
 			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-2 order-md-3 order-lg-2">
-				<div class="footer-title mb-4"><a href="/services/">Services</a></div>
+				<div class="footer-title mb-3"><a href="/services/">Services</a></div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -31,10 +33,12 @@ defined( 'ABSPATH' ) || exit;
 					)
 				);
 				?>
+				<div class="footer-title mt-4 mb-4"><a href="/work/">Work</a></div>
+				<div class="footer-title mb-4"><a href="/news/">News</a></div>
 			</div>
 			<!-- 3. About -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-4 order-lg-3">
-				<div class="footer-title mb-4"><a href="/about/">About</a></div>
+			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-4 order-lg-3">
+				<div class="footer-title mb-3"><a href="/about/">About</a></div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -45,8 +49,8 @@ defined( 'ABSPATH' ) || exit;
 				?>
 			</div>
 			<!-- 4. Our Brands -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 order-6 order-md-7 order-lg-4">
-				<div class="footer-title mb-4">Identity Brands</div>
+			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-6 order-md-7 order-lg-4">
+				<div class="footer-title mb-3">Identity Brands</div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -57,8 +61,8 @@ defined( 'ABSPATH' ) || exit;
 				?>
 			</div>
 			<!-- 5. Legau -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 order-6 order-md-7 order-lg-4">
-				<div class="footer-title mb-4">Legal &amp; info</div>
+			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-6 order-md-7 order-lg-4">
+				<div class="footer-title mb-3">Legal &amp; info</div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -67,21 +71,6 @@ defined( 'ABSPATH' ) || exit;
 					)
 				);
 				?>
-			</div>
-			<!-- ROW 2 -->
-			<!-- 6. Email -->
-			<div class="col-12 col-md-4 order-8 order-md-2 order-lg-6">
-				<strong>
-					<?= do_shortcode( '[contact_email]' ); ?>
-				</strong>
-			</div>
-			<!-- 7. Work -->
-			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-1 order-md-5 order-lg-7">
-				<div class="footer-title mb-5"><a href="/work/">Work</a></div>
-            </div>
-			<!-- 8. News -->
-			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-3 order-md-6 order-lg-8">
-				<div class="footer-title mb-4"><a href="/news/">News</a></div>
 			</div>
 		</div>
 	</div>
@@ -172,21 +161,21 @@ defined( 'ABSPATH' ) || exit;
 </footer>
 <script>
 (function(){
-    const clip = document.getElementById('footer-logo-clip');
-    const inner = document.getElementById('footer-logo-inner');
-    const svg = document.getElementById('footer-logo-svg');
+	const clip = document.getElementById('footer-logo-clip');
+	const inner = document.getElementById('footer-logo-inner');
+	const svg = document.getElementById('footer-logo-svg');
 	const clip2 = document.getElementById('footer-logo-clip-2');
-    if (!clip || !inner || !svg) return;
+	if (!clip || !inner || !svg) return;
 
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let triggered = false;
+	const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	let triggered = false;
 
-    function prepareAndAnimate() {
-        clip.style.width = '100%';
-        inner.style.transformOrigin = 'left center';
-        inner.style.width = '200%';
-        inner.style.display = 'block';
-        inner.style.transform = 'translateX(0)';
+	function prepareAndAnimate() {
+		clip.style.width = '100%';
+		inner.style.transformOrigin = 'left center';
+		inner.style.width = '200%';
+		inner.style.display = 'block';
+		inner.style.transform = 'translateX(0)';
 
 		if (clip2) {
 			clip2.style.opacity = '0';
@@ -200,14 +189,14 @@ defined( 'ABSPATH' ) || exit;
 			clip2.style.transform = 'translateY(0)';
 		};
 
-        if (prefersReduced) {
-            inner.style.transform = 'translateX(-50%)';
+		if (prefersReduced) {
+			inner.style.transform = 'translateX(-50%)';
 			revealClip2();
-            return;
-        }
-        const animDuration = 1.6;
-        const gsapEase = 'power3.out';
-        if (window.gsap && typeof window.gsap.to === 'function') {
+			return;
+		}
+		const animDuration = 1.6;
+		const gsapEase = 'power3.out';
+		if (window.gsap && typeof window.gsap.to === 'function') {
 			if (clip2) {
 				window.gsap.set(clip2, { autoAlpha: 0, y: 12 });
 			}
@@ -221,52 +210,52 @@ defined( 'ABSPATH' ) || exit;
 					}
 				}
 			});
-        } else {
-            inner.style.transition = 'transform ' + animDuration + 's cubic-bezier(.22,.9,.32,1)';
-            requestAnimationFrame(() => { inner.style.transform = 'translateX(-50%)'; });
+		} else {
+			inner.style.transition = 'transform ' + animDuration + 's cubic-bezier(.22,.9,.32,1)';
+			requestAnimationFrame(() => { inner.style.transform = 'translateX(-50%)'; });
 			setTimeout(revealClip2, animDuration * 1000);
-        }
-    }
+		}
+	}
 
-    function triggerIfVisible(el) {
-        const rect = el.getBoundingClientRect();
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top < vh && rect.bottom > 0;
-    }
+	function triggerIfVisible(el) {
+		const rect = el.getBoundingClientRect();
+		const vh = window.innerHeight || document.documentElement.clientHeight;
+		return rect.top < vh && rect.bottom > 0;
+	}
 
-    const triggerEl = document.querySelector('.footer__colophon') || document.querySelector('.footer__logo') || clip;
+	const triggerEl = document.querySelector('.footer__colophon') || document.querySelector('.footer__logo') || clip;
 
-    if (triggerEl) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (triggered) return;
-                if (entry.isIntersecting && entry.intersectionRatio > 0) {
-                    triggered = true;
-                    prepareAndAnimate();
-                    obs.disconnect();
-                }
-            });
-        }, { rootMargin: '0px 0px -10px 0px', threshold: [0.1] });
+	if (triggerEl) {
+		const observer = new IntersectionObserver((entries, obs) => {
+			entries.forEach(entry => {
+				if (triggered) return;
+				if (entry.isIntersecting && entry.intersectionRatio > 0) {
+					triggered = true;
+					prepareAndAnimate();
+					obs.disconnect();
+				}
+			});
+		}, { rootMargin: '0px 0px -10px 0px', threshold: [0.1] });
 
-        observer.observe(triggerEl);
+		observer.observe(triggerEl);
 
-        // Immediately check if already visible (e.g., on fast loads or short pages)
-        if (triggerIfVisible(triggerEl)) {
-            triggered = true;
-            prepareAndAnimate();
-            observer.disconnect();
-        }
-    }
+		// Immediately check if already visible (e.g., on fast loads or short pages)
+		if (triggerIfVisible(triggerEl)) {
+			triggered = true;
+			prepareAndAnimate();
+			observer.disconnect();
+		}
+	}
 
-    let resizeTimer = null;
-    window.addEventListener('resize', () => {
-        if (triggered) return;
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            clip.style.width = '100%';
-            inner.style.width = '200%';
-        }, 120);
-    });
+	let resizeTimer = null;
+	window.addEventListener('resize', () => {
+		if (triggered) return;
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(() => {
+			clip.style.width = '100%';
+			inner.style.width = '200%';
+		}, 120);
+	});
 })();
 </script>
 
