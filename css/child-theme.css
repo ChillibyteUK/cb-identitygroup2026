@@ -24021,18 +24021,9 @@ span a {
 
 .cb-site-identity .cb-our-brands {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
-  overflow-x: hidden;
 }
 .cb-site-identity .cb-our-brands__intro {
   padding-block: 1rem;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  padding-inline: 1.5rem;
-}
-@media (min-width: 768px) {
-  .cb-site-identity .cb-our-brands__intro {
-    padding-inline: 3rem;
-  }
 }
 .cb-site-identity .brand-card__strap {
   font-size: var(--fs-300);

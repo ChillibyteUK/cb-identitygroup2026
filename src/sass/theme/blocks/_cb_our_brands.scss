@@ -143,28 +143,14 @@
 .cb-site-identity {
   .cb-our-brands {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
-    // Contains the 100vw full-bleed trick below (width:100vw always
-    // includes scrollbar width, which overhangs the real viewport and
-    // creates a horizontal scrollbar otherwise).
-    overflow-x: hidden;
   }
 
+  // Matches coda's own approach: __intro stays inside the shared
+  // id-container wrapper like the rest of the block, no full-bleed
+  // breakout. The earlier 100vw/margin-left trick (2026-07-29) pulled
+  // __title out past the container edge along with it - removed.
   .cb-our-brands__intro {
     padding-block: 1rem;
-    // Real source has __intro as a direct child of the section (no
-    // id-container wrapper), so its border-bottom spans the full
-    // viewport edge to edge. The shared PHP template (used by all 3
-    // sites, no site-conditional branching) nests it inside an
-    // id-container instead, which would need a bigger, riskier markup
-    // change to fix for everyone - broken out here via CSS, scoped to
-    // identity only, instead (2026-07-29).
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    padding-inline: 1.5rem;
-
-    @media (min-width: 768px) {
-      padding-inline: 3rem;
-    }
   }
 
   .brand-card__strap {
