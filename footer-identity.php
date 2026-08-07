@@ -50,7 +50,7 @@ defined( 'ABSPATH' ) || exit;
 				);
 				?>
 				<!-- News -->
-				<div class="footer-title mb-4"><a href="/news/">News</a></div>
+				<div class="footer-title mt-4 mb-4"><a href="/news/">News</a></div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -84,7 +84,7 @@ defined( 'ABSPATH' ) || exit;
 				);
 				?>
 				<!-- Legal -->
-				<div class="footer-title mt-5 mb-4">Legal &amp; info</div>
+				<div class="footer-title mt-4 mb-4">Legal &amp; info</div>
 				<?=
 				wp_nav_menu(
 					array(
