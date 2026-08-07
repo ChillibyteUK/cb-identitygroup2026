@@ -22134,7 +22134,7 @@ header {
   transition: background-color 0.3s ease;
 }
 header.scrolled {
-  background-color: hsla(250, 48%, 10%, 0.8) !important;
+  background-color: hsl(var(--hsl-ink)/0.8) !important;
 }
 header a,
 header a.nav-link {

@@ -2,7 +2,7 @@ header {
   background-color: var(--col-ink) !important;
   transition: background-color 0.3s ease;
   &.scrolled {
-    background-color: hsla(250, 48%, 10%, 0.8) !important;
+    background-color: hsl(var(--hsl-ink) / 0.8) !important;
   }
 
   a,
