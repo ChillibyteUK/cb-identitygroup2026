@@ -827,3 +827,14 @@
     font-size: var(--fs-300);
   }
 }
+
+// identity's real body is dark (see the cb-faq note above this file - "the
+// body background was corrected to identity's real value" refers to this).
+// coda/idtravel have no body tint at all (identitytravel.com/contact/ is
+// true white - see _cb_contact_page.scss's own note, 2026-08-06); removing
+// the old shared base rule entirely (was --col-neutral-50, wrong for all
+// three sites) lets them fall through to Bootstrap reboot's default white,
+// no extra rule needed. Only identity needs an explicit value.
+body.cb-site-identity {
+  background-color: var(--col-primary-black);
+}

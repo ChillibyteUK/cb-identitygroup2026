@@ -11,10 +11,6 @@
 @import "search";
 @import "blocks/blocks";
 
-body {
-  background-color: var(--col-neutral-50);
-}
-
 @media (min-width: 992px) {
   .cols-lg-2 {
     columns: 2;

@@ -22809,6 +22809,10 @@ header:has(.navbar-collapse.collapse.show) {
   font-size: var(--fs-300);
 }
 
+body.cb-site-identity {
+  background-color: var(--col-primary-black);
+}
+
 .footer {
   background-color: var(--col-ink);
   color: var(--col-white);
@@ -28547,10 +28551,6 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
-}
-
-body {
-  background-color: var(--col-neutral-50);
 }
 
 @media (min-width: 992px) {
