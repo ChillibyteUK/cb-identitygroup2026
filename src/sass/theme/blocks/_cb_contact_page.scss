@@ -58,6 +58,7 @@
 // against coda's own real cb-dept-email__department/__emails styling
 // (_cb_dept_email.scss), the block being replaced.
 .cb-site-coda .cb-contact-page__emails {
+    border-top-color: hsl(var(--hsl-lime-1000) / 0.4);
     h2 {
         font-size: var(--fs-600);
         font-weight: var(--fw-light);

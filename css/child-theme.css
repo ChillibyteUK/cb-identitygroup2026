@@ -25561,6 +25561,9 @@ span a {
   text-decoration: underline;
 }
 
+.cb-site-coda .cb-contact-page__emails {
+  border-top-color: hsl(var(--hsl-lime-1000)/0.4);
+}
 .cb-site-coda .cb-contact-page__emails h2, .cb-site-coda .cb-contact-page__emails .h2 {
   font-size: var(--fs-600);
   font-weight: var(--fw-light);
