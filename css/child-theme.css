@@ -27091,12 +27091,12 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   line-height: 1;
 }
 .cb-brand-title-text__content-heading {
-  font-size: var(--fs-500);
+  font-size: var(--fs-800);
   line-height: 1.1;
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-semi);
 }
 .cb-brand-title-text__content {
-  font-size: var(--fs-300);
+  font-size: var(--fs-500);
   font-weight: var(--fw-light);
 }
 
