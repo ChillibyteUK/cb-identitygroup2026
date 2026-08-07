@@ -137,9 +137,15 @@
     .cb-contact-addresses__title {
         background-color: var(--col-neutral-100);
         color: var(--col-lime-1000);
+        border-top-color: hsl(var(--hsl-lime-1000) / 0.4);
+        border-bottom-color: hsl(var(--hsl-lime-1000) / 0.4);
     }
 
-    .cb-contact-addresses__office h2 {
-        font-weight: var(--fw-light);
+    .cb-contact-addresses__office {
+        border-top-color: hsl(var(--hsl-lime-1000) / 0.4);
+
+        h2 {
+            font-weight: var(--fw-light);
+        }
     }
 }
