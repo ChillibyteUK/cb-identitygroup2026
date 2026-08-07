@@ -69,6 +69,18 @@
     }
 }
 
+.cb-site-coda {
+    .cb-contact-page__title h1 {
+        font-weight: var(--fw-light);
+        border-top-color: hsl(var(--hsl-lime-1000) / 0.4);
+        border-bottom-color: hsl(var(--hsl-lime-1000) / 0.4);
+    }
+
+    .cb-contact-page__intro-text {
+        color: var(--col-lime-1000);
+    }
+}
+
 .cb-contact-addresses__title {
     background-color: var(--col-neutral-050);
     border-top: 1px solid hsl(var(--hsl-ink) / 0.25);
