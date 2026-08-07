@@ -24396,6 +24396,7 @@ span a {
 }
 .cb-testimonial__quote--long {
   font-size: var(--fs-850);
+  letter-spacing: var(--ls--15);
 }
 .cb-testimonial__author, .cb-testimonial__company {
   display: inline-block;
