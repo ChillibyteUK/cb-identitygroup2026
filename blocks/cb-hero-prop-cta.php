@@ -27,7 +27,7 @@ if ( ! empty( $block_id ) ) {
 <section <?= wp_kses_post( $section_attrs ); ?>>
 	<div class="id-container px-4 px-md-5 py-5">
 		<div class="cb-hero-prop-cta__container">
-			<div class="row g-5">
+			<div class="row g-5 pb-4">
 				<?php
 				$section_title = get_field( 'title' );
 				$section_title = is_string( $section_title ) ? trim( $section_title ) : '';
