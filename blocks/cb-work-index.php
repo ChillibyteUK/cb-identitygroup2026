@@ -58,7 +58,7 @@ if ( ! $bg_case_study ) {
 			</div>
 		</h2>
 	</div>
-	<div class="work-index-hero__intro grad-main pt-1 pb-5">
+	<div class="work-index-hero__intro grad-main pt-5 pb-5">
 		<div class="id-container px-4 px-md-5">
 			<p class="has-700-font-size fw-light">
 				From global congresses to investigator meetings, we deliver healthcare experiences with technical precision and creative clarity. Every programme is designed to bring complex science to life – whether live, hybrid, or digital.
