@@ -22430,6 +22430,16 @@ header:has(.navbar-collapse.collapse.show) {
 .cb-site-coda .cb-pushthrough__link:hover, .cb-site-coda .cb-pushthrough__link:focus-visible {
   color: var(--col-lime-400);
 }
+.cb-site-coda .leadership__name {
+  font-weight: var(--fw-light);
+  color: var(--col-lime-1100);
+  border-top-color: hsl(var(--hsl-lime-1000)/0.4) !important;
+  border-bottom-color: hsl(var(--hsl-lime-1000)/0.4) !important;
+}
+.cb-site-coda .leadership__role {
+  font-weight: var(--fw-light);
+  border-bottom-color: hsl(var(--hsl-lime-1000)/0.4) !important;
+}
 
 .cb-site-identity {
   background-color: var(--col-primary-black);
