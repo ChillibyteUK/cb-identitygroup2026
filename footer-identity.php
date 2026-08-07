@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<!-- 2. Services -->
 			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-2 order-md-3 order-lg-2">
-				<div class="footer-title mb-4"><a href="/services/">Services</a></div>
+				<div class="footer-title mb-3"><a href="/services/">Services</a></div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -40,7 +40,7 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<!-- 3. About -->
 			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-4 order-lg-3">
-				<div class="footer-title mb-4"><a href="/about/">About</a></div>
+				<div class="footer-title mb-3"><a href="/about/">About</a></div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -50,7 +50,7 @@ defined( 'ABSPATH' ) || exit;
 				);
 				?>
 				<!-- News -->
-				<div class="footer-title mt-4 mb-4"><a href="/news/">News</a></div>
+				<div class="footer-title mt-4 mb-3"><a href="/news/">News</a></div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -62,7 +62,7 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-1 order-md-5 order-lg-7">
 				<!-- 4. Our Brands -->
-				<div class="footer-title mb-4"><a href="/about/#brands">Our Brands</a></div>
+				<div class="footer-title mb-3"><a href="/about/#brands">Our Brands</a></div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -74,7 +74,7 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-8 order-lg-9">
 				<!-- Locations -->
-				<div class="footer-title mb-4"><a href="/contact/#locations">Locations</a></div>
+				<div class="footer-title mb-3"><a href="/contact/#locations">Locations</a></div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -84,7 +84,7 @@ defined( 'ABSPATH' ) || exit;
 				);
 				?>
 				<!-- Legal -->
-				<div class="footer-title mt-4 mb-4">Legal &amp; info</div>
+				<div class="footer-title mt-4 mb-3">Legal &amp; info</div>
 				<?=
 				wp_nav_menu(
 					array(
