@@ -141,9 +141,9 @@
       }
       .text {
         color: var(--col-lime-900);
-        @media (min-width: 768px) {
-          font-size: 5.5vw;
-        }
+        // font-size intentionally not overridden here any more - matches
+        // travel/identity's base rule (min(7vw, 7rem) at 768px+, 11.5vw
+        // below) rather than coda's previous smaller 5.5vw.
         font-weight: var(--fw-light);
         letter-spacing: normal;
       }

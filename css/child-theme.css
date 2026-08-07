@@ -25972,11 +25972,6 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-weight: var(--fw-light);
   letter-spacing: normal;
 }
-@media (min-width: 768px) {
-  .cb-site-coda .cb-hero-prop-cta__title .text {
-    font-size: 5.5vw;
-  }
-}
 .cb-site-coda .cb-hero-prop-cta__content-heading {
   font-size: var(--fs-800);
   font-weight: var(--fw-light);
