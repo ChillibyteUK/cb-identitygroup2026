@@ -13,8 +13,8 @@ defined( 'ABSPATH' ) || exit;
 <div id="footer-top"></div>
 
 <footer class="footer pt-5 pb-4">
-    <div class="id-container px-4 px-md-5">
-        <div class="row pb-4 g-4">
+	<div class="id-container px-4 px-md-5">
+		<div class="row pb-4 g-4">
 			<div class="col-12 col-md-6 col-lg-4 order-9 order-md-1">
 				<strong>
 					<?= do_shortcode( '[contact_email]' ); ?>
@@ -41,7 +41,7 @@ defined( 'ABSPATH' ) || exit;
 				);
 				?>
 			</div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-4 order-lg-3">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-4 order-lg-3">
 				<div class="footer-title"><a href="/solutions/">Solutions</a></div>
 				<?=
 				wp_nav_menu(
@@ -61,7 +61,7 @@ defined( 'ABSPATH' ) || exit;
 				);
 				?>
 			</div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 order-6 order-md-7 order-lg-4">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-6 order-md-7 order-lg-4">
 				<div class="footer-title">Identity Companies</div>
 				<?=
 				wp_nav_menu(
@@ -73,7 +73,7 @@ defined( 'ABSPATH' ) || exit;
 				?>
 			</div>
 			<!-- 5. Legal -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 order-6 order-md-7 order-lg-4">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-6 order-md-7 order-lg-4">
 				<div class="footer-title">Resources</div>
 				<?=
 				wp_nav_menu(
@@ -158,13 +158,13 @@ defined( 'ABSPATH' ) || exit;
 </footer>
 <script>
 (function(){
-    const clip = document.getElementById('footer-logo-clip');
-    const inner = document.getElementById('footer-logo-inner');
+	const clip = document.getElementById('footer-logo-clip');
+	const inner = document.getElementById('footer-logo-inner');
 	const clip2 = document.getElementById('footer-logo-clip-2');
-    if (!clip || !inner) return;
+	if (!clip || !inner) return;
 
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let triggered = false;
+	const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	let triggered = false;
 
 	// Set initial state immediately to avoid a pre-animation flash at natural size.
 	clip.style.width = '100%';
@@ -174,12 +174,12 @@ defined( 'ABSPATH' ) || exit;
 	inner.style.transform = 'translateX(0)';
 	inner.style.transition = 'none';
 
-    function prepareAndAnimate() {
-        clip.style.width = '100%';
-        inner.style.transformOrigin = 'left center';
-        inner.style.width = '200%';
-        inner.style.display = 'block';
-        inner.style.transform = 'translateX(0)';
+	function prepareAndAnimate() {
+		clip.style.width = '100%';
+		inner.style.transformOrigin = 'left center';
+		inner.style.width = '200%';
+		inner.style.display = 'block';
+		inner.style.transform = 'translateX(0)';
 
 		if (clip2) {
 			clip2.style.opacity = '0';
@@ -193,14 +193,14 @@ defined( 'ABSPATH' ) || exit;
 			clip2.style.transform = 'translateY(0)';
 		};
 
-        if (prefersReduced) {
-            inner.style.transform = 'translateX(-50%)';
+		if (prefersReduced) {
+			inner.style.transform = 'translateX(-50%)';
 			revealClip2();
-            return;
-        }
-        const animDuration = 1.6;
-        const gsapEase = 'power3.out';
-        if (window.gsap && typeof window.gsap.to === 'function') {
+			return;
+		}
+		const animDuration = 1.6;
+		const gsapEase = 'power3.out';
+		if (window.gsap && typeof window.gsap.to === 'function') {
 			if (clip2) {
 				window.gsap.set(clip2, { autoAlpha: 0, y: 12 });
 			}
@@ -214,52 +214,52 @@ defined( 'ABSPATH' ) || exit;
 					}
 				}
 			});
-        } else {
-            inner.style.transition = 'transform ' + animDuration + 's cubic-bezier(.22,.9,.32,1)';
-            requestAnimationFrame(() => { inner.style.transform = 'translateX(-50%)'; });
+		} else {
+			inner.style.transition = 'transform ' + animDuration + 's cubic-bezier(.22,.9,.32,1)';
+			requestAnimationFrame(() => { inner.style.transform = 'translateX(-50%)'; });
 			setTimeout(revealClip2, animDuration * 1000);
-        }
-    }
+		}
+	}
 
-    function triggerIfVisible(el) {
-        const rect = el.getBoundingClientRect();
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top < vh && rect.bottom > 0;
-    }
+	function triggerIfVisible(el) {
+		const rect = el.getBoundingClientRect();
+		const vh = window.innerHeight || document.documentElement.clientHeight;
+		return rect.top < vh && rect.bottom > 0;
+	}
 
-    const triggerEl = document.querySelector('.footer__colophon') || document.querySelector('.footer__logo') || clip;
+	const triggerEl = document.querySelector('.footer__colophon') || document.querySelector('.footer__logo') || clip;
 
-    if (triggerEl) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (triggered) return;
-                if (entry.isIntersecting && entry.intersectionRatio > 0) {
-                    triggered = true;
-                    prepareAndAnimate();
-                    obs.disconnect();
-                }
-            });
-        }, { rootMargin: '0px 0px -10px 0px', threshold: [0.1] });
+	if (triggerEl) {
+		const observer = new IntersectionObserver((entries, obs) => {
+			entries.forEach(entry => {
+				if (triggered) return;
+				if (entry.isIntersecting && entry.intersectionRatio > 0) {
+					triggered = true;
+					prepareAndAnimate();
+					obs.disconnect();
+				}
+			});
+		}, { rootMargin: '0px 0px -10px 0px', threshold: [0.1] });
 
-        observer.observe(triggerEl);
+		observer.observe(triggerEl);
 
-        // Immediately check if already visible (e.g., on fast loads or short pages)
-        if (triggerIfVisible(triggerEl)) {
-            triggered = true;
-            prepareAndAnimate();
-            observer.disconnect();
-        }
-    }
+		// Immediately check if already visible (e.g., on fast loads or short pages)
+		if (triggerIfVisible(triggerEl)) {
+			triggered = true;
+			prepareAndAnimate();
+			observer.disconnect();
+		}
+	}
 
-    let resizeTimer = null;
-    window.addEventListener('resize', () => {
-        if (triggered) return;
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            clip.style.width = '100%';
-            inner.style.width = '200%';
-        }, 120);
-    });
+	let resizeTimer = null;
+	window.addEventListener('resize', () => {
+		if (triggered) return;
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(() => {
+			clip.style.width = '100%';
+			inner.style.width = '200%';
+		}, 120);
+	});
 })();
 </script>
 

@@ -13,11 +13,13 @@ defined( 'ABSPATH' ) || exit;
 <div id="footer-top"></div>
 
 <footer class="footer pt-5 pb-4">
-    <div class="id-container px-4 px-md-5">
-        <div class="row pb-4 g-4">
+	<div class="id-container px-4 px-md-5">
+		<div class="row pb-4 g-4">
 			<!-- 1. Social icons -->
 			<div class="col-12 col-md-6 col-lg-4 order-9 order-md-1">
-				<!-- <div class="footer-title--lg mb-3">Connect. Share. Follow.</div> -->
+				<strong>
+					<?=  do_shortcode( '[contact_email]' ); ?>
+				</strong>
 				<?= do_shortcode( '[social_icons class="fa-2x"]' ); ?>
 			</div>
 			<!-- 2. Services -->
@@ -31,9 +33,13 @@ defined( 'ABSPATH' ) || exit;
 					)
 				);
 				?>
+				<div class="footer-title mt-4 mb-3"><a href="/work/">Work</a></div>
+				<div class="footer-title mb-3"><a href="/world-expo/">World Expo</a></div>
+				<div class="footer-title mb-4"><a href="/innovation/">Innovation Lab</a></div>
+
 			</div>
 			<!-- 3. About -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-4 order-lg-3">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-4 order-lg-3">
 				<div class="footer-title mb-4"><a href="/about/">About</a></div>
 				<?=
 				wp_nav_menu(
@@ -43,35 +49,7 @@ defined( 'ABSPATH' ) || exit;
 					)
 				);
 				?>
-			</div>
-			<!-- 4. Our Brands -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4 order-6 order-md-7 order-lg-4">
-				<div class="footer-title mb-4"><a href="/about/#brands">Our Brands</a></div>
-				<?=
-				wp_nav_menu(
-					array(
-						'theme_location' => 'footer_menu_identity',
-						'menu_class'     => 'footer__menu cols-lg-2',
-					)
-				);
-				?>
-			</div>
-			<!-- ROW 2 -->
-			<!-- 6. Email -->
-			<div class="col-12 col-md-4 order-8 order-md-2 order-lg-6">
-				<strong>
-				<div class="mb-5">Let's talk.</div>
-				<?= do_shortcode( '[contact_email]' ); ?>
-				</strong>
-			</div>
-			<!-- 7. Work -->
-			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-1 order-md-5 order-lg-7">
-				<div class="footer-title mb-3"><a href="/work/">Work</a></div>
-				<div class="footer-title mb-3"><a href="/world-expo/">World Expo</a></div>
-				<div class="footer-title mb-4"><a href="/innovation/">Innovation Lab</a></div>
-            </div>
-			<!-- 8. News -->
-			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-3 order-md-6 order-lg-8">
+				<!-- News -->
 				<div class="footer-title mb-4"><a href="/news/">News</a></div>
 				<?=
 				wp_nav_menu(
@@ -82,8 +60,20 @@ defined( 'ABSPATH' ) || exit;
 				);
 				?>
 			</div>
-			<!-- 9. Locations -->
+			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-1 order-md-5 order-lg-7">
+				<!-- 4. Our Brands -->
+				<div class="footer-title mb-4"><a href="/about/#brands">Our Brands</a></div>
+				<?=
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer_menu_identity',
+						'menu_class'     => 'footer__menu',
+					)
+				);
+				?>
+			</div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-2 order-4 order-md-8 order-lg-9">
+				<!-- Locations -->
 				<div class="footer-title mb-4"><a href="/contact/#locations">Locations</a></div>
 				<?=
 				wp_nav_menu(
@@ -93,10 +83,8 @@ defined( 'ABSPATH' ) || exit;
 					)
 				);
 				?>
-			</div>
-			<!-- 10. Legal -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2 order-7 order-md-9 order-lg-10">
-				<div class="footer-title mb-4">Legal &amp; info</div>
+				<!-- Legal -->
+				<div class="footer-title mt-5 mb-4">Legal &amp; info</div>
 				<?=
 				wp_nav_menu(
 					array(
@@ -147,73 +135,73 @@ defined( 'ABSPATH' ) || exit;
 </footer>
 <script>
 (function(){
-    const clip = document.getElementById('footer-logo-clip');
-    const inner = document.getElementById('footer-logo-inner');
-    const svg = document.getElementById('footer-logo-svg');
-    if (!clip || !inner || !svg) return;
+	const clip = document.getElementById('footer-logo-clip');
+	const inner = document.getElementById('footer-logo-inner');
+	const svg = document.getElementById('footer-logo-svg');
+	if (!clip || !inner || !svg) return;
 
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let triggered = false;
+	const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	let triggered = false;
 
-    function prepareAndAnimate() {
-        clip.style.width = '100%';
-        inner.style.transformOrigin = 'left center';
-        inner.style.width = '200%';
-        inner.style.display = 'block';
-        inner.style.transform = 'translateX(0)';
-        if (prefersReduced) {
-            inner.style.transform = 'translateX(-50%)';
-            return;
-        }
-        const animDuration = 1.6;
-        const gsapEase = 'power3.out';
-        if (window.gsap && typeof window.gsap.to === 'function') {
-            window.gsap.to(inner, { xPercent: -50, duration: animDuration, ease: gsapEase });
-        } else {
-            inner.style.transition = 'transform ' + animDuration + 's cubic-bezier(.22,.9,.32,1)';
-            requestAnimationFrame(() => { inner.style.transform = 'translateX(-50%)'; });
-        }
-    }
+	function prepareAndAnimate() {
+		clip.style.width = '100%';
+		inner.style.transformOrigin = 'left center';
+		inner.style.width = '200%';
+		inner.style.display = 'block';
+		inner.style.transform = 'translateX(0)';
+		if (prefersReduced) {
+			inner.style.transform = 'translateX(-50%)';
+			return;
+		}
+		const animDuration = 1.6;
+		const gsapEase = 'power3.out';
+		if (window.gsap && typeof window.gsap.to === 'function') {
+			window.gsap.to(inner, { xPercent: -50, duration: animDuration, ease: gsapEase });
+		} else {
+			inner.style.transition = 'transform ' + animDuration + 's cubic-bezier(.22,.9,.32,1)';
+			requestAnimationFrame(() => { inner.style.transform = 'translateX(-50%)'; });
+		}
+	}
 
-    function triggerIfVisible(el) {
-        const rect = el.getBoundingClientRect();
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top < vh && rect.bottom > 0;
-    }
+	function triggerIfVisible(el) {
+		const rect = el.getBoundingClientRect();
+		const vh = window.innerHeight || document.documentElement.clientHeight;
+		return rect.top < vh && rect.bottom > 0;
+	}
 
-    const triggerEl = document.querySelector('.footer__colophon') || document.querySelector('.footer__logo') || clip;
+	const triggerEl = document.querySelector('.footer__colophon') || document.querySelector('.footer__logo') || clip;
 
-    if (triggerEl) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (triggered) return;
-                if (entry.isIntersecting && entry.intersectionRatio > 0) {
-                    triggered = true;
-                    prepareAndAnimate();
-                    obs.disconnect();
-                }
-            });
-        }, { rootMargin: '0px 0px -10px 0px', threshold: [0.1] });
+	if (triggerEl) {
+		const observer = new IntersectionObserver((entries, obs) => {
+			entries.forEach(entry => {
+				if (triggered) return;
+				if (entry.isIntersecting && entry.intersectionRatio > 0) {
+					triggered = true;
+					prepareAndAnimate();
+					obs.disconnect();
+				}
+			});
+		}, { rootMargin: '0px 0px -10px 0px', threshold: [0.1] });
 
-        observer.observe(triggerEl);
+		observer.observe(triggerEl);
 
-        // Immediately check if already visible (e.g., on fast loads or short pages)
-        if (triggerIfVisible(triggerEl)) {
-            triggered = true;
-            prepareAndAnimate();
-            observer.disconnect();
-        }
-    }
+		// Immediately check if already visible (e.g., on fast loads or short pages)
+		if (triggerIfVisible(triggerEl)) {
+			triggered = true;
+			prepareAndAnimate();
+			observer.disconnect();
+		}
+	}
 
-    let resizeTimer = null;
-    window.addEventListener('resize', () => {
-        if (triggered) return;
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            clip.style.width = '100%';
-            inner.style.width = '200%';
-        }, 120);
-    });
+	let resizeTimer = null;
+	window.addEventListener('resize', () => {
+		if (triggered) return;
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(() => {
+			clip.style.width = '100%';
+			inner.style.width = '200%';
+		}, 120);
+	});
 })();
 </script>
 
