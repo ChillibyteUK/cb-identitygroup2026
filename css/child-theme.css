@@ -25171,8 +25171,13 @@ span a {
   padding-bottom: 1rem;
 }
 .cb-solutions-nav h2, .cb-solutions-nav .h2 {
-  width: max(80vw, 50%);
+  width: 80vw;
   text-wrap: balance;
+}
+@media (min-width: 768px) {
+  .cb-solutions-nav h2, .cb-solutions-nav .h2 {
+    width: 50%;
+  }
 }
 .cb-solutions-nav__intro {
   display: flex;

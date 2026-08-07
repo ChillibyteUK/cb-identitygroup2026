@@ -6,8 +6,11 @@
   }
 
   h2 {
-    width: max(80vw, 50%);
+    width: 80vw;
     text-wrap: balance;
+    @media (min-width: 768px) {
+      width: 50%;
+    }
   }
 
   &__intro {
