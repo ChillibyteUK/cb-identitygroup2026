@@ -25628,6 +25628,9 @@ span a {
   background-color: var(--col-neutral-100);
   color: var(--col-lime-1000);
 }
+.cb-site-coda .cb-contact-addresses__office h2, .cb-site-coda .cb-contact-addresses__office .h2 {
+  font-weight: var(--fw-light);
+}
 
 .cb-contact-form {
   padding-block-start: 4rem;

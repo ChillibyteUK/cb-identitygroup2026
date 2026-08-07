@@ -17,8 +17,10 @@ $is_identity = 'identity' === cb_site_template_suffix();
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-contact-page">
 	<?php if ( ! $is_identity ) : ?>
 	<div class="cb-contact-page__title">
-		<h1 class="id-container px-4 px-md-5">
-			Contact
+		<h1>
+			<div class="id-container px-4 px-md-5">
+				Contact
+			</div>
 		</h1>
 	</div>
 	<?php endif; ?>
