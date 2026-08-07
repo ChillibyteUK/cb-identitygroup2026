@@ -26273,13 +26273,12 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   padding-block: 8rem 6rem;
 }
 .cb-service-page-header h1, .cb-service-page-header .h1 {
-  font-size: var(--fs-850);
-  font-weight: var(--fw-semi);
-  line-height: 1;
-  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
-  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
-  padding-top: 0.25rem;
-  margin-bottom: 2rem;
+  font-size: clamp(2.3333rem, 1.9rem + 2vw, 3.125rem);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-850);
+  color: var(--col-white);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 .cb-service-page-header__intro-text {
   font-size: var(--fs-700);

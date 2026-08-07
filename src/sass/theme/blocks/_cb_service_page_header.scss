@@ -3,14 +3,19 @@
   color: var(--col-white);
   padding-block: 8rem 6rem;
 
+  // Matches the dark-bg title pattern used by .cb-site-identity's
+  // work-index-hero h1 (_cb_work_index.scss) - same font metrics/colour/
+  // border treatment, so this block's own title box reads identically.
+  // That pattern has no padding-top/margin-bottom of its own (spacing
+  // comes from the ancestor wrapper there); dropping this block's
+  // previous 0.25rem/2rem values brings the padding in line with it too.
   h1 {
-    font-size: var(--fs-850);
-    font-weight: var(--fw-semi);
-    line-height: 1;
-    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
-    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
-    padding-top: 0.25rem;
-    margin-bottom: 2rem;
+    font-size: clamp(2.3333rem, 1.9rem + 2vw, 3.125rem);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-850);
+    color: var(--col-white);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   &__intro-text {
