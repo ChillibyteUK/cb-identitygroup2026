@@ -166,11 +166,6 @@ if ( count( $posts ) < 4 && ( $service_id || $theme_filter ) ) {
 if ( ! empty( $posts ) ) {
 	?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-related-work">
-	<div class="cb-related-work__pre-title">
-		<div class="id-container <?= esc_attr( $pretitle_padding ); ?> px-4 px-md-5">
-			<?= esc_html( $pretitle ); ?> Work
-		</div>
-	</div>
 	<div class="id-container">
 		<div class="row g-2">
 	<?php

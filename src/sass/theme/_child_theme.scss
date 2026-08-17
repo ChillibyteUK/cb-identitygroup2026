@@ -75,6 +75,24 @@
 .id-container {
   width: min(100%, 1920px);
   margin: 0 auto;
+
+  // Once the viewport reaches the cap above, the container stops growing
+  // and gains gutters of its own, so the markup's px-4/px-md-5 inset is
+  // no longer doing any work - drop it and let content run to the
+  // container edge (2026-08-17). Done here rather than per block because
+  // ~155 of the 187 .id-container call sites carry that same px pair.
+  //
+  // Hand-rolled query because $grid-breakpoints tops out at xxl/1400px:
+  // px-xxl-0 would fire 520px early, and adding an xxxl tier just for
+  // this would regenerate every responsive utility in the map.
+  //
+  // !important to outrank the px-* utilities, which Bootstrap emits with
+  // !important too. Specificity ties with .px-md-5, and wins only because
+  // theme/child_theme is imported after the Bootstrap utilities API - so
+  // don't move this rule above that import.
+  @media (min-width: 1920px) {
+    padding-inline: 0 !important;
+  }
 }
 
 // main {

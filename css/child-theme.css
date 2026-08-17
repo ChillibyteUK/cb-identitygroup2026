@@ -28493,6 +28493,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   background-color: var(--col-primary-black);
   color: var(--col-white);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  display: flow-root;
 }
 .cb-related-work__pre-title {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -28622,6 +28623,11 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .id-container {
   width: min(100%, 1920px);
   margin: 0 auto;
+}
+@media (min-width: 1920px) {
+  .id-container {
+    padding-inline: 0 !important;
+  }
 }
 
 .ratio-9x16 {
