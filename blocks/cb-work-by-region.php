@@ -2,6 +2,24 @@
 /**
  * Block template for CB Work by Region.
  *
+ * DEPRECATED (2026-08-17) - superseded by cb-related-work's `region_filter`
+ * field, which does the same job through the same query path as its existing
+ * `theme_filter`. Kept registered only so the last instances still render;
+ * nothing new should use it.
+ *
+ * Used on Identity Global only, on two pages: "middle-east" (region 65) and
+ * "usa" (region 64). No migration script was written for so few instances -
+ * to retire one, swap the block for CB Related Work, set Region Filter to the
+ * same region, and set Count to -1 (this block was always unbounded, where
+ * cb-related-work defaults to 4; only "usa", with 8 case studies to Middle
+ * East's 4, actually needs it).
+ *
+ * Once both are swapped, delete this file, its
+ * acf-json/group_cb_work_by_region.json field group, and its
+ * acf_register_block_type() call in inc/cb-blocks.php. Nothing else references
+ * the block - the `region` taxonomy itself stays, since cb-related-work's
+ * region_filter now uses it.
+ *
  * @package cb-identitygroup2026
  */
 
@@ -41,7 +59,17 @@ if ( $q->have_posts() ) {
 	$first = true;
 	while ( $q->have_posts() ) {
 		$q->the_post();
-		$cols  = $first ? '12 mt-0' : '6';
+		// The first card is full width but deliberately keeps the default
+		// gutter compensation (2026-08-17). .row.g-2 carries
+		// margin-top: -0.5rem, which this Bootstrap build cancels with a
+		// matching margin-top on .row > * - so the mt-0 that used to be
+		// here removed the compensation for this one card only, leaving it
+		// 8px above the section's own top edge, overflowing upward and
+		// painting over the bottom of whatever block precedes it (obvious
+		// against cb-region-page-header on the region pages). Without
+		// mt-0 the card's top lands exactly on the section top, which is
+		// the flush look the mt-0 was reaching for anyway.
+		$cols  = $first ? '12' : '6';
 		$first = false;
 		?>
 			<div class="col-md-<?= esc_attr( $cols ); ?>">
