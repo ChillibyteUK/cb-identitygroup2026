@@ -203,7 +203,8 @@
 // matching the existing bottom border, plus its own real background/text
 // colours (Strawberry 200 / Strawberry 850).
 .cb-site-health .cb-featured-work__pre-title {
-  border-top: 1px solid hsl(var(--hsl-lime-1000) / 0.4);
+  border-top: 1px solid hsl(var(--hsl-neutral-400) / .5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400) / .5) !important;
   background-color: var(--col-strawberry-200);
   color: var(--col-strawberry-850);
 }

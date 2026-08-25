@@ -154,6 +154,7 @@
 // matching the existing bottom border - same treatment as
 // _cb_featured_work.scss's own __pre-title.
 .cb-site-health .cb-latest-insights__pre-title {
-  border-top: 1px solid hsl(var(--hsl-lime-1000) / 0.4);
+  border-top: 1px solid hsl(var(--hsl-neutral-400) / .5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400) / .5) !important;
   color: var(--col-blueberry-850);
 }

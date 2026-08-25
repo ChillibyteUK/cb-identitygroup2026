@@ -26963,7 +26963,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-site-health .cb-latest-insights__pre-title {
-  border-top: 1px solid hsl(var(--hsl-lime-1000)/0.4);
+  border-top: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
   color: var(--col-blueberry-850);
 }
 
@@ -27098,7 +27099,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-site-health .cb-featured-work__pre-title {
-  border-top: 1px solid hsl(var(--hsl-lime-1000)/0.4);
+  border-top: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
   background-color: var(--col-strawberry-200);
   color: var(--col-strawberry-850);
 }
