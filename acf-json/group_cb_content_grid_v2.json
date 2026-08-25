@@ -47,7 +47,7 @@
             "preview_size": "thumbnail"
         },
         {
-            "key": "field_cb_content_grid_rows",
+            "key": "field_cb_content_grid_rows_v2",
             "label": "Rows",
             "name": "rows",
             "aria-label": "",
@@ -69,7 +69,7 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_cb_content_grid_column_layout",
+                    "key": "field_cb_content_grid_column_layout_v2",
                     "label": "Column Layout",
                     "name": "column_layout",
                     "aria-label": "",
@@ -97,10 +97,10 @@
                     "allow_in_bindings": 1,
                     "layout": "horizontal",
                     "save_other_choice": 0,
-                    "parent_repeater": "field_cb_content_grid_rows"
+                    "parent_repeater": "field_cb_content_grid_rows_v2"
                 },
                 {
-                    "key": "field_69ca81b36e0c8",
+                    "key": "field_69ca81b36e0c8_v2",
                     "label": "Has Line",
                     "name": "has_line",
                     "aria-label": "",
@@ -126,10 +126,10 @@
                     "toggle": 0,
                     "save_custom": 0,
                     "custom_choice_button_text": "Add new choice",
-                    "parent_repeater": "field_cb_content_grid_rows"
+                    "parent_repeater": "field_cb_content_grid_rows_v2"
                 },
                 {
-                    "key": "field_cb_content_grid_has_padding",
+                    "key": "field_cb_content_grid_has_padding_v2",
                     "label": "Has Padding",
                     "name": "has_padding",
                     "aria-label": "",
@@ -157,10 +157,10 @@
                     "toggle": 0,
                     "save_custom": 0,
                     "custom_choice_button_text": "Add new choice",
-                    "parent_repeater": "field_cb_content_grid_rows"
+                    "parent_repeater": "field_cb_content_grid_rows_v2"
                 },
                 {
-                    "key": "field_cb_content_grid_modules",
+                    "key": "field_cb_content_grid_modules_v2",
                     "label": "Modules",
                     "name": "modules",
                     "aria-label": "",
@@ -180,10 +180,10 @@
                     "collapsed": "",
                     "button_label": "Add Module",
                     "rows_per_page": 20,
-                    "parent_repeater": "field_cb_content_grid_rows",
+                    "parent_repeater": "field_cb_content_grid_rows_v2",
                     "sub_fields": [
                         {
-                            "key": "field_cb_content_grid_module_type",
+                            "key": "field_cb_content_grid_module_type_v2",
                             "label": "Module Type",
                             "name": "module_type",
                             "aria-label": "",
@@ -221,86 +221,146 @@
                             "placeholder": "",
                             "create_options": 0,
                             "save_options": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_h1_text",
+                            "key": "field_cb_content_grid_h1_text_v2",
                             "label": "Heading Text",
                             "name": "h1_text",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "h1"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "default_value": "",
                             "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_h2_text",
+                            "key": "field_cb_content_grid_h2_text_v2",
                             "label": "Heading Text",
                             "name": "h2_text",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "h2"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h2"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "default_value": "",
                             "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_h3_text",
+                            "key": "field_cb_content_grid_h3_text_v2",
                             "label": "Heading Text",
                             "name": "h3_text",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "h3"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h3"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "default_value": "",
                             "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_text_content",
+                            "key": "field_cb_content_grid_text_content_v2",
                             "label": "Text Content",
                             "name": "text_content",
                             "aria-label": "",
                             "type": "wysiwyg",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "text"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "text"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "default_value": "",
                             "tabs": "all",
                             "toolbar": "full",
                             "media_upload": 1,
                             "delay": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_text_font_size",
+                            "key": "field_cb_content_grid_text_font_size_v2",
                             "label": "Font Size",
                             "name": "text_font_size",
                             "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "text"}]],
-                            "wrapper": {"width": "50", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "text"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
                             "choices": {
                                 "fs-100": "fs-100 (18px)",
                                 "fs-200": "fs-200 (20px)",
@@ -319,18 +379,30 @@
                             "placeholder": "",
                             "create_options": 0,
                             "save_options": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_text_font_weight",
+                            "key": "field_cb_content_grid_text_font_weight_v2",
                             "label": "Font Weight",
                             "name": "text_font_weight",
                             "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "text"}]],
-                            "wrapper": {"width": "50", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "text"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
                             "choices": {
                                 "fw-light": "Light (300)",
                                 "fw-regular": "Regular (400)",
@@ -346,51 +418,89 @@
                             "placeholder": "",
                             "create_options": 0,
                             "save_options": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_quote_text",
+                            "key": "field_cb_content_grid_quote_text_v2",
                             "label": "Quote",
                             "name": "quote_text",
                             "aria-label": "",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "quote"}]],
-                            "wrapper": {"width": "60", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "quote"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "60",
+                                "class": "",
+                                "id": ""
+                            },
                             "default_value": "",
                             "maxlength": "",
                             "allow_in_bindings": 0,
                             "rows": 4,
                             "placeholder": "",
                             "new_lines": "br",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_quote_link",
+                            "key": "field_cb_content_grid_quote_link_v2",
                             "label": "Link",
                             "name": "quote_link",
                             "aria-label": "",
                             "type": "link",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "quote"}]],
-                            "wrapper": {"width": "40", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "quote"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
                             "return_format": "array",
                             "allow_in_bindings": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_69cb84a80ee44",
+                            "key": "field_69cb84a80ee44_v2",
                             "label": "Lead First",
                             "name": "lead_first",
                             "aria-label": "",
                             "type": "checkbox",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "qa"}]],
-                            "wrapper": {"width": "50", "class": "", "id": ""},
-                            "choices": {"Yes": "Yes"},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "qa"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Yes": "Yes"
+                            },
                             "default_value": [],
                             "return_format": "value",
                             "allow_custom": 0,
@@ -399,18 +509,30 @@
                             "toggle": 0,
                             "save_custom": 0,
                             "custom_choice_button_text": "Add new choice",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_qa_rows",
+                            "key": "field_cb_content_grid_qa_rows_v2",
                             "label": "Q&A Rows",
                             "name": "qa_rows",
                             "aria-label": "",
                             "type": "repeater",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "qa"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "qa"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "layout": "block",
                             "pagination": 0,
                             "min": 0,
@@ -418,10 +540,10 @@
                             "collapsed": "field_cb_content_grid_qa_question",
                             "button_label": "Add Q&A Row",
                             "rows_per_page": 20,
-                            "parent_repeater": "field_cb_content_grid_modules",
+                            "parent_repeater": "field_cb_content_grid_modules_v2",
                             "sub_fields": [
                                 {
-                                    "key": "field_cb_content_grid_qa_question",
+                                    "key": "field_cb_content_grid_qa_question_v2",
                                     "label": "Question",
                                     "name": "qa_question",
                                     "aria-label": "",
@@ -429,17 +551,21 @@
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
-                                    "wrapper": {"width": "40", "class": "", "id": ""},
+                                    "wrapper": {
+                                        "width": "40",
+                                        "class": "",
+                                        "id": ""
+                                    },
                                     "default_value": "",
                                     "maxlength": "",
                                     "allow_in_bindings": 1,
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "field_cb_content_grid_qa_rows"
+                                    "parent_repeater": "field_cb_content_grid_qa_rows_v2"
                                 },
                                 {
-                                    "key": "field_cb_content_grid_qa_answer",
+                                    "key": "field_cb_content_grid_qa_answer_v2",
                                     "label": "Answer",
                                     "name": "qa_answer",
                                     "aria-label": "",
@@ -447,28 +573,46 @@
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
-                                    "wrapper": {"width": "60", "class": "", "id": ""},
+                                    "wrapper": {
+                                        "width": "60",
+                                        "class": "",
+                                        "id": ""
+                                    },
                                     "default_value": "",
                                     "maxlength": "",
                                     "allow_in_bindings": 0,
                                     "rows": 4,
                                     "placeholder": "",
                                     "new_lines": "br",
-                                    "parent_repeater": "field_cb_content_grid_qa_rows"
+                                    "parent_repeater": "field_cb_content_grid_qa_rows_v2"
                                 }
                             ]
                         },
                         {
-                            "key": "field_69de7a5467114",
+                            "key": "field_69de7a5467114_v2",
                             "label": "Large Left?",
                             "name": "large_left",
                             "aria-label": "",
                             "type": "checkbox",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "qa"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
-                            "choices": {"Yes": "Yes"},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "qa"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Yes": "Yes"
+                            },
                             "default_value": [],
                             "return_format": "value",
                             "allow_custom": 0,
@@ -477,18 +621,30 @@
                             "toggle": 0,
                             "save_custom": 0,
                             "custom_choice_button_text": "Add new choice",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_links_rows",
+                            "key": "field_cb_content_grid_links_rows_v2",
                             "label": "Links",
                             "name": "links_rows",
                             "aria-label": "",
                             "type": "repeater",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "links"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "links"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "layout": "block",
                             "pagination": 0,
                             "min": 0,
@@ -496,10 +652,10 @@
                             "collapsed": "field_cb_content_grid_links_title",
                             "button_label": "Add Link",
                             "rows_per_page": 20,
-                            "parent_repeater": "field_cb_content_grid_modules",
+                            "parent_repeater": "field_cb_content_grid_modules_v2",
                             "sub_fields": [
                                 {
-                                    "key": "field_cb_content_grid_links_title",
+                                    "key": "field_cb_content_grid_links_title_v2",
                                     "label": "Title",
                                     "name": "title",
                                     "aria-label": "",
@@ -507,17 +663,21 @@
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
-                                    "wrapper": {"width": "50", "class": "", "id": ""},
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
                                     "default_value": "",
                                     "maxlength": "",
                                     "allow_in_bindings": 0,
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "field_cb_content_grid_links_rows"
+                                    "parent_repeater": "field_cb_content_grid_links_rows_v2"
                                 },
                                 {
-                                    "key": "field_cb_content_grid_links_file",
+                                    "key": "field_cb_content_grid_links_file_v2",
                                     "label": "File",
                                     "name": "file",
                                     "aria-label": "",
@@ -525,27 +685,43 @@
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
-                                    "wrapper": {"width": "50", "class": "", "id": ""},
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
                                     "return_format": "url",
                                     "library": "all",
                                     "min_size": "",
                                     "max_size": "",
                                     "mime_types": "pdf,docx",
                                     "allow_in_bindings": 0,
-                                    "parent_repeater": "field_cb_content_grid_links_rows"
+                                    "parent_repeater": "field_cb_content_grid_links_rows_v2"
                                 }
                             ]
                         },
                         {
-                            "key": "field_cb_content_grid_logo_grid_rows",
+                            "key": "field_cb_content_grid_logo_grid_rows_v2",
                             "label": "Logo Grid Rows",
                             "name": "logo_grid_rows",
                             "aria-label": "",
                             "type": "repeater",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "logo_grid"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "logo_grid"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "layout": "block",
                             "pagination": 0,
                             "min": 0,
@@ -553,10 +729,10 @@
                             "collapsed": "field_cb_content_grid_logo_grid_title",
                             "button_label": "Add Logo Grid Row",
                             "rows_per_page": 20,
-                            "parent_repeater": "field_cb_content_grid_modules",
+                            "parent_repeater": "field_cb_content_grid_modules_v2",
                             "sub_fields": [
                                 {
-                                    "key": "field_cb_content_grid_logo_grid_title",
+                                    "key": "field_cb_content_grid_logo_grid_title_v2",
                                     "label": "Title",
                                     "name": "title",
                                     "aria-label": "",
@@ -564,17 +740,21 @@
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
-                                    "wrapper": {"width": "30", "class": "", "id": ""},
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
                                     "default_value": "",
                                     "maxlength": "",
                                     "allow_in_bindings": 0,
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "field_cb_content_grid_logo_grid_rows"
+                                    "parent_repeater": "field_cb_content_grid_logo_grid_rows_v2"
                                 },
                                 {
-                                    "key": "field_cb_content_grid_logo_grid_logo",
+                                    "key": "field_cb_content_grid_logo_grid_logo_v2",
                                     "label": "Logo Gallery",
                                     "name": "logo",
                                     "aria-label": "",
@@ -582,7 +762,11 @@
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
-                                    "wrapper": {"width": "70", "class": "", "id": ""},
+                                    "wrapper": {
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
                                     "return_format": "id",
                                     "library": "all",
                                     "min": "",
@@ -596,20 +780,32 @@
                                     "mime_types": "png,svg",
                                     "insert": "append",
                                     "preview_size": "medium",
-                                    "parent_repeater": "field_cb_content_grid_logo_grid_rows"
+                                    "parent_repeater": "field_cb_content_grid_logo_grid_rows_v2"
                                 }
                             ]
                         },
                         {
-                            "key": "field_cb_content_grid_image",
+                            "key": "field_cb_content_grid_image_v2",
                             "label": "Image",
                             "name": "image",
                             "aria-label": "",
                             "type": "image",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "image"}]],
-                            "wrapper": {"width": "25", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
                             "return_format": "id",
                             "library": "all",
                             "min_width": "",
@@ -621,18 +817,30 @@
                             "mime_types": "",
                             "allow_in_bindings": 1,
                             "preview_size": "thumbnail",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_image_aspect_ratio",
+                            "key": "field_cb_content_grid_image_aspect_ratio_v2",
                             "label": "Aspect Ratio",
                             "name": "image_aspect_ratio",
                             "aria-label": "",
                             "type": "radio",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "image"}]],
-                            "wrapper": {"width": "25", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
                             "choices": {
                                 "native": "Native",
                                 "21x9": "21:9",
@@ -647,18 +855,30 @@
                             "allow_in_bindings": 1,
                             "layout": "vertical",
                             "save_other_choice": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_image_caption",
+                            "key": "field_cb_content_grid_image_caption_v2",
                             "label": "Size",
                             "name": "image_size",
                             "aria-label": "",
                             "type": "radio",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "image"}]],
-                            "wrapper": {"width": "50", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
                             "choices": {
                                 "cover": "Cover",
                                 "contain": "Contain"
@@ -670,49 +890,85 @@
                             "allow_in_bindings": 0,
                             "layout": "vertical",
                             "save_other_choice": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_video_url",
+                            "key": "field_cb_content_grid_video_url_v2",
                             "label": "Vimeo Player URL",
                             "name": "video_url",
                             "aria-label": "",
                             "type": "url",
                             "instructions": "Paste a Vimeo player URL such as https://player.vimeo.com/video/123456789.",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "video"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "video"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "default_value": "",
                             "placeholder": "https://player.vimeo.com/video/123456789",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_list_content",
+                            "key": "field_cb_content_grid_list_content_v2",
                             "label": "List Items",
                             "name": "list_content",
                             "aria-label": "",
                             "type": "textarea",
                             "instructions": "Enter one item per line.",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "list"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "list"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "default_value": "",
                             "maxlength": "",
                             "placeholder": "",
                             "new_lines": "br",
                             "rows": "",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_list_font_size",
+                            "key": "field_cb_content_grid_list_font_size_v2",
                             "label": "Font Size",
                             "name": "list_font_size",
                             "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "list"}]],
-                            "wrapper": {"width": "50", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "list"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
                             "choices": {
                                 "fs-100": "fs-100 (18px)",
                                 "fs-200": "fs-200 (20px)",
@@ -728,18 +984,30 @@
                             "placeholder": "",
                             "create_options": 0,
                             "save_options": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_cb_content_grid_list_font_weight",
+                            "key": "field_cb_content_grid_list_font_weight_v2",
                             "label": "Font Weight",
                             "name": "list_font_weight",
                             "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "list"}]],
-                            "wrapper": {"width": "50", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "list"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
                             "choices": {
                                 "fw-light": "Light (300)",
                                 "fw-regular": "Regular (400)",
@@ -755,39 +1023,63 @@
                             "placeholder": "",
                             "create_options": 0,
                             "save_options": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_69e107d3af859",
+                            "key": "field_69e107d3af859_v2",
                             "label": "Button Link",
                             "name": "button_link",
                             "aria-label": "",
                             "type": "link",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "button"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "button"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "return_format": "array",
                             "allow_in_bindings": 0,
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
-                            "key": "field_69e107eeaf85a",
+                            "key": "field_69e107eeaf85a_v2",
                             "label": "CTA Text",
                             "name": "cta_text",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [[{"field": "field_cb_content_grid_module_type", "operator": "==", "value": "button"}]],
-                            "wrapper": {"width": "", "class": "", "id": ""},
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "button"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
                             "default_value": "",
                             "maxlength": "",
                             "allow_in_bindings": 0,
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "parent_repeater": "field_cb_content_grid_modules"
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
                         }
                     ]
                 }
@@ -815,5 +1107,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1787665249
+    "modified": 1787666850
 }
