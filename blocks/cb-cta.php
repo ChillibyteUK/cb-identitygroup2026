@@ -42,8 +42,28 @@ if ( have_rows( 'ctas', 'option' ) ) {
 }
 
 $background_url = $bg ? wp_get_attachment_image_url( $bg, 'full' ) : '';
-$allowed_masks  = array( 'A', 'B', 'C' );
-$mask           = in_array( $mask, $allowed_masks, true ) ? $mask : 'A';
+
+// health's real design drops the clipped/masked foreground image entirely -
+// full-bleed parallax background only, single text column - so it gets its
+// own template rather than a pile of `if ($is_health)` branches threaded
+// through the shared one below (2026-08-25 client direction).
+if ( 'health' === cb_site_template_suffix() ) {
+	get_template_part(
+		'blocks/cb-cta-health',
+		null,
+		array(
+			'block_id'        => $block_id,
+			'cta_title'       => $cta_title,
+			'content'         => $content,
+			'link'            => $link,
+			'background_url'  => $background_url,
+		)
+	);
+	return;
+}
+
+$allowed_masks = array( 'A', 'B', 'C' );
+$mask          = in_array( $mask, $allowed_masks, true ) ? $mask : 'A';
 
 ?>
 <?php if ( $background_url ) : ?>

@@ -1,0 +1,41 @@
+/**
+ * CB CTA - health variant styles.
+ *
+ * Own block name (not scoped under .cb-site-health on top of .cb-cta)
+ * because the markup itself is structurally different - see
+ * blocks/cb-cta-health.php.
+ *
+ * @package cb-identitygroup2026
+ */
+
+.cb-cta-health {
+  position: relative;
+  background-color: var(--col-white);
+  isolation: isolate;
+  overflow: hidden;
+
+  &--has-background::before {
+    content: "";
+    position: absolute;
+    inset: -3rem 0;
+    z-index: -1;
+    background-image: var(--cb-cta-health-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateY(var(--cb-cta-health-parallax-y, 0));
+    will-change: transform;
+  }
+
+  &__title {
+    color: var(--col-black);
+    font-weight: var(--fw-light);
+    font-size: var(--fs-850);
+  }
+
+  &__content {
+    color: var(--col-black);
+    font-weight: var(--fw-light);
+    font-size: var(--fs-700);
+  }
+}

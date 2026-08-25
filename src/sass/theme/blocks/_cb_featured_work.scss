@@ -200,7 +200,10 @@
 }
 
 // health's pre-title also gets a top border (2026-08-25 client direction),
-// matching the existing bottom border.
+// matching the existing bottom border, plus its own real background/text
+// colours (Strawberry 200 / Strawberry 850).
 .cb-site-health .cb-featured-work__pre-title {
   border-top: 1px solid hsl(var(--hsl-lime-1000) / 0.4);
+  background-color: var(--col-strawberry-200);
+  color: var(--col-strawberry-850);
 }
