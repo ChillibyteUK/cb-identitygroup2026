@@ -4,6 +4,7 @@
      COLOURS
      ======== */
   --col-white: #ffffff;
+  --hsl-white: 0 0% 100%;
   --hsl-neutral-050: 255 29% 97%;
   --col-neutral-050: #f7f6fa;
   --col-neutral-100: #f0eff4;
@@ -141,6 +142,7 @@
      COLOURS
      ======== */
   --col-white: #ffffff;
+  --hsl-white: 0 0% 100%;
   --hsl-neutral-050: 255 29% 97%;
   --col-neutral-050: #f7f6fa;
   --col-neutral-100: #f0eff4;

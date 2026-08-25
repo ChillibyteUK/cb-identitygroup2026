@@ -9,6 +9,10 @@ $col-light: #f2f2f2;
      ======== */
 
   --col-white: #ffffff;
+  // Not site-specific like the other --hsl-* tokens - white's HSL value
+  // doesn't vary between sites (2026-08-25, added for
+  // _cb_lined_title.scss's health line-colour toggle).
+  --hsl-white: 0 0% 100%;
   --hsl-neutral-050: 255 29% 97%;
   --col-neutral-050: #f7f6fa;
   --col-neutral-100: #f0eff4;

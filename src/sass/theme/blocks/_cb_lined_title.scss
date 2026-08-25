@@ -11,3 +11,23 @@
   border-top-color: rgba(255, 255, 255, 0.4) !important;
   border-bottom-color: rgba(255, 255, 255, 0.4) !important;
 }
+
+// health's has-lime-1000-border-top/-bottom classes render with no colour at
+// all (health's isolated theme.json palette - see cb_filter_editor_theme_json()
+// - has no lime-1000 slug for WP to generate that class's colour from), so
+// this block needed its own real line-colour control for health rather than
+// inheriting the (here, broken) lime border. New editor field "Line Colour"
+// (field_cb_lined_title_line_colour) drives the
+// .cb-lined-title--line-dark/-light class added in blocks/cb-lined-title.php
+// (2026-08-25). Only wired up for health - other sites ignore the field and
+// class entirely, keeping their existing behaviour (identity's override
+// above, coda/idtravel's real lime border).
+.cb-site-health section.cb-lined-title--line-light {
+  border-top: 1px solid hsl(var(--hsl-white) / 0.5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-white) / 0.5) !important;
+}
+
+.cb-site-health section.cb-lined-title--line-dark {
+  border-top: 1px solid hsl(var(--hsl-neutral-400) / 0.5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400) / 0.5) !important;
+}

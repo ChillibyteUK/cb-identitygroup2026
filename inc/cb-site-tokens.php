@@ -72,6 +72,23 @@ add_filter( 'acf/prepare_field/key=field_6908877075c95', 'cb_hide_health_extrane
 add_filter( 'acf/prepare_field/key=field_6908877e75c96', 'cb_hide_health_extraneous_cta_fields' ); // ctas_mask
 
 /**
+ * Hides CB Lined Title's Line Colour field for every site except health -
+ * only health's own border-colour rules
+ * (.cb-lined-title--line-dark/-light in _cb_lined_title.scss) read it at
+ * all, so it's pure clutter for identity/coda/idtravel editors (2026-08-25).
+ *
+ * @param array $field ACF field settings.
+ * @return array|false
+ */
+function cb_hide_non_health_lined_title_line_colour( $field ) {
+	if ( 'health' !== cb_site_template_suffix() ) {
+		return false;
+	}
+	return $field;
+}
+add_filter( 'acf/prepare_field/key=field_cb_lined_title_line_colour', 'cb_hide_non_health_lined_title_line_colour' );
+
+/**
  * Returns the full per-site token table.
  *
  * @return array<string, array<string, string>>

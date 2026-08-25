@@ -4,6 +4,7 @@
      COLOURS
      ======== */
   --col-white: #ffffff;
+  --hsl-white: 0 0% 100%;
   --hsl-neutral-050: 255 29% 97%;
   --col-neutral-050: #f7f6fa;
   --col-neutral-100: #f0eff4;
@@ -28444,6 +28445,16 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-site-identity section.has-lime-1000-border-top.has-lime-1000-border-bottom {
   border-top-color: rgba(255, 255, 255, 0.4) !important;
   border-bottom-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.cb-site-health section.cb-lined-title--line-light {
+  border-top: 1px solid hsl(var(--hsl-white)/0.5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-white)/0.5) !important;
+}
+
+.cb-site-health section.cb-lined-title--line-dark {
+  border-top: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
 }
 
 .cb-about-detail {

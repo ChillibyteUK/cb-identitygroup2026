@@ -204,10 +204,13 @@ if ( $q->have_posts() ) {
 	// variant, so branched here rather than adding another scoped CSS
 	// override on top of two conflicting class lists.
 	$is_identity        = 'identity' === cb_site_template_suffix();
+	$is_health          = 'health' === cb_site_template_suffix();
 	$cards_wrap_class   = $is_identity ? 'id-container' : 'id-container px-4 px-md-5 py-4';
 	?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-featured-work">
-	<?php if ( $is_identity ) : ?>
+	<?php if ( $is_health ) : ?>
+		<?php // health uses a separate CB Lined Title block for the section title instead. ?>
+	<?php elseif ( $is_identity ) : ?>
 	<h2 class="cb-featured-work__pre-title mb-0">
 		<div class="id-container py-4 px-4 px-md-5">
 			FEATURED WORK

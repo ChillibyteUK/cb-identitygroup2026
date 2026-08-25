@@ -13,6 +13,7 @@ $block_id = $block['id'] ?? '';
 // identity's real card content shows an excerpt, not the category/date
 // coda's real design uses - not a colour variant, so branched here.
 $is_identity = 'identity' === cb_site_template_suffix();
+$is_health   = 'health' === cb_site_template_suffix();
 
 // the front-page gradient variant is coda's own real feature - identity's
 // real source has no such concept and always renders the same dark
@@ -26,7 +27,9 @@ $taxonomy_filter = get_field( 'taxonomy_filter' );
 
 ?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-latest-insights <?= esc_attr( $class ); ?>">
-	<?php if ( $is_identity ) : ?>
+	<?php if ( $is_health ) : ?>
+		<?php // health uses a separate CB Lined Title block for the section title instead. ?>
+	<?php elseif ( $is_identity ) : ?>
 	<h2 class="cb-latest-insights__pre-title mb-0">
 		<div class="id-container pt-4 pb-3 px-4 px-md-5">
 			LATEST NEWS &amp; INSIGHTS
