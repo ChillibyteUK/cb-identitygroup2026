@@ -141,3 +141,11 @@
     color: var(--col-neutral-500);
   }
 }
+
+// health has no gradients anywhere (2026-08-25 client direction). health
+// isn't identity, so it gets the front-page --front variant above (coda's
+// own real feature) - flattened to the lightest stop of --grad-main,
+// matching health's white-page default.
+.cb-site-health .cb-latest-insights.cb-latest-insights--front {
+  background: var(--col-white);
+}

@@ -213,3 +213,17 @@
     }
   }
 }
+
+// health has no gradients anywhere (2026-08-25 client direction). The base
+// card-media background is flattened to its own darkest stop (mostly hidden
+// behind the card image anyway); the two vertical fade scrims that sit above
+// the image for text legibility are collapsed into one flat semi-transparent
+// overlay so the photo still shows through.
+.cb-site-health .cb-business-travel-nav__card-media {
+  background: var(--col-ink);
+
+  &::before,
+  &::after {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}

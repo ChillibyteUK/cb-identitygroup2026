@@ -6,3 +6,9 @@
     font-weight: var(--fw-regular);
   }
 }
+
+// health has no gradients anywhere (2026-08-25 client direction) - flattened
+// to the lightest stop of --grad-main, matching health's white-page default.
+.cb-site-health .cb-gradient-intro {
+  background: var(--col-white);
+}

@@ -2,15 +2,6 @@
   background-color: var(--col-primary-black);
   color: var(--col-white);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  // Contains child margins (specifically the inner `.row.g-2`'s Bootstrap
-  // gutter compensation, margin-top: -0.5rem) so they can't collapse
-  // through this section and drag it 8px up over whatever sits above -
-  // which swallowed the border-bottom of a preceding
-  // .cb-signpost-header, since this section's black background paints
-  // after that border. Only surfaced once __pre-title was removed
-  // (2026-08-17): that div used to be the first child and blocked the
-  // collapse itself. Same structural fix as .work-index-hero.
-  display: flow-root;
 
   &__pre-title {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -86,4 +77,11 @@
     pointer-events: none;
     z-index: 1;
   }
+}
+
+// Title panel background: Strawberry 200 (#ffeaff) at .95 opacity - the
+// client's specified colour for the "featured work and pertaining" card
+// family (2026-08-25, see _cb_featured_work.scss for the other members).
+.cb-site-health .cb-related-work__content {
+  background: rgba(255, 234, 255, 0.95);
 }

@@ -154,3 +154,10 @@
     }
 
 }
+
+// Title panel background: Strawberry 200 (#ffeaff) at .95 opacity - the
+// client's specified colour for the "featured work and pertaining" card
+// family (2026-08-25, see _cb_featured_work.scss for the other members).
+.cb-site-health .cb-work-carousel .work-carousel-text {
+  background: rgba(255, 234, 255, 0.95);
+}

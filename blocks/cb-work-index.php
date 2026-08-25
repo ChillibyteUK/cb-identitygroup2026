@@ -101,7 +101,16 @@ if ( ! $bg_case_study ) {
 			<?php endif; ?>
 			<div class="work-index-hero__content px-4 px-md-5">
 				<div class="work-index-hero__<?= $is_identity ? 'title' : 'card-title has-700-font-size fw-semi'; ?>">
-					<?php echo esc_html( get_the_title( $bg_case_study ) ); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" width=23 height=21 alt="" class="cb-services-nav__item-icon" />
+					<?php
+					echo esc_html( get_the_title( $bg_case_study ) );
+					// Was borrowing cb-services-nav's icon class (unrelated
+					// block) - given its own name here, joining featured-
+					// work/related-work/work-index's shared arrow family.
+					// currentColor-based; --col-white kept explicitly in
+					// _cb_work_index.scss's base rule so this renders
+					// identically to the old hardcoded-white arrow-wh.svg.
+					echo cb_sanitise_svg( get_stylesheet_directory() . '/img/arrow-n600.svg', 'cb-featured-work__arrow', 23, 21 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					?>
 				</div>
 				<div class="work-index-hero__<?= $is_identity ? 'desc' : 'card-desc'; ?>">
 					<?php
@@ -246,7 +255,10 @@ if ( ! $bg_case_study ) {
 					<?php echo get_work_image( get_the_ID(), 'cb-work-index__image' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<div class="cb-work-index__content px-4 px-md-5">
 						<div class="cb-work-index__title">
-							<?php the_title(); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" width=23 height=21 alt="" class="cb-services-nav__item-icon" />
+							<?php
+							the_title();
+							echo cb_sanitise_svg( get_stylesheet_directory() . '/img/arrow-n600.svg', 'cb-featured-work__arrow', 23, 21 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							?>
 						</div>
 						<div class="cb-work-index__desc">
 							<?php

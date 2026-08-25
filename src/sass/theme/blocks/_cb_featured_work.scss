@@ -136,3 +136,34 @@
     color: var(--col-neutral-500);
   }
 }
+
+// health has no gradients anywhere (2026-08-25 client direction). health
+// isn't identity, so it renders the base (coda-style, light-lime) markup
+// above, not this identity override — flattened to that base gradient's own
+// darkest/most-opaque stop. Superseded 2026-08-25: title panel background is
+// now Strawberry 200 (#ffeaff) at .95 opacity, the client's specified colour
+// for the "featured work and pertaining" card family (also applied in
+// _cb_related_work.scss, _cb_work_carousel.scss, _cb_work_index.scss).
+.cb-site-health .cb-featured-work__content {
+  background: rgba(255, 234, 255, 0.95);
+}
+
+// health's section background is white, not the base (coda-style) light-lime
+// tint (2026-08-25 client direction).
+.cb-site-health .cb-featured-work {
+  background-color: var(--col-white);
+}
+
+// Card arrow, shared by the whole "featured work and pertaining" family
+// (cb-featured-work, cb-related-work, cb-work-index) - all render the same
+// .cb-featured-work__arrow class now that each was switched from a
+// hardcoded-colour flat SVG file to this one shared currentColor-based icon.
+// !important because several of those blocks nest their own
+// `.cb-featured-work__arrow { width/height }` size overrides at equal
+// (0,2,0) specificity in their own files, some of which are @import'd after
+// this one - relying on cascade order alone would be fragile.
+.cb-site-health .cb-featured-work__arrow {
+  width: 15px !important;
+  height: 11px !important;
+  color: var(--col-neutral-800) !important;
+}

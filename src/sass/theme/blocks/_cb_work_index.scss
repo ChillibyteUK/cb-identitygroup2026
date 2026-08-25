@@ -102,7 +102,7 @@
     margin-top: 0.5rem;
   }
   &__card-title {
-    .cb-services-nav__item-icon {
+    .cb-featured-work__arrow {
       width: 40px;
       height: 36px;
     }
@@ -170,7 +170,7 @@
     font-weight: var(--fw-semi);
     color: var(--col-primary-black);
 
-    .cb-services-nav__item-icon {
+    .cb-featured-work__arrow {
       width: 31px;
       height: 23px;
       filter: brightness(0) saturate(100%);
@@ -325,7 +325,7 @@
       // identity's own equivalent (&__title, not &__card-title) had no
       // icon rule at all, so it was falling back to the <img> tag's raw
       // HTML width/height attributes (23x21) instead.
-      .cb-services-nav__item-icon {
+      .cb-featured-work__arrow {
         width: 40px;
         height: 36px;
       }
@@ -386,7 +386,7 @@
       // (2026-07-29).
       font-weight: 500;
 
-      .cb-services-nav__item-icon {
+      .cb-featured-work__arrow {
         width: 23px;
         height: 21px;
         filter: none;
@@ -439,5 +439,30 @@
 .cb-site-coda {
   .work-index-hero h1 {
     font-weight: var(--fw-light);
+  }
+}
+
+// Title panel background: Strawberry 200 (#ffeaff) at .95 opacity - the
+// client's specified colour for the "featured work and pertaining" card
+// family (2026-08-25, see _cb_featured_work.scss for the other members).
+.cb-site-health {
+  .work-index-hero__content {
+    background: rgba(255, 234, 255, 0.95);
+  }
+
+  // __content's own `color: #fff` (base rule above) was made for the old
+  // dark scrim - illegible against the new light Strawberry 200 panel.
+  .work-index-hero__card-title {
+    color: var(--col-black);
+  }
+
+  // Section background is white, not the base (coda-style) light-lime tint
+  // (2026-08-25 client direction) - same treatment as _cb_featured_work.scss.
+  .cb-work-index {
+    background-color: var(--col-white);
+  }
+
+  .cb-work-index__content {
+    background: rgba(255, 234, 255, 0.95);
   }
 }

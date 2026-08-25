@@ -65,7 +65,13 @@ if ( ! $is_identity ) {
 				<?php else : ?>
 				<div class="cb-services-nav__item-title"><?php echo esc_html( $service_title ); ?></div>
 				<?php endif; ?>
-				<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-wh.svg' ); ?>" alt="" class="cb-services-nav__item-icon" />
+				<?php
+				// currentColor-based (arrow-wh.svg is a hardcoded-white
+				// hardcoded flat file) so health can recolour it via CSS
+				// alone (--col-neutral-700, 2026-08-25) - inherits white from
+				// __item's own color for every other site, unchanged.
+				echo cb_sanitise_svg( get_stylesheet_directory() . '/img/arrow-n600.svg', 'cb-services-nav__item-icon', 62, 45 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
 			</div>
 		</a>
 					<?php

@@ -195,6 +195,103 @@
   }
 }
 
+// health's header is coda's light-background/dark-text structure (2026-08-25
+// client direction: "like the Coda context, white background, semi-transparent
+// on scroll"), ported the same way as coda's own block above — only the
+// header/nav rules, not coda's unrelated cb-cta/cb-pushthrough/leadership
+// overrides further up, since those haven't been specified for health yet.
+// Logo sized to spec (~260x19px, 2026-08-25) rather than coda's own 25px —
+// health's real logo (header-health.php, the "Secondary" lockup) has a
+// 350.13:25 viewBox, so at 19px tall it renders ~266px wide, matching the
+// given target closely (width is intentionally left as `auto`, not pinned,
+// so the aspect ratio stays locked to the source SVG).
+.cb-site-health {
+  header {
+    background-color: var(--col-white) !important;
+
+    &.scrolled {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    a,
+    a.nav-link {
+      color: var(--col-primary-black);
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        color: var(--col-primary-black);
+      }
+    }
+
+    .logo-clip {
+      height: 19px;
+    }
+    .logo-inner svg {
+      height: 19px;
+    }
+
+    .current_page_item > .nav-link,
+    .current_page_parent > .nav-link,
+    .current-page-ancestor > .nav-link,
+    .current-menu-parent > .nav-link,
+    .current-menu-ancestor > .nav-link,
+    .dropdown.current-page-ancestor > .nav-link,
+    .dropdown.current-menu-item > .nav-link {
+      color: var(--col-brand-dark);
+    }
+
+    .dropdown-item {
+      color: var(--col-primary-black);
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background-color: var(--col-white);
+        color: var(--col-brand-dark);
+      }
+    }
+
+    .navbar-toggler {
+      color: var(--col-primary-black);
+    }
+
+    // health's own equivalent of _header.scss's base `li.raspberry` "make
+    // this nav item a button" utility (2026-08-25) - same mechanism, health's
+    // own colour (Strawberry 850, #a300ac - see cb_get_site_tokens_table()'s
+    // --col-button, which points at the same token). Scoped here rather than
+    // added to the base rule since `raspberry`'s own class name/colour stay
+    // exactly as-is for travel.
+    li.strawberry a {
+      background-color: var(--col-strawberry-850);
+      padding-inline: 1rem !important;
+      color: var(--col-white);
+      &:hover {
+        color: var(--col-white);
+      }
+    }
+
+    li.strawberry.current_page_item > .nav-link,
+    li.strawberry.current_page_parent > .nav-link,
+    li.strawberry.current-page-ancestor > .nav-link,
+    li.strawberry.current-menu-parent > .nav-link,
+    li.strawberry.current-menu-ancestor > .nav-link,
+    li.strawberry.dropdown.current-page-ancestor > .nav-link,
+    li.strawberry.dropdown.current-menu-item > .nav-link {
+      color: var(--col-white);
+    }
+  }
+
+  .navbar-collapse.collapse.show {
+    background-color: var(--col-white);
+    border-color: var(--col-neutral-50);
+  }
+
+  header:has(.navbar-collapse.collapse.show) {
+    background-color: var(--col-white) !important;
+  }
+}
+
 // identity's real cb-pushthrough is the same "fixed dark theme, not
 // Gutenberg-colour-picker-driven" design as coda's above (background-
 // colour/text-colour/border/pretitle/h2/desc/link colours+sizes all real,

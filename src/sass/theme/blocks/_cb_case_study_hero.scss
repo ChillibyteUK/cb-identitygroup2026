@@ -37,3 +37,12 @@
         aspect-ratio: 16 / 9;
     }
  }
+
+// health has no gradients anywhere (2026-08-25 client direction). This
+// particular one existed to blend the video hero into a dark header
+// (rgba(13,13,12,1) fading out) — health's header is white (2026-08-25), so
+// there's nothing dark to blend into any more; removed outright rather than
+// flattened to an arbitrary solid tint.
+.cb-site-health .case-study-hero .overlay {
+  background: none;
+}

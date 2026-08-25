@@ -74,3 +74,27 @@
     font-weight: var(--fw-light);
   }
 }
+
+// health's own real colours (2026-08-25): #006b78 is Blueberry 850,
+// #0d0d0c is --col-black, both already registered in cb-site-tokens.php's
+// health row - referenced by token rather than repeating the literal hex.
+.cb-site-health .cb-services-nav {
+  &::before {
+    background: url(../img/services-bg.jpg) center / cover no-repeat fixed;
+  }
+  &__header {
+    background-color: rgba(255, 255, 255, 0.75);
+    color: var(--col-blueberry-850);
+    margin-top: 1px;
+  }
+  &__item-title {
+    color: var(--col-black);
+  }
+  &__item-icon {
+    color: var(--col-neutral-700);
+    // Smaller than the base 62x45 (2026-08-25 client direction) - CSS
+    // width/height here wins over the SVG's own inline attributes.
+    width: 40px;
+    height: 29px;
+  }
+}

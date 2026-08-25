@@ -42,51 +42,6 @@ function cb_find_hero_subtitle( $blocks ) {
 }
 
 /**
- * Builds tax_query clauses for cb-related-work's service/theme/region filters.
- *
- * Lives here rather than in blocks/cb-related-work.php because block templates
- * are included once per block instance, so a function declared there fatals on
- * any page holding two of them - the same reason cb_find_hero_subtitle() above
- * was lifted out of its five callers.
- *
- * Every filter produces one clause of identical shape, so the block can hand
- * the same builder to its Yoast-primary pass and its fill pass and know a
- * filter can never apply to one but not the other. That interchangeability is
- * the point: region support was added (2026-08-17) by extending this list
- * rather than by giving the region its own query path, which is what let
- * cb-work-by-region be retired instead of maintained alongside.
- *
- * Silently drops any taxonomy that isn't registered on the current site, so a
- * filter degrades to "not filtered" rather than to "no results". That failure
- * mode is not hypothetical and not graceful by default: WP_Query treats a
- * tax_query clause naming an unregistered taxonomy as unsatisfiable and
- * returns zero posts for the WHOLE query, so one bad clause takes the valid
- * ones down with it - a `theme` filter that matches 14 case studies returns 0
- * the moment an unregistered `region` clause joins it. This theme registers all
- * three taxonomies unconditionally in inc/cb-taxonomies.php, so the guard is
- * belt-and-braces today; it matters if that registration is ever made
- * conditional per site again, which is how it used to be.
- *
- * @param array $terms Map of taxonomy name => term ID (or IDs). Falsy values
- *                     and unregistered taxonomies are skipped.
- * @return array Zero or more tax_query clauses.
- */
-function cb_related_work_term_clauses( $terms ) {
-	$clauses = array();
-	foreach ( $terms as $taxonomy => $term ) {
-		if ( ! $term || ! taxonomy_exists( $taxonomy ) ) {
-			continue;
-		}
-		$clauses[] = array(
-			'taxonomy' => $taxonomy,
-			'field'    => 'term_id',
-			'terms'    => $term,
-		);
-	}
-	return $clauses;
-}
-
-/**
  * Rewrites legacy block.json block names to their converted classic-ACF
  * equivalents at render time, so existing published content (which still
  * has the old names serialized in post_content) keeps rendering correctly

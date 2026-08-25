@@ -71,3 +71,20 @@
     letter-spacing: var(--ls-20);
   }
 }
+
+// health has no footer__logo block (removed 2026-08-25, see footer-health.php),
+// so it lost the pinstripe that block's own border-top/border-bottom supplied
+// above the colophon on every other site. Restored directly on the colophon,
+// scoped to health only.
+.cb-site-health .footer__colophon {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+// health's footer is white-background/dark-text (2026-08-25 client direction),
+// the inverse of every other site's dark .footer base rule above — same
+// per-site structural-override pattern as the header in
+// _header-site-overrides.scss.
+.cb-site-health .footer {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+}

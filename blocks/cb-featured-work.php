@@ -37,7 +37,12 @@ if ( $hero_mode ) {
 			<div class="cb-featured-work__content px-4 px-md-5">
 				<div class="cb-featured-work__title">
 					<?php echo esc_html( get_the_title( $hero_case_study ) ); ?>
-					<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/arrow-bk.svg' ); ?>" width=23 height=21 alt="" class="cb-featured-work__arrow" />
+					<?php
+					// currentColor-based (arrow-bk.svg is hardcoded-black)
+					// so health can recolour/resize it via CSS alone
+					// (--col-neutral-800, 15x11, 2026-08-25).
+					echo cb_sanitise_svg( get_stylesheet_directory() . '/img/arrow-n600.svg', 'cb-featured-work__arrow', 23, 21 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					?>
 				</div>
 				<div class="cb-featured-work__desc">
 					<?php
@@ -200,9 +205,6 @@ if ( $q->have_posts() ) {
 	// override on top of two conflicting class lists.
 	$is_identity        = 'identity' === cb_site_template_suffix();
 	$cards_wrap_class   = $is_identity ? 'id-container' : 'id-container px-4 px-md-5 py-4';
-	$arrow_src          = $is_identity ? 'arrow-wh.svg' : 'arrow-bk.svg';
-	// $arrow_class        = $is_identity ? 'cb-services-nav__item-icon' : 'cb-featured-work__arrow';
-	$arrow_class        = 'cb-featured-work__arrow';
 	?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-featured-work">
 	<?php if ( $is_identity ) : ?>
@@ -241,7 +243,13 @@ if ( $q->have_posts() ) {
 				<?= get_work_image( get_the_ID(), 'cb-featured-work__image' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<div class="cb-featured-work__content px-4 px-md-5">
 						<div class="cb-featured-work__title">
-						<?php the_title(); ?> <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/' . $arrow_src ); ?>" width=23 height=21 alt="" class="<?= esc_attr( $arrow_class ); ?>" />
+						<?php
+						the_title();
+						// currentColor-based - inherits __title's own colour
+						// (white for identity, near-black elsewhere) instead
+						// of branching on a hardcoded-colour file per site.
+						echo cb_sanitise_svg( get_stylesheet_directory() . '/img/arrow-n600.svg', 'cb-featured-work__arrow', 23, 21 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						?>
 						</div>
 						<div class="cb-featured-work__desc">
 						<?php

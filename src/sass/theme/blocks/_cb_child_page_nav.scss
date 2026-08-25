@@ -190,3 +190,14 @@
     }
   }
 }
+
+// health has no gradients anywhere (2026-08-25 client direction). Same
+// treatment as _cb_business_travel_nav.scss's own health override.
+.cb-site-health .cb-child-page-nav__card-media {
+  background: var(--col-ink);
+
+  &::before,
+  &::after {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}
