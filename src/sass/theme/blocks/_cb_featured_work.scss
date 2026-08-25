@@ -2,13 +2,35 @@
   background-color: var(--col-lime-200);
   color: var(--col-primary-black);
   // border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  // Was rendered via a `has-lime-1000-border-bottom` wrapper div + a plain h2
+  // stacked with has-lime-900-color/fs-300/fw-regular/lh-tightest/text-
+  // uppercase utility classes (2026-08-25 refactor) - moved onto this
+  // existing-but-previously-dead element rule instead, matching identity's
+  // own __pre-title's structure/naming. Border colour matches what
+  // has-lime-1000-border-bottom rendered (_child_theme.scss); text colour
+  // matches what has-lime-900-color rendered on coda specifically
+  // (--col-brand-dark and --wp--preset--color--lime-900 are colour-identical
+  // there) - idtravel's own real equivalent is neutralised separately below,
+  // same as its own has-lime-900-color/has-lime-1000-border-bottom classes
+  // already were in _child_theme.scss.
   &__pre-title {
-    // border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    padding-block: 0.5rem;
+    border-bottom: 1px solid hsl(var(--hsl-lime-1000) / 0.4);
+    // 1.25rem/1rem matches the old markup's combined total exactly (the
+    // wrapping id-container's own py-3 plus the inner h2's own pt-1/pb-0) -
+    // consolidated onto this one element the same way identity's own
+    // __pre-title does below, zeroing the inner id-container's own padding
+    // so the two don't compound.
+    padding-top: 1.25rem;
+    padding-bottom: 1rem;
     color: var(--col-brand-dark);
     font-weight: var(--fw-regular);
     font-size: var(--fs-300);
     line-height: 1;
+    text-transform: uppercase;
+
+    > .id-container {
+      padding-block: 0 !important;
+    }
   }
   &__card {
     aspect-ratio: 16 / 9;
@@ -166,4 +188,19 @@
   width: 15px !important;
   height: 11px !important;
   color: var(--col-neutral-800) !important;
+}
+
+// idtravel's own real theme.json has no lime palette (see _child_theme.scss's
+// own has-lime-900-color/has-lime-1000-border-bottom neutralisation for
+// idtravel) - preserved here now that the 2026-08-25 refactor above moved
+// this text off those utility classes and onto a real element rule that
+// idtravel would otherwise also pick up --col-brand-dark from.
+.cb-site-idtravel .cb-featured-work__pre-title {
+  color: inherit;
+}
+
+// health's pre-title also gets a top border (2026-08-25 client direction),
+// matching the existing bottom border.
+.cb-site-health .cb-featured-work__pre-title {
+  border-top: 1px solid hsl(var(--hsl-lime-1000) / 0.4);
 }

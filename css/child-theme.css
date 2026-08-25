@@ -22470,7 +22470,7 @@ header:has(.navbar-collapse.collapse.show) {
 .cb-site-health header .current-menu-ancestor > .nav-link,
 .cb-site-health header .dropdown.current-page-ancestor > .nav-link,
 .cb-site-health header .dropdown.current-menu-item > .nav-link {
-  color: var(--col-brand-dark);
+  color: var(--col-strawberry-850);
 }
 .cb-site-health header .dropdown-item {
   color: var(--col-primary-black);
@@ -26911,16 +26911,26 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   background: var(--col-white);
 }
 
+.cb-site-health .cb-latest-insights__pre-title {
+  border-top: 1px solid hsl(var(--hsl-lime-1000)/0.4);
+}
+
 .cb-featured-work {
   background-color: var(--col-lime-200);
   color: var(--col-primary-black);
 }
 .cb-featured-work__pre-title {
-  padding-block: 0.5rem;
+  border-bottom: 1px solid hsl(var(--hsl-lime-1000)/0.4);
+  padding-top: 1.25rem;
+  padding-bottom: 1rem;
   color: var(--col-brand-dark);
   font-weight: var(--fw-regular);
   font-size: var(--fs-300);
   line-height: 1;
+  text-transform: uppercase;
+}
+.cb-featured-work__pre-title > .id-container {
+  padding-block: 0 !important;
 }
 .cb-featured-work__card {
   aspect-ratio: 16/9;
@@ -27029,6 +27039,14 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   width: 15px !important;
   height: 11px !important;
   color: var(--col-neutral-800) !important;
+}
+
+.cb-site-idtravel .cb-featured-work__pre-title {
+  color: inherit;
+}
+
+.cb-site-health .cb-featured-work__pre-title {
+  border-top: 1px solid hsl(var(--hsl-lime-1000)/0.4);
 }
 
 .cb-services-nav {

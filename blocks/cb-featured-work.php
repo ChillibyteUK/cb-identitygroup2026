@@ -214,11 +214,11 @@ if ( $q->have_posts() ) {
 		</div>
 	</h2>
 	<?php else : ?>
-	<div class="has-lime-1000-border-bottom">
+	<h2 class="cb-featured-work__pre-title mb-0">
 		<div class="id-container py-3 px-4 px-md-5">
-			<h2 class="fs-300 fw-regular has-lime-900-color lh-tightest pt-1 pb-0 mb-0 text-uppercase" >Featured Work</h2>
+			Featured Work
 		</div>
-	</div>
+	</h2>
 	<?php endif; ?>
 	<div class="<?= esc_attr( $cards_wrap_class ); ?>">
 		<div class="row g-2">

@@ -231,6 +231,9 @@
       height: 19px;
     }
 
+    // Strawberry 850 (2026-08-25) - same colour as the li.strawberry button
+    // below, so the current-page indicator and the "make this a button"
+    // treatment read as one consistent accent rather than two different reds.
     .current_page_item > .nav-link,
     .current_page_parent > .nav-link,
     .current-page-ancestor > .nav-link,
@@ -238,7 +241,7 @@
     .current-menu-ancestor > .nav-link,
     .dropdown.current-page-ancestor > .nav-link,
     .dropdown.current-menu-item > .nav-link {
-      color: var(--col-brand-dark);
+      color: var(--col-strawberry-850);
     }
 
     .dropdown-item {
