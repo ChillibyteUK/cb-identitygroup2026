@@ -52,6 +52,13 @@
     }
   }
 
+  // No width: 50% here (2026-08-25 client direction) - unlike __h2 below,
+  // which has one "for some reason" (no comment/rationale on it, and no
+  // other heading module in this block restricts its own width either).
+  &__h1 {
+    text-wrap: balance;
+  }
+
   &__h2 {
     width: 50%;
     text-wrap: balance;

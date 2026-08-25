@@ -572,7 +572,7 @@ function cb_tiny_mce_before_init( $settings ) {
 			array(
 				'title'   => 'Standfirst',
 				'block'   => 'p',
-				'classes' => 'font-lead',
+				'classes' => 'font-lede',
 			),
 		)
 	);

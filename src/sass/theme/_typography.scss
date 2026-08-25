@@ -253,6 +253,10 @@ button,
 }
 
 /* shared tokens */
+// .font-lead is the pre-rename class name (2026-08-25) - kept as a fallback
+// alias, mirroring .font-lede exactly, so existing saved content using the
+// old class name doesn't need updating instance-by-instance.
+.font-lede,
 .font-lead,
 .font-h5 {
   font-size: var(--fs-400);
@@ -268,8 +272,17 @@ button,
 }
 
 /* specific roles */
+.font-lede,
 .font-lead {
   font-weight: var(--fw-light);
+}
+
+// health's own real size for this role (2026-08-25 client direction) -
+// .font-h5 (sharing the base fs-400/lh-400 rule above) is untouched.
+.cb-site-health .font-lede,
+.cb-site-health .font-lead {
+  font-size: var(--fs-500);
+  line-height: var(--lh-500);
 }
 
 .font-h5 {

@@ -80,7 +80,24 @@ $arrow_icon = sprintf(
 				}
 			}
 
-			$row_classes = array( 'cb-content-grid-v2__row', 'pt-4', 'pb-5' );
+			// ACF's checkbox fields return `false` when a row predates this
+			// field entirely (nothing was ever saved for it) but return a
+			// real - possibly empty - array once the field has been saved at
+			// least once, even with every box unchecked. That type
+			// difference, not emptiness, is what distinguishes "never
+			// touched, default to on" from "explicitly saved with both
+			// unchecked, default to off" - `empty()` alone can't tell them
+			// apart, since both give an empty-ish result.
+			$has_padding_saved = is_array( $row['has_padding'] ?? null );
+			$has_padding        = $has_padding_saved ? $row['has_padding'] : array();
+
+			$row_classes = array( 'cb-content-grid-v2__row' );
+			if ( ! $has_padding_saved || in_array( 'top', $has_padding, true ) ) {
+				$row_classes[] = 'pt-4';
+			}
+			if ( ! $has_padding_saved || in_array( 'bottom', $has_padding, true ) ) {
+				$row_classes[] = 'pb-5';
+			}
 			if ( $has_h2_module ) {
 				$row_classes[] = 'cb-content-grid-v2__row--has-h2';
 			}
@@ -140,6 +157,15 @@ $arrow_icon = sprintf(
 						?>
 						<div class="<?= esc_attr( implode( ' ', $col_classes ) ); ?>" data-module-index="<?= esc_attr( $module_index ); ?>" data-aos="fade">
 							<?php switch ( $module_type ) {
+								case 'h1':
+									$h1_text = $module['h1_text'] ?? '';
+									if ( $h1_text ) {
+										?>
+										<h1 class="cb-content-grid-v2__h1"><?= wp_kses_post( $h1_text ); ?></h1>
+										<?php
+									}
+									break;
+
 								case 'h2':
 									$h2_text = $module['h2_text'] ?? '';
 									if ( $h2_text ) {

@@ -21808,6 +21808,7 @@ button,
 }
 
 /* shared tokens */
+.font-lede,
 .font-lead,
 .font-h5 {
   font-size: var(--fs-400);
@@ -21823,8 +21824,15 @@ button,
 }
 
 /* specific roles */
+.font-lede,
 .font-lead {
   font-weight: var(--fw-light);
+}
+
+.cb-site-health .font-lede,
+.cb-site-health .font-lead {
+  font-size: var(--fs-500);
+  line-height: var(--lh-500);
 }
 
 .font-h5 {
@@ -28002,6 +28010,9 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-content-grid-v2__row.cb-content-grid-v2__row--has-h2 {
   border-top: 0;
+}
+.cb-content-grid-v2__h1 {
+  text-wrap: balance;
 }
 .cb-content-grid-v2__h2 {
   width: 50%;
