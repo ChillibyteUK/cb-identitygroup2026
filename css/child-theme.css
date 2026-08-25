@@ -24031,15 +24031,20 @@ span a {
   transform: translateY(var(--cb-cta-health-parallax-y, 0));
   will-change: transform;
 }
+.cb-cta-health__content-wrap {
+  padding-block: 5rem;
+}
 .cb-cta-health__title {
   color: var(--col-black);
   font-weight: var(--fw-light);
   font-size: var(--fs-850);
+  line-height: var(--lh-850);
 }
 .cb-cta-health__content {
   color: var(--col-black);
   font-weight: var(--fw-light);
-  font-size: var(--fs-700);
+  font-size: var(--fs-600);
+  line-height: var(--lh-600);
 }
 
 .cb-our-brands {

@@ -49,6 +49,29 @@ function cb_add_site_body_class( $classes ) {
 add_filter( 'body_class', 'cb_add_site_body_class' );
 
 /**
+ * Hides the CTA repeater's Image/Mask fields on the Site-Wide Settings
+ * options page when cb_site is 'health' - health's own CTA template
+ * (blocks/cb-cta-health.php) never reads either field, so they're pure
+ * clutter for a Health content editor (2026-08-25).
+ *
+ * Returning false from acf/prepare_field removes the field from the edit
+ * screen entirely. ACF's own conditional_logic UI can't do this instead:
+ * it only wires up sibling fields within the same repeater row, and cb_site
+ * lives on an entirely different tab of this same options page.
+ *
+ * @param array $field ACF field settings.
+ * @return array|false
+ */
+function cb_hide_health_extraneous_cta_fields( $field ) {
+	if ( 'health' === cb_site_template_suffix() ) {
+		return false;
+	}
+	return $field;
+}
+add_filter( 'acf/prepare_field/key=field_6908877075c95', 'cb_hide_health_extraneous_cta_fields' ); // ctas_image
+add_filter( 'acf/prepare_field/key=field_6908877e75c96', 'cb_hide_health_extraneous_cta_fields' ); // ctas_mask
+
+/**
  * Returns the full per-site token table.
  *
  * @return array<string, array<string, string>>
