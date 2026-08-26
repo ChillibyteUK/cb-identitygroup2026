@@ -226,3 +226,81 @@
     font-weight: var(--fw-book);
   }
 }
+
+// health's own 5 Style choices (2026-08-25 client spec) - replaces
+// identity/coda/idtravel's Light/Raspberry/Purple options entirely for
+// health (see cb_health_testimonial_style_choices() in cb-site-tokens.php).
+// Gooseberry's name background is genuinely Strawberry 850, not Gooseberry
+// 850 - confirmed intentional, not a copy/paste slip from Strawberry's own
+// row just above it.
+.cb-site-health .cb-testimonial {
+  &.has-blueberry-background-color {
+    .cb-testimonial__quote {
+      color: var(--col-black);
+    }
+    .cb-testimonial__author {
+      color: var(--col-white);
+      background-color: var(--col-blueberry-850);
+    }
+    .cb-testimonial__company {
+      color: var(--col-black);
+      background-color: var(--col-white);
+    }
+  }
+
+  &.has-strawberry-background-color {
+    .cb-testimonial__quote {
+      color: var(--col-black);
+    }
+    .cb-testimonial__author {
+      color: var(--col-white);
+      background-color: var(--col-strawberry-850);
+    }
+    .cb-testimonial__company {
+      color: var(--col-black);
+      background-color: var(--col-white);
+    }
+  }
+
+  &.has-gooseberry-background-color {
+    .cb-testimonial__quote {
+      color: var(--col-black);
+    }
+    .cb-testimonial__author {
+      color: var(--col-white);
+      background-color: var(--col-strawberry-850);
+    }
+    .cb-testimonial__company {
+      color: var(--col-black);
+      background-color: var(--col-white);
+    }
+  }
+
+  &.has-spearmint-background-color {
+    .cb-testimonial__quote {
+      color: var(--col-black);
+    }
+    .cb-testimonial__author {
+      color: var(--col-white);
+      background-color: var(--col-blueberry-850);
+    }
+    .cb-testimonial__company {
+      color: var(--col-black);
+      background-color: var(--col-white);
+    }
+  }
+
+  &.has-white-background-color {
+    .cb-testimonial__quote {
+      color: var(--col-black);
+    }
+    .cb-testimonial__author {
+      color: var(--col-white);
+      background-color: var(--col-strawberry-850);
+    }
+    .cb-testimonial__company {
+      color: var(--col-black);
+      background-color: var(--col-blueberry);
+    }
+  }
+}

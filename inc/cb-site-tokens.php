@@ -89,6 +89,35 @@ function cb_hide_non_health_lined_title_line_colour( $field ) {
 add_filter( 'acf/prepare_field/key=field_cb_lined_title_line_colour', 'cb_hide_non_health_lined_title_line_colour' );
 
 /**
+ * Replaces CB Testimonial's Style choices with health's own 5 colours
+ * (Blueberry/Strawberry/Gooseberry/Spearmint/White) when cb_site is
+ * 'health' - identity/coda/idtravel's own Light/Raspberry/Purple choices
+ * are irrelevant there, not real options anyone would pick (2026-08-25).
+ *
+ * Values are has-{slug}-background-color, matching this field's own
+ * existing convention (see _cb_testimonial.scss's other .has-*-background-
+ * color rules) - all 5 slugs exist in health's own isolated theme.json
+ * palette (see cb_filter_editor_theme_json()), so WordPress generates the
+ * background-color rule for each automatically.
+ *
+ * @param array $field ACF field settings.
+ * @return array
+ */
+function cb_health_testimonial_style_choices( $field ) {
+	if ( 'health' === cb_site_template_suffix() ) {
+		$field['choices'] = array(
+			'has-blueberry-background-color'  => 'Blueberry',
+			'has-strawberry-background-color' => 'Strawberry',
+			'has-gooseberry-background-color' => 'Gooseberry',
+			'has-spearmint-background-color'  => 'Spearmint',
+			'has-white-background-color'      => 'White',
+		);
+	}
+	return $field;
+}
+add_filter( 'acf/prepare_field/key=field_cb_testimonial_style', 'cb_health_testimonial_style_choices' );
+
+/**
  * Returns the full per-site token table.
  *
  * @return array<string, array<string, string>>

@@ -24668,6 +24668,62 @@ span a {
   font-weight: var(--fw-book);
 }
 
+.cb-site-health .cb-testimonial.has-blueberry-background-color .cb-testimonial__quote {
+  color: var(--col-black);
+}
+.cb-site-health .cb-testimonial.has-blueberry-background-color .cb-testimonial__author {
+  color: var(--col-white);
+  background-color: var(--col-blueberry-850);
+}
+.cb-site-health .cb-testimonial.has-blueberry-background-color .cb-testimonial__company {
+  color: var(--col-black);
+  background-color: var(--col-white);
+}
+.cb-site-health .cb-testimonial.has-strawberry-background-color .cb-testimonial__quote {
+  color: var(--col-black);
+}
+.cb-site-health .cb-testimonial.has-strawberry-background-color .cb-testimonial__author {
+  color: var(--col-white);
+  background-color: var(--col-strawberry-850);
+}
+.cb-site-health .cb-testimonial.has-strawberry-background-color .cb-testimonial__company {
+  color: var(--col-black);
+  background-color: var(--col-white);
+}
+.cb-site-health .cb-testimonial.has-gooseberry-background-color .cb-testimonial__quote {
+  color: var(--col-black);
+}
+.cb-site-health .cb-testimonial.has-gooseberry-background-color .cb-testimonial__author {
+  color: var(--col-white);
+  background-color: var(--col-strawberry-850);
+}
+.cb-site-health .cb-testimonial.has-gooseberry-background-color .cb-testimonial__company {
+  color: var(--col-black);
+  background-color: var(--col-white);
+}
+.cb-site-health .cb-testimonial.has-spearmint-background-color .cb-testimonial__quote {
+  color: var(--col-black);
+}
+.cb-site-health .cb-testimonial.has-spearmint-background-color .cb-testimonial__author {
+  color: var(--col-white);
+  background-color: var(--col-blueberry-850);
+}
+.cb-site-health .cb-testimonial.has-spearmint-background-color .cb-testimonial__company {
+  color: var(--col-black);
+  background-color: var(--col-white);
+}
+.cb-site-health .cb-testimonial.has-white-background-color .cb-testimonial__quote {
+  color: var(--col-black);
+}
+.cb-site-health .cb-testimonial.has-white-background-color .cb-testimonial__author {
+  color: var(--col-white);
+  background-color: var(--col-strawberry-850);
+}
+.cb-site-health .cb-testimonial.has-white-background-color .cb-testimonial__company {
+  color: var(--col-black);
+  background-color: var(--col-blueberry);
+}
+
 .content-grid {
   font-size: var(--fs-body);
   font-weight: var(--fw-light);
