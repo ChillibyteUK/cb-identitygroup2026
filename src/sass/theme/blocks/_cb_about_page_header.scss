@@ -71,3 +71,16 @@
     text-wrap: balance;
   }
 }
+
+.cb-site-health .cb-about-page-header .h1,
+.cb-site-health .cb-about-page-header h1 {
+  font-size: var(--fs-850);
+}
+
+// --col-secondary is the same literal #2f13ba (a generic purple) on every
+// site, not a real health colour - swapped for health's own real
+// blueberry-850 accent, same opacity/overlay treatment otherwise
+// (2026-08-27).
+.cb-site-health .cb-about-page-header__content-wrapper .about-overlay {
+  background-color: var(--col-blueberry-850);
+}

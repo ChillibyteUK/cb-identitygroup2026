@@ -26699,6 +26699,15 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   text-wrap: balance;
 }
 
+.cb-site-health .cb-about-page-header .h1,
+.cb-site-health .cb-about-page-header h1 {
+  font-size: var(--fs-850);
+}
+
+.cb-site-health .cb-about-page-header__content-wrapper .about-overlay {
+  background-color: var(--col-blueberry-850);
+}
+
 .cb-service-page-header {
   background-color: var(--col-primary-black);
   color: var(--col-white);
