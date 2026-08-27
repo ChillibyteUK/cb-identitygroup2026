@@ -107,3 +107,26 @@
     color: currentColor;
   }
 }
+
+// health inverts the logo (its light-on-dark artwork against this block's
+// light background) and swaps the CTA to dark text with a smaller, grey
+// arrow (2026-08-27 client direction).
+.cb-site-health {
+  .cb-pushthrough__logo {
+    img,
+    svg {
+      filter: invert(1);
+    }
+  }
+
+  // arrow's own size/colour come from the `arrow-n600-solid.svg` asset swap
+  // and smaller width/height attributes in cb-pushthrough.php, not from CSS.
+  .cb-pushthrough__link {
+    color: var(--col-primary-black);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--col-primary-black);
+    }
+  }
+}

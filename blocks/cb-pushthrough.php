@@ -19,6 +19,7 @@ $description     = get_field( 'description' );
 $background_url  = $background ? wp_get_attachment_image_url( $background, 'full' ) : '';
 $is_identity     = 'identity' === cb_site_template_suffix();
 $is_idtravel     = 'idtravel' === cb_site_template_suffix();
+$is_health       = 'health' === cb_site_template_suffix();
 $section_classes = array( 'cb-pushthrough' );
 
 if ( $background_url ) {
@@ -67,7 +68,8 @@ $section_style = $background_url ? sprintf( '--_bg-url: url(%s);', esc_url_raw( 
 		<?php
 	}
 	?>
-	<?php if ( $pretitle ) : ?>
+	<?php if ( $pretitle && ! $is_health ) : ?>
+		<?php // health uses a separate CB Lined Title block for the section title instead. ?>
 		<div class="cb-pushthrough__pretitle">
 			<div class="id-container px-4 px-md-5">
 				<?= esc_html( $pretitle ); ?>
@@ -126,8 +128,14 @@ $section_style = $background_url ? sprintf( '--_bg-url: url(%s);', esc_url_raw( 
 						<?php if ( $is_idtravel ) : ?>
 						<span class="cb-pushthrough__link-arrow"><?= cb_sanitise_svg( get_stylesheet_directory() . '/img/arrow-n600.svg', 'cb-pushthrough__link-arrow-icon', 16, 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 						<?php else : ?>
-						<?php $arrow = ( $is_identity && ! $background ) ? 'arrow-wh.svg' : 'arrow-g400.svg'; ?>
-						<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/' . $arrow ); ?>" width="33" height="26" alt="" />
+						<?php
+						if ( $is_health ) {
+							$arrow = 'arrow-n600-solid.svg';
+						} else {
+							$arrow = ( $is_identity && ! $background ) ? 'arrow-wh.svg' : 'arrow-g400.svg';
+						}
+						?>
+						<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/' . $arrow ); ?>" width="<?= $is_health ? '24' : '33'; ?>" height="<?= $is_health ? '19' : '26'; ?>" alt="" />
 						<?php endif; ?>
 					</a>
 					<?php

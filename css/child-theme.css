@@ -24125,6 +24125,7 @@ span a {
 .cb-our-brands .brand-card__strap {
   font-size: var(--fs-400);
   font-weight: var(--fw-semibold);
+  line-height: var(--lh-400);
 }
 .cb-our-brands .brand-card__arrow, .cb-our-brands .brand-card__arrow-icon {
   width: 1rem;
@@ -24174,6 +24175,32 @@ span a {
 }
 .cb-site-coda .brand-card__last {
   font-size: var(--fs-500);
+}
+
+.cb-site-health .cb-our-brands {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+}
+.cb-site-health .cb-our-brands__pre-title,
+.cb-site-health .cb-our-brands__intro {
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+}
+.cb-site-health .cb-our-brands__pre-title {
+  color: var(--col-strawberry-850);
+}
+.cb-site-health .brand-card__name {
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+}
+.cb-site-health .brand-card__last {
+  border-top: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+  color: var(--col-strawberry-850);
+}
+.cb-site-health .brand-card__logo {
+  filter: invert(1);
+}
+.cb-site-health .brand-card__strap {
+  font-weight: var(--fw-light);
 }
 
 .cb-pushthrough {
@@ -24262,6 +24289,17 @@ span a {
   height: 20px;
   display: inline-flex;
   color: currentColor;
+}
+
+.cb-site-health .cb-pushthrough__logo img,
+.cb-site-health .cb-pushthrough__logo svg {
+  filter: invert(1);
+}
+.cb-site-health .cb-pushthrough__link {
+  color: var(--col-primary-black);
+}
+.cb-site-health .cb-pushthrough__link:hover, .cb-site-health .cb-pushthrough__link:focus-visible {
+  color: var(--col-primary-black);
 }
 
 .cb-logo-slider {

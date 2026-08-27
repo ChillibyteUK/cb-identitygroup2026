@@ -8,6 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $block_id   = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-our-brands-' );
+$is_health  = 'health' === cb_site_template_suffix();
 $pre_title  = get_field( 'pre_title' );
 $intro_text = get_field( 'intro_text' );
 $brands     = get_field( 'brands' ) ?: array();
@@ -45,7 +46,8 @@ $last_col_md  = 0 === $md_rem ? 12 : 6;
 ?>
 <a id="brands" class="anchor"></a>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>>
-	<?php if ( $pre_title ) : ?>
+	<?php if ( $pre_title && ! $is_health ) : ?>
+		<?php // health uses a separate CB Lined Title block for the section title instead. ?>
 		<div class="cb-our-brands__pre-title">
 			<div class="id-container px-4 px-md-5">
 				<?= esc_html( $pre_title ); ?>
