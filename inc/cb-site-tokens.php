@@ -89,6 +89,25 @@ function cb_hide_non_health_lined_title_line_colour( $field ) {
 add_filter( 'acf/prepare_field/key=field_cb_lined_title_line_colour', 'cb_hide_non_health_lined_title_line_colour' );
 
 /**
+ * Hides CB Our Brands' and CB Pushthrough's Pre-title fields for health -
+ * their own render templates already skip outputting the pretitle markup
+ * on health (health uses a separate CB Lined Title block for the section
+ * title instead), so the field is pure clutter for a health editor
+ * (2026-08-27).
+ *
+ * @param array $field ACF field settings.
+ * @return array|false
+ */
+function cb_hide_health_pretitle_fields( $field ) {
+	if ( 'health' === cb_site_template_suffix() ) {
+		return false;
+	}
+	return $field;
+}
+add_filter( 'acf/prepare_field/key=field_69038fa3ece88', 'cb_hide_health_pretitle_fields' ); // cb-our-brands pre_title
+add_filter( 'acf/prepare_field/key=field_69021b61a88b4', 'cb_hide_health_pretitle_fields' ); // cb-pushthrough pretitle
+
+/**
  * Replaces CB Testimonial's Style choices with health's own 5 colours
  * (Blueberry/Strawberry/Gooseberry/Spearmint/White) when cb_site is
  * 'health' - identity/coda/idtravel's own Light/Raspberry/Purple choices
