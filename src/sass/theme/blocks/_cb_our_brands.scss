@@ -237,6 +237,7 @@
   // wrong or flash (2026-08-27).
   .brand-card__back {
     background-color: hsl(var(--hsl-white) / 0.9);
+    backdrop-filter: blur(3px);
     color: var(--col-primary-black);
   }
 
