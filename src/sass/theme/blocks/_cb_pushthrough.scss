@@ -114,6 +114,7 @@
 .cb-site-health {
   .cb-pushthrough {
     border-bottom: none;
+    color: var(--col-primary-black);
   }
 
   .cb-pushthrough__logo {
@@ -143,6 +144,8 @@
 // light text/logo/arrow instead (arrow's own asset swap lives in
 // cb-pushthrough.php, same as the "dark" case) (2026-08-27).
 .cb-site-health .cb-pushthrough--light {
+  color: var(--col-white);
+
   .cb-pushthrough__logo {
     img,
     svg {
