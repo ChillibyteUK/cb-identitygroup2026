@@ -66,27 +66,28 @@
   }
 }
 
-// health with no background image is white-background, the inverse of the
-// dark base rule above - background only; text/lines are controlled by
-// the Style toggle below instead, independent of whether there's a
-// background image (2026-08-27).
+// health with no background image is always white-background/dark-text/
+// dark-lines, unconditionally (not toggle-controlled - cb-plain-hero.php
+// only adds the --dark/--light modifier class once there's an image)
+// (2026-08-27).
 .cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) {
   background-color: var(--col-white);
-}
-
-// Style field (dark/light button group, ACF field_cb_plain_hero_style)
-// controls text/rule colour - "light" matches the base rule above (white
-// text, light lines) as-is, so only "dark" needs an override here
-// (2026-08-27).
-.cb-site-health .cb-plain-hero--dark {
   color: var(--col-primary-black);
 
   .cb-plain-hero__title {
     border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
     border-bottom-color: hsl(var(--hsl-neutral-400) / 0.5);
+  }
+}
 
-    h1 span {
-      border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
-    }
+// with an image, the Style field (dark/light button group, ACF
+// field_cb_plain_hero_style) controls text/rule colour instead - "light"
+// matches the base rule above (white text, light lines) as-is, so only
+// "dark" needs an override here (2026-08-27).
+.cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--dark {
+  color: var(--col-primary-black);
+
+  .cb-plain-hero__title h1 span {
+    border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
   }
 }

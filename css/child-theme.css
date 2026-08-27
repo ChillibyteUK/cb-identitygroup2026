@@ -24826,6 +24826,14 @@ span a {
   font-weight: var(--fw-book);
 }
 
+.cb-site-health .cb-testimonial .cb-testimonial__author,
+.cb-site-health .cb-testimonial .cb-testimonial__company {
+  font-size: var(--fs-700);
+  font-weight: var(--fw-book);
+}
+.cb-site-health .cb-testimonial .cb-testimonial__author {
+  text-transform: none;
+}
 .cb-site-health .cb-testimonial.has-blueberry-background-color .cb-testimonial__quote {
   color: var(--col-black);
 }
@@ -26142,16 +26150,17 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 
 .cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) {
   background-color: var(--col-white);
-}
-
-.cb-site-health .cb-plain-hero--dark {
   color: var(--col-primary-black);
 }
-.cb-site-health .cb-plain-hero--dark .cb-plain-hero__title {
+.cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) .cb-plain-hero__title {
   border-top-color: hsl(var(--hsl-neutral-400)/0.5);
   border-bottom-color: hsl(var(--hsl-neutral-400)/0.5);
 }
-.cb-site-health .cb-plain-hero--dark .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero--dark .cb-plain-hero__title .h1 span {
+
+.cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--dark {
+  color: var(--col-primary-black);
+}
+.cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--dark .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--dark .cb-plain-hero__title .h1 span {
   border-top-color: hsl(var(--hsl-neutral-400)/0.5);
 }
 

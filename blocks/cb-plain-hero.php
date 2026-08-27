@@ -23,16 +23,19 @@ if ( ! empty( $block['className'] ) ) {
 	$section_classes[] = $block['className'];
 }
 
-if ( $is_health ) {
-	$section_classes[] = 'cb-plain-hero--' . $style;
-}
-
 if ( $background_image ) {
 	$background_url = wp_get_attachment_image_url( $background_image, 'full' );
 
 	if ( $background_url ) {
 		$section_style     = sprintf( '--cb-plain-hero-bg: url(%s);', esc_url_raw( $background_url ) );
 		$section_classes[] = 'cb-plain-hero--has-background-image';
+
+		// the Style toggle only applies once there's an image to sit the
+		// text/lines on top of - with no image, health is always dark-on-
+		// white regardless of the field's value.
+		if ( $is_health ) {
+			$section_classes[] = 'cb-plain-hero--' . $style;
+		}
 	}
 }
 

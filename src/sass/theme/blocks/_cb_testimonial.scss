@@ -234,6 +234,23 @@
 // 850 - confirmed intentional, not a copy/paste slip from Strawberry's own
 // row just above it.
 .cb-site-health .cb-testimonial {
+  // health has no --fs-800 token (only identity/coda do - see cb-site-
+  // tokens.php), so the base rule's font-size: var(--fs-800) silently
+  // resolves to nothing and falls back to inherited/default text -
+  // smaller than idtravel's own explicit --fs-700 override further up.
+  // Matched to idtravel's exact values (2026-08-27).
+  .cb-testimonial__author,
+  .cb-testimonial__company {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-book);
+  }
+
+  // matches idtravel's own real design (identity's and coda's both
+  // uppercase it) - see .cb-site-idtravel .cb-testimonial__author above.
+  .cb-testimonial__author {
+    text-transform: none;
+  }
+
   &.has-blueberry-background-color {
     .cb-testimonial__quote {
       color: var(--col-black);
