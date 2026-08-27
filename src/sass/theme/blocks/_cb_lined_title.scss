@@ -32,19 +32,26 @@
   border-bottom: 1px solid hsl(var(--hsl-neutral-400) / 0.5) !important;
 }
 
-// aligned with cb-signpost-header's own h2 (--ls--10, declared explicitly
-// in its own scoped rule) - both currently land on the same value via the
-// generic h2 rule's fallthrough regardless, but declared explicitly here
-// too so it isn't just an accident of two blocks' utility classes never
-// happening to touch letter-spacing (2026-08-27).
-.cb-site-health section.cb-lined-title--line-dark h2,
-.cb-site-health section.cb-lined-title--line-light h2 {
-  letter-spacing: var(--ls--10);
+// Matches cb-signpost-header's own structure exactly for health, not just
+// the same numbers by different means: padding lives once, on the
+// section (padding-block: 1.5rem 1rem, same as signpost-header's own
+// health rule) - the h2's own inline pt-4/pb-3 Bootstrap utility classes
+// (!important) are zeroed out here rather than left to combine with a
+// second padding source. The asymmetry (1rem, not 1.5rem, on the
+// bottom) is a deliberate optical correction for the glyph box: line-
+// height: 1 uppercase text sits with more visual space below the glyphs
+// than above (no descenders in use, but the line-box still reserves that
+// space), so equal top/bottom padding reads as bottom-heavy - confirmed
+// via direct glyph-vs-box measurement, not just eyeballing (2026-08-27).
+// Letter-spacing declared explicitly too, even though it already matches
+// signpost-header's via the generic h2 rule's fallthrough.
+.cb-site-health section.cb-lined-title--line-dark,
+.cb-site-health section.cb-lined-title--line-light {
+  padding-block: 1.25rem 0.875rem;
 
-  // matches cb-signpost-header's own section-level padding-block: 1rem
-  // 0.75rem - lined-title's real value comes from the pt-4/pb-3 (1.5rem/
-  // 1rem) Bootstrap utility classes hardcoded in the markup instead,
-  // which are !important, so this needs to be too (2026-08-27).
-  padding-top: 1rem !important;
-  padding-bottom: 0.75rem !important;
+  h2 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    letter-spacing: var(--ls--10);
+  }
 }

@@ -25229,6 +25229,10 @@ span a {
   --cb-signpost-header-line-color: hsl(var(--hsl-neutral-400) / 0.5);
 }
 
+.cb-site-health .cb-signpost-header {
+  padding-block: 1.25rem 0.875rem;
+}
+
 .cb-image-feature-overlay {
   position: relative;
   display: flex;
@@ -28812,12 +28816,16 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
 }
 
+.cb-site-health section.cb-lined-title--line-dark,
+.cb-site-health section.cb-lined-title--line-light {
+  padding-block: 1.25rem 0.875rem;
+}
 .cb-site-health section.cb-lined-title--line-dark h2, .cb-site-health section.cb-lined-title--line-dark .h2,
 .cb-site-health section.cb-lined-title--line-light h2,
 .cb-site-health section.cb-lined-title--line-light .h2 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   letter-spacing: var(--ls--10);
-  padding-top: 1rem !important;
-  padding-bottom: 0.75rem !important;
 }
 
 .cb-about-detail {
