@@ -81,13 +81,20 @@
 }
 
 // with an image, the Style field (dark/light button group, ACF
-// field_cb_plain_hero_style) controls text/rule colour instead - "light"
-// matches the base rule above (white text, light lines) as-is, so only
-// "dark" needs an override here (2026-08-27).
+// field_cb_plain_hero_style) controls text/rule colour instead. Both
+// rules sit over a background image, so the base rule's own translucent
+// hsl(var(--hsl-neutral-050) / 0.5) doesn't read reliably against photo
+// content in either direction - bumped to near-solid, genuinely
+// light/dark colours instead, same fix as CB About Hero's Overlay Style
+// (2026-08-27).
+.cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--light .cb-plain-hero__title h1 span {
+  border-top-color: hsl(var(--hsl-white) / 0.9);
+}
+
 .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--dark {
   color: var(--col-primary-black);
 
   .cb-plain-hero__title h1 span {
-    border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
+    border-top-color: hsl(var(--hsl-neutral-800) / 0.9);
   }
 }

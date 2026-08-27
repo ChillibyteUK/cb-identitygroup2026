@@ -25853,11 +25853,21 @@ span a {
   color: var(--col-primary-black);
 }
 
+.cb-site-health .cb-about-hero__rule {
+  height: 0;
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 0;
+}
+
+.cb-site-health .cb-about-hero__top--light .cb-about-hero__rule {
+  border-top-color: hsl(var(--hsl-white)/0.9);
+}
+
 .cb-site-health .cb-about-hero__top--dark {
   color: var(--col-primary-black);
 }
 .cb-site-health .cb-about-hero__top--dark .cb-about-hero__rule {
-  border-color: hsl(var(--hsl-neutral-400)/0.5);
+  border-top-color: hsl(var(--hsl-neutral-800)/0.9);
 }
 
 .cb-careers-page {
@@ -26158,11 +26168,15 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-bottom-color: hsl(var(--hsl-neutral-400)/0.5);
 }
 
+.cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--light .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--light .cb-plain-hero__title .h1 span {
+  border-top-color: hsl(var(--hsl-white)/0.9);
+}
+
 .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--dark {
   color: var(--col-primary-black);
 }
 .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--dark .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--dark .cb-plain-hero__title .h1 span {
-  border-top-color: hsl(var(--hsl-neutral-400)/0.5);
+  border-top-color: hsl(var(--hsl-neutral-800)/0.9);
 }
 
 .cb-service-grid__grid {

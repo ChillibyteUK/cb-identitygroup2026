@@ -126,14 +126,34 @@
   color: var(--col-primary-black);
 }
 
+// health renders __rule as a plain div, not <hr> (cb-about-hero.php) - a
+// sitewide `hr, hr.wp-block-separator { border-top: ... !important; }`
+// rule always beat this element's own colour there, regardless of
+// specificity. A div has no default border at all (unlike hr's UA-default
+// top-only border), so needs the full border-top declared explicitly, not
+// just border-color (2026-08-27).
+.cb-site-health .cb-about-hero__rule {
+  height: 0;
+  border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+  border-bottom: 0;
+}
+
 // Overlay Style field (dark/light button group, ACF field_cb_about_hero_
-// overlay_style) swaps out the Overlay Image field for health - "light"
-// matches the base __top rule above (white text/lines) as-is, so only
-// "dark" needs an override here (2026-08-27).
+// overlay_style) swaps out the Overlay Image field for health. Both rules
+// sit over a background image, so the base rule's own translucent
+// hsl(var(--hsl-neutral-050) / 0.5) doesn't read reliably against
+// photo content in either direction - the 0.5-alpha near-white looked too
+// dark/muddy in light mode, and 0.5-alpha mid-grey didn't read as dark
+// enough in dark mode. Both bumped to near-solid, genuinely light/dark
+// colours instead (2026-08-27).
+.cb-site-health .cb-about-hero__top--light .cb-about-hero__rule {
+  border-top-color: hsl(var(--hsl-white) / 0.9);
+}
+
 .cb-site-health .cb-about-hero__top--dark {
   color: var(--col-primary-black);
 
   .cb-about-hero__rule {
-    border-color: hsl(var(--hsl-neutral-400) / 0.5);
+    border-top-color: hsl(var(--hsl-neutral-800) / 0.9);
   }
 }

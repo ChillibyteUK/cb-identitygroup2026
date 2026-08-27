@@ -47,10 +47,17 @@ if ( ! $title && ! $intro && ! $content && ! $overlay_image ) {
 
 		<div class="id-container px-4 px-md-5 py-5">
 			<div class="cb-about-hero__top-inner">
-				<?php if ( $title ) : ?>
-					<hr class="cb-about-hero__rule">
+				<?php
+					// health uses a plain div instead of <hr> - a sitewide
+					// `hr, hr.wp-block-separator { border-top: ... !important; }`
+					// rule (outside this block's own control) always beats this
+					// element's own border-color regardless of specificity.
+					$rule_tag = $is_health ? 'div' : 'hr';
+					?>
+					<?php if ( $title ) : ?>
+					<<?= tag_escape( $rule_tag ); ?> class="cb-about-hero__rule"></<?= tag_escape( $rule_tag ); ?>>
 					<h1 class="cb-about-hero__title hero-animate"><?= esc_html( $title ); ?></h1>
-					<hr class="cb-about-hero__rule">
+					<<?= tag_escape( $rule_tag ); ?> class="cb-about-hero__rule"></<?= tag_escape( $rule_tag ); ?>>
 				<?php endif; ?>
 				<?php if ( $intro ) : ?>
 					<div class="cb-about-hero__intro hero-animate hero-animate--delay-1"><?= wpautop( esc_html( $intro ) ); ?></div>
