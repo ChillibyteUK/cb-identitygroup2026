@@ -106,6 +106,7 @@ function cb_hide_health_pretitle_fields( $field ) {
 }
 add_filter( 'acf/prepare_field/key=field_69038fa3ece88', 'cb_hide_health_pretitle_fields' ); // cb-our-brands pre_title
 add_filter( 'acf/prepare_field/key=field_69021b61a88b4', 'cb_hide_health_pretitle_fields' ); // cb-pushthrough pretitle
+add_filter( 'acf/prepare_field/key=field_cb_details_pre_title', 'cb_hide_health_pretitle_fields' ); // cb-details pre_title
 
 /**
  * Replaces CB Testimonial's Style choices with health's own 5 colours

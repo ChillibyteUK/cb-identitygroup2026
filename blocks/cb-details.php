@@ -14,9 +14,11 @@ $block_id = $block['anchor'] ?? $block['id'];
 <?php
 $render_style = get_field( 'render_style' ) ?: 'details';
 $pre_title    = get_field( 'pre_title' );
+$is_health    = 'health' === cb_site_template_suffix();
 ?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-details">
-	<?php if ( $pre_title ) : ?>
+	<?php if ( $pre_title && ! $is_health ) : ?>
+		<?php // health uses a separate CB Lined Title block for the section title instead. ?>
 	<div class="cb-details__pre-title">
 		<div class="id-container pt-4 pb-3 px-4 px-md-5">
 			<?= esc_html( $pre_title ); ?>
