@@ -239,4 +239,15 @@
     background-color: hsl(var(--hsl-white) / 0.9);
     color: var(--col-primary-black);
   }
+
+  // the base rule's own :hover/:focus/:focus-within selector above also
+  // sets colour: white, and beats the constant override just above on
+  // specificity (3 class-selectors vs. 2) - without this, hover text was
+  // invisible (white-on-white) the whole time it's actually hovered, only
+  // turning dark once you hover *off* (2026-08-27).
+  .brand-card:hover .brand-card__back,
+  .brand-card:focus .brand-card__back,
+  .brand-card:focus-within .brand-card__back {
+    color: var(--col-primary-black);
+  }
 }

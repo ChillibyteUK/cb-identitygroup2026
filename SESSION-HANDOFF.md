@@ -458,7 +458,7 @@ near-identical idtravel nav blocks behind a `parent_slug` field.
 
 ## How to verify locally
 
-1. `npm install && npm run css` — full compile/postcss/minify pipeline.
+1. `pnpm install && npm run css` — full compile/postcss/minify pipeline.
 2. Point a WordPress install at this theme, activate it, run ACF's Sync if
    prompted.
 3. Site-Wide Settings → General tab → **Site** field → switch between

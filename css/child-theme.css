@@ -21861,6 +21861,10 @@ button,
   line-height: var(--lh-500);
 }
 
+.cb-site-health h1, .cb-site-health .h1 {
+  font-weight: var(--fw-semibold) !important;
+}
+
 .font-h5 {
   font-weight: var(--fw-semibold);
 }
@@ -24281,6 +24285,11 @@ span a {
 }
 .cb-site-health .brand-card__back {
   background-color: hsl(var(--hsl-white)/0.9);
+  color: var(--col-primary-black);
+}
+.cb-site-health .brand-card:hover .brand-card__back,
+.cb-site-health .brand-card:focus .brand-card__back,
+.cb-site-health .brand-card:focus-within .brand-card__back {
   color: var(--col-primary-black);
 }
 

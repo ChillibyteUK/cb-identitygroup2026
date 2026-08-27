@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Basic Child Theme for Understrap Theme Framework: https://github.com/understrap/understrap",
   "main": "index.js",
+  "packageManager": "pnpm@11.24.0",
   "scripts": {
     "bs": "browser-sync start --config src/build/browser-sync.config.js",
     "css": "npm-run-all css-compile css-postcss css-minify",

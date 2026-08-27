@@ -285,6 +285,16 @@ button,
   line-height: var(--lh-500);
 }
 
+// h1 titles are a mix of --fw-book/--fw-light across the theme's various
+// blocks (per-block rules, hardcoded .fw-light/.fw-book utility classes in
+// markup, the sitewide h1.wp-block-heading default, etc.) - health wants
+// every h1 consistently --fw-semibold regardless of source. !important
+// needed since some of those per-block rules are themselves !important
+// (2026-08-27).
+.cb-site-health h1 {
+  font-weight: var(--fw-semibold) !important;
+}
+
 .font-h5 {
   font-weight: var(--fw-semibold);
 }
