@@ -22077,6 +22077,13 @@ strong {
   transform: rotate(0deg);
 }
 
+.cb-site-health .id-button {
+  color: var(--col-white) !important;
+}
+.cb-site-health .id-button:hover {
+  color: var(--col-white) !important;
+}
+
 .id-button--sm {
   font-size: var(--fs-400);
   padding: 4px 16px;

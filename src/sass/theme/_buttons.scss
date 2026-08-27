@@ -50,6 +50,19 @@
   }
 }
 
+// background is always --col-button (health's own strawberry-850) -
+// guards against WP's own generated has-*-color !important utility class
+// landing on this element (e.g. an editor picking a text colour on the
+// wrapping block), which would otherwise beat the base rule's plain
+// color: #fff above (2026-08-27).
+.cb-site-health .id-button {
+  color: var(--col-white) !important;
+
+  &:hover {
+    color: var(--col-white) !important;
+  }
+}
+
 .id-button--sm {
   font-size: var(--fs-400);
   padding: 4px 16px;
