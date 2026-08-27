@@ -26175,6 +26175,11 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-bottom-color: hsl(var(--hsl-neutral-400)/0.5);
 }
 
+.cb-site-health .cb-plain-hero--has-background-image .cb-plain-hero__title .h1 span,
+.cb-site-health .cb-plain-hero--has-background-image .cb-plain-hero__title h1 span {
+  font-weight: var(--fw-semibold);
+}
+
 .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--light .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--light .cb-plain-hero__title .h1 span {
   border-top-color: hsl(var(--hsl-white)/0.9);
 }

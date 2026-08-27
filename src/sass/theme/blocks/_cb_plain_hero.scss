@@ -87,6 +87,11 @@
 // content in either direction - bumped to near-solid, genuinely
 // light/dark colours instead, same fix as CB About Hero's Overlay Style
 // (2026-08-27).
+.cb-site-health .cb-plain-hero--has-background-image .cb-plain-hero__title .h1 span,
+.cb-site-health .cb-plain-hero--has-background-image .cb-plain-hero__title h1 span {
+  font-weight: var(--fw-semibold);
+}
+
 .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--light .cb-plain-hero__title h1 span {
   border-top-color: hsl(var(--hsl-white) / 0.9);
 }
