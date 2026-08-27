@@ -24180,7 +24180,7 @@ span a {
 .cb-site-health .cb-our-brands {
   background-color: var(--col-white);
   color: var(--col-primary-black);
-  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+  border-bottom: none;
 }
 .cb-site-health .cb-our-brands__pre-title,
 .cb-site-health .cb-our-brands__intro {
@@ -29799,4 +29799,5 @@ body.understrap-no-sidebar .wp-block-cover.alignwide {
 .wp-block-buttons .wp-block-button:not(.is-style-outline) .wp-block-button__link {
   border: 1px solid transparent;
 }
+
 /*# sourceMappingURL=child-theme.css.map */
