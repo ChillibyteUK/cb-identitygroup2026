@@ -596,7 +596,10 @@ function acf_blocks() {
 					'anchor'    => true,
 					'className' => true,
 					'align'     => true,
-					'color'     => array(
+					// health has its own Style (Dark/Light) toggle for this block
+					// instead - the Gutenberg colour picker just confuses things
+					// alongside it there (2026-08-27).
+					'color'     => 'health' === cb_site_template_suffix() ? false : array(
 						'background' => true,
 						'text'       => true,
 					),

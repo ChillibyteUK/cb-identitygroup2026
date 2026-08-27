@@ -134,3 +134,28 @@
     }
   }
 }
+
+// Style field (dark/light button group, ACF field_cb_pushthrough_style)
+// only applies once a Background image is set (.cb-pushthrough--dark/-light
+// class, added in cb-pushthrough.php) - "dark" matches the unconditional
+// health rules above (dark text, inverted/dark logo, grey arrow) so only
+// "light" needs an override here, for a dark background image needing
+// light text/logo/arrow instead (arrow's own asset swap lives in
+// cb-pushthrough.php, same as the "dark" case) (2026-08-27).
+.cb-site-health .cb-pushthrough--light {
+  .cb-pushthrough__logo {
+    img,
+    svg {
+      filter: none;
+    }
+  }
+
+  .cb-pushthrough__link {
+    color: var(--col-white);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--col-white);
+    }
+  }
+}

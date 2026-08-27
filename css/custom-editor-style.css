@@ -5,6 +5,7 @@
      ======== */
   --col-white: #ffffff;
   --hsl-white: 0 0% 100%;
+  --col-black: #0d0d0c;
   --hsl-neutral-050: 255 29% 97%;
   --col-neutral-050: #f7f6fa;
   --col-neutral-100: #f0eff4;
@@ -143,6 +144,7 @@
      ======== */
   --col-white: #ffffff;
   --hsl-white: 0 0% 100%;
+  --col-black: #0d0d0c;
   --hsl-neutral-050: 255 29% 97%;
   --col-neutral-050: #f7f6fa;
   --col-neutral-100: #f0eff4;

@@ -64,7 +64,8 @@ function buildThemeJson(tokens) {
         padding: true,
         units: ['px', 'em', 'rem', 'vh', 'vw', '%']
       },
-      color: { 
+      color: {
+        defaultPalette: false,
         palette: colors.map(color => ({
           ...color,
           origin: 'theme'

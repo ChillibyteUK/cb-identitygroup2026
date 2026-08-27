@@ -13,6 +13,17 @@ $col-light: #f2f2f2;
   // doesn't vary between sites (2026-08-25, added for
   // _cb_lined_title.scss's health line-colour toggle).
   --hsl-white: 0 0% 100%;
+  // --col-black already exists as a per-site custom property (see
+  // cb_get_site_tokens_table()'s inline !important wp_head/admin_head
+  // override, consumed by var(--col-black) throughout src/sass) - this is
+  // just its static base/fallback value, newly needed here because
+  // disabling defaultPalette (2026-08-27) means the generator now also
+  // exposes it as its own theme palette swatch. #0d0d0c (not pure #000)
+  // matches identity/coda/health's own real per-site value - the block
+  // editor iframe never fires wp_head/admin_head, so this fallback is what
+  // actually renders there, and pure black was visibly wrong specifically
+  // for health, which must never show true black (2026-08-27).
+  --col-black: #0d0d0c;
   --hsl-neutral-050: 255 29% 97%;
   --col-neutral-050: #f7f6fa;
   --col-neutral-100: #f0eff4;

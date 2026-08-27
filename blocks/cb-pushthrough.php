@@ -20,6 +20,7 @@ $background_url  = $background ? wp_get_attachment_image_url( $background, 'full
 $is_identity     = 'identity' === cb_site_template_suffix();
 $is_idtravel     = 'idtravel' === cb_site_template_suffix();
 $is_health       = 'health' === cb_site_template_suffix();
+$style           = get_field( 'style' ) ?: 'dark';
 $section_classes = array( 'cb-pushthrough' );
 
 if ( $background_url ) {
@@ -27,6 +28,10 @@ if ( $background_url ) {
 	// and coda's real sources both just add a bare `has-bg` — confirmed
 	// neither ever emits the other site's class.
 	$section_classes[] = $is_idtravel ? 'cb-pushthrough--has-bg' : 'has-bg';
+
+	if ( $is_health ) {
+		$section_classes[] = 'cb-pushthrough--' . $style;
+	}
 }
 
 if ( ! empty( $block['className'] ) ) {
@@ -130,7 +135,7 @@ $section_style = $background_url ? sprintf( '--_bg-url: url(%s);', esc_url_raw( 
 						<?php else : ?>
 						<?php
 						if ( $is_health ) {
-							$arrow = 'arrow-n600-solid.svg';
+							$arrow = 'light' === $style ? 'arrow-wh.svg' : 'arrow-n600-solid.svg';
 						} else {
 							$arrow = ( $is_identity && ! $background ) ? 'arrow-wh.svg' : 'arrow-g400.svg';
 						}

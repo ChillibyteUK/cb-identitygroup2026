@@ -15,11 +15,18 @@
       ]
     },
     "color": {
+      "defaultPalette": false,
       "palette": [
         {
           "name": "white",
           "slug": "white",
           "color": "#ffffff",
+          "origin": "theme"
+        },
+        {
+          "name": "black",
+          "slug": "black",
+          "color": "#0d0d0c",
           "origin": "theme"
         },
         {

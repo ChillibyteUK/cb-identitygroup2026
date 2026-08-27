@@ -106,16 +106,21 @@ function cb_hide_health_about_hero_overlay_image( $field ) {
 add_filter( 'acf/prepare_field/key=field_cb_about_hero_overlay_image', 'cb_hide_health_about_hero_overlay_image' );
 
 /**
+ * Hides a field for every site except health - shared by any editor-facing
+ * Dark/Light style toggle that only health uses (About Hero's Overlay
+ * Style, Pushthrough's Style).
+ *
  * @param array $field ACF field settings.
  * @return array|false
  */
-function cb_hide_non_health_about_hero_overlay_style( $field ) {
+function cb_hide_non_health_field( $field ) {
 	if ( 'health' !== cb_site_template_suffix() ) {
 		return false;
 	}
 	return $field;
 }
-add_filter( 'acf/prepare_field/key=field_cb_about_hero_overlay_style', 'cb_hide_non_health_about_hero_overlay_style' );
+add_filter( 'acf/prepare_field/key=field_cb_about_hero_overlay_style', 'cb_hide_non_health_field' );
+add_filter( 'acf/prepare_field/key=field_cb_pushthrough_style', 'cb_hide_non_health_field' );
 
 /**
  * Hides CB Our Brands' and CB Pushthrough's Pre-title fields for health -
