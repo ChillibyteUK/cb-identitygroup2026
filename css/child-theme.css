@@ -23566,7 +23566,7 @@ body.cb-site-identity {
   border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
 }
 .cb-site-health .insight-type-grid__date {
-  color: var(--col-neutral-700);
+  color: var(--col-neutral-800);
 }
 .cb-site-health .single-blog.post-news, .cb-site-health .single-blog.post-insight, .cb-site-health .single-blog.post-people, .cb-site-health .single-blog.post-tmc {
   --_background: var(--col-white);
@@ -24453,6 +24453,15 @@ span a {
 
 .cb-recent-news.has-purple-900-background-color .insight-type-grid__date {
   color: var(--col-purple-200) !important;
+}
+
+.cb-site-health .cb-recent-news__pre-title {
+  border-top: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+  color: var(--col-blueberry-850);
+}
+.cb-site-health .cb-recent-news .insight-type-grid__date {
+  color: var(--col-neutral-800);
 }
 
 .cb-business-travel-nav {

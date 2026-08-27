@@ -66,3 +66,20 @@
 .cb-recent-news.has-purple-900-background-color .insight-type-grid__date {
     color: var(--col-purple-200) !important;
 }
+
+// health's single.php recent-news section sits inside .single-blog, whose
+// background is inverted to white for health (see _news.scss) - this
+// block's own white pre-title text/light border and raspberry-tinted date
+// (both meant for the dark base rules above) are now illegible against it
+// (2026-08-27).
+.cb-site-health .cb-recent-news {
+    &__pre-title {
+        border-top: 1px solid hsl(var(--hsl-neutral-400) / 0.5);
+        border-bottom: 1px solid hsl(var(--hsl-neutral-400) / 0.5);
+        color: var(--col-blueberry-850);
+    }
+
+    .insight-type-grid__date {
+        color: var(--col-neutral-800);
+    }
+}
