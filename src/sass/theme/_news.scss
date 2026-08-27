@@ -682,3 +682,70 @@
     }
   }
 }
+
+// health has no index-health.php/single-health.php fork (unlike identity/
+// coda above), so it falls through to this file's idtravel-derived dark
+// base rules for both the news index (index.php) and single post
+// (single.php) templates. Inverted to health's white-background/dark-text
+// scheme, same per-site pattern as cb-our-brands/cb-pushthrough/footer
+// (2026-08-27).
+.cb-site-health {
+  .news-insights-hero {
+    color: var(--col-primary-black);
+
+    a {
+      color: var(--col-primary-black);
+    }
+
+    h1 {
+      color: var(--col-primary-black);
+      border-top: 1px solid hsl(var(--hsl-neutral-400) / 0.5);
+    }
+  }
+
+  .news-insights {
+    background-color: var(--col-white);
+  }
+
+  .insight-type-grid {
+    color: var(--col-primary-black);
+
+    &__card:hover {
+      color: var(--col-primary-black);
+    }
+
+    &__category {
+      border-bottom: 1px solid hsl(var(--hsl-neutral-400) / 0.5) !important;
+    }
+
+    &__date {
+      color: var(--col-neutral-700);
+    }
+  }
+
+  .single-blog {
+    &.post-news,
+    &.post-insight,
+    &.post-people,
+    &.post-tmc {
+      --_background: var(--col-white);
+      --_cat-colour: var(--col-primary-black);
+      --_text-colour: var(--col-primary-black);
+      --_first-colour: var(--col-primary-black);
+      --_link: var(--col-primary-black);
+      --_link-hover: var(--col-neutral-700);
+    }
+
+    .category-wrapper,
+    .post-title,
+    .post-date-row,
+    .post-content .container:first-of-type:not([class*="post-date"]) > p:first-of-type,
+    .post-content h2 {
+      border-color: hsl(var(--hsl-neutral-400) / 0.5) !important;
+    }
+
+    .post-date {
+      color: var(--col-neutral-700);
+    }
+  }
+}

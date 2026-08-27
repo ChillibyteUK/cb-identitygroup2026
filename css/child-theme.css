@@ -23543,6 +23543,52 @@ body.cb-site-identity {
   padding-block: 0.25rem;
 }
 
+.cb-site-health .news-insights-hero {
+  color: var(--col-primary-black);
+}
+.cb-site-health .news-insights-hero a {
+  color: var(--col-primary-black);
+}
+.cb-site-health .news-insights-hero h1, .cb-site-health .news-insights-hero .h1 {
+  color: var(--col-primary-black);
+  border-top: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+}
+.cb-site-health .news-insights {
+  background-color: var(--col-white);
+}
+.cb-site-health .insight-type-grid {
+  color: var(--col-primary-black);
+}
+.cb-site-health .insight-type-grid__card:hover {
+  color: var(--col-primary-black);
+}
+.cb-site-health .insight-type-grid__category {
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
+}
+.cb-site-health .insight-type-grid__date {
+  color: var(--col-neutral-700);
+}
+.cb-site-health .single-blog.post-news, .cb-site-health .single-blog.post-insight, .cb-site-health .single-blog.post-people, .cb-site-health .single-blog.post-tmc {
+  --_background: var(--col-white);
+  --_cat-colour: var(--col-primary-black);
+  --_text-colour: var(--col-primary-black);
+  --_first-colour: var(--col-primary-black);
+  --_link: var(--col-primary-black);
+  --_link-hover: var(--col-neutral-700);
+}
+.cb-site-health .single-blog .category-wrapper,
+.cb-site-health .single-blog .post-title,
+.cb-site-health .single-blog .post-date-row,
+.cb-site-health .single-blog .post-content .container:first-of-type:not([class*=post-date]) > p:first-of-type,
+.cb-site-health .single-blog .post-content .wp-block-group:first-of-type:not([class*=post-date]):not(.alignfull) > p:first-of-type,
+.cb-site-health .single-blog .post-content h2,
+.cb-site-health .single-blog .post-content .h2 {
+  border-color: hsl(var(--hsl-neutral-400)/0.5) !important;
+}
+.cb-site-health .single-blog .post-date {
+  color: var(--col-neutral-700);
+}
+
 .text-page {
   background-color: var(--col-white);
   color: var(--col-primary-black);
