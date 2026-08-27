@@ -131,7 +131,7 @@
 
     &:hover,
     &:focus-visible {
-      color: var(--col-primary-black);
+      color: var(--col-strawberry-850);
     }
   }
 }
@@ -145,6 +145,10 @@
 // cb-pushthrough.php, same as the "dark" case) (2026-08-27).
 .cb-site-health .cb-pushthrough--light {
   color: var(--col-white);
+  // drives __pretitle's border-bottom and __link's border-top (the CTA
+  // divider line) - white like the text, instead of the base rule's dark
+  // ink-based line (2026-08-27).
+  --cb-pushthrough-line-color: hsl(var(--hsl-white) / 0.9);
 
   .cb-pushthrough__logo {
     img,
@@ -158,7 +162,7 @@
 
     &:hover,
     &:focus-visible {
-      color: var(--col-white);
+      color: var(--col-gooseberry);
     }
   }
 }
