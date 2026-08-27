@@ -119,3 +119,21 @@
     }
   }
 }
+
+.cb-site-health .cb-about-hero__content-wrap {
+  background-color: hsl(var(--hsl-white) / 0.8);
+  backdrop-filter: blur(3px);
+  color: var(--col-primary-black);
+}
+
+// Overlay Style field (dark/light button group, ACF field_cb_about_hero_
+// overlay_style) swaps out the Overlay Image field for health - "light"
+// matches the base __top rule above (white text/lines) as-is, so only
+// "dark" needs an override here (2026-08-27).
+.cb-site-health .cb-about-hero__top--dark {
+  color: var(--col-primary-black);
+
+  .cb-about-hero__rule {
+    border-color: hsl(var(--hsl-neutral-400) / 0.5);
+  }
+}

@@ -89,6 +89,35 @@ function cb_hide_non_health_lined_title_line_colour( $field ) {
 add_filter( 'acf/prepare_field/key=field_cb_lined_title_line_colour', 'cb_hide_non_health_lined_title_line_colour' );
 
 /**
+ * CB About Hero: health swaps the Overlay Image field for an Overlay Style
+ * (Dark/Light) toggle that instead controls the __top text/rule colour -
+ * health's own hero design doesn't use the overlay image treatment other
+ * sites do (2026-08-27).
+ *
+ * @param array $field ACF field settings.
+ * @return array|false
+ */
+function cb_hide_health_about_hero_overlay_image( $field ) {
+	if ( 'health' === cb_site_template_suffix() ) {
+		return false;
+	}
+	return $field;
+}
+add_filter( 'acf/prepare_field/key=field_cb_about_hero_overlay_image', 'cb_hide_health_about_hero_overlay_image' );
+
+/**
+ * @param array $field ACF field settings.
+ * @return array|false
+ */
+function cb_hide_non_health_about_hero_overlay_style( $field ) {
+	if ( 'health' !== cb_site_template_suffix() ) {
+		return false;
+	}
+	return $field;
+}
+add_filter( 'acf/prepare_field/key=field_cb_about_hero_overlay_style', 'cb_hide_non_health_about_hero_overlay_style' );
+
+/**
  * Hides CB Our Brands' and CB Pushthrough's Pre-title fields for health -
  * their own render templates already skip outputting the pretitle markup
  * on health (health uses a separate CB Lined Title block for the section

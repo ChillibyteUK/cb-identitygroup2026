@@ -8,8 +8,10 @@
 defined( 'ABSPATH' ) || exit;
 
 $block_id         = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-about-hero-' );
+$is_health        = 'health' === cb_site_template_suffix();
 $background_image = get_field( 'background_image' );
-$overlay_image    = get_field( 'overlay_image' );
+$overlay_image    = $is_health ? false : get_field( 'overlay_image' );
+$overlay_style    = get_field( 'overlay_style' ) ?: 'dark';
 $title            = get_field( 'title' );
 $intro            = get_field( 'intro' );
 $content          = get_field( 'content' );
@@ -36,7 +38,7 @@ if ( ! $title && ! $intro && ! $content && ! $overlay_image ) {
 }
 ?>
 <section id="<?= esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"<?= $section_style ? ' style="' . esc_attr( $section_style ) . '"' : ''; ?>>
-	<div class="cb-about-hero__top">
+	<div class="cb-about-hero__top cb-about-hero__top--<?= esc_attr( $overlay_style ); ?>">
 		<?php if ( $overlay_image ) : ?>
 			<div class="cb-about-hero__overlay-image-wrap">
 				<?= wp_get_attachment_image( $overlay_image, 'full', false, array( 'class' => 'cb-about-hero__overlay-image img-fluid', 'alt' => get_post_meta( $overlay_image, '_wp_attachment_image_alt', true ) ) ); ?>

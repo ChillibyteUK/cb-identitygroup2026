@@ -55,6 +55,30 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_cb_about_hero_overlay_style",
+            "label": "Style",
+            "name": "overlay_style",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "Health only - controls the top hero's text and rule colour instead of the Overlay Image used by other sites.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark",
+                "light": "Light"
+            },
+            "default_value": "dark",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_cb_about_hero_title",
             "label": "Title",
             "name": "title",

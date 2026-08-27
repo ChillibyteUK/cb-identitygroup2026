@@ -18,7 +18,11 @@
 	  var f = n.default;
 		if (typeof f == "function") {
 			var a = function a () {
-				if (this instanceof a) {
+				var isInstance = false;
+	      try {
+	        isInstance = this instanceof a;
+	      } catch {}
+				if (isInstance) {
 	        return Reflect.construct(f, arguments, this.constructor);
 				}
 				return f.apply(this, arguments);
@@ -45,8 +49,8 @@
 	var data$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap data.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap data.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var data = data$1.exports;
@@ -118,8 +122,8 @@
 	var util$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap index.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap index.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var util = util$1.exports;
@@ -281,7 +285,7 @@
 			   * @param {HTMLElement} element
 			   * @return void
 			   *
-			   * @see https://www.charistheo.io/blog/2021/02/restart-a-css-animation-with-javascript/#restarting-a-css-animation
+			   * @see https://www.harrytheo.com/blog/2021/02/restart-a-css-animation-with-javascript/#restarting-a-css-animation
 			   */
 			  const reflow = element => {
 			    element.offsetHeight; // eslint-disable-line no-unused-expressions
@@ -326,7 +330,7 @@
 			    });
 			  };
 			  const execute = (possibleCallback, args = [], defaultValue = possibleCallback) => {
-			    return typeof possibleCallback === 'function' ? possibleCallback(...args) : defaultValue;
+			    return typeof possibleCallback === 'function' ? possibleCallback.call(...args) : defaultValue;
 			  };
 			  const executeAfterTransition = (callback, transitionElement, waitForTransition = true) => {
 			    if (!waitForTransition) {
@@ -406,8 +410,8 @@
 	}
 
 	/*!
-	  * Bootstrap event-handler.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap event-handler.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var eventHandler = eventHandler$1.exports;
@@ -652,8 +656,8 @@
 	var manipulator$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap manipulator.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap manipulator.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var manipulator = manipulator$1.exports;
@@ -714,7 +718,7 @@
 			      const bsKeys = Object.keys(element.dataset).filter(key => key.startsWith('bs') && !key.startsWith('bsConfig'));
 			      for (const key of bsKeys) {
 			        let pureKey = key.replace(/^bs/, '');
-			        pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
+			        pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1);
 			        attributes[pureKey] = normalizeData(element.dataset[key]);
 			      }
 			      return attributes;
@@ -730,8 +734,8 @@
 	}
 
 	/*!
-	  * Bootstrap config.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap config.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var config = config$1.exports;
@@ -803,8 +807,8 @@
 	}
 
 	/*!
-	  * Bootstrap base-component.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap base-component.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var baseComponent = baseComponent$1.exports;
@@ -829,7 +833,7 @@
 			  /**
 			   * Constants
 			   */
-			  const VERSION = '5.3.3';
+			  const VERSION = '5.3.8';
 
 			  /**
 			   * Class definition
@@ -855,6 +859,8 @@
 			        this[propertyName] = null;
 			      }
 			    }
+
+			    // Private
 			    _queueCallback(callback, element, isAnimated = true) {
 			      index_js.executeAfterTransition(callback, element, isAnimated);
 			    }
@@ -896,8 +902,8 @@
 	var selectorEngine$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap selector-engine.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap selector-engine.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var selectorEngine = selectorEngine$1.exports;
@@ -1006,8 +1012,8 @@
 	}
 
 	/*!
-	  * Bootstrap component-functions.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap component-functions.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var componentFunctions = componentFunctions$1.exports;
@@ -1055,8 +1061,8 @@
 	}
 
 	/*!
-	  * Bootstrap alert.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap alert.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var alert = alert$1.exports;
@@ -1155,8 +1161,8 @@
 	var button$2 = {exports: {}};
 
 	/*!
-	  * Bootstrap button.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap button.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var button$1 = button$2.exports;
@@ -1246,8 +1252,8 @@
 	var swipe$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap swipe.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap swipe.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var swipe = swipe$1.exports;
@@ -1386,8 +1392,8 @@
 	}
 
 	/*!
-	  * Bootstrap carousel.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap carousel.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var carousel$1 = carousel$2.exports;
@@ -1784,8 +1790,8 @@
 	var collapse$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap collapse.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap collapse.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var collapse = collapse$1.exports;
@@ -1952,11 +1958,11 @@
 			      this._element.style[dimension] = '';
 			      this._queueCallback(complete, this._element, true);
 			    }
+
+			    // Private
 			    _isShown(element = this._element) {
 			      return element.classList.contains(CLASS_NAME_SHOW);
 			    }
-
-			    // Private
 			    _configAfterMerge(config) {
 			      config.toggle = Boolean(config.toggle); // Coerce string values
 			      config.parent = index_js.getElement(config.parent);
@@ -3708,8 +3714,8 @@
 	var require$$0 = /*@__PURE__*/getAugmentedNamespace(lib);
 
 	/*!
-	  * Bootstrap dropdown.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap dropdown.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var dropdown = dropdown$1.exports;
@@ -3923,7 +3929,7 @@
 			    }
 			    _createPopper() {
 			      if (typeof Popper__namespace === 'undefined') {
-			        throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
+			        throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org/docs/v2/)');
 			      }
 			      let referenceElement = this._element;
 			      if (this._config.reference === 'parent') {
@@ -4002,7 +4008,7 @@
 			      }
 			      return {
 			        ...defaultBsPopperConfig,
-			        ...index_js.execute(this._config.popperConfig, [defaultBsPopperConfig])
+			        ...index_js.execute(this._config.popperConfig, [undefined, defaultBsPopperConfig])
 			      };
 			    }
 			    _selectMenuItem({
@@ -4126,8 +4132,8 @@
 	var backdrop$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap backdrop.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap backdrop.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var backdrop = backdrop$1.exports;
@@ -4272,8 +4278,8 @@
 	var focustrap$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap focustrap.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap focustrap.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var focustrap = focustrap$1.exports;
@@ -4392,8 +4398,8 @@
 	var scrollbar$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap scrollbar.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap scrollbar.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var scrollbar = scrollbar$1.exports;
@@ -4510,8 +4516,8 @@
 	}
 
 	/*!
-	  * Bootstrap modal.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap modal.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var modal = modal$1.exports;
@@ -4840,8 +4846,8 @@
 	var offcanvas$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap offcanvas.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap offcanvas.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var offcanvas = offcanvas$1.exports;
@@ -5100,8 +5106,8 @@
 	var sanitizer$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap sanitizer.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap sanitizer.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var sanitizer = sanitizer$1.exports;
@@ -5171,7 +5177,6 @@
 			   *
 			   * Shout-out to Angular https://github.com/angular/angular/blob/15.2.8/packages/core/src/sanitization/url_sanitizer.ts#L38
 			   */
-			  // eslint-disable-next-line unicorn/better-regex
 			  const SAFE_URL_PATTERN = /^(?!javascript:)(?:[a-z0-9+.-]+:|[^&:/?#]*(?:[/?#]|$))/i;
 			  const allowedAttribute = (attribute, allowedAttributeList) => {
 			    const attributeName = attribute.nodeName.toLowerCase();
@@ -5224,8 +5229,8 @@
 	var templateFactory$1 = {exports: {}};
 
 	/*!
-	  * Bootstrap template-factory.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap template-factory.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var templateFactory = templateFactory$1.exports;
@@ -5362,7 +5367,7 @@
 			      return this._config.sanitize ? sanitizer_js.sanitizeHtml(arg, this._config.allowList, this._config.sanitizeFn) : arg;
 			    }
 			    _resolvePossibleFunction(arg) {
-			      return index_js.execute(arg, [this]);
+			      return index_js.execute(arg, [undefined, this]);
 			    }
 			    _putElementInTemplate(element, templateElement) {
 			      if (this._config.html) {
@@ -5380,8 +5385,8 @@
 	}
 
 	/*!
-	  * Bootstrap tooltip.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap tooltip.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var tooltip$1 = tooltip$2.exports;
@@ -5504,7 +5509,7 @@
 			  class Tooltip extends BaseComponent {
 			    constructor(element, config) {
 			      if (typeof Popper__namespace === 'undefined') {
-			        throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
+			        throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org/docs/v2/)');
 			      }
 			      super(element, config);
 
@@ -5550,7 +5555,6 @@
 			      if (!this._isEnabled) {
 			        return;
 			      }
-			      this._activeTrigger.click = !this._activeTrigger.click;
 			      if (this._isShown()) {
 			        this._leave();
 			        return;
@@ -5738,7 +5742,7 @@
 			      return offset;
 			    }
 			    _resolvePossibleFunction(arg) {
-			      return index_js.execute(arg, [this._element]);
+			      return index_js.execute(arg, [this._element, this._element]);
 			    }
 			    _getPopperConfig(attachment) {
 			      const defaultBsPopperConfig = {
@@ -5776,7 +5780,7 @@
 			      };
 			      return {
 			        ...defaultBsPopperConfig,
-			        ...index_js.execute(this._config.popperConfig, [defaultBsPopperConfig])
+			        ...index_js.execute(this._config.popperConfig, [undefined, defaultBsPopperConfig])
 			      };
 			    }
 			    _setListeners() {
@@ -5785,6 +5789,7 @@
 			        if (trigger === 'click') {
 			          EventHandler.on(this._element, this.constructor.eventName(EVENT_CLICK), this._config.selector, event => {
 			            const context = this._initializeOnDelegatedTarget(event);
+			            context._activeTrigger[TRIGGER_CLICK] = !(context._isShown() && context._activeTrigger[TRIGGER_CLICK]);
 			            context.toggle();
 			          });
 			        } else if (trigger !== TRIGGER_MANUAL) {
@@ -5935,8 +5940,8 @@
 	}
 
 	/*!
-	  * Bootstrap popover.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap popover.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var popover$1 = popover$2.exports;
@@ -6041,8 +6046,8 @@
 	var scrollspy$2 = {exports: {}};
 
 	/*!
-	  * Bootstrap scrollspy.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap scrollspy.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var scrollspy$1 = scrollspy$2.exports;
@@ -6326,8 +6331,8 @@
 	var tab$2 = {exports: {}};
 
 	/*!
-	  * Bootstrap tab.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap tab.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var tab$1 = tab$2.exports;
@@ -6621,8 +6626,8 @@
 	var toast$2 = {exports: {}};
 
 	/*!
-	  * Bootstrap toast.js v5.3.3 (https://getbootstrap.com/)
-	  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+	  * Bootstrap toast.js v5.3.8 (https://getbootstrap.com/)
+	  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
 	  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 	  */
 	var toast$1 = toast$2.exports;
@@ -6745,7 +6750,6 @@
 			    }
 
 			    // Private
-
 			    _maybeScheduleHide() {
 			      if (!this._config.autohide) {
 			        return;
