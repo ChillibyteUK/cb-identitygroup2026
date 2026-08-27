@@ -718,8 +718,12 @@
       border-bottom: 1px solid hsl(var(--hsl-neutral-400) / 0.5) !important;
     }
 
+    // !important: beats the base rule's own .grid-type-1/.grid-type-full-
+    // scoped .insight-type-grid__date colour above, which otherwise wins on
+    // specificity (3 classes vs. this rule's 2) regardless of source order,
+    // since index.php always renders with the grid-type-1 class.
     &__date {
-      color: var(--col-neutral-800);
+      color: var(--col-neutral-800) !important;
     }
   }
 

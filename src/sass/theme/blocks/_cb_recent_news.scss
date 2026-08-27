@@ -82,4 +82,10 @@
     .insight-type-grid__date {
         color: var(--col-neutral-800);
     }
+
+    // beats the purple-900 ("Press" category) !important override above,
+    // which would otherwise leak its light-lavender date through here too.
+    &.has-purple-900-background-color .insight-type-grid__date {
+        color: var(--col-neutral-800) !important;
+    }
 }
