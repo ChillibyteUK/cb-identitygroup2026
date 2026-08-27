@@ -26122,6 +26122,15 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-weight: var(--fw-light);
 }
 
+.cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+}
+.cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) .cb-plain-hero__title {
+  border-top-color: hsl(var(--hsl-neutral-400)/0.5);
+  border-bottom-color: hsl(var(--hsl-neutral-400)/0.5);
+}
+
 .cb-service-grid__grid {
   display: grid;
   gap: 2rem;

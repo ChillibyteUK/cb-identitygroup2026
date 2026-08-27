@@ -65,3 +65,17 @@
     }
   }
 }
+
+// health with no background image is white-background/dark-text/dark-
+// rules, the inverse of the dark base rule above - same per-site
+// inversion pattern used elsewhere. Left untouched with a background
+// image (dark scrim/overlay still needed for legibility there) (2026-08-27).
+.cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+
+  .cb-plain-hero__title {
+    border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
+    border-bottom-color: hsl(var(--hsl-neutral-400) / 0.5);
+  }
+}
