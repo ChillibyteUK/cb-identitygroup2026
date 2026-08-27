@@ -38,11 +38,10 @@
   --cb-signpost-header-line-color: hsl(var(--hsl-neutral-400) / 0.5);
 }
 
-// Bigger than the base rule's own padding-block (1rem 0.75rem, above,
-// shared with every other site) - matches cb-lined-title's own health
-// value. The asymmetric bottom (1rem, not 1.5rem) is a deliberate
-// optical correction for line-height: 1 uppercase text (see
-// cb-lined-title's matching rule for the full explanation) (2026-08-27).
+// Matches cb-services-nav__header's own real spacing (the baked-in
+// reference), not the base rule's own padding-block (1rem 0.75rem,
+// above, shared with every other site): plain padding-block: 1rem
+// (2026-08-27).
 .cb-site-health .cb-signpost-header {
-  padding-block: 1.25rem 0.875rem;
+  padding-block: 1rem;
 }

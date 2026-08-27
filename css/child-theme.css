@@ -25230,7 +25230,7 @@ span a {
 }
 
 .cb-site-health .cb-signpost-header {
-  padding-block: 1.25rem 0.875rem;
+  padding-block: 1rem;
 }
 
 .cb-image-feature-overlay {
@@ -28818,13 +28818,14 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 
 .cb-site-health section.cb-lined-title--line-dark,
 .cb-site-health section.cb-lined-title--line-light {
-  padding-block: 1.25rem 0.875rem;
+  padding-block: 1rem;
 }
 .cb-site-health section.cb-lined-title--line-dark h2, .cb-site-health section.cb-lined-title--line-dark .h2,
 .cb-site-health section.cb-lined-title--line-light h2,
 .cb-site-health section.cb-lined-title--line-light .h2 {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  line-height: 1;
   letter-spacing: var(--ls--10);
 }
 
