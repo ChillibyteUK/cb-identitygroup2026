@@ -230,4 +230,13 @@
   .brand-card__strap {
     font-weight: var(--fw-light);
   }
+
+  // white/.9 with dark text at all times (not just on :hover) - only
+  // opacity (inherited from the base rule's own transition) animates for
+  // show/hide, so there's no background-color/colour transition to get
+  // wrong or flash (2026-08-27).
+  .brand-card__back {
+    background-color: hsl(var(--hsl-white) / 0.9);
+    color: var(--col-primary-black);
+  }
 }

@@ -15,3 +15,10 @@
     }
   }
 }
+
+// --hsl-lime-1000 is repurposed to a dark red/maroon for health (#7b0319),
+// not an actual lime shade - lines should be dark neutral or white on
+// health, never that borrowed brand accent (2026-08-27).
+.cb-site-health .cb-details__item {
+  border-top-color: hsl(var(--hsl-neutral-400) / 0.5) !important;
+}

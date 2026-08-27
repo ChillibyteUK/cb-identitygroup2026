@@ -465,4 +465,17 @@
   .cb-work-index__content {
     background: rgba(255, 234, 255, 0.95);
   }
+
+  // --hsl-lime-900/--hsl-lime-1000 are repurposed to dark reds/maroons for
+  // health (#920720/#7b0319), not actual lime shades - lines should be
+  // dark neutral or white on health, never those borrowed brand accents
+  // (2026-08-27).
+  .work-index-hero h1,
+  .work-index-hero h2 {
+    border-color: hsl(var(--hsl-neutral-400) / 0.5);
+  }
+
+  .has-lime-1000-border-bottom {
+    border-bottom-color: hsl(var(--hsl-neutral-400) / 0.5) !important;
+  }
 }

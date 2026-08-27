@@ -23,3 +23,17 @@
     }
   }
 }
+
+// .service-page-header (not .cb-service-page-header above - this is the
+// shared coda/idtravel/health markup, styled entirely via WP-generated
+// utility classes rather than its own component rules) hardcodes
+// has-lime-1000-border-top/-bottom on its h1/h2 (blocks/cb-service-page-
+// header.php, non-identity branch). --hsl-lime-1000 is repurposed to a
+// dark red/maroon for health (#7b0319), not an actual lime shade, so
+// needs its own override here (2026-08-27).
+.cb-site-health .service-page-header__title {
+  h1,
+  h2 {
+    border-color: hsl(var(--hsl-neutral-400) / 0.5) !important;
+  }
+}
