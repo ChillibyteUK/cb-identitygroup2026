@@ -23547,11 +23547,17 @@ body.cb-site-identity {
   color: var(--col-primary-black);
 }
 .cb-site-health .news-insights-hero a {
-  color: var(--col-primary-black);
+  color: var(--col-blueberry-850);
+  text-decoration: none;
+}
+.cb-site-health .news-insights-hero a:hover {
+  text-decoration: underline;
 }
 .cb-site-health .news-insights-hero h1, .cb-site-health .news-insights-hero .h1 {
   color: var(--col-primary-black);
   border-top: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5);
+  padding-top: 0;
 }
 .cb-site-health .news-insights {
   background-color: var(--col-white);

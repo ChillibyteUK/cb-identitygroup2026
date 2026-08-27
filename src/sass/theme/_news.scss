@@ -694,12 +694,25 @@
     color: var(--col-primary-black);
 
     a {
-      color: var(--col-primary-black);
+      color: var(--col-blueberry-850);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
+    // health's h1 uses its own markup (.news-insights-hero__title wrapping
+    // an unconstrained h1, with the text/padding moved to an inner
+    // id-container div - see index.php) so the border spans full-bleed,
+    // matching service-page-header__title's h1. Padding-top reset to 0
+    // since the base rule's 0.5rem was sized for the old DOM, where it sat
+    // directly on this now-removed id-container/px-4 h1 (2026-08-27).
     h1 {
       color: var(--col-primary-black);
       border-top: 1px solid hsl(var(--hsl-neutral-400) / 0.5);
+      border-bottom: 1px solid hsl(var(--hsl-neutral-400) / 0.5);
+      padding-top: 0;
     }
   }
 

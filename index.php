@@ -16,16 +16,28 @@ if ( 'identity' === $cb_site || 'coda' === $cb_site ) {
 }
 
 $page_for_posts = get_option( 'page_for_posts' );
+$is_health       = 'health' === $cb_site;
 
 get_header( cb_site_template_suffix() );
 ?>
 <main id="main" class="news-insights">
 	<section class="news-insights-hero">
+		<?php if ( $is_health ) : ?>
+			<?php // matches service-page-header__title's DOM: the h1 itself carries the full-bleed top/bottom border, with an inner id-container div for the padded/contained text (2026-08-27). ?>
+		<div class="news-insights-hero__title my-4">
+			<h1>
+				<div class="id-container px-4 px-md-5 pt-2 pb-1">
+					Newsroom and perspectives
+				</div>
+			</h1>
+		</div>
+		<?php else : ?>
 		<div class="mt-5">
 			<h1 class="id-container px-4 px-md-5">
 				Newsroom and perspectives
 			</h1>
 		</div>
+		<?php endif; ?>
 		<div class="id-container px-4 px-md-5 pt-5 pb-5">
 			<div class="row">
 				<div class="col-md-9 offset-md-3 fs-500 fw-light pb-5">
