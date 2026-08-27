@@ -112,6 +112,10 @@
 // light background) and swaps the CTA to dark text with a smaller, grey
 // arrow (2026-08-27 client direction).
 .cb-site-health {
+  .cb-pushthrough {
+    border-bottom: none;
+  }
+
   .cb-pushthrough__logo {
     img,
     svg {
