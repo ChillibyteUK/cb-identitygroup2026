@@ -170,10 +170,13 @@
   background: rgba(255, 234, 255, 0.95);
 }
 
-// health's section background is white, not the base (coda-style) light-lime
-// tint (2026-08-25 client direction).
+// health's section background is Strawberry 100, not the base (coda-style)
+// light-lime tint - the section itself is already edge-to-edge (its
+// .id-container children are what's width-constrained/padded, not the
+// section), so this applies full-bleed as-is (2026-08-27, was plain white
+// per 2026-08-25 client direction until superseded here).
 .cb-site-health .cb-featured-work {
-  background-color: var(--col-white);
+  background-color: var(--col-strawberry-100);
 }
 
 // Card arrow, shared by the whole "featured work and pertaining" family

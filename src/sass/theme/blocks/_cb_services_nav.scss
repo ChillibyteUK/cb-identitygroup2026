@@ -87,6 +87,9 @@
     color: var(--col-blueberry-850);
     margin-top: 1px;
   }
+  &__item {
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+  }
   &__item-title {
     color: var(--col-black);
   }

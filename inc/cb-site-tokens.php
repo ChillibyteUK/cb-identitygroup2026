@@ -121,6 +121,7 @@ function cb_hide_non_health_field( $field ) {
 }
 add_filter( 'acf/prepare_field/key=field_cb_about_hero_overlay_style', 'cb_hide_non_health_field' );
 add_filter( 'acf/prepare_field/key=field_cb_pushthrough_style', 'cb_hide_non_health_field' );
+add_filter( 'acf/prepare_field/key=field_cb_plain_hero_style', 'cb_hide_non_health_field' );
 
 /**
  * Hides CB Our Brands' and CB Pushthrough's Pre-title fields for health -

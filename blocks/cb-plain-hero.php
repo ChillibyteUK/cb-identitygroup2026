@@ -10,15 +10,21 @@ defined( 'ABSPATH' ) || exit;
 cb_deprecated_block_notice( 'CB Image Feature Overlay', $is_preview );
 
 $block_id         = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-plain-hero-' );
+$is_health        = 'health' === cb_site_template_suffix();
 $title            = get_field( 'title' );
 $intro            = get_field( 'intro' );
 $background_image = get_field( 'background_image' );
+$style            = get_field( 'style' ) ?: 'light';
 
 $section_classes = array( 'cb-plain-hero' );
 $section_style   = '';
 
 if ( ! empty( $block['className'] ) ) {
 	$section_classes[] = $block['className'];
+}
+
+if ( $is_health ) {
+	$section_classes[] = 'cb-plain-hero--' . $style;
 }
 
 if ( $background_image ) {

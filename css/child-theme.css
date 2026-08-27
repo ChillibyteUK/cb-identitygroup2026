@@ -26142,11 +26142,17 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 
 .cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) {
   background-color: var(--col-white);
+}
+
+.cb-site-health .cb-plain-hero--dark {
   color: var(--col-primary-black);
 }
-.cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) .cb-plain-hero__title {
+.cb-site-health .cb-plain-hero--dark .cb-plain-hero__title {
   border-top-color: hsl(var(--hsl-neutral-400)/0.5);
   border-bottom-color: hsl(var(--hsl-neutral-400)/0.5);
+}
+.cb-site-health .cb-plain-hero--dark .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero--dark .cb-plain-hero__title .h1 span {
+  border-top-color: hsl(var(--hsl-neutral-400)/0.5);
 }
 
 .cb-service-grid__grid {
@@ -27361,7 +27367,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-site-health .cb-featured-work {
-  background-color: var(--col-white);
+  background-color: var(--col-strawberry-100);
 }
 
 .cb-site-health .cb-featured-work__arrow {
@@ -27458,6 +27464,9 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   background-color: rgba(255, 255, 255, 0.75);
   color: var(--col-blueberry-850);
   margin-top: 1px;
+}
+.cb-site-health .cb-services-nav__item {
+  border-bottom-color: rgba(255, 255, 255, 0.8);
 }
 .cb-site-health .cb-services-nav__item-title {
   color: var(--col-black);

@@ -87,6 +87,30 @@
             "mime_types": "",
             "allow_in_bindings": 1,
             "preview_size": "medium"
+        },
+        {
+            "key": "field_cb_plain_hero_style",
+            "label": "Style",
+            "name": "style",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "Health only - controls the title/rule text and line colour.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark",
+                "light": "Light"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
         }
     ],
     "location": [
