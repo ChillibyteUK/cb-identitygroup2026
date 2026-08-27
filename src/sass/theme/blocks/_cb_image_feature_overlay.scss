@@ -72,3 +72,17 @@
 // identity's real value (--fw-semi, 500) for this hero h1 - identity's
 // typography now intentionally follows idtravel's throughout (2026-07-14
 // decision), so no override here any more.
+
+// health hides the Overlay Image field (see inc/cb-site-tokens.php) so
+// --_overlay-bg-url is never set, always falling back to the base rule's
+// blur.jpg - replaced with a plain white/.8 + blur panel and dark text,
+// same treatment as CB About Hero's __content-wrap (2026-08-27).
+.cb-site-health .cb-image-feature-overlay {
+  color: var(--col-primary-black);
+
+  .cb-image-feature-overlay__overlay::before {
+    background: hsl(var(--hsl-white) / 0.8);
+    backdrop-filter: blur(3px);
+    opacity: 1;
+  }
+}

@@ -142,6 +142,11 @@ add_filter( 'acf/prepare_field/key=field_69038fa3ece88', 'cb_hide_health_pretitl
 add_filter( 'acf/prepare_field/key=field_69021b61a88b4', 'cb_hide_health_pretitle_fields' ); // cb-pushthrough pretitle
 add_filter( 'acf/prepare_field/key=field_cb_details_pre_title', 'cb_hide_health_pretitle_fields' ); // cb-details pre_title
 
+// CB Image Feature Overlay: health uses a plain white/.8-with-blur section
+// instead of a second overlay image, same treatment as CB About Hero's
+// Overlay Image (2026-08-27).
+add_filter( 'acf/prepare_field/key=field_6a27d566349a3', 'cb_hide_health_pretitle_fields' ); // cb-image-feature-overlay overlay_image
+
 /**
  * Replaces CB Testimonial's Style choices with health's own 5 colours
  * (Blueberry/Strawberry/Gooseberry/Spearmint/White) when cb_site is

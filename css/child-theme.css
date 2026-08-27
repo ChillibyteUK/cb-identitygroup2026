@@ -25257,6 +25257,15 @@ span a {
   margin-bottom: 0;
 }
 
+.cb-site-health .cb-image-feature-overlay {
+  color: var(--col-primary-black);
+}
+.cb-site-health .cb-image-feature-overlay .cb-image-feature-overlay__overlay::before {
+  background: hsl(var(--hsl-white)/0.8);
+  backdrop-filter: blur(3px);
+  opacity: 1;
+}
+
 .stat-hero {
   background-color: var(--col-ink);
   color: var(--col-white);
