@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+cb_deprecated_block_notice( 'CB Lined Title', $is_preview );
+
 // Support Gutenberg color picker.
 $bg         = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
 $fg         = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';

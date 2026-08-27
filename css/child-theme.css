@@ -25221,6 +25221,14 @@ span a {
   --cb-signpost-header-line-color: hsl(var(--hsl-ink) / 0.25);
 }
 
+.cb-site-health .cb-signpost-header.light-lines {
+  --cb-signpost-header-line-color: hsl(var(--hsl-white) / 0.5);
+}
+
+.cb-site-health .cb-signpost-header.dark-lines {
+  --cb-signpost-header-line-color: hsl(var(--hsl-neutral-400) / 0.5);
+}
+
 .cb-image-feature-overlay {
   position: relative;
   display: flex;
@@ -28802,6 +28810,14 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-site-health section.cb-lined-title--line-dark {
   border-top: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
   border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.5) !important;
+}
+
+.cb-site-health section.cb-lined-title--line-dark h2, .cb-site-health section.cb-lined-title--line-dark .h2,
+.cb-site-health section.cb-lined-title--line-light h2,
+.cb-site-health section.cb-lined-title--line-light .h2 {
+  letter-spacing: var(--ls--10);
+  padding-top: 1rem !important;
+  padding-bottom: 0.75rem !important;
 }
 
 .cb-about-detail {

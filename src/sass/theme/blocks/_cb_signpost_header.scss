@@ -27,3 +27,22 @@
     --cb-signpost-header-line-color: hsl(var(--hsl-ink) / 0.25);
   }
 }
+
+// aligned with cb-lined-title's own health line colours/opacity (source
+// of truth) - width already matches (1px solid on both) (2026-08-27).
+.cb-site-health .cb-signpost-header.light-lines {
+  --cb-signpost-header-line-color: hsl(var(--hsl-white) / 0.5);
+}
+
+.cb-site-health .cb-signpost-header.dark-lines {
+  --cb-signpost-header-line-color: hsl(var(--hsl-neutral-400) / 0.5);
+}
+
+// No override needed: this block's own base padding-block (1rem 0.75rem,
+// above) already matches cb-lined-title's current health value exactly
+// (16px/12px) - both apply it once, at the same structural depth (h2's
+// own parent id-container has no vertical padding either way), so the
+// number is what has to match, not which element carries it. An earlier
+// attempt to match cb-lined-title's *previous* padding (1.5rem/1rem, from
+// before it was aligned to this block) broke the match instead of fixing
+// it (2026-08-27).

@@ -31,3 +31,20 @@
   border-top: 1px solid hsl(var(--hsl-neutral-400) / 0.5) !important;
   border-bottom: 1px solid hsl(var(--hsl-neutral-400) / 0.5) !important;
 }
+
+// aligned with cb-signpost-header's own h2 (--ls--10, declared explicitly
+// in its own scoped rule) - both currently land on the same value via the
+// generic h2 rule's fallthrough regardless, but declared explicitly here
+// too so it isn't just an accident of two blocks' utility classes never
+// happening to touch letter-spacing (2026-08-27).
+.cb-site-health section.cb-lined-title--line-dark h2,
+.cb-site-health section.cb-lined-title--line-light h2 {
+  letter-spacing: var(--ls--10);
+
+  // matches cb-signpost-header's own section-level padding-block: 1rem
+  // 0.75rem - lined-title's real value comes from the pt-4/pb-3 (1.5rem/
+  // 1rem) Bootstrap utility classes hardcoded in the markup instead,
+  // which are !important, so this needs to be too (2026-08-27).
+  padding-top: 1rem !important;
+  padding-bottom: 0.75rem !important;
+}
