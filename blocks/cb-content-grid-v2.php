@@ -9,7 +9,10 @@ defined( 'ABSPATH' ) || exit;
 
 cb_deprecated_block_notice( 'CB Content Grid', $is_preview );
 
-$block_id           = $block['anchor'] ?? ( $block['id'] ?? wp_unique_id( 'cb-content-grid-v2-' ) );
+// $block['id'] isn't reliably unique per instance (e.g. a block duplicated
+// in the editor can share it with its source) - see the parallax-script id
+// collision found/fixed on cb-image-feature-overlay.php (2026-08-28).
+$block_id           = ( $block['anchor'] ?? '' ) ?: wp_unique_id( 'cb-content-grid-v2-' );
 $rows               = get_field( 'rows' );
 $background_image   = get_field( 'background_image' );
 $section_style_attr = '';

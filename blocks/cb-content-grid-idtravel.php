@@ -14,7 +14,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$block_id = $block['id'] ?? wp_unique_id( 'cb-content-grid-' );
+// $block['id'] isn't reliably unique per instance (e.g. a block duplicated
+// in the editor can share it with its source) - see the parallax-script id
+// collision found/fixed on cb-image-feature-overlay.php (2026-08-28).
+$block_id = wp_unique_id( 'cb-content-grid-' );
 
 $rows               = get_field( 'rows' );
 $background_image   = get_field( 'background_image' );

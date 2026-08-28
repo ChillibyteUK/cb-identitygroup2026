@@ -7,7 +7,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$block_id         = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-stats-' );
+// $block['id'] isn't reliably unique per instance (e.g. a block duplicated
+// in the editor can share it with its source) - see the parallax-script id
+// collision found/fixed on cb-image-feature-overlay.php (2026-08-28).
+$block_id         = ( $block['anchor'] ?? '' ) ?: wp_unique_id( 'cb-stats-' );
 $background_image = get_field( 'background_image' );
 $show_hero         = get_field( 'show_hero' );
 $hero_title         = get_field( 'hero_title' );

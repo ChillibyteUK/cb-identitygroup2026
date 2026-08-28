@@ -10,7 +10,10 @@ defined( 'ABSPATH' ) || exit;
 // Support Gutenberg color picker.
 $bg         = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
 $fg         = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
-$section_id = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-decision-gate-' );
+// $block['id'] isn't reliably unique per instance (e.g. a block duplicated
+// in the editor can share it with its source) - see the parallax-script id
+// collision found/fixed on cb-image-feature-overlay.php (2026-08-28).
+$section_id = ( $block['anchor'] ?? '' ) ?: wp_unique_id( 'cb-decision-gate-' );
 $extra      = $block['className'] ?? '';
 
 $background_image = get_field( 'background' );

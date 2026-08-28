@@ -7,7 +7,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$block_id   = $block['id'] ?? wp_unique_id( 'cb-cta-' );
+// $block['id'] isn't reliably unique per instance (e.g. a block duplicated
+// in the editor can share it with its source) - see the parallax-script id
+// collision found/fixed on cb-image-feature-overlay.php (2026-08-28).
+$block_id   = wp_unique_id( 'cb-cta-' );
 $cta_option = get_query_var( 'cta_choice', get_field( 'cta_choice' ) );
 
 if ( ! $cta_option ) {
