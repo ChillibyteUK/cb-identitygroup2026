@@ -34,10 +34,16 @@ if ( $extra_classes ) {
 	<div class="id-container px-4 px-md-5 py-5">
 		<div class="cb-service-grid__grid" data-aos-stagger-group>
 			<?php
-			if ( have_rows( 'content' ) ) {
-				$item_index = 0;
-				while ( have_rows( 'content' ) ) {
-					the_row();
+			// get_field(), not have_rows()/the_row()/get_sub_field(): on pages with several
+			// other ACF blocks that also have a field literally named "content", ACF's
+			// have_rows() internal loop-stack can end up returning false here even though
+			// the field data is present and correct - get_field() doesn't use that loop
+			// stack, so it isn't affected (found via live var_dump debugging on Kinsta, where
+			// have_rows('content') was false but get_field('content') returned the right
+			// rows - 2026-08-28).
+			$content_rows = get_field( 'content' );
+			if ( $content_rows ) {
+				foreach ( $content_rows as $item_index => $row ) {
 					$layout_index  = $item_index + $pattern_offset;
 					$pattern_index = $layout_index % 6;
 					$cycle_index   = (int) floor( $layout_index / 6 );
@@ -76,14 +82,13 @@ if ( $extra_classes ) {
 					}
 					?>
 			<div class="cb-service-grid__item" data-aos="fade">
-				<?= wp_get_attachment_image( get_sub_field( 'image' ), 'large', false, array( 'class' => 'cb-service-grid__image', 'style' => $image_style ) ); ?>
+				<?= wp_get_attachment_image( $row['image'], 'large', false, array( 'class' => 'cb-service-grid__image', 'style' => $image_style ) ); ?>
 				<div class="<?= esc_attr( implode( ' ', $body_classes ) ); ?>" style="<?= esc_attr( $body_style ); ?>">
-					<div class="cb-service-grid__title"><?= esc_html( get_sub_field( 'title' ) ); ?></div>
-					<div class="cb-service-grid__content"><?= wp_kses_post( get_sub_field( 'content' ) ); ?></div>
+					<div class="cb-service-grid__title"><?= esc_html( $row['title'] ); ?></div>
+					<div class="cb-service-grid__content"><?= wp_kses_post( $row['content'] ); ?></div>
 				</div>
 			</div>
 					<?php
-					++$item_index;
 				}
 			}
 			?>
