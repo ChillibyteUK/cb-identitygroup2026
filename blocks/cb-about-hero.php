@@ -60,7 +60,7 @@ if ( ! $title && ! $intro && ! $content && ! $overlay_image ) {
 					<<?= tag_escape( $rule_tag ); ?> class="cb-about-hero__rule"></<?= tag_escape( $rule_tag ); ?>>
 				<?php endif; ?>
 				<?php if ( $intro ) : ?>
-					<div class="cb-about-hero__intro hero-animate hero-animate--delay-1"><?= wpautop( esc_html( $intro ) ); ?></div>
+					<div class="cb-about-hero__intro hero-animate hero-animate--delay-1"><?= wpautop( wp_kses_post( $intro ) ); ?></div>
 				<?php endif; ?>
 			</div>
 		</div>
