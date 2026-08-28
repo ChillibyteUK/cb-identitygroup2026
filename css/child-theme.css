@@ -25201,6 +25201,10 @@ span a {
   border: 0;
 }
 
+.cb-site-health .cb-video-hero {
+  background-color: var(--col-white);
+}
+
 .cb-signpost-header {
   --cb-signpost-header-line-color: hsl(var(--hsl-ink) / 0.25);
   border-top: 1px solid var(--cb-signpost-header-line-color);
