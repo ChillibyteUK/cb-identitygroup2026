@@ -25272,11 +25272,13 @@ span a {
 .cb-image-feature-overlay--hero {
   min-height: calc(100vh - var(--h-top));
 }
-.cb-image-feature-overlay--hero h1, .cb-image-feature-overlay--hero .h1 {
-  font-size: var(--fs-900);
+.cb-image-feature-overlay--hero h1, .cb-image-feature-overlay--hero .h1,
+.cb-image-feature-overlay--hero h2,
+.cb-image-feature-overlay--hero .h2,
+.cb-image-feature-overlay--hero h3,
+.cb-image-feature-overlay--hero .h3 {
   line-height: 1;
   letter-spacing: var(--ls--40);
-  font-weight: var(--fw-book);
   text-wrap: balance;
 }
 .cb-image-feature-overlay--hero .cb-image-feature-overlay__overlay {
@@ -25309,6 +25311,15 @@ span a {
   background: hsl(var(--hsl-white)/0.8);
   backdrop-filter: blur(3px);
   opacity: 1;
+}
+.cb-site-health .cb-image-feature-overlay--hero h1.fw-light, .cb-site-health .cb-image-feature-overlay--hero .fw-light.h1 {
+  font-weight: var(--fw-light) !important;
+}
+.cb-site-health .cb-image-feature-overlay--hero h1.fw-regular, .cb-site-health .cb-image-feature-overlay--hero .fw-regular.h1 {
+  font-weight: var(--fw-regular) !important;
+}
+.cb-site-health .cb-image-feature-overlay--hero h1.fw-book, .cb-site-health .cb-image-feature-overlay--hero .fw-book.h1 {
+  font-weight: var(--fw-book) !important;
 }
 
 .stat-hero {

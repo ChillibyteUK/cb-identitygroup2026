@@ -159,7 +159,7 @@
         },
         {
             "key": "field_69ca7ddead887",
-            "label": "Title (h1)",
+            "label": "Title",
             "name": "title",
             "aria-label": "",
             "type": "textarea",
@@ -185,6 +185,128 @@
             "rows": 2,
             "placeholder": "",
             "new_lines": "br"
+        },
+        {
+            "key": "field_cb_image_feature_overlay_title_semantic",
+            "label": "Semantic Level",
+            "name": "title_semantic",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69ca7db9ad886",
+                        "operator": "==",
+                        "value": "Hero"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "h1": "H1",
+                "h2": "H2",
+                "h3": "H3"
+            },
+            "default_value": "h1",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_cb_image_feature_overlay_title_font_size",
+            "label": "Font Size",
+            "name": "title_font_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69ca7db9ad886",
+                        "operator": "==",
+                        "value": "Hero"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "fs-200": "fs-200",
+                "fs-300": "fs-300",
+                "fs-400": "fs-400",
+                "fs-500": "fs-500",
+                "fs-600": "fs-600",
+                "fs-700": "fs-700",
+                "fs-800": "fs-800",
+                "fs-850": "fs-850",
+                "fs-875": "fs-875",
+                "fs-900": "fs-900",
+                "fs-950": "fs-950"
+            },
+            "default_value": "fs-900",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_cb_image_feature_overlay_title_font_weight",
+            "label": "Font Weight",
+            "name": "title_font_weight",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69ca7db9ad886",
+                        "operator": "==",
+                        "value": "Hero"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "fw-light": "Light (300)",
+                "fw-regular": "Regular (400)",
+                "fw-book": "Book (450)",
+                "fw-semibold": "Semibold (600)"
+            },
+            "default_value": "fw-book",
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_69ca7dfcad888",

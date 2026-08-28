@@ -178,6 +178,27 @@ function cb_health_testimonial_style_choices( $field ) {
 add_filter( 'acf/prepare_field/key=field_cb_testimonial_style', 'cb_health_testimonial_style_choices' );
 
 /**
+ * Health's own real default for the CB Image Feature Overlay Hero title's
+ * Font Weight select - semibold, not the generic fw-book default the other
+ * sites use (client is particular about this one - 2026-08-28).
+ *
+ * Hooked to acf/load_field, not acf/prepare_field: ACF resolves an unset
+ * field's displayed value from default_value BEFORE prepare_field runs, so
+ * changing default_value there is too late to affect what shows as
+ * pre-selected on a fresh block - load_field runs early enough to matter.
+ *
+ * @param array $field ACF field settings.
+ * @return array
+ */
+function cb_health_image_feature_overlay_title_font_weight_default( $field ) {
+	if ( 'health' === cb_site_template_suffix() ) {
+		$field['default_value'] = 'fw-semibold';
+	}
+	return $field;
+}
+add_filter( 'acf/load_field/key=field_cb_image_feature_overlay_title_font_weight', 'cb_health_image_feature_overlay_title_font_weight_default' );
+
+/**
  * Returns the full per-site token table.
  *
  * @return array<string, array<string, string>>

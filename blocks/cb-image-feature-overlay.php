@@ -80,7 +80,17 @@ if ( 'Inline' === $presentation ) {
 			<hr>
 			<div class="row g-5 pt-4 pb-5">
 				<div class="col-lg-8">
-					<h1><?= wp_kses_post( get_field( 'title' ) ); ?></h1>
+					<?php
+					$title_tag = in_array( get_field( 'title_semantic' ), array( 'h1', 'h2', 'h3' ), true ) ? get_field( 'title_semantic' ) : 'h1';
+					$title_fs  = get_field( 'title_font_size' ) ?: 'fs-900';
+					// health's own default is semibold, not fw-book - see
+					// cb_health_image_feature_overlay_title_font_weight_default()
+					// in inc/cb-site-tokens.php, which only covers the ACF admin
+					// UI's pre-selected value, not this runtime fallback for
+					// content saved before the field existed (2026-08-28).
+					$title_fw = get_field( 'title_font_weight' ) ?: ( 'health' === cb_site_template_suffix() ? 'fw-semibold' : 'fw-book' );
+					?>
+					<<?= esc_attr( $title_tag ); ?> class="<?= esc_attr( $title_fs ); ?> <?= esc_attr( $title_fw ); ?>"><?= wp_kses_post( get_field( 'title' ) ); ?></<?= esc_attr( $title_tag ); ?>>
 				</div>
 				<div class="col-lg-4">
 					<?php if ( ! empty( $block_link['url'] ) && ! empty( $block_link['title'] ) ) : ?>

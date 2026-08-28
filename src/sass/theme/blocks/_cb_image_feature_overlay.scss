@@ -34,11 +34,16 @@
   &--hero {
     min-height: calc(100vh - var(--h-top));
 
-    h1 {
-      font-size: var(--fs-900);
+    // font-size/font-weight intentionally not set here - the Hero title's
+    // Font Size/Font Weight ACF selects (default fs-900/fw-book, matching
+    // this rule's old hardcoded values) apply those via utility classes on
+    // the heading itself. A tag-selector rule here would out-specificity
+    // those classes and silently ignore whatever the editor picks (2026-08-28).
+    h1,
+    h2,
+    h3 {
       line-height: 1;
       letter-spacing: var(--ls--40);
-      font-weight: var(--fw-book);
       text-wrap: balance;
     }
     .cb-image-feature-overlay__overlay {
@@ -84,5 +89,22 @@
     background: hsl(var(--hsl-white) / 0.8);
     backdrop-filter: blur(3px);
     opacity: 1;
+  }
+
+  // Exception to the sitewide ".cb-site-health h1 { font-weight: ...
+  // !important }" rule (_typography.scss) - this title's weight is an
+  // explicit per-instance choice (Font Weight select, cb-image-feature-
+  // overlay.php), so it must win over the blanket default instead of being
+  // silently forced back to semibold. Only need to override the non-
+  // semibold choices, since semibold already matches the blanket rule's
+  // value (2026-08-28).
+  &--hero h1.fw-light {
+    font-weight: var(--fw-light) !important;
+  }
+  &--hero h1.fw-regular {
+    font-weight: var(--fw-regular) !important;
+  }
+  &--hero h1.fw-book {
+    font-weight: var(--fw-book) !important;
   }
 }
