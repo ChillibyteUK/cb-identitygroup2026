@@ -478,4 +478,8 @@
   .has-lime-1000-border-bottom {
     border-bottom-color: hsl(var(--hsl-neutral-400) / 0.5) !important;
   }
+
+  .work-index-hero .overlay {
+    display: none;
+  }
 }
