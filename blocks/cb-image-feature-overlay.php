@@ -7,7 +7,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$section_id    = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-image-feature-overlay-' );
+// $block['id'] isn't reliably unique per instance - two blocks on the same
+// page (e.g. one duplicated from the other in the editor) can end up with
+// the same $block['id'], which breaks the parallax script below: it looks
+// up its own section via getElementById(), which silently returns the
+// FIRST matching element when ids collide, so every block after the first
+// ends up driving the first one's parallax instead of its own, and never
+// gets its own listener attached. wp_unique_id() is guaranteed fresh per
+// render, so this only falls back to $block['id'] never (2026-08-28).
+$section_id    = ( $block['anchor'] ?? '' ) ?: wp_unique_id( 'cb-image-feature-overlay-' );
 $extra_classes = $block['className'] ?? '';
 $image_id      = get_field( 'image' );
 $overlay_image = get_field( 'overlay_image' );
