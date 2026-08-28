@@ -23,7 +23,20 @@ if ( 'Hero' === $presentation ) {
 $section_style_declarations = array();
 $height = get_field( 'block_height' );
 
-if ( '' !== (string) $height ) {
+// null: untouched block, this field never existed in its stored data (every
+// Hero block before this field applied to both presentations, plus any
+// really old Inline block predating the field entirely) - fall through to
+// the SCSS var()'s own fallback for the current presentation (70vh Inline,
+// near-fullscreen Hero) rather than forcing a number here. 70 exact: ACF's
+// block editor eagerly serialises the field's default_value into a fresh
+// block's data the moment it's inserted, so a Hero block that's had the
+// slider left alone also reads as 70, not null - same fallback applies.
+// Can't tell that apart from someone deliberately choosing 70vh for Hero;
+// accepted as a rare, low-stakes edge case (2026-08-28).
+$height_is_customized = null !== $height && '' !== (string) $height
+	&& ! ( 'Hero' === $presentation && 70 === (int) $height );
+
+if ( $height_is_customized ) {
 	$section_style_declarations[] = sprintf( '--_height: %svh;', esc_attr( $height ) );
 }
 

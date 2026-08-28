@@ -30,7 +30,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -52,19 +52,11 @@
             "name": "block_height",
             "aria-label": "",
             "type": "range",
-            "instructions": "",
+            "instructions": "Leave at 70 for Hero to use its own default (near-fullscreen, minus the header) instead of a literal 70vh.",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_69ca7db9ad886",
-                        "operator": "==",
-                        "value": "Inline"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },

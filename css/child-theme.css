@@ -25270,7 +25270,7 @@ span a {
   isolation: isolate;
 }
 .cb-image-feature-overlay--hero {
-  min-height: calc(100vh - var(--h-top));
+  min-height: var(--_height, calc(100vh - var(--h-top)));
 }
 .cb-image-feature-overlay--hero h1, .cb-image-feature-overlay--hero .h1,
 .cb-image-feature-overlay--hero h2,

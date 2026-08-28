@@ -32,7 +32,12 @@
   }
 
   &--hero {
-    min-height: calc(100vh - var(--h-top));
+    // var()'s own fallback, not a plain calc() - lets the Block Height
+    // slider (now available for Hero too) override this when the editor's
+    // actually set one; --_height is only output for a deliberately-chosen
+    // value (see cb-image-feature-overlay.php), so an untouched/legacy Hero
+    // block still gets this exact near-fullscreen height (2026-08-28).
+    min-height: var(--_height, calc(100vh - var(--h-top)));
 
     // font-size/font-weight intentionally not set here - the Hero title's
     // Font Size/Font Weight ACF selects (default fs-900/fw-book, matching
