@@ -42,3 +42,17 @@
     display: inline-block;
   }
 }
+
+.cb-site-health .stat-hero {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+
+  .h1-wrapper {
+    border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
+  }
+
+  &__stat {
+    border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
+    border-bottom-color: hsl(var(--hsl-neutral-400) / 0.5);
+  }
+}
