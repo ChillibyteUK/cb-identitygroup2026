@@ -55,9 +55,10 @@ if ( empty( $hero_title ) && ! array_reduce(
 			<h1><?= esc_html( $hero_title ); ?></h1>
 		</div>
 		<?php endif; ?>
+		<?php $has_cta = get_field( 'cta_message' ) || get_field( 'cta_link' ); ?>
 		<div class="row g-4 py-5 justify-content-center" data-aos-stagger-group>
 			<?php
-			if ( get_field( 'cta_message' ) || get_field( 'cta_link' ) ) {
+			if ( $has_cta ) {
 				$l = get_field( 'cta_link' );
 				?>
 				<div class="col-12 col-lg-4" data-aos="fade">
@@ -78,7 +79,7 @@ if ( empty( $hero_title ) && ! array_reduce(
 			}
 			foreach ( $stats as $stat ) {
 				?>
-				<div class="col-md-6 col-lg-2" data-aos="fade">
+				<div class="col-md-6 col-lg-<?= $has_cta ? '2' : '3'; ?>" data-aos="fade">
 					<div class="cb-stats__item">
 						<?php if ( ! empty( $stat['intro'] ) ) : ?>
 							<div class="cb-stats__intro"><?= esc_html( $stat['intro'] ); ?></div>
