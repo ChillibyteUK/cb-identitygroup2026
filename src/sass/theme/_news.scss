@@ -746,11 +746,15 @@
     &.post-people,
     &.post-tmc {
       --_background: var(--col-white);
-      --_cat-colour: var(--col-primary-black);
+      --_cat-colour: var(--col-blueberry-850);
       --_text-colour: var(--col-primary-black);
       --_first-colour: var(--col-primary-black);
       --_link: var(--col-primary-black);
       --_link-hover: var(--col-neutral-700);
+    }
+
+    &.post-news {
+      --_cat-colour: var(--col-strawberry-850);
     }
 
     .category-wrapper,

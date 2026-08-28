@@ -23588,11 +23588,14 @@ body.cb-site-identity {
 }
 .cb-site-health .single-blog.post-news, .cb-site-health .single-blog.post-insight, .cb-site-health .single-blog.post-people, .cb-site-health .single-blog.post-tmc {
   --_background: var(--col-white);
-  --_cat-colour: var(--col-primary-black);
+  --_cat-colour: var(--col-blueberry-850);
   --_text-colour: var(--col-primary-black);
   --_first-colour: var(--col-primary-black);
   --_link: var(--col-primary-black);
   --_link-hover: var(--col-neutral-700);
+}
+.cb-site-health .single-blog.post-news {
+  --_cat-colour: var(--col-strawberry-850);
 }
 .cb-site-health .single-blog .category-wrapper,
 .cb-site-health .single-blog .post-title,
