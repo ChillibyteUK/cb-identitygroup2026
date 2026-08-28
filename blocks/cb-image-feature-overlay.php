@@ -49,12 +49,23 @@ if ( $overlay_image ) {
 
 $section_style = implode( ' ', $section_style_declarations );
 
+$block_link = get_field( 'cta_link' );
+
+if ( 'Inline' === $presentation ) {
+	$has_overlay_content = '' !== trim( (string) $content );
+} else {
+	$has_overlay_content = '' !== trim( (string) get_field( 'title' ) )
+		|| ( ! empty( $block_link['url'] ) && ! empty( $block_link['title'] ) )
+		|| '' !== trim( (string) get_field( 'cta_intro' ) );
+}
+
 ?>
 <section
 	id="<?= esc_attr( $section_id ); ?>"
 	class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>"
 	<?= $section_style ? 'style="' . esc_attr( $section_style ) . '"' : ''; ?>
 >
+	<?php if ( $has_overlay_content ) : ?>
 	<div class="cb-image-feature-overlay__overlay">
 		<div class="id-container px-4 px-md-5 py-4 py-md-5">
 			<?php
@@ -65,7 +76,6 @@ $section_style = implode( ' ', $section_style_declarations );
 			</div>
 				<?php
 			} else {
-				$block_link = get_field( 'cta_link' );
 				?>
 			<hr>
 			<div class="row g-5 pt-4 pb-5">
@@ -84,6 +94,7 @@ $section_style = implode( ' ', $section_style_declarations );
 			?>
 		</div>
 	</div>
+	<?php endif; ?>
 </section>
 
 <?php if ( $section_style ) : ?>

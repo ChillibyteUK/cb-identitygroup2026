@@ -253,6 +253,92 @@
                             "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
+                            "key": "field_cb_content_grid_h1_font_size_v2",
+                            "label": "Font Size",
+                            "name": "h1_font_size",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "fs-200": "fs-200",
+                                "fs-300": "fs-300",
+                                "fs-400": "fs-400",
+                                "fs-500": "fs-500",
+                                "fs-600": "fs-600",
+                                "fs-700": "fs-700",
+                                "fs-800": "fs-800",
+                                "fs-850": "fs-850",
+                                "fs-875": "fs-875",
+                                "fs-900": "fs-900",
+                                "fs-950": "fs-950"
+                            },
+                            "default_value": "fs-850",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 1,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0,
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
+                        },
+                        {
+                            "key": "field_cb_content_grid_h1_font_weight_v2",
+                            "label": "Font Weight",
+                            "name": "h1_font_weight",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "fw-light": "Light (300)",
+                                "fw-regular": "Regular (400)",
+                                "fw-book": "Book (450)",
+                                "fw-semibold": "Semibold (600)"
+                            },
+                            "default_value": "fw-semibold",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0,
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
+                        },
+                        {
                             "key": "field_cb_content_grid_h2_text_v2",
                             "label": "Heading Text",
                             "name": "h2_text",
@@ -282,6 +368,92 @@
                             "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {
+                            "key": "field_cb_content_grid_h2_font_size_v2",
+                            "label": "Font Size",
+                            "name": "h2_font_size",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h2"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "fs-200": "fs-200",
+                                "fs-300": "fs-300",
+                                "fs-400": "fs-400",
+                                "fs-500": "fs-500",
+                                "fs-600": "fs-600",
+                                "fs-700": "fs-700",
+                                "fs-800": "fs-800",
+                                "fs-850": "fs-850",
+                                "fs-875": "fs-875",
+                                "fs-900": "fs-900",
+                                "fs-950": "fs-950"
+                            },
+                            "default_value": "fs-700",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 1,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0,
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
+                        },
+                        {
+                            "key": "field_cb_content_grid_h2_font_weight_v2",
+                            "label": "Font Weight",
+                            "name": "h2_font_weight",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h2"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "fw-light": "Light (300)",
+                                "fw-regular": "Regular (400)",
+                                "fw-book": "Book (450)",
+                                "fw-semibold": "Semibold (600)"
+                            },
+                            "default_value": "fw-book",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0,
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
+                        },
+                        {
                             "key": "field_cb_content_grid_h3_text_v2",
                             "label": "Heading Text",
                             "name": "h3_text",
@@ -308,6 +480,92 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
+                        },
+                        {
+                            "key": "field_cb_content_grid_h3_font_size_v2",
+                            "label": "Font Size",
+                            "name": "h3_font_size",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h3"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "fs-200": "fs-200",
+                                "fs-300": "fs-300",
+                                "fs-400": "fs-400",
+                                "fs-500": "fs-500",
+                                "fs-600": "fs-600",
+                                "fs-700": "fs-700",
+                                "fs-800": "fs-800",
+                                "fs-850": "fs-850",
+                                "fs-875": "fs-875",
+                                "fs-900": "fs-900",
+                                "fs-950": "fs-950"
+                            },
+                            "default_value": "fs-600",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 1,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0,
+                            "parent_repeater": "field_cb_content_grid_modules_v2"
+                        },
+                        {
+                            "key": "field_cb_content_grid_h3_font_weight_v2",
+                            "label": "Font Weight",
+                            "name": "h3_font_weight",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "h3"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "fw-light": "Light (300)",
+                                "fw-regular": "Regular (400)",
+                                "fw-book": "Book (450)",
+                                "fw-semibold": "Semibold (600)"
+                            },
+                            "default_value": "fw-book",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0,
                             "parent_repeater": "field_cb_content_grid_modules_v2"
                         },
                         {

@@ -160,8 +160,10 @@ $arrow_icon = sprintf(
 								case 'h1':
 									$h1_text = $module['h1_text'] ?? '';
 									if ( $h1_text ) {
+										$h1_fs = $module['h1_font_size'] ?? 'fs-850';
+										$h1_fw = $module['h1_font_weight'] ?? 'fw-semibold';
 										?>
-										<h1 class="cb-content-grid-v2__h1"><?= wp_kses_post( $h1_text ); ?></h1>
+										<h1 class="cb-content-grid-v2__h1 <?= esc_attr( $h1_fs ); ?> <?= esc_attr( $h1_fw ); ?>"><?= wp_kses_post( $h1_text ); ?></h1>
 										<?php
 									}
 									break;
@@ -169,8 +171,10 @@ $arrow_icon = sprintf(
 								case 'h2':
 									$h2_text = $module['h2_text'] ?? '';
 									if ( $h2_text ) {
+										$h2_fs = $module['h2_font_size'] ?? 'fs-700';
+										$h2_fw = $module['h2_font_weight'] ?? 'fw-book';
 										?>
-										<h2 class="cb-content-grid-v2__h2"><?= wp_kses_post( $h2_text ); ?></h2>
+										<h2 class="cb-content-grid-v2__h2 <?= esc_attr( $h2_fs ); ?> <?= esc_attr( $h2_fw ); ?>"><?= wp_kses_post( $h2_text ); ?></h2>
 										<?php
 									}
 									break;
@@ -178,8 +182,10 @@ $arrow_icon = sprintf(
 								case 'h3':
 									$h3_text = $module['h3_text'] ?? '';
 									if ( $h3_text ) {
+										$h3_fs = $module['h3_font_size'] ?? 'fs-600';
+										$h3_fw = $module['h3_font_weight'] ?? 'fw-book';
 										?>
-										<h3 class="cb-content-grid-v2__h3"><?= wp_kses_post( $h3_text ); ?></h3>
+										<h3 class="cb-content-grid-v2__h3 <?= esc_attr( $h3_fs ); ?> <?= esc_attr( $h3_fw ); ?>"><?= wp_kses_post( $h3_text ); ?></h3>
 										<?php
 									}
 									break;
