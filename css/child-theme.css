@@ -25866,7 +25866,12 @@ span a {
   letter-spacing: var(--ls--30);
   font-weight: var(--fw-book);
   text-wrap: balance;
-  max-width: 29ch;
+  max-width: 100%;
+}
+@media (min-width: 1400px) {
+  .cb-about-hero__title {
+    max-width: 66%;
+  }
 }
 .cb-about-hero__intro {
   max-width: 66rem;

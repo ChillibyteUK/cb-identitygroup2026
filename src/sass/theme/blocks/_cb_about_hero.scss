@@ -71,7 +71,17 @@
     letter-spacing: var(--ls--30);
     font-weight: var(--fw-book);
     text-wrap: balance;
-    max-width: 29ch;
+    max-width: 100%;
+
+    // ch is a font-metric unit (width of the "0" glyph), not a container
+    // percentage - it doesn't track actual available width, so it either
+    // under- or over-constrains depending on the font/text. Capped at a
+    // fraction of the container instead, and only above xxl (1400px) so it
+    // stays full-width (no premature wrapping) on anything smaller
+    // (2026-08-28).
+    @media (min-width: 1400px) {
+      max-width: 66%;
+    }
   }
 
   &__intro {
