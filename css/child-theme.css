@@ -25422,6 +25422,15 @@ span a {
   text-wrap: balance;
 }
 
+.cb-site-health .cb-stats {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+}
+.cb-site-health .cb-stats__stat {
+  border-top-color: hsl(var(--hsl-neutral-400)/0.5);
+  border-bottom-color: hsl(var(--hsl-neutral-400)/0.5);
+}
+
 .cb-specialist-travel-nav {
   background-color: var(--col-neutral-050);
   color: var(--col-ink);

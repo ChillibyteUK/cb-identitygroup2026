@@ -73,3 +73,13 @@
     text-wrap: balance;
   }
 }
+
+.cb-site-health .cb-stats {
+  background-color: var(--col-white);
+  color: var(--col-primary-black);
+
+  &__stat {
+    border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
+    border-bottom-color: hsl(var(--hsl-neutral-400) / 0.5);
+  }
+}
