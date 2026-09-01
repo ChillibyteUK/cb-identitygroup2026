@@ -128,6 +128,18 @@
 
 // health's own real link/title colours (2026-09-01).
 .cb-site-health {
+    .cb-contact-page__emails,
+    .cb-contact-addresses__office {
+        border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
+    }
+
+    .cb-contact-page .h1,
+    .cb-contact-page h1,
+    .cb-contact-addresses__title {
+        border-top-color: hsl(var(--hsl-neutral-400) / 0.5);
+        border-bottom-color: hsl(var(--hsl-neutral-400) / 0.5);
+    }
+
     .cb-contact-page__emails a,
     .cb-contact-addresses a {
         color: var(--col-strawberry-850);

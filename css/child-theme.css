@@ -26095,6 +26095,16 @@ span a {
   font-weight: var(--fw-regular);
 }
 
+.cb-site-health .cb-contact-page__emails,
+.cb-site-health .cb-contact-addresses__office {
+  border-top-color: hsl(var(--hsl-neutral-400)/0.5);
+}
+.cb-site-health .cb-contact-page .h1,
+.cb-site-health .cb-contact-page h1,
+.cb-site-health .cb-contact-addresses__title {
+  border-top-color: hsl(var(--hsl-neutral-400)/0.5);
+  border-bottom-color: hsl(var(--hsl-neutral-400)/0.5);
+}
 .cb-site-health .cb-contact-page__emails a,
 .cb-site-health .cb-contact-addresses a {
   color: var(--col-strawberry-850);
