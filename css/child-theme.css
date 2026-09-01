@@ -27223,7 +27223,15 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   background-color: var(--col-strawberry-100);
 }
 .cb-site-health .cb-work-index__content {
-  background: rgba(255, 234, 255, 0.95);
+  background: linear-gradient(to top, rgba(13, 13, 12, 0.9) 0%, rgba(13, 13, 12, 0.8) 65%, transparent 100%);
+  padding-top: 4rem;
+}
+.cb-site-health .cb-work-index__title,
+.cb-site-health .cb-work-index__desc {
+  color: var(--col-white);
+}
+.cb-site-health .cb-work-index__title .cb-featured-work__arrow {
+  filter: brightness(0) invert(1);
 }
 .cb-site-health .work-index-hero h1, .cb-site-health .work-index-hero .h1,
 .cb-site-health .work-index-hero h2,
