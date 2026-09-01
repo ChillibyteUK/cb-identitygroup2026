@@ -442,18 +442,26 @@
   }
 }
 
-// Title panel background: Strawberry 200 (#ffeaff) at .95 opacity - the
-// client's specified colour for the "featured work and pertaining" card
-// family (2026-08-25, see _cb_featured_work.scss for the other members).
 .cb-site-health {
+  // same black-to-transparent gradient treatment as .cb-work-index__content
+  // below (2026-09-01) - supersedes the earlier Strawberry 200 panel
+  // (2026-08-25 client direction), since the client since asked for the
+  // black gradient/white text treatment here too. Base rule's own
+  // color: #fff carries over unchanged now nothing overrides it. No
+  // padding-top bump needed here - the base rule already has a generous
+  // 5rem, more than the 4rem cb-work-index__content was bumped to.
   .work-index-hero__content {
-    background: rgba(255, 234, 255, 0.95);
+    background: linear-gradient(to top, rgba(13, 13, 12, 0.9) 0%, rgba(13, 13, 12, 0.8) 65%, transparent 100%);
   }
 
-  // __content's own `color: #fff` (base rule above) was made for the old
-  // dark scrim - illegible against the new light Strawberry 200 panel.
-  .work-index-hero__card-title {
-    color: var(--col-black);
+  // shared .cb-featured-work__arrow icon is forced to var(--col-neutral-800)
+  // site-wide for health (_cb_featured_work.scss, !important - appropriate
+  // for that block's own light background, wrong here against this one's
+  // black gradient) - filter instead of trying to out-specificity a
+  // !important color rule, same approach as .cb-work-index__title's own
+  // arrow below.
+  .work-index-hero__card-title .cb-featured-work__arrow {
+    filter: brightness(0) invert(1);
   }
 
   // Section background is white, not the base (coda-style) light-lime tint
