@@ -23699,6 +23699,15 @@ body.cb-site-identity {
   color: var(--col-white) !important;
 }
 
+.cb-site-health .case-study .has-lime-1000-border-top.has-lime-1000-border-bottom,
+.cb-site-health .case-study .has-lime-1000-border-bottom {
+  border-top-color: hsl(var(--hsl-neutral-400)/0.5) !important;
+  border-bottom-color: hsl(var(--hsl-neutral-400)/0.5) !important;
+}
+.cb-site-health .case-study .has-lime-1100-color {
+  color: var(--col-primary-black) !important;
+}
+
 .skip-link {
   position: absolute;
   top: -100px;
@@ -27221,9 +27230,6 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-site-health .work-index-hero .h2 {
   border-color: hsl(var(--hsl-neutral-400)/0.5);
 }
-.cb-site-health .has-lime-1000-border-bottom {
-  border-bottom-color: hsl(var(--hsl-neutral-400)/0.5) !important;
-}
 .cb-site-health .work-index-hero .overlay {
   display: none;
 }
@@ -28655,6 +28661,55 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-content-grid-v2__list li:last-child, .cb-content-grid-v2__text ul li:last-child {
   margin-bottom: 0;
+}
+.cb-content-grid-v2__stats {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+@media (max-width: 767px) {
+  .cb-content-grid-v2__stats {
+    display: block;
+  }
+}
+.cb-content-grid-v2__stat-item {
+  display: table-row;
+  border-top: 1px solid var(--cb-content-grid-v2-line-color);
+}
+@media (max-width: 767px) {
+  .cb-content-grid-v2__stat-item {
+    display: block;
+    padding-top: 0.75rem;
+  }
+  .cb-content-grid-v2__stat-item:not(:first-child) {
+    margin-top: 0.75rem;
+  }
+}
+.cb-content-grid-v2__stat, .cb-content-grid-v2__stat-detail {
+  display: table-cell;
+  vertical-align: baseline;
+  padding-top: 0.75rem;
+}
+@media (max-width: 767px) {
+  .cb-content-grid-v2__stat, .cb-content-grid-v2__stat-detail {
+    display: block;
+    padding-top: 0;
+  }
+}
+.cb-content-grid-v2__stat {
+  width: 1%;
+  white-space: nowrap;
+  padding-right: 1rem;
+  line-height: 1.1;
+  color: var(--col-secondary);
+}
+.cb-content-grid-v2__stat-detail {
+  line-height: 1.4;
+}
+@media (max-width: 767px) {
+  .cb-content-grid-v2__stat-detail {
+    margin-top: 0.25rem;
+  }
 }
 .cb-content-grid-v2__links-link {
   display: flex;

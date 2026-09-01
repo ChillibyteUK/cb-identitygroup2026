@@ -12,6 +12,7 @@ $block_id = $block['id'] ?? '';
 
 $is_identity = 'identity' === cb_site_template_suffix();
 $is_coda     = 'coda' === cb_site_template_suffix();
+$is_health   = 'health' === cb_site_template_suffix();
 
 $bg_case_study = get_field( 'hero_case_study' )[0] ?? null;
 
@@ -181,7 +182,7 @@ if ( ! $bg_case_study ) {
 			</div>
 		</div>
 	</div>
-	<?php else : ?>
+	<?php elseif ( ! $is_health ) : ?>
 	<div class="has-lime-1000-border-bottom">
 		<div class="id-container py-3 px-4 px-md-5">
 			<h2 class="fs-300 fw-regular lh-tightest pt-1 pb-0 mb-0 text-uppercase" >Featured Work</h2>

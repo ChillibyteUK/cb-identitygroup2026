@@ -12,7 +12,7 @@ $subtitle = get_field( 'case_study_subtitle' ) ? get_field( 'case_study_subtitle
 
 ?>
 <main id="main" class="case-study">
-	<?php if ( 'coda' === cb_site_template_suffix() ) : ?>
+	<?php if ( in_array( cb_site_template_suffix(), array( 'coda', 'health' ), true ) ) : ?>
 	<div class="has-lime-1000-border-top has-lime-1000-border-bottom mt-4">
 		<h1 class="id-container px-4 px-md-5 fs-800 fw-light has-lime-1100-color lh-tightest pt-2 pb-1"><?= get_the_title(); ?></h1>
 	</div>

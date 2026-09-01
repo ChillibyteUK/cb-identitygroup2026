@@ -217,6 +217,38 @@ $arrow_icon = sprintf(
 									}
 									break;
 
+								case 'stats':
+									$stats_rows = $module['stats_rows'] ?? array();
+									if ( ! empty( $stats_rows ) && is_array( $stats_rows ) ) {
+										?>
+										<div class="cb-content-grid-v2__stats">
+											<?php foreach ( $stats_rows as $stat_row ) : ?>
+												<?php
+												$stat_text   = $stat_row['stat_text'] ?? '';
+												$stat_fs     = $stat_row['stat_font_size'] ?? 'fs-600';
+												$stat_fw     = $stat_row['stat_font_weight'] ?? 'fw-semibold';
+												$detail_text = $stat_row['detail_text'] ?? '';
+												$detail_fs   = $stat_row['detail_font_size'] ?? 'fs-400';
+												$detail_fw   = $stat_row['detail_font_weight'] ?? 'fw-light';
+
+												if ( ! $stat_text && ! $detail_text ) {
+													continue;
+												}
+												?>
+												<div class="cb-content-grid-v2__stat-item">
+													<?php if ( $stat_text ) : ?>
+														<div class="cb-content-grid-v2__stat <?= esc_attr( $stat_fs ); ?> <?= esc_attr( $stat_fw ); ?>"><?= esc_html( $stat_text ); ?></div>
+													<?php endif; ?>
+													<?php if ( $detail_text ) : ?>
+														<div class="cb-content-grid-v2__stat-detail <?= esc_attr( $detail_fs ); ?> <?= esc_attr( $detail_fw ); ?>"><?= esc_html( $detail_text ); ?></div>
+													<?php endif; ?>
+												</div>
+											<?php endforeach; ?>
+										</div>
+										<?php
+									}
+									break;
+
 								case 'quote':
 									$quote_text = $module['quote_text'] ?? '';
 									$quote_link = is_array( $module['quote_link'] ?? null ) ? $module['quote_link'] : array();

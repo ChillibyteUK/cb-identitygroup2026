@@ -206,6 +206,7 @@
                                 "logo_grid": "Logo Grid",
                                 "qa": "Q&A",
                                 "list": "List",
+                                "stats": "Stats",
                                 "image": "Image",
                                 "video": "Video",
                                 "empty": "Empty",
@@ -1282,6 +1283,211 @@
                             "create_options": 0,
                             "save_options": 0,
                             "parent_repeater": "field_cb_content_grid_modules_v2"
+                        },
+                        {
+                            "key": "field_cb_content_grid_stats_rows_v2",
+                            "label": "Stats Rows",
+                            "name": "stats_rows",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_cb_content_grid_module_type_v2",
+                                        "operator": "==",
+                                        "value": "stats"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "pagination": 0,
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "field_cb_content_grid_stat_text_v2",
+                            "button_label": "Add Stat",
+                            "rows_per_page": 20,
+                            "parent_repeater": "field_cb_content_grid_modules_v2",
+                            "sub_fields": [
+                                {
+                                    "key": "field_cb_content_grid_stat_text_v2",
+                                    "label": "Stat",
+                                    "name": "stat_text",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_cb_content_grid_stats_rows_v2"
+                                },
+                                {
+                                    "key": "field_cb_content_grid_detail_text_v2",
+                                    "label": "Detail",
+                                    "name": "detail_text",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_cb_content_grid_stats_rows_v2"
+                                },
+                                {
+                                    "key": "field_cb_content_grid_stat_font_size_v2",
+                                    "label": "Stat Font Size",
+                                    "name": "stat_font_size",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "fs-100": "fs-100 (18px)",
+                                        "fs-200": "fs-200 (20px)",
+                                        "fs-400": "fs-400 (22px)",
+                                        "fs-500": "fs-500 (26px)",
+                                        "fs-600": "fs-600 (30px)",
+                                        "fs-700": "fs-700 (35px)"
+                                    },
+                                    "default_value": "fs-600",
+                                    "return_format": "value",
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0,
+                                    "parent_repeater": "field_cb_content_grid_stats_rows_v2"
+                                },
+                                {
+                                    "key": "field_cb_content_grid_stat_font_weight_v2",
+                                    "label": "Stat Font Weight",
+                                    "name": "stat_font_weight",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "fw-light": "Light (300)",
+                                        "fw-regular": "Regular (400)",
+                                        "fw-book": "Book (500)",
+                                        "fw-semibold": "Semibold (500)"
+                                    },
+                                    "default_value": "fw-semibold",
+                                    "return_format": "value",
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0,
+                                    "parent_repeater": "field_cb_content_grid_stats_rows_v2"
+                                },
+                                {
+                                    "key": "field_cb_content_grid_detail_font_size_v2",
+                                    "label": "Detail Font Size",
+                                    "name": "detail_font_size",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "fs-100": "fs-100 (18px)",
+                                        "fs-200": "fs-200 (20px)",
+                                        "fs-400": "fs-400 (22px)",
+                                        "fs-500": "fs-500 (26px)",
+                                        "fs-600": "fs-600 (30px)",
+                                        "fs-700": "fs-700 (35px)"
+                                    },
+                                    "default_value": "fs-400",
+                                    "return_format": "value",
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0,
+                                    "parent_repeater": "field_cb_content_grid_stats_rows_v2"
+                                },
+                                {
+                                    "key": "field_cb_content_grid_detail_font_weight_v2",
+                                    "label": "Detail Font Weight",
+                                    "name": "detail_font_weight",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "fw-light": "Light (300)",
+                                        "fw-regular": "Regular (400)",
+                                        "fw-book": "Book (500)",
+                                        "fw-semibold": "Semibold (500)"
+                                    },
+                                    "default_value": "fw-light",
+                                    "return_format": "value",
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0,
+                                    "parent_repeater": "field_cb_content_grid_stats_rows_v2"
+                                }
+                            ]
                         },
                         {
                             "key": "field_69e107d3af859_v2",

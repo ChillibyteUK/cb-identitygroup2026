@@ -1,0 +1,18 @@
+// single-case_study.php's title/subtitle block (used by coda's and
+// health's real case study pages - identity/idtravel don't render it at
+// all) hardcodes has-lime-1000-border-top/-bottom and has-lime-1100-color
+// directly in the markup. --hsl-lime-1000/--col-lime-1100 are repurposed
+// to a dark red/maroon for health (#7b0319), not an actual lime shade, so
+// needs its own override here - same recurring class of bug as
+// cb-details/cb-service-page-header/cb-work-index/text-page (2026-09-01).
+.cb-site-health .case-study {
+  .has-lime-1000-border-top.has-lime-1000-border-bottom,
+  .has-lime-1000-border-bottom {
+    border-top-color: hsl(var(--hsl-neutral-400) / 0.5) !important;
+    border-bottom-color: hsl(var(--hsl-neutral-400) / 0.5) !important;
+  }
+
+  .has-lime-1100-color {
+    color: var(--col-primary-black) !important;
+  }
+}

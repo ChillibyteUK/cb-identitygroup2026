@@ -243,6 +243,72 @@
     }
   }
 
+  // CSS table, not grid/flex: this is genuinely tabular data (a "stat"
+  // column that must match width across every row, paired with a
+  // "detail" column), and table-cell's own default vertical-align:
+  // baseline aligns cells' *content* to a shared baseline while each
+  // cell's *box* still spans the full row height flush with its
+  // siblings - exactly what grid/flex align-items can't do without
+  // moving the box itself (and breaking the border-top each row carries)
+  // (2026-09-01).
+  &__stats {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
+
+  &__stat-item {
+    display: table-row;
+    border-top: 1px solid var(--cb-content-grid-v2-line-color);
+
+    @media (max-width: 767px) {
+      display: block;
+      padding-top: 0.75rem;
+
+      &:not(:first-child) {
+        margin-top: 0.75rem;
+      }
+    }
+  }
+
+  &__stat,
+  &__stat-detail {
+    display: table-cell;
+    vertical-align: baseline;
+    padding-top: 0.75rem;
+
+    @media (max-width: 767px) {
+      display: block;
+      padding-top: 0;
+    }
+  }
+
+  &__stat {
+    // width: 1% + white-space: nowrap is the standard table trick for
+    // shrink-to-fit columns: it tells auto table layout this column wants
+    // to be as narrow as possible, and nowrap stops it collapsing below
+    // its content's own natural width - without it, width: 100% on the
+    // table lets the browser over-allocate space into this column even
+    // though the content is short (2026-09-01).
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 1rem;
+    line-height: 1.1;
+    color: var(--col-secondary);
+  }
+
+  &__stat-detail {
+    line-height: 1.4;
+
+    @media (max-width: 767px) {
+      margin-top: 0.25rem;
+    }
+  }
+
   &__links-link {
     display: flex;
     justify-content: space-between;
