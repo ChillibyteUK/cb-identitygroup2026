@@ -23615,6 +23615,11 @@ body.cb-site-identity {
   color: var(--col-primary-black);
   border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.4) !important;
 }
+.text-page__title {
+  --text-page-title-border-color: hsl(var(--hsl-lime-1000) / 0.4);
+  border-top: 1px solid var(--text-page-title-border-color);
+  border-bottom: 1px solid var(--text-page-title-border-color);
+}
 .text-page .post-content {
   --_colour: var(--col-brand-dark);
 }
@@ -23646,6 +23651,9 @@ body.cb-site-identity {
 .cb-site-idtravel .text-page {
   color: inherit;
 }
+.cb-site-idtravel .text-page__title {
+  --text-page-title-border-color: transparent;
+}
 .cb-site-idtravel .text-page .post-content > .container:first-of-type, .cb-site-idtravel .text-page .post-content > .wp-block-group:first-of-type:not(.alignfull),
 .cb-site-idtravel .text-page .post-content h2,
 .cb-site-idtravel .text-page .post-content .h2 {
@@ -23654,6 +23662,10 @@ body.cb-site-identity {
 .cb-site-idtravel .text-page .post-content .table, .wp-block-table .cb-site-idtravel .text-page .post-content table,
 .cb-site-idtravel .text-page .post-content .wp-block-table table {
   color: inherit !important;
+}
+
+.cb-site-health .text-page__title {
+  --text-page-title-border-color: hsl(var(--hsl-neutral-400) / 0.5);
 }
 
 .cb-site-identity .text-page {

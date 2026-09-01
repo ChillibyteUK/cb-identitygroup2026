@@ -3,6 +3,22 @@
   color: var(--col-primary-black);
   border-bottom: 1px solid hsl(var(--hsl-neutral-400) / 0.4) !important;
 
+  // Agnostic replacement for the has-lime-1000-border-top/-bottom classes
+  // this wrapper div used to hardcode directly in text-page.php: those
+  // are a borrowed WP colour-picker utility (not really "lime" - the
+  // underlying --hsl-lime-1000 token is repurposed per-site, e.g. a dark
+  // red/maroon on health), so a plain override could never keep up as
+  // more sites/colours are added. Same --cb-{block}-line-color-style
+  // custom-property pattern already used by cb-signpost-header/
+  // cb-pushthrough/cb-content-grid-v2 instead - default matches coda's
+  // own real look (the class's own real default), with idtravel/health
+  // overrides below (2026-09-01).
+  &__title {
+    --text-page-title-border-color: hsl(var(--hsl-lime-1000) / 0.4);
+    border-top: 1px solid var(--text-page-title-border-color);
+    border-bottom: 1px solid var(--text-page-title-border-color);
+  }
+
   .post-content {
     --_colour: var(--col-brand-dark);
     .container {
@@ -48,6 +64,13 @@
 .cb-site-idtravel .text-page {
   color: inherit;
 
+  // matches the old has-lime-1000-border-top/-bottom classes' own real
+  // idtravel behaviour: neutralised to no border at all, same as every
+  // other use of those classes site-wide (see _child_theme.scss).
+  &__title {
+    --text-page-title-border-color: transparent;
+  }
+
   .post-content {
     // same undefined-on-real story for --col-brand-dark (feeds --_colour
     // below) and the .table rule's direct --col-primary-black reference.
@@ -60,6 +83,12 @@
     .wp-block-table table {
       color: inherit !important;
     }
+  }
+}
+
+.cb-site-health .text-page {
+  &__title {
+    --text-page-title-border-color: hsl(var(--hsl-neutral-400) / 0.5);
   }
 }
 

@@ -22,7 +22,7 @@ $is_identity = 'identity' === cb_site_template_suffix();
 			</div>
 		</div>
 	<?php else : ?>
-		<div class="has-lime-1000-border-top has-lime-1000-border-bottom mt-4">
+		<div class="text-page__title mt-4">
 			<h1 class="id-container px-4 px-md-5 fs-800 fw-light has-lime-1100-color lh-tightest pt-2 pb-1"><?= esc_html( get_the_title() ); ?></h1>
 		</div>
 	<?php endif; ?>
