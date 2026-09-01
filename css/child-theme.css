@@ -28463,9 +28463,6 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-content-grid-v2__row + .cb-content-grid-v2__row {
   margin-top: 2rem;
 }
-.cb-content-grid-v2__row.cb-content-grid-v2__row--has-h2 {
-  border-top: 0;
-}
 .cb-content-grid-v2__h1 {
   text-wrap: balance;
 }

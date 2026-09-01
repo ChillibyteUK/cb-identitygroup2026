@@ -46,10 +46,6 @@
     & + .cb-content-grid-v2__row {
       margin-top: 2rem;
     }
-
-    &.cb-content-grid-v2__row--has-h2 {
-      border-top: 0;
-    }
   }
 
   // No width: 50% here (2026-08-25 client direction) - unlike __h2 below,
