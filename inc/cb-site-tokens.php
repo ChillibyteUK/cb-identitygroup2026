@@ -664,7 +664,7 @@ function cb_get_site_tokens_table() {
 			// dead but this wasn't asked for.
 			'--col-brand'                        => '#e32447',
 			'--hsl-brand'                        => '349 77% 52%',
-			'--col-brand-dark'                   => '#a300ac',
+			'--col-brand-dark'                   => '#0d0d0c',
 			'--col-secondary'                    => '#006b78',
 			'--col-accent-500'                   => '#cc1939',
 			// #a300ac is Strawberry 850 in idh-gooseberry.css (2026-08-25
