@@ -464,10 +464,12 @@
     filter: brightness(0) invert(1);
   }
 
-  // Section background is white, not the base (coda-style) light-lime tint
-  // (2026-08-25 client direction) - same treatment as _cb_featured_work.scss.
+  // Section background is white (2026-09-01, was Strawberry 100 before
+  // that despite this comment already claiming white - stale comment,
+  // not stale code, now corrected to match) - same treatment as
+  // _cb_featured_work.scss.
   .cb-work-index {
-    background-color: var(--col-strawberry-100);
+    background-color: var(--col-white);
   }
 
   // black-to-transparent gradient (2026-09-01) - the base rule's own

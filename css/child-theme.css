@@ -27220,7 +27220,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   filter: brightness(0) invert(1);
 }
 .cb-site-health .cb-work-index {
-  background-color: var(--col-strawberry-100);
+  background-color: var(--col-white);
 }
 .cb-site-health .cb-work-index__content {
   background: linear-gradient(to top, rgba(13, 13, 12, 0.9) 0%, rgba(13, 13, 12, 0.8) 65%, transparent 100%);
@@ -27519,11 +27519,21 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 
 .cb-site-health .cb-featured-work__content {
-  background: rgba(255, 234, 255, 0.95);
+  background: linear-gradient(to top, rgba(13, 13, 12, 0.9) 0%, rgba(13, 13, 12, 0.8) 65%, transparent 100%);
+  padding-top: 4rem;
+}
+
+.cb-site-health .cb-featured-work__title,
+.cb-site-health .cb-featured-work__desc {
+  color: var(--col-white);
+}
+
+.cb-site-health .cb-featured-work__title .cb-featured-work__arrow {
+  filter: brightness(0) invert(1);
 }
 
 .cb-site-health .cb-featured-work {
-  background-color: var(--col-strawberry-100);
+  background-color: var(--col-white);
 }
 
 .cb-site-health .cb-featured-work__arrow {

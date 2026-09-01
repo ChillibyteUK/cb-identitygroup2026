@@ -162,21 +162,36 @@
 // health has no gradients anywhere (2026-08-25 client direction). health
 // isn't identity, so it renders the base (coda-style, light-lime) markup
 // above, not this identity override — flattened to that base gradient's own
-// darkest/most-opaque stop. Superseded 2026-08-25: title panel background is
-// now Strawberry 200 (#ffeaff) at .95 opacity, the client's specified colour
-// for the "featured work and pertaining" card family (also applied in
-// _cb_related_work.scss, _cb_work_carousel.scss, _cb_work_index.scss).
+// same black-to-transparent gradient treatment as
+// .cb-work-index__content/.work-index-hero__content (2026-09-01) -
+// supersedes the earlier Strawberry 200 panel (2026-08-25 client
+// direction), since the client since asked for the black gradient/white
+// text treatment across the "featured work and pertaining" card family.
 .cb-site-health .cb-featured-work__content {
-  background: rgba(255, 234, 255, 0.95);
+  background: linear-gradient(to top, rgba(13, 13, 12, 0.9) 0%, rgba(13, 13, 12, 0.8) 65%, transparent 100%);
+  padding-top: 4rem;
 }
 
-// health's section background is Strawberry 100, not the base (coda-style)
-// light-lime tint - the section itself is already edge-to-edge (its
-// .id-container children are what's width-constrained/padded, not the
-// section), so this applies full-bleed as-is (2026-08-27, was plain white
-// per 2026-08-25 client direction until superseded here).
+.cb-site-health .cb-featured-work__title,
+.cb-site-health .cb-featured-work__desc {
+  color: var(--col-white);
+}
+
+// shared .cb-featured-work__arrow icon is forced to var(--col-neutral-800)
+// site-wide for health further down this file (!important) - filter
+// instead of trying to out-specificity a !important color rule, same
+// approach used for .cb-work-index__title's own arrow.
+.cb-site-health .cb-featured-work__title .cb-featured-work__arrow {
+  filter: brightness(0) invert(1);
+}
+
+// health's section background is white (2026-09-01, was Strawberry 100
+// per 2026-08-27, was plain white per 2026-08-25 before that) - the
+// section itself is already edge-to-edge (its .id-container children are
+// what's width-constrained/padded, not the section), so this applies
+// full-bleed as-is.
 .cb-site-health .cb-featured-work {
-  background-color: var(--col-strawberry-100);
+  background-color: var(--col-white);
 }
 
 // Card arrow, shared by the whole "featured work and pertaining" family
