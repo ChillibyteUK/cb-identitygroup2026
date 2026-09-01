@@ -27310,6 +27310,12 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-latest-insights__card-6 .cb-latest-insights__image {
   aspect-ratio: 1/1;
 }
+.cb-latest-insights__category {
+  border-bottom: 1px solid var(--col-neutral-100) !important;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-size: var(--fs-50);
+}
 .cb-latest-insights__title {
   font-size: var(--fs-300);
   font-weight: var(--fw-semi);

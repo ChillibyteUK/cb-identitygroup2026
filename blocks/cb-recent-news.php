@@ -21,13 +21,13 @@ if ( 'identity' === $cb_site || 'coda' === $cb_site ) {
 }
 
 // Block ID.
-$block_id   = $block['id'] ?? '';
-$blog_type  = get_query_var( 'blog_type', '' );
-$person     = get_query_var( 'person', '' );
-$theme      = get_query_var( 'theme', '' );
+$block_id    = $block['id'] ?? '';
+$blog_type   = get_query_var( 'blog_type', '' );
+$person      = get_query_var( 'person', '' );
+$theme       = get_query_var( 'theme', '' );
 $theme_field = get_field( 'theme' );
-$blog_types = array();
-$post_limit = is_front_page() ? 6 : 3;
+$blog_types  = array();
+$post_limit  = is_front_page() ? 3 : 3;
 
 if ( ! empty( $theme_field ) ) {
 	$theme_term = get_term( $theme_field, 'theme' );
@@ -119,8 +119,8 @@ if ( ! empty( $tax_query ) ) {
 $posts = array();
 
 if ( ! empty( $theme ) ) {
-	$priority_args = $args;
-	$priority_tax_query = $priority_args['tax_query'] ?? array();
+	$priority_args        = $args;
+	$priority_tax_query   = $priority_args['tax_query'] ?? array();
 	$priority_tax_query[] = array(
 		'taxonomy' => 'theme',
 		'field'    => 'slug',

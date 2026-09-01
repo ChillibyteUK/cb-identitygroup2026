@@ -76,6 +76,13 @@
       aspect-ratio: 1 / 1;
     }
   }
+  // matches cb-recent-news.php's own .insight-type-grid__category (2026-09-01).
+  &__category {
+    border-bottom: 1px solid var(--col-neutral-100) !important;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-size: var(--fs-50);
+  }
   &__title {
     font-size: var(--fs-300);
     font-weight: var(--fw-semi);

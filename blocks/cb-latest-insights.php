@@ -122,6 +122,14 @@ $taxonomy_filter = get_field( 'taxonomy_filter' );
 							<?php the_title(); ?>
 						</h3>
 						<?php else : ?>
+						<?php
+						$categories = get_the_category();
+						if ( ! empty( $categories ) ) :
+							?>
+						<div class="cb-latest-insights__category">
+							<?php echo esc_html( $categories[0]->name ); ?>
+						</div>
+						<?php endif; ?>
 						<div class="cb-latest-insights__title">
 							<?php the_title(); ?>
 						</div>
