@@ -664,8 +664,8 @@ function cb_get_site_tokens_table() {
 			// dead but this wasn't asked for.
 			'--col-brand'                        => '#e32447',
 			'--hsl-brand'                        => '349 77% 52%',
-			'--col-brand-dark'                   => '#900720',
-			'--col-secondary'                    => '#2f13ba',
+			'--col-brand-dark'                   => '#a300ac',
+			'--col-secondary'                    => '#006b78',
 			'--col-accent-500'                   => '#cc1939',
 			// #a300ac is Strawberry 850 in idh-gooseberry.css (2026-08-25
 			// client-specified button colour) - referenced by token rather

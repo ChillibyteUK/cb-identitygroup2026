@@ -23616,7 +23616,7 @@ body.cb-site-identity {
   border-bottom: 1px solid hsl(var(--hsl-neutral-400)/0.4) !important;
 }
 .text-page .post-content {
-  --_colour: var(--col-brand-dark);
+  --_colour: var(--col-strawberry-850);
 }
 .text-page .post-content .container, .text-page .post-content .wp-block-group:not(.alignfull) {
   padding-inline: 0;
