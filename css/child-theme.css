@@ -26095,6 +26095,14 @@ span a {
   font-weight: var(--fw-regular);
 }
 
+.cb-site-health .cb-contact-page__emails a,
+.cb-site-health .cb-contact-addresses a {
+  color: var(--col-strawberry-850);
+}
+.cb-site-health .cb-contact-addresses__title {
+  color: var(--col-blueberry-850);
+}
+
 .cb-site-coda .cb-contact-addresses__title {
   background-color: var(--col-neutral-100);
   color: var(--col-lime-1000);

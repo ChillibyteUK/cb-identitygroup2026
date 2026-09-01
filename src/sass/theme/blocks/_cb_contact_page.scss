@@ -126,6 +126,18 @@
     }
 }
 
+// health's own real link/title colours (2026-09-01).
+.cb-site-health {
+    .cb-contact-page__emails a,
+    .cb-contact-addresses a {
+        color: var(--col-strawberry-850);
+    }
+
+    .cb-contact-addresses__title {
+        color: var(--col-blueberry-850);
+    }
+}
+
 // coda's real Locations title continues the --col-neutral-100 background
 // used by .cb-contact-addresses below it (rather than its own separate
 // --col-neutral-050), so the title and the address listings read as one
