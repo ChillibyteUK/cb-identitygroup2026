@@ -23699,15 +23699,6 @@ body.cb-site-identity {
   color: var(--col-white) !important;
 }
 
-.cb-site-health .case-study .has-lime-1000-border-top.has-lime-1000-border-bottom,
-.cb-site-health .case-study .has-lime-1000-border-bottom {
-  border-top-color: hsl(var(--hsl-neutral-400)/0.5) !important;
-  border-bottom-color: hsl(var(--hsl-neutral-400)/0.5) !important;
-}
-.cb-site-health .case-study .has-lime-1100-color {
-  color: var(--col-primary-black) !important;
-}
-
 .skip-link {
   position: absolute;
   top: -100px;
