@@ -21841,6 +21841,12 @@ button,
   line-height: var(--lh-400);
 }
 
+.font-lede-small {
+  font-size: var(--fs-400);
+  line-height: var(--lh-400);
+  font-weight: var(--fw-light);
+}
+
 .font-callout {
   font-size: var(--fs-600);
 }

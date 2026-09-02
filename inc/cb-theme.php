@@ -574,6 +574,11 @@ function cb_tiny_mce_before_init( $settings ) {
 				'block'   => 'p',
 				'classes' => 'font-lede',
 			),
+			array(
+				'title'   => 'Standfirst Small',
+				'block'   => 'p',
+				'classes' => 'font-lede-small',
+			),
 		)
 	);
 	$settings['style_formats_merge'] = false;

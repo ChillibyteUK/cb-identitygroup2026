@@ -263,6 +263,15 @@ button,
   line-height: var(--lh-400);
 }
 
+// "Standfirst Small" TinyMCE format (inc/cb-theme.php) - a fixed fs-400,
+// deliberately not reusing .font-lede itself since health bumps that class's
+// size to fs-500 below; this one stays fs-400 on every site.
+.font-lede-small {
+  font-size: var(--fs-400);
+  line-height: var(--lh-400);
+  font-weight: var(--fw-light);
+}
+
 .font-callout {
   font-size: var(--fs-600);
 }
