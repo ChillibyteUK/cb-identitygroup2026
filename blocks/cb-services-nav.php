@@ -11,8 +11,19 @@ defined( 'ABSPATH' ) || exit;
 $block_id = $block['id'] ?? '';
 
 $is_identity = 'identity' === cb_site_template_suffix();
+$is_health   = 'health' === cb_site_template_suffix();
 
 $c = ( ! $is_identity && is_front_page() ) ? 'cb-services-nav--front' : '';
+
+$section_style_attr = '';
+if ( $is_health ) {
+	$background_image     = get_field( 'background_image' );
+	$background_image_url = $background_image ? wp_get_attachment_image_url( $background_image, 'full' ) : '';
+
+	if ( $background_image_url ) {
+		$section_style_attr = sprintf( '--cb-services-nav-bg: url(%s);', esc_url_raw( $background_image_url ) );
+	}
+}
 
 $services = get_page_by_path( 'services' );
 
@@ -22,7 +33,7 @@ if ( ! $is_identity ) {
 }
 
 ?>
-<div id="<?php echo esc_attr( $block_id ); ?>" class="cb-services-nav <?= esc_attr( $c ); ?>">
+<div id="<?php echo esc_attr( $block_id ); ?>" class="cb-services-nav <?= esc_attr( $c ); ?>"<?= $section_style_attr ? ' style="' . esc_attr( $section_style_attr ) . '"' : ''; ?>>
 	<?php if ( $is_identity ) : ?>
 	<div class="cb-services-nav__container pb-5">
 		<h2 class="cb-services-nav__header mb-0">

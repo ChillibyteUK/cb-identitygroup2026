@@ -79,8 +79,14 @@
 // #0d0d0c is --col-black, both already registered in cb-site-tokens.php's
 // health row - referenced by token rather than repeating the literal hex.
 .cb-site-health .cb-services-nav {
+  // Editable per-block via the Background Image ACF field (health only,
+  // blocks/cb-services-nav.php) - falls back to the original hardcoded
+  // image when the field is unset, via the custom property's own fallback
+  // value rather than a PHP-side conditional.
+  --cb-services-nav-bg: url(../img/services-bg.jpg);
+
   &::before {
-    background: url(../img/services-bg.jpg) center / cover no-repeat fixed;
+    background: var(--cb-services-nav-bg) center / cover no-repeat fixed;
   }
   &__header {
     background-color: rgba(255, 255, 255, 0.5);

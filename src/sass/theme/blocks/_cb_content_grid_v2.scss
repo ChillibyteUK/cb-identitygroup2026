@@ -65,6 +65,10 @@
   }
 
   &__text {
+    p {
+      text-wrap: pretty;
+    }
+
     p:first-child {
       margin-top: 0;
     }

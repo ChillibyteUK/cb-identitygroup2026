@@ -27620,8 +27620,11 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-weight: var(--fw-light);
 }
 
+.cb-site-health .cb-services-nav {
+  --cb-services-nav-bg: url(../img/services-bg.jpg);
+}
 .cb-site-health .cb-services-nav::before {
-  background: url(../img/services-bg.jpg) center/cover no-repeat fixed;
+  background: var(--cb-services-nav-bg) center/cover no-repeat fixed;
 }
 .cb-site-health .cb-services-nav__header {
   background-color: rgba(255, 255, 255, 0.5);
@@ -28529,6 +28532,9 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-content-grid-v2__h3 {
   margin-bottom: 0;
+}
+.cb-content-grid-v2__text p {
+  text-wrap: pretty;
 }
 .cb-content-grid-v2__text p:first-child {
   margin-top: 0;
