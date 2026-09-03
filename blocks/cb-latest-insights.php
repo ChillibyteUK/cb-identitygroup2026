@@ -48,7 +48,7 @@ $taxonomy_filter = get_field( 'taxonomy_filter' );
 			<?php
 			$query_args = array(
 				'post_type'      => 'post',
-				'posts_per_page' => 6,
+				'posts_per_page' => $is_health ? 3 : 6,
 				'orderby'        => 'date',
 				'order'          => 'DESC',
 			);
