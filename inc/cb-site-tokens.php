@@ -740,7 +740,7 @@ function cb_get_site_tokens_table() {
 			'--fs-500'                           => 'clamp(1.4444rem, 1.25rem + 0.9vw, 1.75rem)',
 			'--fs-h2'                            => 'var(--fs-700)',
 			'--fw-h2'                            => 'var(--fw-book)',
-			'--col-footer-link-hover'            => 'var(--col-purple-400)',
+			'--col-footer-link-hover'            => 'var(--col-strawberry-850)',
 			'--fs-600'                           => 'clamp(1.6667rem, 1.4rem + 1.2vw, 2rem)',
 			'--fs-700'                           => 'clamp(1.9444rem, 1.6rem + 1.4vw, 2.25rem)',
 			'--fs-850'                           => 'clamp(2.3333rem, 1.9rem + 2vw, 3.125rem)',

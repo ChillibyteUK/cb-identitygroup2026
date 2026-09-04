@@ -24856,6 +24856,10 @@ span a {
   font-weight: var(--fw-book);
 }
 
+.cb-site-health .cb-testimonial .cb-testimonial__quote,
+.cb-site-health .cb-testimonial .cb-testimonial__quote--long {
+  font-size: var(--fs-700);
+}
 .cb-site-health .cb-testimonial .cb-testimonial__author,
 .cb-site-health .cb-testimonial .cb-testimonial__company {
   font-size: var(--fs-700);
@@ -27640,6 +27644,8 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 }
 .cb-site-health .cb-services-nav__item-title {
   color: var(--col-black);
+  font-size: var(--fs-700);
+  font-weight: var(--fw-light);
 }
 .cb-site-health .cb-services-nav__item-icon {
   color: var(--col-neutral-700);
