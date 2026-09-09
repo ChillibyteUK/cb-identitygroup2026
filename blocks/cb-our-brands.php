@@ -11,15 +11,15 @@ $block_id   = $block['anchor'] ?? $block['id'] ?? wp_unique_id( 'cb-our-brands-'
 $is_health  = 'health' === cb_site_template_suffix();
 $pre_title  = get_field( 'pre_title' );
 $intro_text = get_field( 'intro_text' );
-$brands     = get_field( 'brands' ) ?: array();
+$brands     = get_field( 'brands' ) ? get_field( 'brands' ) : array();
 
 $section_style = '';
 
 $section_classes = array( 'cb-our-brands' );
 
 // Support Gutenberg color picker.
-$bg         = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
-$fg         = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
+$bg              = ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '';
+$fg              = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
 $section_classes = array_merge( $section_classes, array_filter( array( $bg, $fg ) ) );
 
 if ( ! empty( $block['backgroundColor'] ) ) {
@@ -65,7 +65,10 @@ $last_col_md  = 0 === $md_rem ? 12 : 6;
 	<div class="cb-our-brands__brands id-container px-4 px-md-5 pb-5">
 		<div class="row g-5" data-aos-stagger-group>
 			<?php if ( have_rows( 'brands' ) ) : ?>
-				<?php while ( have_rows( 'brands' ) ) : the_row(); ?>
+				<?php
+				while ( have_rows( 'brands' ) ) :
+					the_row();
+					?>
 					<?php
 					$brand_logo = get_sub_field( 'brand_logo' ) ?? '';
 					$brand_name = get_sub_field( 'brand_name' );
@@ -79,7 +82,17 @@ $last_col_md  = 0 === $md_rem ? 12 : 6;
 						<?php if ( '#' !== $brand_link['url'] && '' !== $brand_link['url'] ) : ?>
 							<a href="<?= esc_url( $brand_link['url'] ); ?>" target="_blank" rel="noopener noreferrer" class="brand-card">
 								<div class="brand-card__front">
-									<?= wp_get_attachment_image( $brand_logo, 'full', false, array( 'class' => 'brand-card__logo', 'alt' => esc_attr( $brand_name ) ) ); ?>
+									<?=
+									wp_get_attachment_image(
+										$brand_logo,
+										'full',
+										false,
+										array(
+											'class' => 'brand-card__logo',
+											'alt'   => esc_attr( $brand_name ),
+										)
+									);
+									?>
 								</div>
 								<div class="brand-card__back">
 									<div class="brand-card__name"><?= esc_html( $brand_name ); ?></div>
@@ -92,7 +105,17 @@ $last_col_md  = 0 === $md_rem ? 12 : 6;
 						<?php else : ?>
 							<div class="brand-card">
 								<div class="brand-card__front">
-									<?= wp_get_attachment_image( $brand_logo, 'full', false, array( 'class' => 'brand-card__logo', 'alt' => esc_attr( $brand_name ) ) ); ?>
+									<?=
+									wp_get_attachment_image(
+										$brand_logo,
+										'full',
+										false,
+										array(
+											'class' => 'brand-card__logo',
+											'alt'   => esc_attr( $brand_name ),
+										)
+									);
+									?>
 								</div>
 								<div class="brand-card__back">
 									<div class="brand-card__name"><?= esc_html( $brand_name ); ?></div>

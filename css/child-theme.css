@@ -26243,6 +26243,7 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   font-weight: var(--fw-book);
   letter-spacing: var(--ls--5);
   line-height: 1.5;
+  text-wrap: pretty;
 }
 .cb-plain-hero__intro p:first-of-type {
   font-size: var(--fs-600);
@@ -26275,11 +26276,28 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-top-color: hsl(var(--hsl-neutral-400)/0.5);
   border-bottom-color: hsl(var(--hsl-neutral-400)/0.5);
 }
+.cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) .cb-plain-hero__title .h1 span {
+  display: block;
+  text-wrap: balance;
+  max-width: 100%;
+}
+@media (min-width: 1400px) {
+  .cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero:not(.cb-plain-hero--has-background-image) .cb-plain-hero__title .h1 span {
+    max-width: 66%;
+  }
+}
 
 .cb-site-health .cb-plain-hero--has-background-image .cb-plain-hero__title .h1 span,
 .cb-site-health .cb-plain-hero--has-background-image .cb-plain-hero__title h1 span {
   font-weight: var(--fw-semibold);
   text-wrap: balance;
+  max-width: 100%;
+}
+@media (min-width: 1400px) {
+  .cb-site-health .cb-plain-hero--has-background-image .cb-plain-hero__title .h1 span,
+  .cb-site-health .cb-plain-hero--has-background-image .cb-plain-hero__title h1 span {
+    max-width: 66%;
+  }
 }
 
 .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--light .cb-plain-hero__title h1 span, .cb-site-health .cb-plain-hero--has-background-image.cb-plain-hero--light .cb-plain-hero__title .h1 span {
