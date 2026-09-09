@@ -104,11 +104,13 @@ $last_col_md  = 0 === $md_rem ? 12 : 6;
 				<?php endwhile; ?>
 			<?php endif; ?>
 
+			<?php if ( ! $is_health ) : ?>
 			<div class="col-md-<?= esc_attr( $last_col_md ); ?> col-xl-<?= esc_attr( $last_col_xl ); ?> col-xxl-<?= esc_attr( $last_col_xxl ); ?>">
 				<div class="brand-card__last">
 					Together, we deliver a breadth of expertise with the simplicity of one team.
 				</div>
 			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>
