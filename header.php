@@ -10,7 +10,7 @@
 defined( 'ABSPATH' ) || exit;
 
 if ( session_status() === PHP_SESSION_NONE ) {
-    session_start();
+	session_start();
 }
 
 
@@ -20,73 +20,74 @@ if ( session_status() === PHP_SESSION_NONE ) {
 <html <?php language_attributes(); ?>>
 
 <head>
-    <meta
-        charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1">
+	<meta
+		charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1">
 
 	<link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Light.woff2' ); ?>"
-        as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Regular.woff2' ); ?>"
-        as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload"
-        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Book.woff2' ); ?>"
-        as="font" type="font/woff2" crossorigin="anonymous">
+		href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Light.woff2' ); ?>"
+		as="font" type="font/woff2" crossorigin="anonymous">
+	<link rel="preload"
+		href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Regular.woff2' ); ?>"
+		as="font" type="font/woff2" crossorigin="anonymous">
+	<link rel="preload"
+		href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/SuisseIntl-Book.woff2' ); ?>"
+		as="font" type="font/woff2" crossorigin="anonymous">
 
 	
-    <?php
-    if ( ! is_user_logged_in() ) {
-        if ( get_field( 'ga_property', 'options' ) ) {
-            ?>
-            <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async
-                src="<?= esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . get_field( 'ga_property', 'options' ) ); ?>">
-            </script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
+	<?php
+	if ( ! is_user_logged_in() ) {
+		if ( get_field( 'ga_property', 'options' ) ) {
+			?>
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async
+				src="<?= esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . get_field( 'ga_property', 'options' ) ); ?>">
+			</script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
 
-                function gtag() {
-                    dataLayer.push(arguments);
-                }
-                gtag('js', new Date());
-                gtag('config',
-                    '<?= esc_js( get_field( 'ga_property', 'options' ) ); ?>'
-                );
-            </script>
-        	<?php
-        }
-        if ( get_field( 'gtm_property', 'options' ) ) {
-            ?>
-            <!-- Google Tag Manager -->
-            <script>
-                (function(w, d, s, l, i) {
-                    w[l] = w[l] || [];
-                    w[l].push({
-                        'gtm.start': new Date().getTime(),
-                        event: 'gtm.js'
-                    });
-                    var f = d.getElementsByTagName(s)[0],
-                        j = d.createElement(s),
-                        dl = l != 'dataLayer' ? '&l=' + l : '';
-                    j.async = true;
-                    j.src =
-                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                    f.parentNode.insertBefore(j, f);
-                })(window, document, 'script', 'dataLayer',
-                    '<?= esc_js( get_field( 'gtm_property', 'options' ) ); ?>'
-                );
-            </script>
-            <!-- End Google Tag Manager -->
-    		<?php
-        }
-    }
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag('js', new Date());
+				gtag('config',
+					'<?= esc_js( get_field( 'ga_property', 'options' ) ); ?>'
+				);
+			</script>
+			<?php
+		}
+		if ( get_field( 'gtm_property', 'options' ) ) {
+			?>
+			<!-- Google Tag Manager -->
+			<script>
+				(function(w, d, s, l, i) {
+					w[l] = w[l] || [];
+					w[l].push({
+						'gtm.start': new Date().getTime(),
+						event: 'gtm.js'
+					});
+					var f = d.getElementsByTagName(s)[0],
+						j = d.createElement(s),
+						dl = l != 'dataLayer' ? '&l=' + l : '';
+					j.async = true;
+					j.src =
+						'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+					f.parentNode.insertBefore(j, f);
+				})(window, document, 'script', 'dataLayer',
+					'<?= esc_js( get_field( 'gtm_property', 'options' ) ); ?>'
+				);
+			</script>
+			<!-- End Google Tag Manager -->
+			<?php
+		}
+	}
 	if ( get_field( 'google_site_verification', 'options' ) ) {
 		echo '<meta name="google-site-verification" content="' . esc_attr( get_field( 'google_site_verification', 'options' ) ) . '" />';
 	}
 	if ( get_field( 'bing_site_verification', 'options' ) ) {
 		echo '<meta name="msvalidate.01" content="' . esc_attr( get_field( 'bing_site_verification', 'options' ) ) . '" />';
 	}
+
 	/*
 	phpcs:disable
 	?>
@@ -101,26 +102,26 @@ if ( session_status() === PHP_SESSION_NONE ) {
 </head>
 
 <body <?php body_class( is_front_page() ? 'homepage' : '' ); ?>
-    <?php understrap_body_attributes(); ?>>
-    <?php
+	<?php understrap_body_attributes(); ?>>
+	<?php
 	do_action( 'wp_body_open' );
 	if ( ! is_user_logged_in() ) {
-    	if ( get_field( 'gtm_property', 'options' ) ) {
-        	?>
-            <!-- Google Tag Manager (noscript) -->
-            <noscript><iframe
-                    src="<?= esc_url( 'https://www.googletagmanager.com/ns.html?id=' . get_field( 'gtm_property', 'options' ) ); ?>"
-                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <!-- End Google Tag Manager (noscript) -->
-    		<?php
-    	}
+		if ( get_field( 'gtm_property', 'options' ) ) {
+			?>
+			<!-- Google Tag Manager (noscript) -->
+			<noscript><iframe
+					src="<?= esc_url( 'https://www.googletagmanager.com/ns.html?id=' . get_field( 'gtm_property', 'options' ) ); ?>"
+					height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+			<!-- End Google Tag Manager (noscript) -->
+			<?php
+		}
 	}
 	?>
 <header id="wrapper-navbar" class="sticky py-2">
 	<nav class="navbar navbar-expand-xl">
 		<div class="d-flex px-4 px-md-5 gap-4 w-100 w-xl-auto">
-            <div class="d-flex justify-content-between w-100 w-xl-auto align-items-center py-0">
-                <a href="/" class="logo-clip" id="site-logo-clip" aria-label="Identity Travel Homepage">
+			<div class="d-flex justify-content-between w-100 w-xl-auto align-items-center py-0">
+				<a href="/" class="logo-clip" id="site-logo-clip" aria-label="Identity Travel Homepage">
 					<div class="logo-inner" id="site-logo-inner">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254.9 18.2">
 						<defs>
@@ -150,13 +151,13 @@ if ( session_status() === PHP_SESSION_NONE ) {
 					</div>
 				</a>
 				</div>
-                <button class="navbar-toggler align-self-center" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
+				<button class="navbar-toggler align-self-center" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<i class="fas fa-bars"></i>
+				</button>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
 				<!-- Navigation -->
 				<?php
 				wp_nav_menu(
@@ -170,7 +171,7 @@ if ( session_status() === PHP_SESSION_NONE ) {
 					)
 				);
 				?>
-            </div>
+			</div>
 		</div>
 	</nav>
 </header>
