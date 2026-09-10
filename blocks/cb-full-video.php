@@ -32,6 +32,8 @@ if ( $hero_mode ) {
 		array(
 			'autoplay' => '1',
 			'muted'    => '1',
+			'loop'     => '1',
+			'controls' => '0',
 		),
 		$video_src
 	);
@@ -50,15 +52,43 @@ if ( ! $full_width ) {
 	$wrapper_classes[] = 'id-container';
 }
 
+$iframe_id = $block_id ? $block_id . '-video' : wp_unique_id( 'cb-full-video-' );
+
+if ( $hero_mode ) {
+	wp_enqueue_script( 'vimeo-player', 'https://player.vimeo.com/api/player.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+}
+
 ?>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="<?= esc_attr( implode( ' ', $section_classes ) ); ?>">
 	<?php if ( $full_bleed ) : ?>
     <div class="cb-full-video__bleed-wrapper">
-        <iframe class="full-video" src="<?= esc_url( $video_src ); ?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <iframe id="<?= esc_attr( $iframe_id ); ?>" class="full-video" src="<?= esc_url( $video_src ); ?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+		<?php if ( $hero_mode ) : ?>
+        <button type="button" class="cb-full-video__unmute" data-video-id="<?= esc_attr( $iframe_id ); ?>">Unmute</button>
+		<?php endif; ?>
     </div>
 	<?php else : ?>
     <div class="<?= esc_attr( implode( ' ', $wrapper_classes ) ); ?>">
-        <iframe class="full-video" src="<?= esc_url( $video_src ); ?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <iframe id="<?= esc_attr( $iframe_id ); ?>" class="full-video" src="<?= esc_url( $video_src ); ?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+		<?php if ( $hero_mode ) : ?>
+        <button type="button" class="cb-full-video__unmute" data-video-id="<?= esc_attr( $iframe_id ); ?>">Unmute</button>
+		<?php endif; ?>
     </div>
 	<?php endif; ?>
 </section>
+
+<?php if ( $hero_mode ) : ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	var iframe = document.getElementById(<?= wp_json_encode( $iframe_id ); ?>);
+	var button = document.querySelector('.cb-full-video__unmute[data-video-id="' + <?= wp_json_encode( $iframe_id ); ?> + '"]');
+	if (!iframe || !button || typeof Vimeo === 'undefined') return;
+
+	var player = new Vimeo.Player(iframe);
+	button.addEventListener('click', function () {
+		player.setMuted(false);
+		button.remove();
+	});
+});
+</script>
+<?php endif; ?>

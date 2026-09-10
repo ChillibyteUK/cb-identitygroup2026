@@ -5,6 +5,25 @@
     aspect-ratio: 16 / 9;
   }
 
+  &__unmute {
+    position: absolute;
+    z-index: 2;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: hsl(var(--hsl-neutral-050) / 0.9);
+    color: var(--col-primary-black);
+    border: none;
+    border-radius: 2rem;
+    font-size: var(--fs-100);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: var(--col-white);
+    }
+  }
+
   &--full-bleed {
     .cb-full-video__bleed-wrapper {
       position: relative;

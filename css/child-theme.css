@@ -27297,6 +27297,22 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   width: 100%;
   aspect-ratio: 16/9;
 }
+.cb-full-video__unmute {
+  position: absolute;
+  z-index: 2;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: hsl(var(--hsl-neutral-050)/0.9);
+  color: var(--col-primary-black);
+  border: none;
+  border-radius: 2rem;
+  font-size: var(--fs-100);
+  cursor: pointer;
+}
+.cb-full-video__unmute:hover, .cb-full-video__unmute:focus {
+  background-color: var(--col-white);
+}
 .cb-full-video--full-bleed .cb-full-video__bleed-wrapper {
   position: relative;
   width: 100%;
