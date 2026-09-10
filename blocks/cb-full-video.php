@@ -99,6 +99,8 @@ if ( $hero_mode ) {
 			player.getMuted().then(function (isMuted) {
 				player.setMuted(!isMuted);
 				button.textContent = isMuted ? button.getAttribute('data-label-unmuted') : button.getAttribute('data-label-muted');
+				button.classList.toggle('cb-full-video__unmute--playing', isMuted);
+				button.blur();
 			});
 		});
 	}

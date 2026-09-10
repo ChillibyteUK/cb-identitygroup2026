@@ -23,6 +23,17 @@
     &:focus {
       background-color: var(--col-white);
     }
+
+    // once unmuted, fade it back so it's less intrusive over the video -
+    // full opacity returns on hover/focus so it's still easy to find again.
+    &--playing {
+      opacity: 0.4;
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+      }
+    }
   }
 
   &--full-bleed {

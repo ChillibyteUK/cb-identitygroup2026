@@ -27314,6 +27314,12 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-full-video__unmute:hover, .cb-full-video__unmute:focus {
   background-color: var(--col-white);
 }
+.cb-full-video__unmute--playing {
+  opacity: 0.4;
+}
+.cb-full-video__unmute--playing:hover, .cb-full-video__unmute--playing:focus {
+  opacity: 1;
+}
 .cb-full-video--full-bleed .cb-full-video__bleed-wrapper {
   position: relative;
   width: 100%;
