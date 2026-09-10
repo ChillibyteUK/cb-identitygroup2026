@@ -64,14 +64,14 @@ if ( $hero_mode ) {
     <div class="cb-full-video__bleed-wrapper">
         <iframe id="<?= esc_attr( $iframe_id ); ?>" class="full-video" src="<?= esc_url( $video_src ); ?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 		<?php if ( $hero_mode ) : ?>
-        <button type="button" class="cb-full-video__unmute" data-video-id="<?= esc_attr( $iframe_id ); ?>">Unmute</button>
+        <button type="button" class="cb-full-video__unmute" data-video-id="<?= esc_attr( $iframe_id ); ?>" data-label-muted="Unmute" data-label-unmuted="Mute">Unmute</button>
 		<?php endif; ?>
     </div>
 	<?php else : ?>
     <div class="<?= esc_attr( implode( ' ', $wrapper_classes ) ); ?>">
         <iframe id="<?= esc_attr( $iframe_id ); ?>" class="full-video" src="<?= esc_url( $video_src ); ?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 		<?php if ( $hero_mode ) : ?>
-        <button type="button" class="cb-full-video__unmute" data-video-id="<?= esc_attr( $iframe_id ); ?>">Unmute</button>
+        <button type="button" class="cb-full-video__unmute" data-video-id="<?= esc_attr( $iframe_id ); ?>" data-label-muted="Unmute" data-label-unmuted="Mute">Unmute</button>
 		<?php endif; ?>
     </div>
 	<?php endif; ?>
@@ -96,8 +96,10 @@ if ( $hero_mode ) {
 
 		var player = new Vimeo.Player(iframe);
 		button.addEventListener('click', function () {
-			player.setMuted(false);
-			button.remove();
+			player.getMuted().then(function (isMuted) {
+				player.setMuted(!isMuted);
+				button.textContent = isMuted ? button.getAttribute('data-label-unmuted') : button.getAttribute('data-label-muted');
+			});
 		});
 	}
 
