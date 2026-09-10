@@ -79,16 +79,37 @@ if ( $hero_mode ) {
 
 <?php if ( $hero_mode ) : ?>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-	var iframe = document.getElementById(<?= wp_json_encode( $iframe_id ); ?>);
-	var button = document.querySelector('.cb-full-video__unmute[data-video-id="' + <?= wp_json_encode( $iframe_id ); ?> + '"]');
-	if (!iframe || !button || typeof Vimeo === 'undefined') return;
+(function () {
+	function initUnmute(attemptsLeft) {
+		var iframe = document.getElementById(<?= wp_json_encode( $iframe_id ); ?>);
+		var button = document.querySelector('.cb-full-video__unmute[data-video-id="' + <?= wp_json_encode( $iframe_id ); ?> + '"]');
+		if (!iframe || !button) return;
 
-	var player = new Vimeo.Player(iframe);
-	button.addEventListener('click', function () {
-		player.setMuted(false);
-		button.remove();
-	});
-});
+		// player.js can itself be delayed by the same CDN/script-delay
+		// layers - retry briefly instead of giving up on the first check.
+		if (typeof Vimeo === 'undefined') {
+			if (attemptsLeft > 0) {
+				setTimeout(function () { initUnmute(attemptsLeft - 1); }, 200);
+			}
+			return;
+		}
+
+		var player = new Vimeo.Player(iframe);
+		button.addEventListener('click', function () {
+			player.setMuted(false);
+			button.remove();
+		});
+	}
+
+	// don't rely solely on DOMContentLoaded - on some deployments (CDN/
+	// script-delay layers) this inline script executes after that event
+	// has already fired, silently leaving the button dead (found live on
+	// identityhealth.com, 2026-09-10).
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', function () { initUnmute(25); });
+	} else {
+		initUnmute(25);
+	}
+})();
 </script>
 <?php endif; ?>
