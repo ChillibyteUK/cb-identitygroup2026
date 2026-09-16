@@ -24321,6 +24321,11 @@ span a {
 .cb-site-health .brand-card:focus-within .brand-card__back {
   color: var(--col-primary-black);
 }
+@media (max-width: 767.98px) {
+  .cb-site-health .brand-card__back {
+    display: none;
+  }
+}
 
 .cb-pushthrough {
   position: relative;

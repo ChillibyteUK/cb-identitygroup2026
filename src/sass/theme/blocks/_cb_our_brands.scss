@@ -251,4 +251,14 @@
   .brand-card:focus-within .brand-card__back {
     color: var(--col-primary-black);
   }
+
+  // mobile has no hover concept, so the base rule's mobile fallback
+  // (opacity: 0.95, unconditional) leaves this text permanently visible
+  // over the logo instead of only-on-hover like desktop - client asked
+  // for it hidden outright on mobile for health (2026-09-16).
+  @media (max-width: 767.98px) {
+    .brand-card__back {
+      display: none;
+    }
+  }
 }
