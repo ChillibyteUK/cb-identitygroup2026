@@ -249,7 +249,7 @@ if ( ! $bg_case_study ) {
 					<?php
 					if ( $video ) {
 						?>
-					<iframe class="work-video" src="<?= esc_url( cb_vimeo_url_with_dnt( $video ) ); ?>&background=1&autoplay=0" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
+					<div class="work-video" data-vimeo-src="<?= esc_url( cb_vimeo_url_with_dnt( $video ) ); ?>&background=1&autoplay=1"></div>
 						<?php
 					}
 					?>
@@ -291,25 +291,31 @@ add_action(
 		?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-	// Video hover play/pause binding.
+	// Video hover preview: only mount the Vimeo iframe while the card is
+	// hovered/focused, so idle cards never hold a live player in memory.
 	document.querySelectorAll('.cb-work-index__card').forEach(function(card) {
-		const iframe = card.querySelector('iframe.work-video');
-		if (!iframe) return;
+		const container = card.querySelector('.work-video');
+		if (!container) return;
+		const src = container.getAttribute('data-vimeo-src');
 
-		card.addEventListener('mouseenter', function() {
-			iframe.contentWindow?.postMessage({ method: 'play' }, '*');
-		});
-		card.addEventListener('mouseleave', function() {
-			iframe.contentWindow?.postMessage({ method: 'pause' }, '*');
-			iframe.contentWindow?.postMessage({ method: 'setCurrentTime', value: 0 }, '*');
-		});
-		card.addEventListener('focusin', function() {
-			iframe.contentWindow?.postMessage({ method: 'play' }, '*');
-		});
-		card.addEventListener('focusout', function() {
-			iframe.contentWindow?.postMessage({ method: 'pause' }, '*');
-			iframe.contentWindow?.postMessage({ method: 'setCurrentTime', value: 0 }, '*');
-		});
+		function mountVideo() {
+			if (container.querySelector('iframe')) return;
+			const iframe = document.createElement('iframe');
+			iframe.src = src;
+			iframe.frameBorder = '0';
+			iframe.allow = 'autoplay; fullscreen';
+			iframe.allowFullscreen = true;
+			container.appendChild(iframe);
+		}
+		function unmountVideo() {
+			const iframe = container.querySelector('iframe');
+			if (iframe) iframe.remove();
+		}
+
+		card.addEventListener('mouseenter', mountVideo);
+		card.addEventListener('mouseleave', unmountVideo);
+		card.addEventListener('focusin', mountVideo);
+		card.addEventListener('focusout', unmountVideo);
 	});
 
 	// Cross-filtering selects and maps.
