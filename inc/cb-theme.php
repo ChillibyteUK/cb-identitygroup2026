@@ -357,14 +357,26 @@ if ( ! function_exists( 'get_work_image' ) ) {
      *
      * @param int    $post_id  The post ID.
      * @param string $css_class The CSS class to apply to the image.
+     * @param string $size     WP image size to request. Defaults to 'large'
+     *                         (WP core's ~1024px-max size) rather than
+     *                         'full' - these callers are all small grid/
+     *                         carousel cards, and requesting 'full' made
+     *                         WordPress's auto-generated `sizes` attribute
+     *                         claim the image could render at up to its
+     *                         full original width (some of these uploads
+     *                         are 2500px+ originals), causing browsers to
+     *                         download a 500-850KB image for a ~140px-wide
+     *                         card. Pass 'full' explicitly for genuine
+     *                         full-bleed hero usage (see cb-featured-work.php's
+     *                         hero_case_study call).
      * @return string HTML <img> tag for the image.
      */
-    function get_work_image( $post_id, $css_class = 'work-card__image' ) {
+    function get_work_image( $post_id, $css_class = 'work-card__image', $size = 'large' ) {
         // 1. Try post thumbnail
         if ( get_the_post_thumbnail( $post_id ) ) {
             return get_the_post_thumbnail(
                 $post_id,
-                'full',
+                $size,
                 array(
                     'class' => $css_class,
                     'alt'   => get_post_meta(

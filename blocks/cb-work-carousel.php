@@ -47,8 +47,7 @@ $block_content = get_field( 'content' );
 					<?php
 					if ( $video ) {
 						?>
-					<div class="iframe-cover swiper-video">
-						<iframe src="<?= esc_url( cb_vimeo_url_with_dnt( $video ) ); ?>&background=1&autoplay=0" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
+					<div class="iframe-cover swiper-video" data-vimeo-src="<?= esc_url( cb_vimeo_url_with_dnt( $video ) ); ?>&background=1&autoplay=1">
 					</div>
 						<?php
 					}
@@ -130,20 +129,29 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (swiper.autoplay) swiper.autoplay.start();
 		});
 	});
-	document.querySelectorAll('.swiper-video').forEach(function(card) {
-		const iframe = card.querySelector('iframe');
-		if (!iframe) return;
-		card.addEventListener('mouseenter', function() {
-			if (iframe.contentWindow) {
-				iframe.contentWindow.postMessage({ method: 'play' }, '*');
-			}
-		});
-		card.addEventListener('mouseleave', function() {
-			if (iframe.contentWindow) {
-				iframe.contentWindow.postMessage({ method: 'pause' }, '*');
-				iframe.contentWindow.postMessage({ method: 'setCurrentTime', value: 0 }, '*');
-			}
-		});
+	// Video hover preview: only mount the Vimeo iframe while the slide is
+	// hovered, so idle slides never hold a live player in memory.
+	document.querySelectorAll('.swiper-video').forEach(function(container) {
+		const src = container.getAttribute('data-vimeo-src');
+		if (!src) return;
+		const card = container.closest('.work-carousel-link') || container;
+
+		function mountVideo() {
+			if (container.querySelector('iframe')) return;
+			const iframe = document.createElement('iframe');
+			iframe.src = src;
+			iframe.frameBorder = '0';
+			iframe.allow = 'autoplay; fullscreen';
+			iframe.allowFullscreen = true;
+			container.appendChild(iframe);
+		}
+		function unmountVideo() {
+			const iframe = container.querySelector('iframe');
+			if (iframe) iframe.remove();
+		}
+
+		card.addEventListener('mouseenter', mountVideo);
+		card.addEventListener('mouseleave', unmountVideo);
 	});
 });
 </script>
