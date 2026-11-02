@@ -12,11 +12,20 @@ $block_id = $block['id'] ?? '';
 
 $pre_title = get_field( 'pre_title' ) ? get_field( 'pre_title' ) : 'Key Stats';
 
-$bg = get_field( 'background' ) ? wp_get_attachment_image_url( get_field( 'background' ), 'full' ) : get_stylesheet_directory_uri() . '/img/contact-addresses-bg.jpg';
+$is_travel = 'idtravel' === cb_site_template_suffix();
+
+if ( get_field( 'background' ) ) {
+	$bg = 'url(\'' . esc_url( wp_get_attachment_image_url( get_field( 'background' ), 'full' ) ) . '\')';
+} elseif ( $is_travel ) {
+	// Travel's real backgrounds are editor-uploaded media; no theme default.
+	$bg = 'none';
+} else {
+	$bg = 'url(\'' . esc_url( get_stylesheet_directory_uri() . '/img/contact-addresses-bg.jpg' ) . '\')';
+}
 ?>
 <style>
 #<?= esc_attr( $block_id ); ?> {
-    --_bg-url: url('<?= esc_url( $bg ); ?>');
+    --_bg-url: <?= $bg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built from esc_url() above. ?>;
 }
 </style>
 <section id="<?= esc_attr( $block_id ); ?>" class="cb-case-study-key-stats">

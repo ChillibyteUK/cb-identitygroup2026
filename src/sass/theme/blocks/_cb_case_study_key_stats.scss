@@ -78,3 +78,30 @@
     }
   }
 }
+
+
+// Travel (see _cb_featured_work.scss for the shared pre-title bar this
+// header joins). Travel's own cb-stats block is white numerals on ink with
+// 1px neutral-050/.5 rules - no brand-coloured text (brand raspberry is only
+// 4.16:1 on primary-black and is reserved for buttons). No background image
+// unless the editor sets one: Travel's real backgrounds are uploaded media
+// (red/purple gradient), not a theme asset.
+.cb-site-idtravel .cb-case-study-key-stats {
+  background-color: var(--col-primary-black);
+  border-top: 0;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+
+  &__container {
+    background-color: transparent;
+  }
+  &__stat {
+    color: var(--col-white);
+    font-weight: var(--fw-book);
+    letter-spacing: var(--ls--30);
+    border-bottom-color: hsl(var(--hsl-neutral-050) / 0.5);
+  }
+  &__descriptor {
+    color: var(--col-white);
+    border-bottom-color: hsl(var(--hsl-neutral-050) / 0.5);
+  }
+}

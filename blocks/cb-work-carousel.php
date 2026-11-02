@@ -59,8 +59,7 @@ $block_content = get_field( 'content' );
 							<div class="work-carousel-excerpt">
 						<?php
 						// get the case_study_subtitle field from the cb-case-study-hero block if available.
-						$post_blocks = parse_blocks( get_the_content( null, false, $work_id ) );
-						$subtitle    = cb_find_hero_subtitle( $post_blocks );
+						$subtitle = cb_get_case_study_subtitle( $work_id );
 						if ( $subtitle ) {
 							echo esc_html( $subtitle );
 						} else {

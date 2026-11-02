@@ -76,3 +76,41 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   }
 }
+
+// Travel: ink section, same neutral-900 heading bar / purple-400 caps /
+// neutral-050 hairlines as Travel's other pre-title bars (see
+// _cb_featured_work.scss) - Coda's green photo and lime-brand heading clash
+// with Travel's palette (raspberry heading was 4.16:1 on ink, worse on green).
+// The photo is only used when an editor sets one (--has-background-image).
+.cb-site-idtravel .cb-what-we-delivered {
+  background-color: var(--col-primary-black);
+  border-top: 0;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+
+  &::before {
+    background: none;
+  }
+  &--has-background-image::before {
+    background: var(--cb-what-we-delivered-bg) center / cover no-repeat;
+  }
+
+  &__container {
+    background-color: transparent;
+  }
+  &__header {
+    background-color: var(--col-neutral-900);
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    color: var(--col-purple-400);
+
+    h2 {
+      color: var(--col-purple-400);
+      font-size: 1.125rem;
+      letter-spacing: -0.01em;
+    }
+  }
+  &__item {
+    border-bottom-color: hsl(var(--hsl-neutral-050) / 0.5);
+  }
+}
+

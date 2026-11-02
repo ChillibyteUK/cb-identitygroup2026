@@ -42,6 +42,28 @@ function cb_find_hero_subtitle( $blocks ) {
 }
 
 /**
+ * A case study's subtitle for cards/listings.
+ *
+ * Travel has a post-level "Case Study Fields" meta box (case_study_subtitle),
+ * which wins when set. Every site falls back to the CB Case Study Hero
+ * block's own subtitle, as before. Coda also registers the meta box but its
+ * cards never read it (its default is a placeholder, not a real subtitle),
+ * so it is deliberately only consulted here for Travel.
+ *
+ * @param int $post_id Case study post ID.
+ * @return string Subtitle, or empty string.
+ */
+function cb_get_case_study_subtitle( $post_id ) {
+	if ( 'idtravel' === cb_site_template_suffix() ) {
+		$meta = get_post_meta( $post_id, 'case_study_subtitle', true );
+		if ( $meta ) {
+			return $meta;
+		}
+	}
+	return cb_find_hero_subtitle( parse_blocks( get_post_field( 'post_content', $post_id ) ) );
+}
+
+/**
  * Rewrites legacy block.json block names to their converted classic-ACF
  * equivalents at render time, so existing published content (which still
  * has the old names serialized in post_content) keeps rendering correctly

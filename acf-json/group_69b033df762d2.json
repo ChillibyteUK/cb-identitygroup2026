@@ -1,0 +1,47 @@
+{
+    "key": "group_69b033df762d2",
+    "title": "Case Study Fields",
+    "fields": [
+        {
+            "key": "field_69b033df5d679",
+            "label": "Case Study Subtitle",
+            "name": "case_study_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Shown under the title on the case study page and on work cards. Falls back to the CB Case Study Hero block subtitle.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "case_study"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1773155346
+}

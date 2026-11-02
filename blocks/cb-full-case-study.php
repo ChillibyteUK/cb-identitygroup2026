@@ -55,8 +55,7 @@ $is_front = is_front_page();
 				</div>
 				<div class="work-index-hero__card-desc">
 					<?php
-					$post_blocks = parse_blocks( get_post_field( 'post_content', $bg_case_study ) );
-					$subtitle    = cb_find_hero_subtitle( $post_blocks );
+					$subtitle = cb_get_case_study_subtitle( $bg_case_study );
 					if ( $subtitle ) {
 						echo esc_html( $subtitle );
 					} else {

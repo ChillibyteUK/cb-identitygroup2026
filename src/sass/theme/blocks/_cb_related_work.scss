@@ -85,3 +85,9 @@
 .cb-site-health .cb-related-work__content {
   background: rgba(255, 234, 255, 0.95);
 }
+
+// Travel: section rule matches the rest of Travel's dark blocks; the pre-title
+// bar itself is defined once in _cb_featured_work.scss.
+.cb-site-idtravel .cb-related-work {
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+}

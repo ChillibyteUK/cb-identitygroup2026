@@ -1775,3 +1775,83 @@ function cb_merge_theme_json_list_by_slug( $base, $overrides ) {
 	return array_values( $by_slug );
 }
 add_filter( 'wp_theme_json_data_theme', 'cb_filter_editor_theme_json' );
+
+/**
+ * "Case Study Fields" (post-level Case Study Subtitle meta box, ported from
+ * coda's own theme where it was never carried into the merge) only applies
+ * to coda and idtravel - identity keeps its subtitle solely on the CB Case
+ * Study Hero block, and health has no use for it.
+ *
+ * @param bool  $result      Whether the rule matched.
+ * @param array $rule        Location rule.
+ * @param array $screen      Current screen.
+ * @param array $field_group Field group.
+ * @return bool
+ */
+function cb_case_study_fields_location( $result, $rule, $screen, $field_group ) {
+	if ( isset( $field_group['key'] ) && 'group_69b033df762d2' === $field_group['key'] && $result ) {
+		return in_array( cb_site_template_suffix(), array( 'coda', 'idtravel' ), true );
+	}
+	return $result;
+}
+add_filter( 'acf/location/rule_match', 'cb_case_study_fields_location', 10, 4 );
+
+/**
+ * Coda's own original field defaulted to "Top 5 Pharma Company" (its
+ * single-case_study.php falls back to the same string); keep that for coda
+ * only. Travel starts empty.
+ *
+ * @param array $field ACF field settings.
+ * @return array
+ */
+function cb_case_study_subtitle_default( $field ) {
+	if ( 'coda' === cb_site_template_suffix() ) {
+		$field['default_value'] = 'Top 5 Pharma Company';
+	}
+	return $field;
+}
+add_filter( 'acf/load_field/key=field_69b033df5d679', 'cb_case_study_subtitle_default' );
+
+/**
+ * CB Content Grid's Background radio: the saved choices (Neutral Dark/Mid,
+ * Purple Light/Dark, Black) came from identity/coda and don't map to Travel's
+ * palette ("Black" is Travel's ink, Purple Dark is a bright #2f13ba). Travel
+ * gets its own set - same saved values where a choice already existed, so
+ * existing content keeps working - plus White, with ink as the default.
+ * Light choices flip text/titles in _cb_content_grid.scss.
+ *
+ * @param array $field ACF field settings.
+ * @return array
+ */
+function cb_content_grid_travel_backgrounds( $field ) {
+	if ( 'idtravel' === cb_site_template_suffix() ) {
+		$field['choices']       = array(
+			'has-primary-black-background-color' => 'Ink',
+			'has-neutral-1000-background-color'  => 'Neutral Darkest',
+			'has-neutral-900-background-color'   => 'Neutral Dark',
+			'has-purple-900-background-color'    => 'Purple',
+			'has-purple-200-background-color'    => 'Purple Light',
+			'has-white-background-color'         => 'White',
+		);
+		$field['default_value'] = 'has-primary-black-background-color';
+	}
+	return $field;
+}
+add_filter( 'acf/load_field/key=field_68ff72436685f', 'cb_content_grid_travel_backgrounds' );
+
+/**
+ * CB What We Delivered's Background Image: Travel only. Every other site's
+ * background is a fixed photo set in _cb_what_we_delivered.scss, so the field
+ * would do nothing there.
+ *
+ * @param array $field ACF field settings.
+ * @return array|false
+ */
+function cb_hide_non_travel_field( $field ) {
+	if ( 'idtravel' !== cb_site_template_suffix() ) {
+		return false;
+	}
+	return $field;
+}
+add_filter( 'acf/prepare_field/key=field_cb_what_we_delivered_background_image', 'cb_hide_non_travel_field' );
+

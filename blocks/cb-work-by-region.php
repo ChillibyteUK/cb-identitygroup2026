@@ -53,8 +53,7 @@ if ( $q->have_posts() ) {
 						</div>
 						<div class="cb-related-work__desc">
 							<?php
-							$post_blocks = parse_blocks( get_the_content( null, false, get_the_ID() ) );
-							$subtitle    = cb_find_hero_subtitle( $post_blocks );
+							$subtitle = cb_get_case_study_subtitle( get_the_ID() );
 							if ( $subtitle ) {
 								echo esc_html( $subtitle );
 							} else {

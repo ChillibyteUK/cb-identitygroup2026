@@ -60,6 +60,15 @@ function cb_register_taxes() {
 		'show_in_rest'       => true,
 		'rewrite'            => false,
 	);
+	// Travel only ever used 'theme' internally (default-term auto-assignment
+	// and block queries), never as a front-end URL. Keep it non-public there
+	// so ?theme=... doesn't expose thin duplicate listing pages for posts and
+	// case studies. tax_query lookups (cb-related-work etc.) are unaffected.
+	if ( 'idtravel' === cb_site_template_suffix() ) {
+		$args['public']             = false;
+		$args['publicly_queryable'] = false;
+		$args['query_var']          = false;
+	}
 	register_taxonomy( 'theme', array( 'case_study', 'post' ), $args );
 
 	// 'service' and 'region' are registered by identity's and coda's own
@@ -85,6 +94,15 @@ function cb_register_taxes() {
 		'show_in_rest'       => true,
 		'rewrite'            => false,
 	);
+	if ( 'idtravel' === cb_site_template_suffix() ) {
+		$args['show_ui']            = false;
+		$args['show_in_quick_edit'] = false;
+		$args['show_admin_column']  = false;
+		$args['show_in_nav_menus']  = false;
+		$args['public']             = false;
+		$args['publicly_queryable'] = false;
+		$args['query_var']          = false;
+	}
 	register_taxonomy( 'service', array( 'case_study', 'post' ), $args );
 
 	$args = array(
@@ -103,6 +121,15 @@ function cb_register_taxes() {
 		'show_in_rest'       => true,
 		'rewrite'            => false,
 	);
+	if ( 'idtravel' === cb_site_template_suffix() ) {
+		$args['show_ui']            = false;
+		$args['show_in_quick_edit'] = false;
+		$args['show_admin_column']  = false;
+		$args['show_in_nav_menus']  = false;
+		$args['public']             = false;
+		$args['publicly_queryable'] = false;
+		$args['query_var']          = false;
+	}
 	register_taxonomy( 'region', array( 'case_study', 'post' ), $args );
 
 }
@@ -148,7 +175,13 @@ function cb_assign_default_theme_term( $post_id, $post, $update ) {
 		return;
 	}
 
-	if ( 'post' !== $post->post_type ) {
+	// Case studies only get the default on Travel - identity/coda use
+	// 'theme' for their own taxonomy (e.g. sports) and must not inherit it.
+	$allowed = array( 'post' );
+	if ( 'idtravel' === cb_site_template_suffix() ) {
+		$allowed[] = 'case_study';
+	}
+	if ( ! in_array( $post->post_type, $allowed, true ) ) {
 		return;
 	}
 
@@ -164,6 +197,7 @@ function cb_assign_default_theme_term( $post_id, $post, $update ) {
 	wp_set_object_terms( $post_id, array( $default_term_id ), 'theme', false );
 }
 add_action( 'save_post_post', 'cb_assign_default_theme_term', 10, 3 );
+add_action( 'save_post_case_study', 'cb_assign_default_theme_term', 10, 3 );
 
 /**
  * Backfill posts missing a theme term.
@@ -202,3 +236,43 @@ function cb_backfill_default_theme_term() {
 	update_option( 'cb_theme_default_term_backfill_done', 1 );
 }
 add_action( 'admin_init', 'cb_backfill_default_theme_term' );
+
+/**
+ * Backfill Travel case studies missing a theme term.
+ *
+ * Separate flag from the posts backfill above, which has already run.
+ *
+ * @return void
+ */
+function cb_backfill_default_theme_term_case_studies() {
+	if ( 'idtravel' !== cb_site_template_suffix() || get_option( 'cb_theme_default_term_case_study_backfill_done' ) ) {
+		return;
+	}
+
+	$default_term_id = cb_get_default_theme_term_id();
+	if ( ! $default_term_id ) {
+		return;
+	}
+
+	$ids = get_posts(
+		array(
+			'post_type'      => 'case_study',
+			'post_status'    => array( 'publish', 'future', 'draft', 'pending', 'private' ),
+			'posts_per_page' => -1,
+			'fields'         => 'ids',
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'theme',
+					'operator' => 'NOT EXISTS',
+				),
+			),
+		)
+	);
+
+	foreach ( $ids as $post_id ) {
+		wp_set_object_terms( $post_id, array( $default_term_id ), 'theme', false );
+	}
+
+	update_option( 'cb_theme_default_term_case_study_backfill_done', 1 );
+}
+add_action( 'admin_init', 'cb_backfill_default_theme_term_case_studies' );

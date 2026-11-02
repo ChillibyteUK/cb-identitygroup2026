@@ -46,8 +46,7 @@ if ( $hero_mode ) {
 				</div>
 				<div class="cb-featured-work__desc">
 					<?php
-					$post_blocks = parse_blocks( get_the_content( null, false, $hero_case_study ) );
-					$subtitle    = cb_find_hero_subtitle( $post_blocks );
+					$subtitle = cb_get_case_study_subtitle( $hero_case_study );
 					if ( $subtitle ) {
 						echo esc_html( $subtitle );
 					} else {
@@ -257,8 +256,7 @@ if ( $q->have_posts() ) {
 						<div class="cb-featured-work__desc">
 						<?php
 						// get the case_study_subtitle field from the cb-case-study-hero block if available.
-						$post_blocks = parse_blocks( get_the_content( null, false, get_the_ID() ) );
-						$subtitle    = cb_find_hero_subtitle( $post_blocks );
+						$subtitle = cb_get_case_study_subtitle( get_the_ID() );
 						if ( $subtitle ) {
 							echo esc_html( $subtitle );
 						} else {

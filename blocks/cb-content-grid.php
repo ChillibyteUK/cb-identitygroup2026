@@ -135,6 +135,11 @@ if ( empty( $grid_rows ) ) {
 // colour picker (block backgroundColor/textColor attributes). Support both.
 $background_field = get_field( 'background' );
 $bg                = $background_field ? $background_field : ( ! empty( $block['backgroundColor'] ) ? 'has-' . $block['backgroundColor'] . '-background-color' : '' );
+if ( ! $bg && 'idtravel' === cb_site_template_suffix() ) {
+	// Travel is dark by default (see _cb_content_grid.scss); the unset case
+	// used to render ink text on the white page.
+	$bg = 'has-primary-black-background-color';
+}
 $fg                = ! empty( $block['textColor'] ) ? 'has-' . $block['textColor'] . '-color' : '';
 $section_id        = $block['anchor'] ?? null;
 

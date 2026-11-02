@@ -357,3 +357,35 @@
     min-height: 1px;
   }
 }
+
+// Travel: the base above is coda's light scheme (ink text, lime titles) and
+// identity flips it dark in _header-site-overrides.scss. Travel is dark by
+// default - white text, and titles in the same purple-400 + neutral-050/.5
+// hairline treatment as Travel's pre-title bars - with a light flip on the
+// light backgrounds offered for Travel (see cb-site-tokens.php). `body.` for
+// specificity: the base has .content-grid.has-*-background-color rules at
+// (0,3,0) that would otherwise tie on order.
+body.cb-site-idtravel .content-grid {
+  color: var(--col-white);
+
+  .content-grid-title,
+  h2 {
+    padding-top: 0.25rem;
+    margin-bottom: 1rem;
+    color: var(--col-purple-400);
+    border-top: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+    border-bottom: 1px solid hsl(var(--hsl-neutral-050) / 0.5);
+  }
+
+  &.has-purple-200-background-color,
+  &.has-white-background-color {
+    color: var(--col-ink);
+
+    .content-grid-title,
+    h2 {
+      color: var(--col-purple-900);
+      border-color: hsl(var(--hsl-ink) / 0.2);
+    }
+  }
+}
+

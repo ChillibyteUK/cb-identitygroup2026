@@ -46,3 +46,30 @@
 .cb-site-health .case-study-hero .overlay {
   background: none;
 }
+
+// Travel: the base overlay fades from Identity's near-black (13,13,12), but
+// Travel's dark is primary-black #110d25 (250 48% 10%) - a visible seam
+// against its hero background otherwise.
+.cb-site-idtravel .case-study-hero .overlay {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--hsl-primary-black) / 1) 0%,
+    hsl(var(--hsl-primary-black) / 0.2) 20%,
+    hsl(var(--hsl-primary-black) / 0) 30%
+  );
+}
+
+// Travel: borders match Travel's other dark blocks (neutral-050 @ .5); the
+// base subtitle colour (neutral-800) is Identity's grey and is near-invisible
+// on Travel's #110d25 - use Travel's own neutral-500 strapline colour, same as
+// .work-index-hero h2 below.
+.cb-site-idtravel .case-study-hero {
+  h1,
+  h2 {
+    border-top-color: hsl(var(--hsl-neutral-050) / 0.5);
+  }
+  h2 {
+    border-bottom-color: hsl(var(--hsl-neutral-050) / 0.5);
+    color: var(--col-neutral-500);
+  }
+}

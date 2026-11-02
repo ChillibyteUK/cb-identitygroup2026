@@ -13,6 +13,17 @@ $block_id = $block['id'] ?? '';
 $is_identity = 'identity' === cb_site_template_suffix();
 $is_coda     = 'coda' === cb_site_template_suffix();
 $is_health   = 'health' === cb_site_template_suffix();
+$is_travel   = 'idtravel' === cb_site_template_suffix();
+
+// Travel filters by the 'theme' taxonomy (service/region are hidden there).
+// Everything else filters by 'service'. The card data attribute and the JS
+// below use a shared 'service-{slug}' naming either way.
+$filter_taxonomy = $is_travel ? 'theme' : 'service';
+$filter_all      = $is_travel ? 'All Themes' : 'All Services';
+
+// Hero heading copy, one place per site (Travel copy still to be confirmed by the client).
+$hero_title = 'Work';
+$hero_strap = 'Where experience changes everything';
 
 $bg_case_study = get_field( 'hero_case_study' )[0] ?? null;
 
@@ -50,12 +61,12 @@ if ( ! $bg_case_study ) {
 	<div class="work-index-hero__title my-4">
 		<h1>
 			<div class="id-container px-4 px-md-5 pt-2">
-				Work
+				<?= esc_html( $hero_title ); ?>
 			</div>
 		</h1>
 		<h2 class="has-500-font-size fw-light">
 			<div class="id-container px-4 px-md-5 pt-2 pb-1">
-				Where experience changes everything
+				<?= esc_html( $hero_strap ); ?>
 			</div>
 		</h2>
 	</div>
@@ -72,12 +83,12 @@ if ( ! $bg_case_study ) {
 	<div class="work-index-hero__title my-4">
 		<h1>
 			<div class="id-container px-4 px-md-5 pt-2">
-				Work
+				<?= esc_html( $hero_title ); ?>
 			</div>
 		</h1>
 		<h2 class="has-500-font-size fw-light">
 			<div class="id-container px-4 px-md-5 pt-2 pb-1">
-				Where experience changes everything
+				<?= esc_html( $hero_strap ); ?>
 			</div>
 		</h2>
 	</div>
@@ -116,8 +127,7 @@ if ( ! $bg_case_study ) {
 				<div class="work-index-hero__<?= $is_identity ? 'desc' : 'card-desc'; ?>">
 					<?php
 					// get the case_study_subtitle field from the cb-case-study-hero block if available.
-					$post_blocks = parse_blocks( get_post_field( 'post_content', $bg_case_study ) );
-					$subtitle    = cb_find_hero_subtitle( $post_blocks );
+					$subtitle = cb_get_case_study_subtitle( $bg_case_study );
 					if ( $subtitle ) {
 						echo esc_html( $subtitle );
 					} else {
@@ -137,7 +147,7 @@ if ( ! $bg_case_study ) {
 	</div>
 </section>
 <section id="<?php echo esc_attr( $block_id ); ?>" class="cb-work-index">
-	<?php if ( $is_identity ) : ?>
+	<?php if ( $is_identity || $is_travel ) : ?>
 	<div class="cb-work-index__filter-bar py-4 px-4 px-md-5">
 		<div class="id-container py-4 cb-work-index__filters">
 			<div class="row g-4 align-items-center">
@@ -148,7 +158,7 @@ if ( ! $bg_case_study ) {
 			<?php
 			$service_terms = get_terms(
 				array(
-					'taxonomy'   => 'service',
+					'taxonomy'   => $filter_taxonomy,
 					'hide_empty' => true,
 					'parent'     => 0, // only top-level parent terms.
 				)
@@ -156,15 +166,15 @@ if ( ! $bg_case_study ) {
 			if ( ! is_wp_error( $service_terms ) && ! empty( $service_terms ) ) {
 				?>
 			<select id="cb-work-index-service-filter" class="cb-work-index__filter-select">
-				<option value="all">All Services</option>
+				<option value="all"><?php echo esc_html( $filter_all ); ?></option>
 				<?php
 				foreach ( $service_terms as $service_term ) {
 					?>
 					<option value="<?php echo esc_attr( $service_term->slug ); ?>"><?php echo esc_html( $service_term->name ); ?></option>
 					<?php
 				}
-				// Add sports from theme taxonomy.
-				$sports_term = get_term_by( 'slug', 'sports', 'theme' );
+				// Add sports from theme taxonomy (Identity only; Travel lists theme terms above).
+				$sports_term = $is_travel ? false : get_term_by( 'slug', 'sports', 'theme' );
 				if ( $sports_term && ! is_wp_error( $sports_term ) ) {
 					?>
 					<option value="sports">Identity Sport</option>
@@ -229,9 +239,22 @@ if ( ! $bg_case_study ) {
 							$service_classes .= ' service-' . $slug;
 						}
 					}
-					// Add sports theme term to service classes.
+					// Add sports theme term to service classes (Travel: every theme term, incl. parents).
 					$theme_terms = get_the_terms( get_the_ID(), 'theme' );
-					if ( ! is_wp_error( $theme_terms ) && ! empty( $theme_terms ) ) {
+					if ( $is_travel ) {
+						$service_classes = '';
+						if ( ! is_wp_error( $theme_terms ) && ! empty( $theme_terms ) ) {
+							foreach ( $theme_terms as $theme_term ) {
+								$service_classes .= ' service-' . $theme_term->slug;
+								foreach ( get_ancestors( $theme_term->term_id, 'theme' ) as $anc_id ) {
+									$anc_term = get_term( $anc_id, 'theme' );
+									if ( $anc_term && ! is_wp_error( $anc_term ) ) {
+										$service_classes .= ' service-' . $anc_term->slug;
+									}
+								}
+							}
+						}
+					} elseif ( ! is_wp_error( $theme_terms ) && ! empty( $theme_terms ) ) {
 						foreach ( $theme_terms as $theme_term ) {
 							if ( 'sports' === $theme_term->slug ) {
 								$service_classes .= ' service-sports';
@@ -264,8 +287,7 @@ if ( ! $bg_case_study ) {
 						<div class="cb-work-index__desc">
 							<?php
 							// get the case_study_subtitle field from the cb-case-study-hero block if available.
-							$post_blocks = parse_blocks( get_the_content( null, false, get_the_ID() ) );
-							$subtitle    = cb_find_hero_subtitle( $post_blocks );
+							$subtitle = cb_get_case_study_subtitle( get_the_ID() );
 							if ( $subtitle ) {
 								echo esc_html( $subtitle );
 							} else {

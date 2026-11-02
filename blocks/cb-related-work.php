@@ -191,8 +191,7 @@ if ( ! empty( $posts ) ) {
 						</div>
 						<div class="cb-related-work__desc">
 							<?php
-							$post_blocks = parse_blocks( get_post_field( 'post_content', $post_id ) );
-							$subtitle    = cb_find_hero_subtitle( $post_blocks );
+							$subtitle = cb_get_case_study_subtitle( $post_id );
 							if ( $subtitle ) {
 								echo esc_html( $subtitle );
 							} else {

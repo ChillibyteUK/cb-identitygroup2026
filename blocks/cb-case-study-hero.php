@@ -22,7 +22,7 @@ $block_id = $block['id'] ?? '';
     </h1>
     <h2>
         <div class="id-container px-4 px-md-5 pt-2">
-            <?= esc_html( get_field( 'case_study_subtitle' ) ); ?>
+            <?= esc_html( get_field( 'case_study_subtitle' ) ?: ( 'idtravel' === cb_site_template_suffix() ? get_post_meta( get_the_ID(), 'case_study_subtitle', true ) : '' ) ); ?>
         </div>
     </h2>
     <?php

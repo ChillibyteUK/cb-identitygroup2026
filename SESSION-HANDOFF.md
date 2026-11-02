@@ -72,6 +72,83 @@ Root-caused and fixed identity's `/news/` page height bug via a new per-site-tem
 
 ---
 
+## 2026-11-02: Travel (idtravel) case study pass
+
+Audit + fixes so case studies work in the Travel context. All Travel-scoped
+(`'idtravel' === cb_site_template_suffix()` / `.cb-site-idtravel`); identity/coda
+output verified unchanged by switching `cb_site` on `idtravel-test`.
+
+- `single-case_study.php`: Travel always gets exactly one `<h1>` (renders a
+  hero-style header if the post has no `acf/cb-case-study-hero` block).
+- `inc/cb-taxonomies.php`: on Travel `theme`/`service`/`region` are non-public
+  (no `?theme=` URLs, matching original idtravel); `service`/`region` hidden in
+  Travel admin. `business-travel` default term now also applied to `case_study`
+  on Travel (+ one-off backfill, own option flag).
+- `blocks/cb-work-index.php`: Travel gets the filter bar, driven by `theme`
+  terms ("All Themes"); hero title/strap moved to `$hero_title`/`$hero_strap`.
+- Hero overlay gradient uses Travel's primary-black; key-stats header gets a
+  size (Travel has no `--fs-300`) and `--col-brand-light` (brand was 4.16:1 on
+  primary-black); key-stats fallback bg is `work-index-bg.jpg` on Travel.
+- **"Case Study Fields" meta box restored** (post-level `case_study_subtitle`,
+  group `group_69b033df762d2`): coda's own theme had it, the merge dropped it,
+  which is why `single-case_study.php`'s coda branch always fell back to the
+  hardcoded "Top 5 Pharma Company" (that diagnosis was first mis-stated as
+  "get_field can't see block data" - wrong for coda, whose subtitle is post
+  meta). Ported from coda verbatim (same keys); shown for coda + idtravel only
+  (`acf/location/rule_match` in `inc/cb-site-tokens.php`); coda keeps its
+  "Top 5 Pharma Company" default via `acf/load_field`, Travel starts empty.
+  `cb_get_case_study_subtitle()` (`inc/cb-utility.php`) now feeds all 8 card
+  call sites: post meta first on Travel only, hero-block subtitle otherwise
+  (coda cards deliberately do NOT read the meta - its default is a placeholder).
+- **Travel styling pass** (all `.cb-site-idtravel`-scoped): Travel's design
+  language = ink (#110d25) sections, neutral-900 pre-title bars with uppercase
+  purple-400 text, 1px `neutral-050/.5` rules, white numerals, brand raspberry
+  for buttons only. Applied to featured-work (was Coda's pink), related-work,
+  work-index (cards, filter bar/Tom Select/Reset, hero bands hidden), case study
+  hero (subtitle was invisible neutral-800) and key stats (no theme bg image on
+  Travel unless the editor sets one). Shared pre-title bar rule lives in
+  `_cb_featured_work.scss`. Verified in Chrome on idtravel-test.
+- **CB Content Grid on Travel** (`acf/cb-content-grid`, the grid_rows block
+  case studies imported from identity/coda use): Travel got its own Background
+  choices (Ink default, Neutral Darkest, Neutral Dark, Purple, Purple Light,
+  White - same saved values as before where they existed) via
+  `acf/load_field` in `cb-site-tokens.php`; unset background defaults to ink on
+  Travel; default text is white and titles purple-400 with neutral-050/.5
+  hairlines, flipping to ink/purple-900 on the two light choices
+  (`body.cb-site-idtravel .content-grid` in `_cb_content_grid.scss`). Before:
+  ink text + maroon titles on near-black = invisible. Verified in Chrome on
+  idtravel-test post 2409. `cb-content-grid-v2` (Gutenberg colour picker) and
+  Travel's own `rows`-schema grid (`cb-content-grid-idtravel.php`) untouched.
+- **CB What We Delivered on Travel**: was Coda's green photo + raspberry
+  heading. Now ink with the shared neutral-900 / purple-400 heading bar and
+  neutral-050/.5 rules (`.cb-site-idtravel .cb-what-we-delivered`); optional
+  Background Image field added to `group_cb_what_we_delivered.json`, shown on
+  Travel only (`cb_hide_non_travel_field`). Other contexts unchanged (their
+  photo stays hardcoded in the SCSS).
+- **Editor cursor jump fixed** (`js/cb-editor-fix.js`): with at least one ACF
+  wysiwyg (TinyMCE) on the page, inserting a block (e.g. typing `/full image`
+  or any text in a paragraph after CB Case Study Hero, above a CB Content
+  Grid) made ACF unmount+remount the later blocks' TinyMCE editors, and each
+  re-created editor grabbed focus - typed text landed at the start of the grid's
+  rich-text field. Root cause confirmed in Chrome (focus ended on
+  `acf-editor-N_ifr`, text went into it; second remount ~1s later, mid-typing).
+  Guard: snapshot the focused element + caret when an ACF editor is added; if
+  that editor takes focus within 2.5s with no mouse/keyboard input inside it,
+  hand focus back. Verified: fast typing, 400ms-spaced typing, and a deliberate
+  click into the editor all behave. Applies to every site (it's a shared ACF
+  editor fix, not Travel styling).
+- **Open / not changed**: Travel's `/work/` strapline is still the group copy,
+  pending client wording. Travel's `theme` terms are audience/topic terms (For
+  Travel Managers, VIP and Premium, ...), not just Business/Specialist Travel -
+  confirm what case studies should be tagged with. `idtravel-test` has
+  `cb_site=idtravel` and seed content (case studies "SEED Travel case study
+  A/B/C", pages "SEED work index" and "SEED case study blocks"); pre-change DB
+  dump is in the session scratchpad. `cb-related-work`, `cb-work-by-region` and
+  `cb-work-carousel` Travel restyling was only checked where they render
+  (related/region render nothing without service/region context).
+
+---
+
 ## 2026-07-07 follow-up: real WP instance, major bug found and fixed
 
 Continued this from a local install with wp-cli, Node, and the full build

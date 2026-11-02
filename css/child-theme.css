@@ -25217,6 +25217,30 @@ span a {
   min-height: 1px;
 }
 
+body.cb-site-idtravel .content-grid {
+  color: var(--col-white);
+}
+body.cb-site-idtravel .content-grid .content-grid-title,
+body.cb-site-idtravel .content-grid h2,
+body.cb-site-idtravel .content-grid .h2 {
+  padding-top: 0.25rem;
+  margin-bottom: 1rem;
+  color: var(--col-purple-400);
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+body.cb-site-idtravel .content-grid.has-purple-200-background-color, body.cb-site-idtravel .content-grid.has-white-background-color {
+  color: var(--col-ink);
+}
+body.cb-site-idtravel .content-grid.has-purple-200-background-color .content-grid-title,
+body.cb-site-idtravel .content-grid.has-purple-200-background-color h2,
+body.cb-site-idtravel .content-grid.has-purple-200-background-color .h2, body.cb-site-idtravel .content-grid.has-white-background-color .content-grid-title,
+body.cb-site-idtravel .content-grid.has-white-background-color h2,
+body.cb-site-idtravel .content-grid.has-white-background-color .h2 {
+  color: var(--col-purple-900);
+  border-color: hsl(var(--hsl-ink)/0.2);
+}
+
 .cb-video-hero {
   background-color: var(--col-ink);
   color: var(--col-white);
@@ -27232,16 +27256,79 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   background-color: var(--col-ink);
 }
 .cb-site-idtravel .work-index-hero h1, .cb-site-idtravel .work-index-hero .h1 {
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
   color: var(--col-white);
 }
 .cb-site-idtravel .work-index-hero h2, .cb-site-idtravel .work-index-hero .h2 {
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
   color: var(--col-neutral-500);
+}
+.cb-site-idtravel .work-index-hero .overlay,
+.cb-site-idtravel .work-index-hero .bottom-overlay {
+  display: none;
+}
+.cb-site-idtravel .cb-work-index__image,
+.cb-site-idtravel .cb-featured-work__image,
+.cb-site-idtravel .cb-related-work__image {
+  width: 100%;
 }
 .cb-site-idtravel .cb-work-index {
   background-color: var(--col-ink);
+  color: var(--col-white);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .cb-work-index__content {
+  background: linear-gradient(hsl(var(--hsl-primary-black)/0), hsl(var(--hsl-primary-black)/0.6) 20%, hsl(var(--hsl-primary-black)/0.8));
+  padding: 2.5rem 2rem 1rem 1rem;
+}
+.cb-site-idtravel .cb-work-index__title {
+  color: var(--col-white);
+}
+.cb-site-idtravel .cb-work-index__title .cb-featured-work__arrow {
+  filter: none;
+}
+.cb-site-idtravel .cb-work-index__desc {
+  color: var(--col-neutral-500);
+}
+.cb-site-idtravel .cb-work-index__filter-bar {
+  background-color: var(--col-neutral-900);
+  background-image: none;
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  color: var(--col-purple-400);
+  text-transform: uppercase;
+}
+.cb-site-idtravel .cb-work-index .ts-control,
+.cb-site-idtravel .cb-work-index .ts-control input,
+.cb-site-idtravel .cb-work-index .ts-control .item {
+  color: var(--col-white) !important;
+}
+.cb-site-idtravel .cb-work-index .ts-control {
+  border-color: hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .cb-work-index .btn-id-outline-green {
+  --_fg: var(--col-white);
+  --_bd: hsl(var(--hsl-neutral-050) / 0.5);
+  color: var(--col-white);
+  border-color: hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .cb-work-index .btn-id-outline-green:hover {
+  background-color: var(--col-button);
+  border-color: var(--col-button);
+  color: var(--col-white);
+}
+.cb-site-idtravel .ts-dropdown {
+  background: hsl(var(--hsl-primary-black)/0.95) !important;
+  color: var(--col-white);
+  border-color: hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .ts-dropdown .option.active {
+  background: var(--col-neutral-900);
+  color: var(--col-white);
+}
+.cb-site-idtravel .ts-dropdown .option.selected {
+  background: var(--col-button);
   color: var(--col-white);
 }
 
@@ -27620,6 +27707,33 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   color: var(--col-strawberry-850);
 }
 
+.cb-site-idtravel .cb-featured-work__pre-title,
+.cb-site-idtravel .cb-related-work__pre-title,
+.cb-site-idtravel .cb-case-study-key-stats__header {
+  background-color: var(--col-neutral-900);
+  color: var(--col-purple-400);
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  font-size: 1.125rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.cb-site-idtravel .cb-featured-work {
+  background-color: var(--col-primary-black);
+  color: var(--col-white);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .cb-featured-work__content {
+  background: linear-gradient(hsl(var(--hsl-primary-black)/0), hsl(var(--hsl-primary-black)/0.6) 20%, hsl(var(--hsl-primary-black)/0.8));
+}
+.cb-site-idtravel .cb-featured-work__title {
+  color: var(--col-white);
+}
+.cb-site-idtravel .cb-featured-work__desc {
+  color: var(--col-neutral-500);
+}
+
 .cb-services-nav {
   position: relative;
   background-color: var(--col-white);
@@ -27754,6 +27868,20 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 
 .cb-site-health .case-study-hero .overlay {
   background: none;
+}
+
+.cb-site-idtravel .case-study-hero .overlay {
+  background: linear-gradient(180deg, hsl(var(--hsl-primary-black)/1) 0%, hsl(var(--hsl-primary-black)/0.2) 20%, hsl(var(--hsl-primary-black)/0) 30%);
+}
+
+.cb-site-idtravel .case-study-hero h1, .cb-site-idtravel .case-study-hero .h1,
+.cb-site-idtravel .case-study-hero h2,
+.cb-site-idtravel .case-study-hero .h2 {
+  border-top-color: hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .case-study-hero h2, .cb-site-idtravel .case-study-hero .h2 {
+  border-bottom-color: hsl(var(--hsl-neutral-050)/0.5);
+  color: var(--col-neutral-500);
 }
 
 /**
@@ -29247,6 +29375,35 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
+.cb-site-idtravel .cb-what-we-delivered {
+  background-color: var(--col-primary-black);
+  border-top: 0;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .cb-what-we-delivered::before {
+  background: none;
+}
+.cb-site-idtravel .cb-what-we-delivered--has-background-image::before {
+  background: var(--cb-what-we-delivered-bg) center/cover no-repeat;
+}
+.cb-site-idtravel .cb-what-we-delivered__container {
+  background-color: transparent;
+}
+.cb-site-idtravel .cb-what-we-delivered__header {
+  background-color: var(--col-neutral-900);
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+  color: var(--col-purple-400);
+}
+.cb-site-idtravel .cb-what-we-delivered__header h2, .cb-site-idtravel .cb-what-we-delivered__header .h2 {
+  color: var(--col-purple-400);
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+}
+.cb-site-idtravel .cb-what-we-delivered__item {
+  border-bottom-color: hsl(var(--hsl-neutral-050)/0.5);
+}
+
 .cb-gradient-intro {
   background: var(--grad-main);
 }
@@ -29372,6 +29529,25 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   }
 }
 
+.cb-site-idtravel .cb-case-study-key-stats {
+  background-color: var(--col-primary-black);
+  border-top: 0;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .cb-case-study-key-stats__container {
+  background-color: transparent;
+}
+.cb-site-idtravel .cb-case-study-key-stats__stat {
+  color: var(--col-white);
+  font-weight: var(--fw-book);
+  letter-spacing: var(--ls--30);
+  border-bottom-color: hsl(var(--hsl-neutral-050)/0.5);
+}
+.cb-site-idtravel .cb-case-study-key-stats__descriptor {
+  color: var(--col-white);
+  border-bottom-color: hsl(var(--hsl-neutral-050)/0.5);
+}
+
 .cb-related-work {
   background-color: var(--col-primary-black);
   color: var(--col-white);
@@ -29445,6 +29621,10 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 
 .cb-site-health .cb-related-work__content {
   background: rgba(255, 234, 255, 0.95);
+}
+
+.cb-site-idtravel .cb-related-work {
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5);
 }
 
 @media (min-width: 992px) {
