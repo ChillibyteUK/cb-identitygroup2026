@@ -94,14 +94,37 @@
   &__container {
     background-color: transparent;
   }
+  // Type size and containerisation match the JS theme's Stat Block (stack
+  // layout): one full-bleed grid whose stat column starts at .id-container's
+  // own left edge. The markup's inner .id-container is display: contents (no
+  // effect), so --stat-inset reproduces its centring (half of whatever is
+  // left past 1920px) instead. 100cqw, not % or vw - the grid is made a
+  // query container so it resolves against its own scrollbar-free width,
+  // exactly like .id-container's %.
+  &__grid-wrapper {
+    container-type: inline-size;
+    --stat-inset: max(0px, calc((100cqw - 1920px) / 2));
+  }
   &__stat {
     color: var(--col-white);
+    font-size: var(--fs-850);
     font-weight: var(--fw-book);
     letter-spacing: var(--ls--30);
     border-bottom-color: hsl(var(--hsl-neutral-050) / 0.5);
+    padding-inline: calc(var(--stat-inset) + 1.5rem) 1.5rem;
+    @media (min-width: 768px) {
+      padding-inline: calc(var(--stat-inset) + 3rem) 3rem;
+    }
   }
   &__descriptor {
     color: var(--col-white);
+    font-size: var(--fs-400);
+    line-height: var(--lh-400);
+    text-wrap: pretty;
     border-bottom-color: hsl(var(--hsl-neutral-050) / 0.5);
+    padding-inline: 1.5rem;
+    @media (min-width: 768px) {
+      padding: 1rem;
+    }
   }
 }

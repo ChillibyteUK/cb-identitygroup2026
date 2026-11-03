@@ -29537,15 +29537,35 @@ form .gform_confirmation_message_1.gform_confirmation_message {
 .cb-site-idtravel .cb-case-study-key-stats__container {
   background-color: transparent;
 }
+.cb-site-idtravel .cb-case-study-key-stats__grid-wrapper {
+  container-type: inline-size;
+  --stat-inset: max(0px, calc((100cqw - 1920px) / 2));
+}
 .cb-site-idtravel .cb-case-study-key-stats__stat {
   color: var(--col-white);
+  font-size: var(--fs-850);
   font-weight: var(--fw-book);
   letter-spacing: var(--ls--30);
   border-bottom-color: hsl(var(--hsl-neutral-050)/0.5);
+  padding-inline: calc(var(--stat-inset) + 1.5rem) 1.5rem;
+}
+@media (min-width: 768px) {
+  .cb-site-idtravel .cb-case-study-key-stats__stat {
+    padding-inline: calc(var(--stat-inset) + 3rem) 3rem;
+  }
 }
 .cb-site-idtravel .cb-case-study-key-stats__descriptor {
   color: var(--col-white);
+  font-size: var(--fs-400);
+  line-height: var(--lh-400);
+  text-wrap: pretty;
   border-bottom-color: hsl(var(--hsl-neutral-050)/0.5);
+  padding-inline: 1.5rem;
+}
+@media (min-width: 768px) {
+  .cb-site-idtravel .cb-case-study-key-stats__descriptor {
+    padding: 1rem;
+  }
 }
 
 .cb-related-work {

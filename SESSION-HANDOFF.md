@@ -3135,3 +3135,7 @@ including the latest pre-title fixes.
 `/var/www/idtravel` is build/staging-only and must never be opened in a browser or treated as a fourth site —
 that's the actual root cause of both this drift and the original miscategorized "loads of `_.scss` files"
 question.
+
+### 2026-11-03 — Travel Case Study Key Stats matched to JS theme's Stat Block (stack)
+- `_cb_case_study_key_stats.scss`, Travel only: stat `--fs-850` (was `--fs-900`), descriptor `--fs-400`/`--lh-400`/`text-wrap: pretty` (was `--fs-500`), per cb-identityjs2026 `blocks/stat-block` (`src/blocks/stat-block.css`).
+- Containerisation: the markup's inner `.id-container` is `display: contents` (inert), so `__grid-wrapper` is now a `container-type: inline-size` query container with `--stat-inset: max(0px, calc((100cqw - 1920px)/2))` added to the stat column's inline-start padding. Same trick as the JS block, so stats align with `.id-container` on >1920px screens. Pre-title bar unchanged (shared Travel bar).
