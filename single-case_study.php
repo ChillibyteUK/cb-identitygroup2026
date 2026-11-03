@@ -17,7 +17,8 @@ $subtitle = get_field( 'case_study_subtitle' ) ? get_field( 'case_study_subtitle
 	// Study Hero block (or, for coda, the branch below); a Travel case study
 	// saved without that block would otherwise render no heading at all.
 	// Subtitle comes from the post-level Case Study Subtitle meta box.
-	if ( 'idtravel' === cb_site_template_suffix() && ! has_block( 'acf/cb-case-study-hero' ) ) :
+	if ( 'idtravel' === cb_site_template_suffix() && ! has_block( 'acf/cb-case-study-hero' ) ) {
+		/*
 		?>
 	<section class="case-study-hero has-primary-black-background-color pt-5">
 		<h1>
@@ -30,7 +31,10 @@ $subtitle = get_field( 'case_study_subtitle' ) ? get_field( 'case_study_subtitle
 		</h2>
 		<?php endif; ?>
 	</section>
-	<?php endif; ?>
+		<?php
+		*/
+	}
+	?>
 	<?php if ( 'coda' === cb_site_template_suffix() ) : ?>
 	<div class="has-lime-1000-border-top has-lime-1000-border-bottom mt-4">
 		<h1 class="id-container px-4 px-md-5 fs-800 fw-light has-lime-1100-color lh-tightest pt-2 pb-1"><?= get_the_title(); ?></h1>
@@ -41,9 +45,9 @@ $subtitle = get_field( 'case_study_subtitle' ) ? get_field( 'case_study_subtitle
 		</div>
 	</div>
 	<?php endif; ?>
-    <?php
-    the_content();
-    ?>
+	<?php
+	the_content();
+	?>
 </main>
 <?php
 get_footer( cb_site_template_suffix() );
