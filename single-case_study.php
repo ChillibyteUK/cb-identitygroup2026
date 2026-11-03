@@ -20,7 +20,7 @@ $subtitle = get_field( 'case_study_subtitle' ) ? get_field( 'case_study_subtitle
 	if ( 'idtravel' === cb_site_template_suffix() && ! has_block( 'acf/cb-case-study-hero' ) ) :
 		?>
 	<section class="case-study-hero has-primary-black-background-color pt-5">
-		<h1 class="mt-5">
+		<h1>
 			<div class="id-container px-4 px-md-5 pt-1"><?= esc_html( get_the_title() ); ?></div>
 		</h1>
 		<?php $travel_subtitle = get_post_meta( get_the_ID(), 'case_study_subtitle', true ); ?>
