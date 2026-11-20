@@ -21996,9 +21996,22 @@ a:focus-visible {
 }
 
 .cb-site-idtravel :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn) {
-  color: var(--col-purple-500);
+  color: var(--col-raspberry);
 }
 .cb-site-idtravel :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn):hover, .cb-site-idtravel :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn):focus-visible {
+  color: var(--col-raspberry-700);
+}
+
+.cb-site-idtravel .has-black-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn),
+.cb-site-idtravel .has-neutral-900-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn),
+.cb-site-idtravel .has-secondary-900-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn) {
+  color: var(--col-purple-500);
+}
+.cb-site-idtravel .has-black-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn):hover, .cb-site-idtravel .has-black-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn):focus-visible,
+.cb-site-idtravel .has-neutral-900-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn):hover,
+.cb-site-idtravel .has-neutral-900-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn):focus-visible,
+.cb-site-idtravel .has-secondary-900-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn):hover,
+.cb-site-idtravel .has-secondary-900-background-color :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn):focus-visible {
   color: var(--col-purple-700);
 }
 

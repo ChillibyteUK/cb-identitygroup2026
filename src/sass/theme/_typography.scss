@@ -441,16 +441,33 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-// idtravel inline links (links within running text) use purple-500, purple-700
-// on hover. Buttons, header and footer links keep their own colors.
-.cb-site-idtravel
-  :is(p, li, blockquote, td):not(header *, footer *, nav *)
-  a:not(.id-button, .wp-block-button__link, .btn) {
-  color: var(--col-purple-500);
+// idtravel inline links (links within running text): raspberry-500 on white,
+// raspberry-700 on hover. Inside the dark WP background utility classes they
+// use purple-500 / purple-700 instead. Buttons, header and footer links keep
+// their own colors.
+$idtravel-inline-link: ":is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn)";
+
+.cb-site-idtravel #{$idtravel-inline-link} {
+  color: var(--col-raspberry);
 
   &:hover,
   &:focus-visible {
-    color: var(--col-purple-700);
+    color: var(--col-raspberry-700);
+  }
+}
+
+.cb-site-idtravel {
+  .has-black-background-color,
+  .has-neutral-900-background-color,
+  .has-secondary-900-background-color {
+    #{$idtravel-inline-link} {
+      color: var(--col-purple-500);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--col-purple-700);
+      }
+    }
   }
 }
 
