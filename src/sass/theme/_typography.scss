@@ -441,9 +441,9 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-// Health inline links (links within running text) use purple-400. Buttons,
+// idtravel inline links (links within running text) use purple-400. Buttons,
 // header and footer links keep their own colors.
-.cb-site-health
+.cb-site-idtravel
   :is(p, li, blockquote, td):not(header *, footer *, nav *)
   a:not(.id-button, .wp-block-button__link, .btn) {
   color: var(--col-purple-400);

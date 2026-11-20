@@ -21995,7 +21995,7 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-.cb-site-health :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn) {
+.cb-site-idtravel :is(p, li, blockquote, td):not(header *, footer *, nav *) a:not(.id-button, .wp-block-button__link, .btn) {
   color: var(--col-purple-400);
 }
 
