@@ -21,6 +21,7 @@ if ( $hero_mode ) {
 				'posts_per_page' => 1,
 				'orderby'        => 'date',
 				'order'          => 'DESC',
+				'post__not_in'   => array( get_the_ID() ), // Never feature the page it's shown on.
 			)
 		);
 		if ( $latest_query->have_posts() ) {
@@ -71,6 +72,7 @@ $query_args = array(
 	'posts_per_page' => $count,
 	'orderby'        => 'date',
 	'order'          => 'DESC',
+	'post__not_in'   => array( get_the_ID() ), // Never feature the current post/page.
 );
 
 if ( 'none' !== $taxonomy_filter && taxonomy_exists( $taxonomy_filter ) ) {
@@ -87,7 +89,6 @@ if ( 'none' !== $taxonomy_filter && taxonomy_exists( $taxonomy_filter ) ) {
 				'terms'    => $current_terms,
 			),
 		);
-		$query_args['post__not_in'] = array( get_the_ID() );
 	}
 } elseif ( ! empty( $selected_services ) && is_array( $selected_services ) ) {
 	// If services are selected, filter by those term IDs.
