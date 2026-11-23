@@ -458,8 +458,27 @@ $idtravel-inline-link: ":is(p, li, blockquote, td):not(header *, footer *, nav *
 
 .cb-site-idtravel {
   .has-black-background-color,
+  .has-ink-background-color,
+  .has-primary-black-background-color,
+  .has-neutral-800-background-color,
+  .has-neutral-850-background-color,
   .has-neutral-900-background-color,
-  .has-secondary-900-background-color {
+  .has-neutral-1000-background-color,
+  .has-neutral-1100-background-color,
+  .has-secondary-900-background-color,
+  .has-purple-800-background-color,
+  .has-purple-900-background-color,
+  .has-purple-950-background-color,
+  .has-purple-1000-background-color,
+  .has-purple-1100-background-color,
+  .has-raspberry-background-color,
+  .has-raspberry-600-background-color,
+  .has-raspberry-700-background-color,
+  .has-raspberry-800-background-color,
+  .has-raspberry-900-background-color,
+  .has-raspberry-1000-background-color,
+  .light-lines,
+  .has-white-color {
     #{$idtravel-inline-link} {
       color: var(--col-purple-500);
 
