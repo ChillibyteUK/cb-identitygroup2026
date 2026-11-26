@@ -27639,6 +27639,25 @@ form .gform_confirmation_message_1.gform_confirmation_message {
   color: var(--col-blueberry-850);
 }
 
+.cb-site-idtravel .cb-latest-insights:not(.cb-latest-insights--front) {
+  background-color: var(--col-raspberry);
+}
+.cb-site-idtravel .cb-latest-insights:not(.cb-latest-insights--front) .cb-latest-insights__pre-title {
+  border-top: 1px solid hsl(var(--hsl-neutral-050)/0.5) !important;
+  border-bottom: 1px solid hsl(var(--hsl-neutral-050)/0.5) !important;
+  color: var(--col-white);
+}
+.cb-site-idtravel .cb-latest-insights:not(.cb-latest-insights--front) .cb-latest-insights__category {
+  border-bottom-color: hsl(var(--hsl-neutral-050)/0.5) !important;
+  color: var(--col-white);
+}
+.cb-site-idtravel .cb-latest-insights:not(.cb-latest-insights--front) .cb-latest-insights__title {
+  color: var(--col-white);
+}
+.cb-site-idtravel .cb-latest-insights:not(.cb-latest-insights--front) .cb-latest-insights__date {
+  color: var(--col-raspberry-100);
+}
+
 .cb-featured-work {
   background-color: var(--col-lime-200);
   color: var(--col-primary-black);

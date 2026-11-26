@@ -23,6 +23,10 @@ if ( ! $is_identity && is_front_page() ) {
 	$class = 'cb-latest-insights--front';
 }
 
+// idtravel's non-front-page variant is raspberry with white text (matches
+// CB Recent News), so it needs the white arrow like identity's dark design.
+$is_raspberry = 'idtravel' === cb_site_template_suffix() && ! is_front_page();
+
 $taxonomy_filter = get_field( 'taxonomy_filter' );
 
 ?>
@@ -136,7 +140,7 @@ $taxonomy_filter = get_field( 'taxonomy_filter' );
 						<?php endif; ?>
 						<div class="cb-latest-insights__date d-flex align-items-center gap-2">
 							<?php echo get_the_date( 'j F Y' ); ?>
- 							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/' . ( $is_identity ? 'arrow-wh.svg' : 'arrow-n900.svg' ) ); ?>" width=14 height=13 alt="" />
+ 							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/img/' . ( ( $is_identity || $is_raspberry ) ? 'arrow-wh.svg' : 'arrow-n900.svg' ) ); ?>" width=14 height=13 alt="" />
 						</div>
 					</div>
 				</a>	
